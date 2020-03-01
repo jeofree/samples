@@ -1,0 +1,43 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Managing selected objects</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f312.html" class="breadcrumb">Creating a graph display from data providers using the Diagram
+class</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f323.html" class="breadcrumb">Handling selection in a diagram</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f325.html" class="breadcrumb">Managing selected objects</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f324.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f326.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Managing selected objects</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">D4F provides an API to manage the selection of objects
+in a diagram.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">This API is composed by the properties and methods available
+in the Diagram class:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">allowSelection</div>
+</li><li class="itemizedlistItem"><div class="para">selectionMode</div>
+</li><li class="itemizedlistItem"><div class="para">selectedItems</div>
+</li><li class="itemizedlistItem"><div class="para">selectedItem</div>
+</li><li class="itemizedlistItem"><div class="para">setItemSelected</div>
+</li><li class="itemizedlistItem"><div class="para">isItemSelected</div>
+</li><li class="itemizedlistItem"><div class="para">clearSelection</div>
+</li></ul></div>
+<div class="para">The current selection is available in the selectedItems
+property. The selectedItem property returns the first selected item
+in the list. The elements part of current selection are the business
+data objects present in the diagram data providers.   You can modify
+the list of selected items using methods setItemSelected and clearSelection
+or modifying the value of property selectedItems. The selected items
+must be the business data objects present in the diagram data providers.
+  You can query whether an item is selected using method isItemSelected. 
+ You can also forbid any kind of selection by setting property allowSelection
+to false. By default, this property is true, which means that objects
+can be selected.   Selection behavior is specified by property selectionMode. </div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The possible configuration is:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Single selection</div>
+</li><li class="itemizedlistItem"><div class="para">Multiple selection</div>
+</li><li class="itemizedlistItem"><div class="para">Extended selection </div>
+</li></ul></div>
+<div class="para">In addition to the API, you can also manage the selection
+by interacting directly in the Diagram. See details in LINKTO(User
+interaction with Diagrams).</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f323.html" class="bluelink">Handling selection in a diagram</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f324.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f326.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,146 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Specific parameters of FL</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex371.html" class="breadcrumb">Force-directed (FL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex376.html" class="breadcrumb">Specific parameters of FL</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex375.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex377.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Specific parameters of FL</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The following parameters are specific to the  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/uniformlengthedges/IlvUniformLengthEdgesLayout.html" class="bluelink">IlvUniformLengthEdgesLayout</a></span> class.  </div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1018398">
+<h2 class="heading">Link style (FL)</h2>
+
+
+
+
+<div class="sectionContent">
+
+
+<div class="example">
+<div class="exampleContent">
+<div class="para">To specify that the algorithm automatically removes all
+the intermediate points of the links (if any): </div>
+</div>
+
+
+</div>
+
+
+
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1001553">
+<h2 class="heading">Number of iterations (FL)</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">The iterative computation of the layout algorithm is
+stopped if the time exceeds the allowed time (see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1017208" class="bluelink">Allowed time</a>) or if the
+number of iterations exceeds the allowed number of iterations.</div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To specify the number of iterations: </div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1001564">
+<h2 class="heading">Preferred length (FL)</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">The main objective of this layout algorithm is to obtain
+a layout where all the links have the same length, called the <span class="quote">“preferred length”</span>.</div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To specify the preferred length:</div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1008429">
+<h2 class="heading">Respect node sizes (FL)</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">By default, the layout algorithm ignores the size (width
+and height) of the nodes. For efficiency reasons, the nodes are approximated
+with points placed in the center of the bounding box of the nodes.
+When dealing with large nodes, the preferred length parameter can
+be increased in such a way that the nodes do not overlap. </div>
+<div class="para">However, to improve the support for graphs with heterogeneous
+node sizes, the algorithm provides a special mode in which the particular
+size of each node is taken into consideration. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To set this mode: </div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1055425">
+<h2 class="heading">Force fit to layout region (FL)</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">It is difficult to choose an appropriate size for the
+layout region of this layout algorithm. If the specified layout region
+is too small for a particular graph, the resulting layout will not
+be the best. For this reason, by default, the Force-directed Layout algorithm does not use the layout region
+parameter. It can use as much space as it needs to lay out the grapher. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To specify whether the layout algorithm must use the
+layout region:</div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="section" id="section1221741030611">
+<h2 class="heading">Layout mode </h2>
+<div class="sectionContent">
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">To fit a variety of needs, the algorithm provides three
+optional layout modes:</div>
+</div><dl class="descriptionlist"><dt class="term">Incremental mode </dt><dd class="descriptionlistItem"><div class="para">The algorithm starts from the current
+position and iteratively tries to converge towards the optimal layout.
+In some cases, this mode avoids a major reorganization of the graph,
+which helps to preserve the mental map of the user as much as possible.
+However, this is not guaranteed and depends on how far the initial
+position of the nodes is from the position that satisfies the criteria
+of the algorithm.</div></dd><dt class="term">Non-incremental mode</dt><dd class="descriptionlistItem"><div class="para">The algorithm is free to reorganize
+the graph without trying to stay close to the initial positions. Often,
+non-incremental mode is faster than incremental mode, although sometimes
+at the cost of lower quality.</div></dd><dt class="term">Fast multilevel mode </dt><dd class="descriptionlistItem"><div class="para">The algorithm uses a multilevel graph
+decomposition strategy that leads to a significant gain in speed.
+This mode is usually the fastest for medium and large graphs.</div>
+</dd></dl></div>
+<div class="para">The default value is <span class="apiname">IlvUniformLengthEdgesLayout.INCREMENTAL_MODE</span>. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To set the layout mode: </div>
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex371.html" class="bluelink">Force-directed (FL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex375.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex377.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

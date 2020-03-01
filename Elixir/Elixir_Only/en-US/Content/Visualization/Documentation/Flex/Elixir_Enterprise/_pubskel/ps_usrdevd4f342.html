@@ -1,0 +1,73 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Creating nodes, links, and subgraphs in MXML or ActionScript</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f340.html" class="breadcrumb">Creating graph displays</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f342.html" class="breadcrumb">Creating nodes, links, and subgraphs in MXML or ActionScript</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f341.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f343.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Creating nodes, links, and subgraphs in MXML or ActionScript</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">Using the <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/ilog/node/Node.html" class="bluelink">Node</a></span>,<span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/ilog/link/Link.html" class="bluelink">Link</a></span>, and <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/ilog/subgraph/Subgraph.html" class="bluelink">Subgraph</a></span> classes you can create a graph representation. The <span class="apiname">Node</span>, <span class="apiname">Link</span>, and <span class="apiname">Subgraph</span> classes are skinnable components. This
+means that their graphical representation is specified by a skin associated
+with the component class. More details about skinning and how to use
+each one of the components can be found in <a href="ps_usrdevd4f346.html" class="bluelink">Using the Node class</a>, <a href="ps_usrdevd4f347.html" class="bluelink">Using the Link class</a> , and <a href="ps_usrdevd4f348.html" class="bluelink">Using the subgraph class</a>.</div>
+<div class="para">The following example shows how to create a node in MXML:</div>
+<pre class="programlisting">&lt;ibm:Node id="node1" label="node 1" skinClass="MyNodeSkin" /&gt;
+</pre>
+<div class="para">You can connect two nodes by an instance of the <span class="apiname">Link</span>class. The <span class="apiname">Link</span> class defines two properties: <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/ilog/link/Link.html#startNode" class="bluelink">startNode</a></span> and <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/ilog/link/Link.html#endNode" class="bluelink">endNode</a></span>. These properties specify
+where the link should visually start and end.</div>
+<pre class="programlisting">&lt;d:Link startNode="{node1}" endNode="{node2}"/&gt;
+</pre>
+<div class="para">You can specify a parent-child relationship between nodes
+in a graph using subgraphs. A subgraph is a graph contained in another
+graph. In the same way as for a graph, it is possible to specify a
+particular graph layout algorithm for the nodes and links within a
+subgraph. The following example shows how to create a subgraph in
+MXML:</div>
+<div class="figure"><div class="mediaobject"><img src="../../Diagram4Flex/_media/subgraph_default.png" alt="Subgraph&#xA;created in MXML" class="imagedata"/></div></div>
+<pre class="programlisting"> &lt;ibm:Subgraph automaticGraphLayout="true" id="node3" label="Node 3"&gt;
+      &lt;ibm:nodeLayout&gt;
+        &lt;ibm:TreeLayout/&gt;
+      &lt;/ibm:nodeLayout&gt;
+      &lt;ibm:Node id="node4" label="node 4"/&gt;
+      &lt;ibm:Node id="node5" label="node 5"/&gt;
+      &lt;ibm:Node id="node6" label="node 6"/&gt;
+      &lt;ibm:Link startNode="{node4}" endNode="{node5}"/&gt;
+      &lt;ibm:Link startNode="{node4}" endNode="{node6}"/&gt;
+    &lt;/ibm:Subgraph&gt;
+</pre>
+<div class="para">You do not need to have the link, the start node, and
+the end node inside the same (sub)graph. For example, two nodes can
+be placed inside two different graphs and the link in another one.
+The only restriction is that the start and end nodes should have a
+common ancestor with the link. The links that start at a node can
+be retrieved through the <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/ilog/node/Node.html#getOutgoingLinks()" class="bluelink">getOutgoingLinks</a></span> method of the Node class, while the links that end
+at a node can be retrieved through the <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/ilog/node/Node.html#getIncomingLinks()" class="bluelink">getIncomingLinks</a></span> method. You can also create any of these objects
+using ActionScript. The following example illustrates how this can
+be accomplished:</div>
+<pre class="programlisting">var node1:Node = new Node();
+node1.label = "node 1";
+node1.setStyle("skinClass", Class(NyNodeSkin));
+graph.addElement(node1);
+
+var node2:Node = new Node();
+node2.label = "node 2";
+node2.setStyle("skinClass", Class(NyNodeSkin));
+graph.addElement(node2);
+
+var l:Link = new Link();
+l.startNode = node1;
+l.endNode = node2;
+graph.addElement(l);
+
+var sub:Subgraph = new Subgraph();
+sub.label = "Node 3";
+sub.automaticGraphLayout = true;
+sub.nodeLayout = new TreeLayout();
+graph.addElement(sub);
+
+var node4:Node = new Node();
+node4.label = "Node 4";
+sub.graph.addElement(node4);
+
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f340.html" class="bluelink">Creating graph displays</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f341.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f343.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

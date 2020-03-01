@@ -1,0 +1,437 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Building a circular gauge step by step</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Tutorial"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex809.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex810.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex821.html" class="breadcrumb">Building custom gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex823.html" class="breadcrumb">Custom circular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex835.html" class="breadcrumb">Building a circular gauge step by step</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex834.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex836.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Building a circular gauge step by step</h1></div></div><div class="content">
+
+
+<div class="proceduralTopicContent" id="d0e144189">
+
+<div class="summary">
+<div class="para">This step-by-step tutorial shows how to build the following
+car-style circular gauge in MXML, with the IBM® <span class="classificationVariable">ILOG Elixir</span> Gauge Framework. </div>
+<div class="mediaobject"><img src="../../Elixir/_media/circulargaugetut_default.png" alt="Custom&#xA;Circular Gauge" class="imagedata"/></div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">This gauge is made up of the following elements:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Three instances of <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularGaugeAsset.html" class="bluelink">CircularGaugeAsset</a></span> with the same asset embedded:
+one for the background and two for needle caps</div>
+</li><li class="itemizedlistItem"><div class="para">Two instances of <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/CircularLinearScale.html" class="bluelink">CircularLinearScale</a></span>: one for RPM and one for Fuel</div>
+</li><li class="itemizedlistItem"><div class="para">Two instances of <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularScaleRenderer.html" class="bluelink">CircularScaleRenderer</a></span> , one for each scale</div>
+</li><li class="itemizedlistItem"><div class="para">Two instances of <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/NeedleRenderer.html" class="bluelink">NeedleRenderer</a></span> , one for each scale</div></li><li class="itemizedlistItem"><div class="para">Five instances of <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularTrackRenderer.html" class="bluelink">CircularTrackRenderer</a></span>: one gradient track for the
+fuel scale and four for the RPM scale (two yellow ones, two red ones)</div>
+</li><li class="itemizedlistItem"><div class="para">Two instances of <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularLabelRenderer.html" class="bluelink">CircularLabelRenderer</a></span>: one displays “RPM x
+1000” and the other “Fuel”</div>
+</li></ul></div>
+<div class="para">You will configure each of these objects to design the
+gauge.</div>
+</div>
+<div class="stage">
+<h2 class="heading">Configuring the logical scales</h2>
+<div class="stageContent">
+<div class="summary">
+<div class="para">The logical scales are defined in the scales array. In
+this example, the two scales are circular linear scales. </div>
+</div>
+<div class="procedure">
+<div class="procedureContent"><div class="procedureIntro">
+<div class="para">To configure the logical scales:</div>
+</div><ul class="steps"><li class="step">
+<div class="stepContent">
+<div class="para">Write the following code:</div>
+<pre class="programlisting">    &lt;ilog:scales&gt;
+      &lt;ilog:CircularLinearScale minimum="0" maximum="7"
+        startAngle="200" endAngle="340" 
+        majorTickInterval="1" minorTickInterval="0.5"
+        snapInterval="0.5" id="rpm"/&gt;
+      &lt;ilog:CircularLinearScale minimum="0" maximum="1" 
+        startAngle="140" endAngle="40"
+        majorTickInterval="0.5" minorTickInterval="0.125" 
+        id="fuel" /&gt;
+    &lt;/ilog:scales&gt;
+</pre>
+<div class="para">These scales are used by most visual elements, such as
+scale renderers, track renderers, and needle renderers.</div>
+</div>
+</li></ul></div>
+</div>
+</div>
+</div>
+<div class="stage">
+<h2 class="heading">Configuring the visual elements</h2>
+<div class="stageContent">
+<div class="summary">
+<div class="para">The visual elements are defined in the elements array.
+They are drawn in the order they are in the array.</div>
+</div>
+<div class="procedure">
+<div class="procedureContent"><div class="procedureIntro">
+<div class="para">To configure the visual elements:</div>
+</div><ol class="steps"><li class="step">
+<div class="stepContent">
+<div class="para">Define the black external assets.</div>
+<ol class="substeps"><li class="step">
+<div class="stepContent">
+<div class="para">Define the background asset, which is the first element
+of the array. </div>
+<pre class="programlisting">    &lt;ilog:elements&gt;
+      &lt;!-- First, we add a vector graphic asset background with 
+           a drop shadow --&gt;
+      &lt;ilog:CircularGaugeAsset 
+           asset="@Embed(source='black_circle.swf')"&gt;
+        &lt;ilog:filters&gt;
+          &lt;mx:DropShadowFilter color="0x555555"/&gt;
+        &lt;/ilog:filters&gt;
+      &lt;/ilog:CircularGaugeAsset&gt;
+</pre>
+<div class="para">Like any visual <span class="trademark">Flex®
+            </span> object, you can apply Flex filters to <span class="apiname">CircularGaugeAsset</span>. In this example, a drop shadow
+is applied on the gauge background.</div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Define the asset for the RPM needle cap, so that it is
+centered with a radius of 5%:</div>
+<pre class="programlisting">&lt;ilog:CircularGaugeAsset asset="@Embed(source='black_circle.swf')" 
+                         radius="5%"/&gt;
+</pre>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Define the asset for the Fuel needle cap with a radius
+of 3%, centered relatively to the width (the default value), and at
+85% of the height of the gauge:</div>
+<pre class="programlisting">&lt;ilog:CircularGaugeAsset asset="@Embed(source='black_circle.swf')"
+        originY="85%" radius="3%"/&gt;
+</pre>
+</div>
+</li></ol>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Define the scale renderers.</div>
+<div class="para">There are two scale renderers, each referencing one of
+the logical scales.</div>
+<ol class="substeps"><li class="step">
+<div class="stepContent">
+<div class="para">Define the RPM scale renderer like this:</div>
+<pre class="programlisting">    &lt;ilog:CircularScaleRenderer scale="{rpm}" radius="38%"
+          labelRadius="102%" labelPlacement="outside"   
+          majorTickLength="15%" minorTickLength="15%"
+        labelFontSize="15%" fontWeight="bold"&gt;
+        &lt;ilog:majorTickRenderer&gt;
+          &lt;mx:Component&gt;
+            &lt;ilog:RectangleTickRenderer&gt;
+              &lt;ilog:fill&gt;
+                &lt;mx:LinearGradient angle="90"&gt;
+                  &lt;mx:GradientEntry color="0xFFFFFF"/&gt;
+                  &lt;mx:GradientEntry color="0xDDDDDD"/&gt;
+                &lt;/mx:LinearGradient&gt;
+              &lt;/ilog:fill&gt;
+            &lt;/ilog:RectangleTickRenderer&gt;
+          &lt;/mx:Component&gt;
+        &lt;/ilog:majorTickRenderer&gt;
+        &lt;ilog:minorTickRenderer&gt;
+          &lt;mx:Component&gt;
+            &lt;ilog:RectangleTickRenderer&gt;
+              &lt;ilog:fill&gt;
+                &lt;mx:LinearGradient angle="90"&gt;
+                  &lt;mx:GradientEntry color="0xFFFFFF"/&gt;
+                  &lt;mx:GradientEntry color="0xDDDDDD"/&gt;
+                &lt;/mx:LinearGradient&gt;
+              &lt;/ilog:fill&gt;
+            &lt;/ilog:RectangleTickRenderer&gt;
+          &lt;/mx:Component&gt;
+        &lt;/ilog:minorTickRenderer&gt;
+      &lt;/ilog:CircularScaleRenderer&gt;
+</pre>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Define the Fuel scale renderer like this:</div>
+<pre class="programlisting">      &lt;ilog:CircularScaleRenderer scale="{fuel}" originY="85%"
+        tickPlacement="cross" fontWeight="bold" radius="15%"
+        labelFunction="fuelLabel" labelFontSize="15%"&gt;
+        &lt;ilog:majorTickRenderer&gt;
+          &lt;mx:Component&gt;
+            &lt;ilog:RectangleTickRenderer&gt;
+              &lt;ilog:fill&gt;
+                &lt;mx:SolidColor color="white"/&gt;
+              &lt;/ilog:fill&gt;
+            &lt;/ilog:RectangleTickRenderer&gt;
+          &lt;/mx:Component&gt;
+        &lt;/ilog:majorTickRenderer&gt;
+        &lt;ilog:minorTickRenderer&gt;
+          &lt;mx:Component&gt;
+            &lt;ilog:CircleTickRenderer&gt;
+              &lt;ilog:fill&gt;
+                &lt;mx:SolidColor color="white"/&gt;
+              &lt;/ilog:fill&gt;
+            &lt;/ilog:CircleTickRenderer&gt;
+          &lt;/mx:Component&gt;
+        &lt;/ilog:minorTickRenderer&gt;
+      &lt;/ilog:CircularScaleRenderer&gt;
+</pre>
+</div>
+</li></ol>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Define the needles.</div>
+<div class="para">In this gauge, there are two needles. If the <span class="apiname">scale</span> property is not set, the first scale is used.
+Use the properties <span class="apiname">editable</span>, <span class="apiname">editMode</span>, <span class="apiname">mouseMode</span>, and <span class="apiname">animationDuration</span> to configure
+the interaction with the needle.</div>
+<pre class="programlisting">      &lt;!-- The RPM needle --&gt;
+      &lt;ilog:NeedleRenderer thickness="7%" radius="32%" editable="true"
+        editMode="discrete" mouseMode="area" animationDuration="200"&gt;
+        &lt;ilog:fill&gt;
+          &lt;mx:LinearGradient angle="90"&gt;
+            &lt;mx:GradientEntry color="0xEE0000" ratio="0.3"/&gt;
+            &lt;mx:GradientEntry color="0xAA0000" ratio="0.5"/&gt;
+          &lt;/mx:LinearGradient&gt;
+        &lt;/ilog:fill&gt;
+      &lt;/ilog:NeedleRenderer&gt;
+      &lt;!-- The fuel needle --&gt;
+      &lt;ilog:NeedleRenderer thickness="8%" scale="{fuel}" 
+        originY="85%" radius="13%" value="0.75"
+        editable="true" mouseMode="area"&gt;
+        &lt;ilog:fill&gt;
+          &lt;mx:LinearGradient angle="90"&gt;
+            &lt;mx:GradientEntry color="0xEE0000" ratio="0.3"/&gt;
+            &lt;mx:GradientEntry color="0xAA0000" ratio="0.5"/&gt;
+          &lt;/mx:LinearGradient&gt;
+        &lt;/ilog:fill&gt;
+      &lt;/ilog:NeedleRenderer&gt;
+</pre>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Define the tracks.</div>
+<div class="para">They are used to render a customizable annulus between
+two scale values.</div>
+<ol class="substeps"><li class="step">
+<div class="stepContent">
+<div class="para">The RPM gauge has four tracks with solid colors defined
+as follows:</div>
+<pre class="programlisting">      &lt;!-- Four track renderers of the RPM Gauge --&gt;
+      &lt;ilog:CircularTrackRenderer minimum="5.8" maximum="5.9"
+        rendererColor="yellow" radius="30%" startThickness="15%"
+        endThickness="15%"/&gt;
+      &lt;ilog:CircularTrackRenderer minimum="5.95" maximum="6.25"
+        rendererColor="yellow" radius="30%" startThickness="15%"
+        endThickness="15%"/&gt;
+      &lt;ilog:CircularTrackRenderer minimum="6.3" maximum="6.85" 
+        rendererColor="red" radius="30%" startThickness="15%" 
+        endThickness="15%"/&gt;
+      &lt;ilog:CircularTrackRenderer minimum="6.9" maximum="7.05" 
+        rendererColor="red"
+        radius="30%" startThickness="15%" endThickness="15%"/&gt;
+</pre>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">The Fuel gauge has one gradient track defined as follows:</div>
+<pre class="programlisting">      &lt;!-- The Fuel gradient track --&gt;
+      &lt;ilog:CircularTrackRenderer minimum="0" maximum="0.5" 
+        scale="{fuel}" originY="85%" radius="15%" startThickness="10%" 
+        endThickness="10%" placement="cross"&gt;
+        &lt;ilog:gradientEntries&gt;
+          &lt;mx:GradientEntry color="0xFF0000" ratio="0"/&gt;
+          &lt;mx:GradientEntry color="0xFF9900" ratio="0.7" alpha="1"/&gt;
+          &lt;mx:GradientEntry color="0xFF9900" ratio="0.8" 
+              alpha="0.7"/&gt;
+          &lt;mx:GradientEntry color="0xFF9900" ratio="0.9" 
+              alpha="0.5"/&gt;
+          &lt;mx:GradientEntry color="0xFF9900" ratio="1" alpha="0.2"/&gt;
+        &lt;/ilog:gradientEntries&gt;
+      &lt;/ilog:CircularTrackRenderer&gt;
+</pre>
+</div>
+</li></ol>
+</div>
+</li></ol></div>
+</div>
+</div>
+</div>
+<div class="expectedResult">
+<div class="para">Following is the complete code of this tutorial:</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+  xmlns:ilog="http://www.ilog.com/2007/ilog/flex" backgroundColor="0xFFFFFF"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import ilog.gauges.TickItem;
+      
+      // This sample shows how to create a car-style gauge with RPM 
+      // and Fuel indicators.
+      
+      // A Label function to customize labels of the fuel gauge. 
+      private function fuelLabel(t:TickItem):String
+      {
+        switch(t.value)
+        {
+          case 0: return "E";     // Empty tank
+          case 0.5: return "1/2";
+          case 1: return "F";     // Full tank
+          default: return "";
+        }
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  
+  &lt;!-- We set labels color to white --&gt;
+  &lt;ilog:CircularGauge width="80%" height="80%" color="0xFFFFFF" 
+     backgroundColor="0xFFFFFF"&gt;
+    
+    &lt;!-- Logical scales definition, one for the RPM gauge the other 
+         for the fuel gauge --&gt;
+    &lt;ilog:scales&gt;
+      &lt;ilog:CircularLinearScale minimum="0" maximum="7" 
+        startAngle="200" endAngle="340" 
+        majorTickInterval="1" minorTickInterval="0.5"
+        snapInterval="0.5" id="rpm"/&gt;
+      &lt;ilog:CircularLinearScale minimum="0" maximum="1" 
+        startAngle="140" endAngle="40"
+        majorTickInterval="0.5" minorTickInterval="0.125" id="fuel" /&gt;
+    &lt;/ilog:scales&gt;
+    
+    &lt;!-- The array of visual elements --&gt;
+    &lt;ilog:elements&gt;
+      &lt;!-- First, we add a vector graphic asset background with a 
+           drop shadow --&gt;
+      &lt;ilog:CircularGaugeAsset 
+          asset="@Embed(source='black_circle.swf')"&gt;
+        &lt;ilog:filters&gt;
+          &lt;mx:DropShadowFilter color="0x555555"/&gt;
+        &lt;/ilog:filters&gt;
+      &lt;/ilog:CircularGaugeAsset&gt;
+      
+      &lt;!-- The RPM scale renderer --&gt;
+      &lt;ilog:CircularScaleRenderer scale="{rpm}" radius="38%"
+        labelRadius="102%" labelPlacement="outside"  
+        majorTickLength="15%" minorTickLength="15%"
+        labelFontSize="15%" fontWeight="bold"&gt;
+        &lt;ilog:majorTickRenderer&gt;
+          &lt;mx:Component&gt;
+            &lt;ilog:RectangleTickRenderer&gt;
+              &lt;ilog:fill&gt;
+                &lt;mx:LinearGradient angle="90"&gt;
+                  &lt;mx:GradientEntry color="0xFFFFFF"/&gt;
+                  &lt;mx:GradientEntry color="0xDDDDDD"/&gt;
+                &lt;/mx:LinearGradient&gt;
+              &lt;/ilog:fill&gt;
+            &lt;/ilog:RectangleTickRenderer&gt;
+          &lt;/mx:Component&gt;
+        &lt;/ilog:majorTickRenderer&gt;
+        &lt;ilog:minorTickRenderer&gt;
+          &lt;mx:Component&gt;
+            &lt;ilog:RectangleTickRenderer&gt;
+              &lt;ilog:fill&gt;
+                &lt;mx:LinearGradient angle="90"&gt;
+                  &lt;mx:GradientEntry color="0xFFFFFF"/&gt;
+                  &lt;mx:GradientEntry color="0xDDDDDD"/&gt;
+                &lt;/mx:LinearGradient&gt;
+              &lt;/ilog:fill&gt;
+            &lt;/ilog:RectangleTickRenderer&gt;
+          &lt;/mx:Component&gt;
+        &lt;/ilog:minorTickRenderer&gt;
+      &lt;/ilog:CircularScaleRenderer&gt;
+
+      &lt;!-- Four track renderers of the RPM Gauge --&gt;
+      &lt;ilog:CircularTrackRenderer minimum="5.8" maximum="5.9"
+        rendererColor="yellow" radius="30%" startThickness="15%"
+        endThickness="15%"/&gt;
+      &lt;ilog:CircularTrackRenderer minimum="5.95" maximum="6.25"
+        rendererColor="yellow" radius="30%" startThickness="15%"
+        endThickness="15%"/&gt;
+      &lt;ilog:CircularTrackRenderer minimum="6.3" maximum="6.85"  
+        rendererColor="red" radius="30%" startThickness="15%" 
+        endThickness="15%"/&gt;
+      &lt;ilog:CircularTrackRenderer minimum="6.9" maximum="7.05" 
+        rendererColor="red" radius="30%" startThickness="15%" 
+        endThickness="15%"/&gt;
+      
+      &lt;!-- The "RPM x1000" label --&gt;
+      &lt;ilog:CircularLabelRenderer text="RPM x1000" originY="60%"
+        labelFontSize="12%" fontWeight="bold"/&gt;
+
+      &lt;!-- The RPM needle --&gt;
+      &lt;ilog:NeedleRenderer thickness="7%" radius="32%" editable="true"
+        editMode="discrete" mouseMode="area" animationDuration="200"&gt;
+        &lt;ilog:fill&gt;
+          &lt;mx:LinearGradient angle="90"&gt;
+            &lt;mx:GradientEntry color="0xEE0000" ratio="0.3"/&gt;
+            &lt;mx:GradientEntry color="0xAA0000" ratio="0.5"/&gt;
+          &lt;/mx:LinearGradient&gt;
+        &lt;/ilog:fill&gt;
+      &lt;/ilog:NeedleRenderer&gt;
+      
+      &lt;!-- The RPM needle cap --&gt;
+      &lt;ilog:CircularGaugeAsset 
+          asset="@Embed(source='black_circle.swf')" radius="5%"/&gt;
+
+      &lt;!-- Fuel sub-gauge part --&gt;
+      
+      &lt;!-- The Fuel gradient track --&gt;
+      &lt;ilog:CircularTrackRenderer minimum="0" maximum="0.5" 
+        scale="{fuel}" originY="85%" radius="15%" 
+        startThickness="10%" endThickness="10%" placement="cross"&gt;
+        &lt;ilog:gradientEntries&gt;
+          &lt;mx:GradientEntry color="0xFF0000" ratio="0"/&gt;
+          &lt;mx:GradientEntry color="0xFF9900" ratio="0.7" alpha="1"/&gt;
+          &lt;mx:GradientEntry color="0xFF9900" ratio="0.8" alpha="0.7"/&gt;
+          &lt;mx:GradientEntry color="0xFF9900" ratio="0.9" alpha="0.5"/&gt;
+          &lt;mx:GradientEntry color="0xFF9900" ratio="1" alpha="0.2"/&gt;
+        &lt;/ilog:gradientEntries&gt;
+      &lt;/ilog:CircularTrackRenderer&gt;
+      
+      &lt;!-- The fuel scale renderer --&gt;
+      &lt;ilog:CircularScaleRenderer scale="{fuel}" originY="85%"
+        tickPlacement="cross" fontWeight="bold" radius="15%"
+        labelFunction="fuelLabel" labelFontSize="15%"&gt;
+        &lt;ilog:majorTickRenderer&gt;
+          &lt;mx:Component&gt;
+            &lt;ilog:RectangleTickRenderer&gt;
+              &lt;ilog:fill&gt;
+                &lt;mx:SolidColor color="white"/&gt;
+              &lt;/ilog:fill&gt;
+            &lt;/ilog:RectangleTickRenderer&gt;
+          &lt;/mx:Component&gt;
+        &lt;/ilog:majorTickRenderer&gt;
+        &lt;ilog:minorTickRenderer&gt;
+          &lt;mx:Component&gt;
+            &lt;ilog:CircleTickRenderer&gt;
+              &lt;ilog:fill&gt;
+                &lt;mx:SolidColor color="white"/&gt;
+              &lt;/ilog:fill&gt;
+            &lt;/ilog:CircleTickRenderer&gt;
+          &lt;/mx:Component&gt;
+        &lt;/ilog:minorTickRenderer&gt;
+      &lt;/ilog:CircularScaleRenderer&gt;
+      
+      &lt;!-- The fuel needle --&gt;
+      &lt;ilog:NeedleRenderer thickness="8%" scale="{fuel}" 
+        originY="85%" radius="13%" value="0.75"
+        editable="true" mouseMode="area"&gt;
+        &lt;ilog:fill&gt;
+          &lt;mx:LinearGradient angle="90"&gt;
+            &lt;mx:GradientEntry color="0xEE0000" ratio="0.3"/&gt;
+            &lt;mx:GradientEntry color="0xAA0000" ratio="0.5"/&gt;
+          &lt;/mx:LinearGradient&gt;
+        &lt;/ilog:fill&gt;
+      &lt;/ilog:NeedleRenderer&gt;
+      
+      &lt;!-- The fuel needle cap --&gt;
+      &lt;ilog:CircularGaugeAsset 
+        asset="@Embed(source='black_circle.swf')"
+        originY="85%" radius="3%"/&gt;
+        
+      &lt;!-- "Fuel" label --&gt;
+      &lt;ilog:CircularLabelRenderer text="Fuel" originY="91%" 
+        labelFontSize="5%" fontWeight="bold"/&gt;
+
+    &lt;/ilog:elements&gt;
+  &lt;/ilog:CircularGauge&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex823.html" class="bluelink">Custom circular gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex834.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex836.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

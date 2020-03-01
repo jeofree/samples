@@ -1,0 +1,70 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Using effects in a radar chart</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise184.html" class="breadcrumb">Radar Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise199.html" class="breadcrumb">Using effects in a radar chart</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise198.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise200.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Using effects in a radar chart</h1></div></div><div class="content">
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">Radar chart controls support the standard Adobe® Flash® Builder™ 4 series effects: <span class="italics">slide</span>, <span class="italics">zoom</span>, and <span class="italics">interpolate</span>.</div>
+<div class="section" id="usrflprg.uss_flexprg_radarcharts.1013360">
+<h2 class="heading">The SeriesSlide effect</h2>
+
+
+<div class="sectionContent">
+<div class="para">The <span class="apiname">SeriesSlide</span> effect
+allows you to make data slide in and out of a screen when the data
+changes. This creates animation effects using the two sets of values.
+The effect is not set on the chart itself but on the series. For more
+information, see <span class="italics">Using the SeriesSlide
+effect</span> in the <span class="italics">Flex
+4 Developer’s Guide</span>.</div>
+<div class="para">The following example shows how to code the <span class="apiname">SeriesSlide</span> effect.</div>
+<pre class="programlisting">&lt;mx:SeriesSlide duration="1000" direction="down" elementOffset="0"
+   id="slideDown" /&gt; 
+&lt;ilog:RadarLineSeries dataField="Temperature" displayName="Temperature"
+   showDataEffect="slideDown" hideDataEffect="slideDown" /&gt; 
+</pre>
+</div>
+</div>
+<div class="section" id="usrflprg.uss_flexprg_radarcharts.1023126">
+<h2 class="heading">The SeriesZoom effect</h2>
+
+
+<div class="sectionContent">
+<div class="para">The <span class="apiname">SeriesZoom</span> effect
+allows you to implode and explode chart data in and out of the focal
+point that you specify to create chart animations. The effect is not
+set on the chart itself but on the series. For more information, see <span class="italics">Using the SeriesZoom effect</span> in the <span class="italics">Flex 3 Developer’s Guide</span>.</div>
+<div class="para">The following example shows how to code the <span class="apiname">SeriesZoom</span> effect.</div>
+<pre class="programlisting">&lt;mx:SeriesZoom duration="1000" elementOffset="50" id="zoom" relativeTo="chart"
+  /&gt; 
+&lt;ilog:RadarColumnSeries dataField="Temperature" displayName="Temperature"
+  showDataEffect="zoom" hideDataEffect="zoom" /&gt; 
+</pre>
+</div>
+</div>
+<div class="section" id="usrflprg.uss_flexprg_radarcharts.1013366">
+<h2 class="heading">The SeriesInterpolate effect</h2>
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">The <span class="apiname">SeriesInterpolate</span> effect allows you to move the graphics that represent the existing
+data in a series to new points. Instead of clearing the chart and
+then repopulating it, as with <span class="apiname">SeriesZoom</span> and <span class="apiname">SeriesSlide</span>, this effect keeps
+the data on the screen at all times. You do not lose the context on
+data changes. The effect is not set on the chart itself but on the
+series. For more information, see <span class="italics">Using the SeriesInterpolate effect</span> in the <span class="italics">Flex 3 Developer’s Guide</span>.</div>
+<div class="para">The following example shows how to code the <span class="apiname">SeriesInterpolate</span> effect.</div>
+<pre class="programlisting">&lt;mx:SeriesInterpolate duration="1000" id="interpolate" elementOffset="10" /&gt; 
+&lt;ilog:RadarLineSeries dataField="Temperature"
+  displayName="Temperature" showDataEffect="interpolate" /&gt;
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise184.html" class="bluelink">Radar Charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise198.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise200.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

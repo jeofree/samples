@@ -1,0 +1,109 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Using task editing events</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex497.html" class="breadcrumb">Gantt resource charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex540.html" class="breadcrumb">Editing tasks in a resource chart</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex543.html" class="breadcrumb">Using task editing events</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex542.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex544.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Using task editing events</h1></div></div><div class="content">
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">A Gantt sheet component dispatches the following events
+as part of the task editing process: the <span class="apiname">itemEditBegin</span>, <span class="apiname">itemEditMove</span>, <span class="apiname">itemEditReassign</span>, <span class="apiname">itemEditResize</span> and <span class="apiname">itemEditEnd</span> events. The Gantt
+sheet control defines default event listeners for all of these events
+except <span class="apiname">itemEditBegin</span>.</div>
+<div class="para">You can write your own event listeners for one or more
+of these events to customize the editing process. When you write your
+own event listener, it executes before the default event listener
+defined by the component; the default listener executes afterward.</div>
+<div class="para">You can also replace the default event listener for the
+component with your own event listener. To prevent the default event
+listener from executing, you call the <span class="apiname">preventDefault()</span> method from anywhere in your event listener.</div>
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">Use the following events when you want to customize the
+editing of tasks:</div>
+</div><dl class="descriptionlist"><dt class="term">itemEditBegin</dt><dd class="descriptionlistItem"><div class="para">Dispatched when the editing session
+starts. The user has pressed the mouse button over a task and started
+dragging.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The <span class="apiname">GanttSheet.editKind</span> property is set with the editing operation being performed:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apiname">TaskItemEditKind.MOVE_REASSIGN</span> – the user is dragging the task body</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apiname">TaskItemEditKind.RESIZE_START</span> – the user is dragging the start extremity of the task</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apiname">TaskItemEditKind.RESIZE_END</span> – the user is dragging the end extremity of the task</div>
+</li></ul></div>
+<div class="para">The Gantt sheet component does not have a default listener
+for the <span class="apiname">itemEditBegin</span> event. After
+the event is sent the Gantt sheet displays the editing tool tip which
+will provide information on the task while it is being edited. For
+more information see <a href="ps_ganttforflex508.html" class="bluelink">Defining the tooltips for tasks</a>.</div>
+<div class="para">You can write an event listener for this event to modify
+the <span class="apiname">TaskItem</span> data used by the task
+item renderer, or to modify some other information that will be used
+during editing. For more information see <a href="ps_ganttforflex545.html" class="bluelink">Accessing task data and the task item renderer in an event
+listener</a>.</div>
+</dd><dt class="term">itemEditMove</dt><dd class="descriptionlistItem"><div class="para">Dispatched when the task is being moved
+along the time axis. The Gantt sheet component has a default listener
+for the <span class="apiname">itemEditMove</span> event that adjusts
+the start and end time of the <span class="apiname">TaskItem</span>.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The default event listener performs the following actions:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Rounds the start time to the precision
+defined by the <span class="apiname">snappingTimePrecision</span> property of the <span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html" class="bluelink">GanttSheet</a></span> object.</div>
+</li><li class="itemizedlistItem"><div class="para">Updates the end time so the duration
+of the task remains constant.</div></li></ul></div>
+<div class="para">You can write an event listener for this event to examine
+and modify the <span class="apiname">TaskItem</span> data used
+by the task item renderer. For example, you can adjust the start and
+end time to take into account nonworking periods and maintain a constant
+work duration for the task. For more information see <a href="ps_ganttforflex545.html" class="bluelink">Accessing task data and the task item renderer in an event
+listener</a>.</div>
+<div class="para">You can also implement a custom snapping policy or implement
+specific constraints on the start and end time. In this case you need
+to call <span class="apiname">preventDefault()</span> to stop
+the Gantt sheet component from applying its own snapping policy or
+overriding your adjustments to the start and end time. For more information
+see <a href="ps_ganttforflex548.html#section1198158259153" class="bluelink">Custom snapping when moving tasks</a>.</div>
+</dd><dt class="term">itemEditReassign  </dt><dd class="descriptionlistItem"><div class="para">Dispatched when the task is being reassigned
+to a different resource. The Gantt sheet component has a default listener
+for the <span class="apiname">itemEditReassign</span> event that
+changes the resource of the <span class="apiname">TaskItem</span> object. The default event listener performs the following action:</div>
+<div class="para">Calls the <span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#acceptReassign()" class="bluelink">acceptReassign</a></span> method of the <span class="apiname">GanttSheet</span> to always accept the reassignment of
+the task to the hovered resource.</div>
+<div class="para">You can write an event listener for this event to accept
+or refuse the reassignment depending on conditions of your choice.
+For example, you can have resources of different types that can handle
+only tasks of a certain type or other similar constraints. In this
+case you need to call <code class="code">preventDefault()</code> to
+stop the Gantt sheet from unconditionally accepting the reassignment,
+and call <span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#acceptReassign()" class="bluelink">acceptReassign</a></span> only when your criteria are met.</div>
+</dd><dt class="term">itemEditResize</dt><dd class="descriptionlistItem"><div class="para">Dispatched when the task is being resized. </div>
+<div class="para">The Gantt sheet component has a default listener for
+the <span class="apiname">itemEditResize</span> event that adjusts
+the start or end time of the <span class="apiname">TaskItem</span> object. </div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The default event listener performs the following actions:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Uses the <span class="apiname">snappingTimePrecision</span> property of the Gantt sheet to round the start or end time, depending
+on the kind of edit operation.</div></li><li class="itemizedlistItem"><div class="para">Makes sure that the start time is before
+the end time.</div></li></ul></div>
+<div class="para">You can write an event listener for this event to modify
+the <span class="apiname">TaskItem</span> data used by the task
+item renderer. For example, you can adjust the start or end time to
+enforce a minimum duration; or you can implement a custom snapping
+policy; or you can implement other specific constraints on the time
+values. In these cases you need to call <span class="apiname">preventDefault()</span> to stop the Gantt sheet from applying its own snapping policy or
+overriding your adjustments to the start and end time. For more information,
+see <a href="ps_ganttforflex548.html#usrflprg.uss_flexprg_gantt.1026282" class="bluelink">Enforcing a minimum duration when resizing tasks</a>. </div>
+</dd><dt class="term">itemEditEnd </dt><dd class="descriptionlistItem"><div class="para">Dispatched when the task editing session
+ends, typically when the user releases the mouse button.</div>
+<div class="para">The Gantt sheet component has a default listener for
+this event that updates the item in the task data provider with the
+values from the <span class="apiname">TaskItem</span> object used
+by the task item renderer.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The default event listener performs the following actions:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">When the edit operation was not cancelled
+the default event listener calls the <span class="apiname">commitItem()</span> method to update the data provider item from the task item..</div>
+</li></ul></div>
+<div class="para">After all listeners of <span class="apiname">itemEditEnd</span> have been called, the Gantt sheet component forces an update of
+the task by calling <span class="apiname">ICollectionView.itemUpdated()</span> for this task data provider item, refreshing the Gantt sheet.</div>
+</dd></dl></div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex540.html" class="bluelink">Editing tasks in a resource chart</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex542.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex544.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

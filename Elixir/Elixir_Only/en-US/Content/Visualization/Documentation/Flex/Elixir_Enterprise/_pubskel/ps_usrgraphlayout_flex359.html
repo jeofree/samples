@@ -1,0 +1,30 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Graph layout: using the API</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex354.html" class="breadcrumb">Introducing graph layout</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex359.html" class="breadcrumb">Graph layout: using the API</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex358.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex360.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Graph layout: using the API</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+
+
+<div class="para">In an application that does not work with diagrams or
+graphs (Graph), operations such as attaching or detaching a graph
+layout instance must be performed explicitly.</div>
+
+<div class="section" id="d0e53729">
+<h2 class="heading">The base class: GraphLayout</h2>
+
+<div class="sectionContent">
+<div class="para">The <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/com/ibm/ilog/diagram/graphlayout/GraphLayout.html" class="bluelink">GraphLayout</a></span>class is the base class for all layout algorithms.
+This class is an abstract class and cannot be used directly. You must
+use one of its subclasses: <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/com/ibm/ilog/diagram/graphlayout/hierarchical/HierarchicalLayout.html" class="bluelink">HierarchicalLayout</a></span>,  <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/com/ibm/ilog/diagram/graphlayout/tree/TreeLayout.html" class="bluelink">TreeLayout</a></span>,  <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/com/ibm/ilog/diagram/graphlayout/forcedirected/ForceDirectedLayout.html" class="bluelink">ForceDirectedLayout</a></span>, <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/com/ibm/ilog/diagram/graphlayout/longlink/LongLinkLayout.html" class="bluelink">LongLinkLayout</a></span>, <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/com/ibm/ilog/diagram/graphlayout/shortlink/ShortLinkLayout.html" class="bluelink">ShortLinkLayout</a></span>, <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/com/ibm/ilog/diagram/graphlayout/random/RandomLayout.html" class="bluelink">RandomLayout</a></span>, <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/com/ibm/ilog/diagram/graphlayout/grid/GridLayout.html" class="bluelink">GridLayout</a></span>. You can also create your own subclasses to implement
+other layout algorithms. See <a href="ps_usrgraphlayout_flex478.html" class="bluelink">Defining your own type of layout</a>. </div>
+<div class="para">Although only subclasses of <code class="code">GraphLayout</code> are directly used to obtain the layouts, you need to learn about
+this class because it contains methods that are inherited (or overridden)
+by the subclasses. You will need to understand it to create your own
+subclasses. </div>
+</div>
+</div>
+
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex354.html" class="bluelink">Introducing graph layout</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex358.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex360.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

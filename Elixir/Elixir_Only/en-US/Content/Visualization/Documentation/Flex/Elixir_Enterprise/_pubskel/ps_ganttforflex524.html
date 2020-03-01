@@ -1,0 +1,237 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>The BackgroundGrid class</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Overview"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex497.html" class="breadcrumb">Gantt resource charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex517.html" class="breadcrumb">Styling a resource chart</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex520.html" class="breadcrumb">Gantt sheet styling</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex523.html" class="breadcrumb">Predefined Gantt Sheet Grids</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex524.html" class="breadcrumb">The BackgroundGrid class</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex523.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex525.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">The BackgroundGrid class</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The BackgroundGrid class represents the background of
+the Gantt sheet. A background grid can either display a different
+background for each row, or the same background for all the rows.
+Use the following properties to control the grid appearance:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">BackgroundGrid.alternatingItemColors:
+A collection of fills used to draw the background of the rows by alternating
+the fills in the collection.</div></li><li class="itemizedlistItem"><div class="para">BackgroundGrid.showHorizontalGridLines:
+Indicates whether to show the horizontal grid lines that delimit the
+rows.</div></li><li class="itemizedlistItem"><div class="para">BackgroundGrid.horizontalGridLines:
+The stroke used to draw the horizontal grid lines.</div>
+</li></ul></div>
+<div class="para">The GanttSheet holds an instance of the BackgroundGrid
+class that can be accessed through the GanttSheet.backgroundGrid property.
+If you do not want to use this default grid, set the GanttSheet.showBackgroundGrid
+property to false. You can use additional BackgroundGrid instances
+by using the GanttSheet.backGrids and GanttSheet.frontGrids collections.</div>
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">By default, the BackgroundGrid class is drawn on a per-row
+basis. If you want to have the same background color for all the rows,
+set the drawPerRow property to false</div>
+</div>
+<div class="para">The following example shows how to customize the default
+background grid provided by the Gantt sheet.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:gantt="com.ibm.ilog.gantt.*"&gt;
+  
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+      
+      [Bindable]
+      public var resources:ArrayCollection = new ArrayCollection([
+        { id: "R1", name: "Project Manager", location: "Geneva" }
+      ]);
+      
+      [Bindable]
+      public var tasks:ArrayCollection = new ArrayCollection([
+        { resourceId: "R1", name: "Define project vision",
+          startTime: "1/14/2008 8:0:0", endTime: "1/15/2008 17:0:0" },
+        { resourceId: "R1", name: "Refine project vision",
+          startTime: "1/16/2008 8:0:0", endTime: "1/17/2008 17:0:0" },
+        { resourceId: "R1", name: "Assess project vision",
+          startTime: "1/18/2008 8:0:0", endTime: "1/21/2008 17:0:0" }
+      ]);
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  
+  &lt;gantt:ResourceChart id="resourceChart" width="100%" height="100%"
+                       resourceDataProvider="{resources}"
+                       taskDataProvider="{tasks}"&gt;
+    &lt;gantt:ganttSheet&gt;
+      &lt;gantt:GanttSheet&gt;
+        &lt;gantt:backgroundGrid&gt;
+          &lt;gantt:BackgroundGrid&gt;
+            &lt;gantt:alternatingItemColors&gt;
+              &lt;mx:LinearGradient rotation="90"&gt;
+                &lt;mx:entries&gt; 
+                  &lt;mx:GradientEntry color="#ECF6F4" ratio="0"/&gt;
+                  &lt;mx:GradientEntry color="#EDE5F3" ratio="1"  /&gt;
+                &lt;/mx:entries&gt;
+              &lt;/mx:LinearGradient&gt;
+              &lt;mx:LinearGradient rotation="90"&gt;
+                &lt;mx:entries&gt;
+                  &lt;mx:GradientEntry color="#EDE5F3" ratio="0"  /&gt;
+                  &lt;mx:GradientEntry color="#ECF6F4" ratio="1"  /&gt;
+                &lt;/mx:entries&gt;
+              &lt;/mx:LinearGradient&gt;
+            &lt;/gantt:alternatingItemColors&gt;
+          &lt;/gantt:BackgroundGrid&gt;
+        &lt;/gantt:backgroundGrid&gt;
+      &lt;/gantt:GanttSheet&gt;
+    &lt;/gantt:ganttSheet&gt;
+  &lt;/gantt:ResourceChart&gt;
+&lt;/mx:Application&gt;
+
+This example customizes the background colors of the Gantt sheet based on the row indices. You can also specify a way to retrieve the color from the data of the row itself. To do this, set the BackgroundGrid.backgroundField or BackgroundGrid.backgroundFunction property. The following example shows how to use custom colors based on a property of the data provider item:
+
+[ Source :  ResourceChartStylingGanttSheetRowGridWithFunction.mxml ]
+
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:gantt="com.ibm.ilog.gantt.*"&gt;
+  
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+      import mx.collections.HierarchicalData;
+      import mx.graphics.IFill;
+      import mx.graphics.SolidColor;
+      
+      [Bindable]
+      public var resourcesCollection:ArrayCollection = 
+        new ArrayCollection([
+          { id: "T1", name: "Geneva Team", type: "team", children: [
+            { id: "R1", name: "Project Manager", 
+              location: "Geneva", type: "member" },
+            { id: "R2", name: "Developer", 
+              location: "Geneva", type: "member" }]
+          }
+        ]);
+      
+      [Bindable]
+      public var resources:HierarchicalData = 
+        new HierarchicalData(resourcesCollection);      
+      
+      [Bindable]
+      public var tasks:ArrayCollection = new ArrayCollection ([
+        { id: "T1", resourceId: "R1", name: "Define project vision",
+          startTime: "1/14/2008 8:0:0", endTime: "1/15/2008 17:0:0" },
+        { id: "T2", resourceId: "R1", name: "Refine project vision",
+          startTime: "1/16/2008 8:0:0", endTime: "1/17/2008 17:0:0" },
+        { id: "T3", resourceId: "R1", name: "Assess project vision",
+          startTime: "1/18/2008 8:0:0", endTime: "1/21/2008 17:0:0" },
+        { id: "T4", resourceId: "R2", name: "Implement project",
+          startTime: "1/21/2008 17:0:0", endTime: "1/30/2008 17:0:0" }
+      ]);
+      
+      private function getColor(data:Object):IFill
+      {
+        if (data != null)
+        {
+          var color:uint = 0;
+          if (data.type == "team")
+            return new SolidColor(0xE0E3F1);
+          else if (data.type == "member")
+            return new SolidColor(0xFF88A0F2);
+          else
+            return null;
+        }
+        return null;   
+      }
+      
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  
+  &lt;gantt:ResourceChart id="resourceChart" width="100%" height="100%"
+                       resourceDataProvider="{resources}"
+                       taskDataProvider="{tasks}"&gt;
+    &lt;gantt:ganttSheet&gt;
+      &lt;gantt:GanttSheet&gt;
+        &lt;gantt:backgroundGrid&gt;
+          &lt;gantt:BackgroundGrid backgroundFunction="getColor" /&gt;
+        &lt;/gantt:backgroundGrid&gt;
+      &lt;/gantt:GanttSheet&gt;
+    &lt;/gantt:ganttSheet&gt;
+  &lt;/gantt:ResourceChart&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">This example customizes the background colors of the
+Gantt sheet based on the row indices. You can also specify a way to
+retrieve the color from the data of the row itself. To do this, set
+the BackgroundGrid.backgroundField or BackgroundGrid.backgroundFunction
+property. The following example shows how to use custom colors based
+on a property of the data provider item:</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:gantt="com.ibm.ilog.gantt.*"&gt;
+  
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+      import mx.collections.HierarchicalData;
+      import mx.graphics.IFill;
+      import mx.graphics.SolidColor;
+      
+      [Bindable]
+      public var resourcesCollection:ArrayCollection = 
+        new ArrayCollection([
+          { id: "T1", name: "Geneva Team", type: "team", children: [
+            { id: "R1", name: "Project Manager", 
+              location: "Geneva", type: "member" },
+            { id: "R2", name: "Developer", 
+              location: "Geneva", type: "member" }]
+          }
+        ]);
+      
+      [Bindable]
+      public var resources:HierarchicalData = 
+        new HierarchicalData(resourcesCollection);      
+      
+      [Bindable]
+      public var tasks:ArrayCollection = new ArrayCollection ([
+        { id: "T1", resourceId: "R1", name: "Define project vision",
+          startTime: "1/14/2008 8:0:0", endTime: "1/15/2008 17:0:0" },
+        { id: "T2", resourceId: "R1", name: "Refine project vision",
+          startTime: "1/16/2008 8:0:0", endTime: "1/17/2008 17:0:0" },
+        { id: "T3", resourceId: "R1", name: "Assess project vision",
+          startTime: "1/18/2008 8:0:0", endTime: "1/21/2008 17:0:0" },
+        { id: "T4", resourceId: "R2", name: "Implement project",
+          startTime: "1/21/2008 17:0:0", endTime: "1/30/2008 17:0:0" }
+      ]);
+      
+      private function getColor(data:Object):IFill
+      {
+        if (data != null)
+        {
+          var color:uint = 0;
+          if (data.type == "team")
+            return new SolidColor(0xE0E3F1);
+          else if (data.type == "member")
+            return new SolidColor(0xFF88A0F2);
+          else
+            return null;
+        }
+        return null;   
+      }
+      
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  
+  &lt;gantt:ResourceChart id="resourceChart" width="100%" height="100%"
+                       resourceDataProvider="{resources}"
+                       taskDataProvider="{tasks}"&gt;
+    &lt;gantt:ganttSheet&gt;
+      &lt;gantt:GanttSheet&gt;
+        &lt;gantt:backgroundGrid&gt;
+          &lt;gantt:BackgroundGrid backgroundFunction="getColor" /&gt;
+        &lt;/gantt:backgroundGrid&gt;
+      &lt;/gantt:GanttSheet&gt;
+    &lt;/gantt:ganttSheet&gt;
+  &lt;/gantt:ResourceChart&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">This example customizes the background colors of the
+Gantt sheet rows by mapping a specific color to a resource property.
+The getColor function checks the resource property ‘type’
+and returns the appropriate color.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex523.html" class="bluelink">Predefined Gantt Sheet Grids</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex523.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex525.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

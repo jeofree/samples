@@ -1,0 +1,182 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Configuring an OLAP chart</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise132.html" class="breadcrumb">OLAP and pivot charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise135.html" class="breadcrumb">OLAP charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise137.html" class="breadcrumb">Configuring an OLAP chart</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise136.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise138.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Configuring an OLAP chart</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="section" id="section1216387432793">
+<h2 class="heading">Changing chart and series types</h2>
+<div class="sectionContent">
+<div class="para">If you want to display the result in something other
+than a <span class="apiname">ColumnChart</span> you have to configure
+the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/OLAPChart.html" class="bluelink">OLAPChart</a></span>.
+The following example shows how to use an <span class="apiname">AreaChart</span> instead of a <span class="apiname">ColumnChart</span>.</div>
+<pre class="programlisting">&lt;ilog:OLAPChart width=”100%” height=”100%” id=”olapachart”/&gt;  
+  &lt;ilog:categoryAxis&gt;
+    &lt;ilog:OLAPAxis padding=”0”/&gt;
+  &lt;/ilog:categoryAxis&gt;
+  &lt;ilog:chart&gt;
+    &lt;mx:Component&gt;
+      &lt;mx:AreaChart width="100%" height="100%"/&gt;   
+    &lt;/mx:Component&gt;
+  &lt;/ilog:chart&gt;
+  &lt;ilog:seriesProviders&gt;
+    &lt;ilog:OLAPSeriesProvider&gt;
+      &lt;ilog:series&gt;
+        &lt;mx:Component&gt;&lt;ilog:OLAPAreaSeries/&gt;&lt;/mx:Component&gt;
+      &lt;/ilog:series&gt;
+    &lt;/ilog:OLAPSeriesProvider&gt;
+  &lt;/ilog:seriesProviders&gt;
+&lt;/ilog:OLAPChart&gt;
+</pre>
+<div class="para">You can see that both the chart type (<code class="code">ilog:chart</code>) and the series <code class="code">(ilog:seriesProvider</code>)
+have to be configured to the new type of chart and corresponding series.
+The <span class="apiname">OLAPAxis</span> padding has also been
+changed to align correctly with the <span class="apiname">AreaChart</span>; it is no longer the default padding value which fitted nicely with <span class="apiname">ColumnChart</span>.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/olappivot_ss2_default.png" alt="Area&#xA;chart representing same data as column chart" class="imagedata"/></div>
+<div class="para">In this case there is only a single series provider without
+any specific selector. This means that all the series created will
+be instances of the given <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/series/OLAPAreaSeries.html" class="bluelink">OLAPAreaSeries</a></span> using this fallback provider.
+In this example, as all the series are of type area, some are hidden
+by others. One way to solve that problem is to make sure that “Product
+1” series (France and US) are represented by <span class="apiname">OLAPAreaSeries</span> but “Product 2” series
+(France and US) are represented by <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/series/OLAPLineSeries.html" class="bluelink">OLAPLineSeries</a></span>.</div>
+<div class="para">The following example of a series providers configuration
+shows how series providers can be configured to make sure different
+series are built depending on the OLAP result row to which they correspond.</div>
+<pre class="programlisting">&lt;ilog:seriesProviders&gt;
+  &lt;ilog:OLAPSeriesProvider&gt;
+    &lt;ilog:selectors&gt;
+      &lt;ilog:OLAPElementSelector 
+        uniqueName="[ProductDim].[Product].[Product 1]"
+        type="{OLAPElementSelector.OLAP_MEMBER}"/&gt;
+    &lt;/ilog:selectors&gt;      
+    &lt;ilog:series&gt;
+      &lt;mx:Component&gt;&lt;ilog:OLAPAreaSeries/&gt;&lt;/mx:Component&gt;
+    &lt;/ilog:series&gt;
+  &lt;/ilog:OLAPSeriesProvider&gt;
+  &lt;ilog:OLAPSeriesProvider&gt;
+    &lt;ilog:selectors&gt;
+      &lt;ilog:OLAPElementSelector uniqueName="[ProductDim].[Product].[Product 2]"
+        type="{OLAPElementSelector.OLAP_MEMBER}"/&gt;
+      &lt;ilog:OLAPElementSelector 
+        uniqueName="[CountryDim].[Country].[France]"
+        type="{OLAPElementSelector.OLAP_MEMBER}"/&gt;          
+    &lt;/ilog:selectors&gt;      
+    &lt;ilog:series&gt;
+      &lt;mx:Component&gt;
+        &lt;ilog:OLAPLineSeries&gt;
+          &lt;ilog:lineStroke&gt;
+            &lt;mx:Stroke color="0x1B95D9" weight="3"/&gt;
+          &lt;/ilog:lineStroke&gt;
+        &lt;/ilog:OLAPLineSeries&gt;
+      &lt;/mx:Component&gt;
+    &lt;/ilog:series&gt;
+  &lt;/ilog:OLAPSeriesProvider&gt;   
+  &lt;ilog:OLAPSeriesProvider&gt;
+    &lt;ilog:selectors&gt;
+      &lt;ilog:OLAPElementSelector uniqueName="[ProductDim].[Product].[Product 2]"
+        type="{OLAPElementSelector.OLAP_MEMBER}"/&gt;      
+      &lt;ilog:OLAPElementSelector uniqueName="[CountryDim].[Country].[US]"
+        type="{OLAPElementSelector.OLAP_MEMBER}"/&gt;                    
+    &lt;/ilog:selectors&gt;      
+    &lt;ilog:series&gt;
+      &lt;mx:Component&gt;
+        &lt;ilog:OLAPLineSeries&gt;
+          &lt;ilog:lineStroke&gt;
+            &lt;mx:Stroke color="0xCACA9E" weight="3"/&gt;
+          &lt;/ilog:lineStroke&gt;
+        &lt;/ilog:OLAPLineSeries&gt;
+      &lt;/mx:Component&gt;
+    &lt;/ilog:series&gt;
+  &lt;/ilog:OLAPSeriesProvider&gt;  
+&lt;/ilog:seriesProviders&gt;  
+</pre>
+<div class="para">The following figure shows the chart displayed by this
+configuration.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/olappivot_ss3_default.png" alt="Data&#xA;providers configured to show different series for each OLAP result&#xA;row" class="imagedata"/></div>
+<div class="para">Note that more specific selectors are used for <span class="quote">“Product 2”</span> in order to specify the stroke for the US
+and France series. For more details on how to configure a selector,
+you can read the documentation on <span class="apiname">OLAPElementSelector</span>.</div>
+<div class="para">If there is no fallback provider (a provider without
+selectors) and no provider matches a given OLAP result row, then the
+row will not be displayed as a series in the resulting chart. For
+example, if there are rows for <span class="quote">“Product 3”</span>, they will not be displayed.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Changing clustering</h2>
+<div class="sectionContent">
+<div class="para">In the previous example, all the rows of the OLAP query
+result were series in a single chart. You may want to see several
+charts to visualize the result better. To do this, use the clustering
+mechanism of the OLAP chart.</div>
+<div class="para">In the row axis of the OLAP query, you have several sets
+of data: the first set is product data and the second set is country
+data. By default you will get as many series as there are product/country
+tuples. However, you might want to see the products spread over different
+charts and, on each chart, have the countries represented by series.
+To achieve this, set the <span class="apiname">clusteringDepth</span> property of <span class="apiname">OLAPChart</span> to 1. As
+the product data is first, it will be used to create as many charts
+as there are products, and as the country data is second, the depth
+1 will be used to build series for each country.</div>
+<div class="para">The following code shows how to set the clustering depth.</div>
+<pre class="programlisting">&lt;ilog:OLAPChart width=”100%” height=”100%” 
+  id=”olapachart” clusteringDepth=”1”&gt;
+  &lt;ilog:dataAxis&gt;
+    &lt;mx:LinearAxis/&gt;
+  &lt;/ilog:dataAxis&gt;
+&lt;/ilog:OLAPChart&gt;
+</pre>
+<div class="para">You can see that in addition to the <span class="apiname">clusteringDepth</span> property, the <span class="apiname">dataAxis</span> property
+has been set on the OLAP chart. This is not mandatory, however it
+allows all the charts created in the OLAP chart to share the same
+data axis, which is vertical in this case.</div>
+<div class="para">The following figure shows the resulting charts. The
+orange series are figures for France and the green series are figures
+for the US, spread over two charts — the first chart for <span class="quote">“Product 1”</span> and the second for <span class="quote">“Product
+2”</span>.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/olappivot_ss4_default.png" alt="Data&#xA;spread over two charts, with series for each country" class="imagedata"/></div>
+<div class="para">If you want one chart per country and one series per
+product instead, you just have to tweak the row axis of the OLAP query
+to change the order of the cross-join to have countries coming first.</div>
+<pre class="programlisting">rowQueryAxis.addSet(countrySet.crossJoin(productSet));</pre>
+<div class="para">If you have a query row axis with more than two sets
+of data, you can set <span class="apiname">clusteringDepth</span> to values greater than 1 to determine how many of the data sets
+are used to create charts; the remaining data sets will be used to
+create series.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Configuring clustering</h2>
+<div class="sectionContent">
+<div class="para">By default the maximum number of charts displayed on
+a screen after clustering is 20. You can change this using the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/OLAPChart.html#maxNumCharts" class="bluelink">maxNumCharts</a></span> property.</div>
+<pre class="programlisting">&lt;ilog:OLAPChart width=”100%” height=”100%”
+   id=”olapachart” clusteringDepth=”1” maxNumCharts="8"/&gt;</pre>
+<div class="para">As the number of charts displayed on a single page is
+limited by <span class="apiname">maxNumCharts</span>, you can
+use the <span class="apiname">nextPage</span> and <span class="apiname">previousPage</span> methods of <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/OLAPChart.html" class="bluelink">OLAPChart</a></span> to navigate the pages as in
+the following XML sample.</div>
+<pre class="programlisting">&lt;mx:Button click="olapchart.previousPage()"
+   enabled="{olapchart.hasPreviousPage}" label="Prev Page"/&gt; 
+&lt;mx:Button click="olapchart.nextPage()"
+   enabled="{olapchart.hasNextPage}" label="Next Page"/&gt; 
+&lt;ilog:OLAPChart width=”100%” height=”100%”
+   id=”olapachart” clusteringDepth=”1” maxNumCharts="8"/&gt;
+</pre>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Legend</h2>
+<div class="sectionContent">
+<div class="para">A specific legend object is available for <span class="apiname">OLAPChart</span>. The following code shows how to display
+a legend.</div>
+<pre class="programlisting">&lt;ilog:OLAPChartLegend dataProvider=”{olapchart}” backgroundColor=”white”/&gt;</pre>
+<div class="para">The following figure shows the resulting legend displayed.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/olappivot_ss5_default.png" alt="Example&#xA;of a legend on an OLAP chart" class="imagedata"/></div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise135.html" class="bluelink">OLAP charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise136.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise138.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

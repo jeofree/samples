@@ -1,0 +1,174 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Specifying organization chart data with field mappings</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex739.html" class="breadcrumb">Organization Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex743.html" class="breadcrumb">Configuring organization chart data</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex745.html" class="breadcrumb">Specifying organization chart data with field mappings</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex744.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex746.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Specifying organization chart data with field mappings</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">In the control, there are field properties for mapping
+organization chart layout and field properties for mapping organization
+chart item information. You should set the field properties to map
+fields in the control to the appropriate <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#dataProvider" class="bluelink">dataProvider</a></span> fields.</div>
+<div class="section" id="usrflprg.uss_flexprg_orgcharts.1027627">
+<h2 class="heading">Organization chart layout field properties</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">The field properties used to map the layout data for  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html" class="bluelink">OrgChart</a></span> items are described
+in the following table. </div>
+<div class="caption">Field properties for organization chart layout </div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_orgcharts.1016621"><colgroup span="1">
+<col span="1"/>
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Property</div></th>
+<th rowspan="1" colspan="1"><div class="para">Default value</div></th>
+<th rowspan="1" colspan="1"><div class="para">Purpose</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">assistantField</div></td>
+<td rowspan="1" colspan="1"><div class="para">assistant</div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property indicates whether the item is an assistant of the
+parent item or not.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">layoutField</div></td>
+<td rowspan="1" colspan="1"><div class="para">layout</div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property specifies the algorithm used to lay out the child
+(nonassistant) items.</div></td>
+</tr>
+</tbody></table>
+<div class="para">For more information, see <a href="ps_ganttforflex747.html" class="bluelink">Organization chart layout</a>.</div>
+</div>
+</div>
+<div class="section" id="usrflprg.uss_flexprg_orgcharts.1016685">
+<h2 class="heading">Organization chart item renderer field properties</h2>
+
+
+
+<div class="sectionContent">
+<div class="para">The field properties used to map the data used to render
+information about the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html" class="bluelink">OrgChart</a></span> items are described
+in the following table.</div>
+<div class="caption">Field properties for organization chart item information</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_orgcharts.1016662"><colgroup span="1">
+<col span="1"/>
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Property</div></th>
+<th rowspan="1" colspan="1"><div class="para">Default value</div></th>
+<th rowspan="1" colspan="1"><div class="para">Purpose</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">addressField</div></td>
+<td rowspan="1" colspan="1"><div class="para">address</div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property gives the address of the person (personal or professional).</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">businessUnitField</div></td>
+<td rowspan="1" colspan="1"><div class="para">businessUnit</div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property gives the business unit of the person.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">emailField</div></td>
+<td rowspan="1" colspan="1"><div class="para">email</div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property gives the email of the person.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">faxField</div></td>
+<td rowspan="1" colspan="1"><div class="para">null</div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property gives the fax number of the person.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">instantMessagerField</div></td>
+<td rowspan="1" colspan="1"><div class="para">instantMessager</div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property gives the instant messager identifier of this person.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">locationField</div></td>
+<td rowspan="1" colspan="1"><div class="para">location</div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property gives the location of the person (country, region,
+site...).</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">nameField</div></td>
+<td rowspan="1" colspan="1"><div class="para">name</div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property gives the name of the person.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">mobilePhoneField</div></td>
+<td rowspan="1" colspan="1"><div class="para">mobilePhone</div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property gives the mobile phone number of the person.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">pictureField</div></td>
+<td rowspan="1" colspan="1"><div class="para">picture</div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property gives the source of the picture of the person.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">phoneField</div></td>
+<td rowspan="1" colspan="1"><div class="para">phone</div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property gives the phone number of the person.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">positionField</div></td>
+<td rowspan="1" colspan="1"><div class="para">position</div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property gives the position of the person, for example, manager,
+software engineer...</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">presenceIndicatorField</div></td>
+<td rowspan="1" colspan="1"><div class="para">presenceIndicator</div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property indicates whether the person is present, away, or
+travelling.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">timeZoneField</div></td>
+<td rowspan="1" colspan="1"><div class="para">null</div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property gives the time zone of the person.</div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="section" id="usrflprg.uss_flexprg_orgcharts.1016830">
+<h2 class="heading">Mapping a field to a data provider attribute</h2>
+
+
+<div class="sectionContent">
+<div class="para">The following code shows the field property <span class="apiname">nameField</span> mapping the <span class="apiname">name</span> field in the control to the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#dataProvider" class="bluelink">dataProvider</a></span> attribute <code class="code">label</code>.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+   xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;ilog:OrgChart width="400" height="200" &gt;     
+    &lt;mx:XML&gt;
+      &lt;employee label="Firstname Name" /&gt;
+    &lt;/mx:XML&gt;      
+    &lt;ilog:fields&gt;
+      &lt;ilog:OrgChartFields nameField="label" /&gt;
+    &lt;/ilog:fields&gt;
+  &lt;/ilog:OrgChart&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex743.html" class="bluelink">Configuring organization chart data</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex744.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex746.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

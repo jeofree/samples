@@ -1,0 +1,55 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Specifying the visible time range</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex550.html" class="breadcrumb">Gantt task charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex555.html" class="breadcrumb">Configuring a task chart control</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex558.html" class="breadcrumb">Specifying the visible time range</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex557.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex559.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Specifying the visible time range</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The visible time range defines the range of time that
+is displayed in the Gantt sheet. You can specify the visible time
+range with the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#visibleTimeRangeStart" class="bluelink">visibleTimeRangeStart</a></span> and the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#visibleTimeRangeEnd" class="bluelink">visibleTimeRangeEnd</a></span> properties of the Gantt sheet.</div>
+<div class="para">The following example shows how to set the visible time
+range from 1 January 2008 00:00:00 to 31 December 2008 24:00:00.</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+      import mx.collections.HierarchicalData;
+  
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0"}
+      ]);
+
+      [Bindable]
+      public var constraints:ArrayCollection = new ArrayCollection([
+        { fromId:"T1", toId:"T2", kind:"endToStart" }
+      ]);
+    ]]&gt;
+  &lt;/mx:Script&gt;
+
+  &lt;ilog:TaskChart id="taskChart" width="600" height="400"
+                  taskDataProvider="{tasks}"
+                  constraintDataProvider="{constraints}"&gt;
+    &lt;ilog:ganttSheet&gt;
+      &lt;ilog:GanttSheet
+          visibleTimeRangeStart="{new Date(2008, 0, 1)}"
+          visibleTimeRangeEnd="{new Date(2008, 11, 31, 24)}" /&gt;
+    &lt;/ilog:ganttSheet&gt;
+  &lt;/ilog:TaskChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">When the visible time range is not set explicitly, the
+task chart displays the range of time corresponding to the data provided.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex555.html" class="bluelink">Configuring a task chart control</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex557.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex559.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

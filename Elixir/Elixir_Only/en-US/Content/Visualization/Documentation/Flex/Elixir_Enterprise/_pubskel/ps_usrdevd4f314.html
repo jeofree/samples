@@ -1,0 +1,129 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Specifying the data providers in a diagram</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f312.html" class="breadcrumb">Creating a graph display from data providers using the Diagram
+class</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f314.html" class="breadcrumb">Specifying the data providers in a diagram</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f313.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f315.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Specifying the data providers in a diagram</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">In <span class="trademark">Adobe®
+            </span> <span class="trademark">Flex®
+            </span>, many
+graphic components have a property likely to be named ‘dataProvider’
+or ‘source’. This property contains the source data
+that this component displays and monitors for changes.</div>
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">In the <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/ilog/diagram/Diagram.html" class="bluelink">Diagram</a></span> class,
+there are two properties acting as source data: <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/ilog/diagram/Diagram.html#nodeDataProvider" class="bluelink">nodeDataProvider</a></span> and <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/ilog/diagram/Diagram.html#linkDataProvider" class="bluelink">linkDataProvider</a></span>.</div>
+</div><dl class="descriptionlist"><dt class="term">•	The nodeDataProvider property</dt><dd class="descriptionlistItem"><div class="para">The <span class="apiname">nodeDataProvider</span> property of the <span class="apiname">Diagram</span> class represents
+all the nodes of the graph, including subgraphs (that is, nodes containing
+other nodes). This property is of type ICollectionView or IList. In
+Flex, Collections or Lists are a very common and practical way to
+iterate over, modify or listen to collections of objects.  There are
+two main ways to specify data source depending on the type of the <span class="apiname">nodeDataProvider</span> property: flat or hierarchical.
+If IList will be considered by the <span class="apiname">Diagram</span> component as a flat list of nodes, the ICollectionView type also
+allows hierarchically structured data to be passed through the use
+of IHierarchicalCollectionView (which extends ICollectionView).</div>
+<div class="para">  Where the nodeDataProvider  property is of type IList
+or ICollectionView but not IHierarchicalCollectionView, the <span class="apiname">Diagram</span> component will parse the collection and
+render the nodes as a flat graph, without any notion of hierarchy.
+All nodes will be added in the same parent container. </div>
+<div class="para">Where the <span class="apiname">nodeDataProvider</span>  is of type IHierarchicalCollectionView, the <span class="apiname">Diagram</span> component will render the graph in two different ways, depending
+on its createLinksForHierarchy property value. This property controls
+how the hierarchical relationship between nodes contained in the IHierarchicalCollectionView
+should be interpreted when rendering the graph.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para"/>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">If the createLinksForHierarchy property
+of the <span class="apiname">Diagram</span> class is true, the
+graph is considered to be flat and the parent-child relationship between
+source nodes will be represented by graphic Link instances connecting
+Node instances. This can be useful if you want to display a tree-structured
+data source without having to specify a linkDataProvider property
+on the Diagram component (see next paragraph to learn more about this
+linkDataProvider property). In brief, if createLinksForHierarchy property
+of the Diagram class is true, both Node instance and Link instances
+are created from the nodeDataProvider property of the Diagram component.
+Link instances are inferred from the parent-child relationship existing
+between nodes in the IHierarchicalCollectionView The linkDataProvider
+property will not be taken into account, whatever its value.</div>
+</li><li class="itemizedlistItem"><div class="para">If the createLinksForHierarchy property
+of the Diagram class is false, the parent-child relationship between
+source nodes will be used to maintain a hierarchy between their graphic
+representation in the diagram: data nodes that have child nodes will
+be rendered as Subgraph instances (that contain the graphic representation
+of their child objects) whereas nodes without child nodes will be
+rendered as Node instances. Should child nodes then be added to one
+of these nodes, its graphic representation would be replaced by a
+Subgraph instance.  The simple application example shown above uses
+this mode, which is the default mode of the <span class="apiname">Diagram</span> component. In this configuration, links between nodes in the model
+must be described in the <span class="apiname">linkDataProvider</span> property of the <span class="apiname">Diagram</span> component.</div>
+</li></ul></div>
+</dd><dt class="term">•	The linkDataProvider property</dt><dd class="descriptionlistItem"><div class="para">The linkDataProvider property of the
+Diagram class explicitly defines links existing between nodes in the
+graph. Its value is an IList of data link objects which will be rendered
+as graphic Link instances depending on whether the nodes they are
+connecting are rendered in the Diagram or not.  Since a link object
+in the linkDataProvider property is supposed to connect two nodes
+(that will be referred to as start node and end node hereafter) defined
+in the nodeDataProvider property, the Diagram component needs to be
+able to extract this information from the link data object. Two couple
+of properties of the Diagram class are used for that purpose : startNodeField,
+startNodeFunction and endNodeField, endNodeFunction.  startNodeField
+is a String property holding the name of the property in link objects
+containing the node from which that link starts. startNodeFunction
+is a property of type Function that returns the node from which a
+link starts. This property, if non null, takes precedence over the
+startNodeField property. For instance, if a function was passed as
+startNodeFunction, it will be used to extract the start node from
+the link, even if the startNodeField property was set. If the startNodeFunction
+property is null, the Diagram will use the startNodeField property
+value to extract the start node from the link.  endNodeField and endNodeFunction
+work exactly the same way, except that they concern the end node of
+the link, that is the node the link goes towards.  For example, suppose
+that our link in the data model exposes two properties ‘fromNode’
+and ‘toNode’, respectively for start node and end node. </div>
+<pre class="programlisting">// class representing a link in the data model
+public class DataLink
+{
+    public var fromNode:Object;
+    public var toNode:Object;
+
+    // some other properties...
+}
+</pre>
+<div class="para">Then we want to set the startNodeField and endNodeField
+on the Diagram instance as follows :</div>
+<pre class="programlisting">&lt;idiag:Diagram id="diagram"
+               startNodeField="fromNode"
+               endNodeField="endNode" /&gt;
+</pre>
+<div class="para">startNodeFunction and endNodeFunction properties provide
+a way to extract start node and end node when they are not available
+as simple properties in link objects for instance. Their common signature
+is :  function startNodeFunction(diagram:Diagram,linkItem:Object):Object
+function endNodeFunction(diagram:Diagram,linkItem:Object):Object 
+where diagram is the main Diagram component rendering graph data (passed
+as parameter for convenience), linkItem is the link object whose start
+node or end node is to be determined, and the return value is the
+start or end node object (depending on which function it is).  The
+Diagram component will render and display graphic Links instances
+for link objects in linkDataProvider only if both start node and end
+node are in the nodeDataProvider  collection view. This means that
+if one of these nodes is not available when parsing the nodeDataProvider
+(due to a filter of some kind installed on the collection view, or
+closed nodes on a IHierarchicalCollectionView), the link will not
+be added to the diagram. Consistently, its graphic renderer will be
+removed from the Diagram (if previously added) should one of its ends
+nodes be filtered out from the nodeDataProvider. However, ‘pending
+links’, that is data links whose ends are not yet added to
+the Diagram, of were removed, will be registered by the Diagram as
+so. When both end data nodes of a pending link are rendered and added
+to the Diagram, the link itself will be renderer and added to the
+Diagram component as well. There is no need to ensure that start and
+end nodes of a data link are added prior the link itself. The Diagram
+component takes care of maintaining the consistence. </div>
+</dd></dl></div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f312.html" class="bluelink">Creating a graph display from data providers using the Diagram
+class</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f313.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f315.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

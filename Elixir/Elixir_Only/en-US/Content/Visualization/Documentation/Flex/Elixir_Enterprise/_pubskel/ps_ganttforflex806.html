@@ -1,0 +1,113 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>User interaction with treemaps</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex796.html" class="breadcrumb">Treemaps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex806.html" class="breadcrumb">User interaction with treemaps</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex805.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex807.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">User interaction with treemaps</h1></div></div><div class="content">
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">When you have set up your treemap application you can
+execute it. If you click a treemap item, in addition an  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#event:itemClick" class="bluelink">itemClick</a></span> event being fired, the item is selected and a selection
+border is drawn around it. You can navigate within the treemap items
+and customize the treemap selection border color.</div>
+<div class="para">For more information, see <span class="italics">Handling user interactions with charts</span> and <span class="italics">Selecting chart items</span> in the <span class="italics">Flex 4 Developer’s Guide</span>.</div>
+<div class="section" id="usrflprg.uss_flexprg_treemap.1019125">
+<h2 class="heading">Selection</h2>
+
+
+
+<div class="sectionContent">
+<div class="para">You can decide whether a single treemap item is selected
+or several items at the same time when the CTRL key is pressed. This
+is done by setting the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#allowMultipleSelection" class="bluelink">allowMultipleSelection</a></span> property to <code class="code">true</code>. The
+following code shows how to do this.</div>
+<pre class="programlisting">&lt;ilog:Treemap height="100%" width="100%"
+  allowMultipleSelection="true"
+  dataProvider="{stockDataAC}"&gt;
+</pre>
+<div class="para">Selection can then be carried out as shown in the following
+table.</div>
+<div class="caption">Selection actions</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_treemap.1019136"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Function</div></th>
+<th rowspan="1" colspan="1"><div class="para">Action</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Select</div></td>
+<td rowspan="1" colspan="1"><div class="para">Click an item in the treemap.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Extend a selection</div></td>
+<td rowspan="1" colspan="1"><div class="para">Hold down the CTRL key and click the items.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Reduce a selection</div></td>
+<td rowspan="1" colspan="1"><div class="para">Hold down the CTRL key and click an already
+selected item to remove it from the selection.</div></td>
+</tr>
+</tbody></table>
+<div class="para">Keyboard accessibility is also provided for interactions
+with treemap items. The keyboard actions for treemaps are shown in
+the following table.</div>
+<div class="caption">Keyboard actions</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_treemap.1019818"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Keyboard</div></th>
+<th rowspan="1" colspan="1"><div class="para">Action</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Right/left arrow keys</div></td>
+<td rowspan="1" colspan="1"><div class="para">Select a neighboring item that shares the
+same parent item.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Up/down arrow keys</div></td>
+<td rowspan="1" colspan="1"><div class="para">Move up or down in the hierarchy to select
+a parent or child item.</div></td>
+</tr>
+</tbody></table>
+<div class="para">For more information, see <span class="italics">Handling user interactions with charts</span> and <span class="italics">Selecting chart items</span> in the <span class="italics">Flex 4 Developer’s Guide</span>.</div>
+</div>
+</div>
+<div class="section" id="usrflprg.uss_flexprg_treemap.1019157">
+<h2 class="heading">Navigation</h2>
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">Once a single item has been selected, a typical action
+could be to drill down on that item. This can be done by setting the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#virtualRoot" class="bluelink">virtualRoot</a></span> property
+of the <code class="code">TreeMap</code> to the selected item as
+follows:</div>
+<pre class="programlisting">myTreeMap.virtualRoot = myTreeMap.selectedItems[0];
+</pre>
+<div class="para">You can revert back to the treemap root by setting the <span class="apiname">virtualRoot</span> property to <code class="code">null</code>.</div>
+<div class="para">When you change the virtual root, a zooming effect can
+be performed. You can set its duration using the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#style:animationDuration" class="bluelink">animationDuration</a></span> style property. By default it is set to zero, which
+means that there is no effect.</div>
+<div class="para">For example, to get a 500ms animation use the following
+code.</div>
+<pre class="programlisting">&lt;ilog:TreeMap width="200" height="400" animationDuration="500"/&gt;
+</pre>
+</div>
+</div>
+<div class="section" id="usrflprg.uss_flexprg_treemap.1019174">
+<h2 class="heading">Customization</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">You can customize the color of the selection border by
+using the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#style:selectionColor" class="bluelink">selectionColor</a></span> style property of the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html" class="bluelink">TreeMap</a></span>.</div>
+<pre class="programlisting">&lt;ilog:Treemap height="100%" width="100%"
+  selectionColor="cyan"
+  dataProvider="{stockDataAC}"&gt;
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex796.html" class="bluelink">Treemaps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex805.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex807.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

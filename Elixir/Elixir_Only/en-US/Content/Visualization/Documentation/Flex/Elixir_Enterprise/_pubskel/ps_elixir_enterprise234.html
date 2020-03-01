@@ -1,0 +1,84 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>The NeedleRenderer class</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise214.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise215.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise226.html" class="breadcrumb">Building custom gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise228.html" class="breadcrumb">Custom circular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise231.html" class="breadcrumb">The visual elements of circular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise234.html" class="breadcrumb">The NeedleRenderer class</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise233.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise235.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">The NeedleRenderer class</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e39301">
+
+
+
+
+<div class="para">The needle renderer is a visual element responsible for
+rendering the needle of the gauge. It references a logical scale to
+point to the angle defined by its <span class="apiname">value</span> property. A needle can also be represented by an external asset,
+see <a href="ps_elixir_enterprise239.html" class="bluelink">The CircularGaugeAsset class</a>.</div>
+<div class="paragroup">
+<div class="title">Customizing the geometry of a NeedleRenderer</div>
+<div class="para">The following illustration shows the main properties
+of a needle to help you customize its geometry.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/Gaugeneedle_default.png" alt="A needle's&#xA;properties" class="imagedata"/></div>
+<div class="para">The following code example shows four options to customize
+the needle geometry:</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                backgroundColor="0xFFFFFF"
+                &gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.graphics.SolidColor;
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:CircularGauge width="100%" height="100%"&gt;
+    &lt;ilog:scales&gt;
+      &lt;ilog:CircularLinearScale/&gt;
+    &lt;/ilog:scales&gt;
+    &lt;ilog:elements&gt;
+      &lt;ilog:CircularScaleRenderer/&gt;
+      &lt;ilog:NeedleRenderer
+        radius="40%"
+        baseRadius="0%"
+        thickness="5%"
+        pointThickness="100%"
+        pointRadius="95%"
+        value="0"
+        editable="true"
+        fill="{new SolidColor(0xAA0000)}" /&gt; 
+      &lt;ilog:NeedleRenderer
+        radius="40%"
+        baseRadius="80%"
+        thickness="10%"
+        pointThickness="100%"
+        pointRadius="95%"
+        value="20"
+        editable="true"
+        fill="{new SolidColor(0xAAAA00)}" /&gt; 
+      &lt;ilog:NeedleRenderer
+        radius="40%"
+        baseRadius="0%"
+        thickness="10%"
+        pointThickness="50%"
+        pointRadius="95%"
+        value="50"
+        editable="true"       
+        fill="{new SolidColor(0xAA00AA)}" /&gt; 
+      &lt;ilog:NeedleRenderer
+        radius="40%"
+        baseRadius="0%"
+        thickness="10%"
+        pointThickness="0%"
+        pointRadius="100%"
+        value="80"
+        editable="true"   
+        fill="{new SolidColor(0x00AAAA)}" /&gt; 
+    &lt;/ilog:elements&gt;
+  &lt;/ilog:CircularGauge&gt;
+&lt;/mx:Application&gt;
+
+</pre>
+<div class="para">The fill and stroke of a needle can also be changed with
+the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/circular/renderers/NeedleRenderer.html#style:fill" class="bluelink">fill</a></span> and <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/circular/renderers/NeedleRenderer.html#style:stroke" class="bluelink">stroke</a></span> style properties.</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise231.html" class="bluelink">The visual elements of circular gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise233.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise235.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

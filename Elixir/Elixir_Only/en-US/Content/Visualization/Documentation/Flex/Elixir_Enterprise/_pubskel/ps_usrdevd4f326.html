@@ -1,0 +1,77 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Listening to selection events</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f312.html" class="breadcrumb">Creating a graph display from data providers using the Diagram
+class</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f323.html" class="breadcrumb">Handling selection in a diagram</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f326.html" class="breadcrumb">Listening to selection events</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f325.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f327.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Listening to selection events</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">Each time the selection changes in a diagram, an event
+is raised so that listeners can be notified of the change.   DiagramEvent.CHANGE
+is the event raised by the diagram. The following example shows how
+to listen to selection events in a diagram:</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark"
+               xmlns:ibm="http://www.ibm.com/xmlns/prod/ilog/flex/diagram/2010" xmlns:mx="library://ns.adobe.com/flex/halo"&gt;
+  &lt;fx:Script&gt;
+    &lt;![CDATA[
+      import com.ibm.ilog.diagram.graphlayout.tree.TreeLayout;
+      import com.ibm.ilog.diagram.DiagramEvent;
+      import mx.collections.HierarchicalData;
+      /**
+       * Listener function that is called when a 
+       * DiagramEvent.CHANGE event occurs.
+       */
+      private function updateSelection():void 
+      {
+        if (diagram.selectedItems) {
+          selected.text = "Object "+ diagram.selectedItems[0].@label + " is selected";
+        } else {
+          selected.text = "There are no objects selected";
+        }
+      }
+      
+    ]]&gt;
+  &lt;/fx:Script&gt;
+  
+  &lt;fx:Declarations&gt;
+    &lt;fx:XML id="data"&gt;
+      &lt;graph label="root"&gt;
+        &lt;node label="Node 1" x="10" y="10" /&gt;
+        &lt;node label="Node 2" x="70" y="200"/&gt;
+        &lt;node label="Node 3" x="50" y="120"/&gt;
+        &lt;graph label="Graph 1" x="140" y="50"&gt;
+          &lt;node label="Node 11" x="0" y="0" /&gt;
+          &lt;node label="Node 12" x="10" y="40"/&gt;
+          &lt;graph label="Graph 2" x="150" y="60"&gt;
+            &lt;node label="Node 21" x="0" y="0" /&gt;
+            &lt;node label="Node 22" x="60" y="60"/&gt;
+          &lt;/graph&gt;
+        &lt;/graph&gt;
+      &lt;/graph&gt;
+    &lt;/fx:XML&gt;
+    &lt;mx:HierarchicalCollectionView showRoot="false" source="{new HierarchicalData(data)}" id="hcv"/&gt;
+  &lt;/fx:Declarations&gt;
+  
+  &lt;s:layout&gt;
+    &lt;s:VerticalLayout paddingBottom="20" paddingLeft="20" paddingRight="20" paddingTop="20"/&gt;
+  &lt;/s:layout&gt;
+  &lt;ibm:Diagram id="diagram" left="0" top="0" width="100%" height="100%" nodeDataProvider="{hcv}"
+               xLocationField="@x" yLocationField="@y" labelField="@label" automaticGraphLayout="true"
+               allowSelection="true" selectionMode="single"
+               createLinksForHierarchy="true" nodeLayout="{new TreeLayout()}" 
+               change="{updateSelection()}" /&gt;
+  &lt;s:HGroup&gt;
+    &lt;s:Label id="selected" /&gt;
+  &lt;/s:HGroup&gt;
+&lt;/s:Application&gt;
+
+
+</pre>
+<div class="para">In this example, the listener function is registered
+inline. See LINKTO[Adobe Documentation Using Flex 4 / Getting started
+/ Events ] for details. For more information about managing events
+in a Diagram component, see LINKTO[Managing Diagram Events]. </div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f323.html" class="bluelink">Handling selection in a diagram</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f325.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f327.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

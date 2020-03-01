@@ -1,0 +1,57 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Main Parameters tab</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex809.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex849.html" class="breadcrumb">MX Maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex871.html" class="breadcrumb">Generating custom maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex876.html" class="breadcrumb">Getting to know the Custom Map Converter tool</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex877.html" class="breadcrumb">Main Parameters tab</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex876.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex878.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Main Parameters tab</h1></div></div><div class="content">
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The red fields in parameter tabs are mandatory. Other
+fields are optional.</div>
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">The main parameters are:</div>
+</div><dl class="descriptionlist"><dt class="term">Export Option</dt><dd class="descriptionlistItem"><div class="para">This allows you to choose either Halo
+or Spark as the type of component exported by the Custom Map Converter. Selecting Halo exports a component compatible
+with the old <span class="filename">ilog.maps</span> package.
+These components are now superseded by the <span class="filename">com.ibm.ilog.elixir.maps</span> Spark components starting with IBM® <span class="classificationVariable">ILOG Elixir</span> 3.0. The Spark option is selected by default and is recommended.</div>
+</dd><dt class="term">Input Shapefile</dt><dd class="descriptionlistItem"><div class="para">A Shapefile is a set of files containing
+cartographic data.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">An input Shapefile for the Custom Map Converter must have the following files:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="filename">.shp</span> containing geometries (used to draw the map)</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="filename">.dbf</span> containing metadata (shown as tooltips on map features)</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="filename">.shx</span> containing indexing information</div></li></ul></div>
+<div class="para">There can be further indexing files but these are not
+used by the Custom Map Converter. The main
+file is the <span class="filename">.shp</span> file. Browse to
+select this file.</div>
+</dd><dt class="term">Attribute</dt><dd class="descriptionlistItem"><div class="para">The list of attributes reflects the
+contents of the <span class="filename">.dbf</span> file. When
+you select an attribute, its values are displayed for each map feature
+on the map. For the display to be meaningful, select an attribute
+that has different values for different map features.</div>
+</dd><dt class="term">Simplification threshold</dt><dd class="descriptionlistItem"><div class="para">To make the outlines of map features
+less complex, the Custom Map Converter can
+apply the Douglas-Peucker algorithm for polyline simplification. There
+is a trade-off between the precision of the outline and the quantity
+of data (size of <span class="trademark">ActionScript®
+            </span> class): a high threshold means a greater loss of precision in the
+outlines but a smaller ActionScript class; a low threshold means a
+more precise outline for each feature but a larger ActionScript class.
+You can select the level you prefer.</div>
+<div class="warning"><div class="warningLabel">Warning</div>
+<div class="para">A very high threshold can make some features of the map
+completely disappear.</div>
+</div>
+</dd></dl></div>
+<div class="para">The <span class="guicommand">Export to ActionScript</span> button starts the Export operation.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">This operation creates two ActionScript classes with
+default names:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="filename">&lt;Shapefile_name&gt;.as</span> containing the map geometries</div></li><li class="itemizedlistItem"><div class="para"><span class="filename">&lt;Shapefile_name&gt;Map.as</span> containing the main class</div></li></ul></div>
+<div class="para">The properties, styles, and events of the main class
+are documented in the main class file.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex876.html" class="bluelink">Getting to know the Custom Map Converter tool</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex876.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex878.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

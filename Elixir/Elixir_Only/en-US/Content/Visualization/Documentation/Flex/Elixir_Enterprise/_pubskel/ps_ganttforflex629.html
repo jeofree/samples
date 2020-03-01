@@ -1,0 +1,75 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Axis renderer styling</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex614.html" class="breadcrumb">3D Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex626.html" class="breadcrumb">Styling 3D charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex629.html" class="breadcrumb">Axis renderer styling</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex628.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex630.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Axis renderer styling</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">In order to render axes, all  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts3d/charts3dClasses/CartesianChart3D.html" class="bluelink">CartesianChart3D</a></span> classes use the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts3d/AxisRenderer3D.html" class="bluelink">AxisRenderer3D</a></span> class.
+This class provides several properties that determine how the axis
+is rendered. To specify these properties you can use either the  <span class="apiname">horizontalAxisStyleName</span> or the  <span class="apiname">verticalAxisStyleName</span> style properties on the chart
+object, or use the <code class="code">&lt;ilog:AxisRenderer3D&gt;</code> tag in your MXML as shown in the following example.</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;!-- Simple example to demonstrate the AxisRender3D class. --&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+
+    &lt;mx:Script&gt;
+        &lt;![CDATA[
+          
+        import mx.collections.ArrayCollection;
+
+        [Bindable]
+        private var stockDataAC:ArrayCollection = new ArrayCollection( [
+            { Date: "4-Aug",  High: 37.98, Low: 36.56 },                       
+            { Date: "5-Aug",  High: 37, Low: 36.48 } ]); 
+        ]]&gt;
+    &lt;/mx:Script&gt;
+
+    &lt;mx:Panel title="AxisRenderer3D Example" height="100%" width="100%"&gt;
+
+        &lt;ilog:ColumnChart3D height="100%" width="100%"
+            paddingRight="5" paddingLeft="5" 
+            showDataTips="true" dataProvider="{stockDataAC}"&gt;
+            
+            &lt;ilog:verticalAxis&gt;
+                &lt;mx:LinearAxis baseAtZero="false" /&gt;
+            &lt;/ilog:verticalAxis&gt;
+
+            &lt;ilog:horizontalAxis&gt;
+                &lt;mx:CategoryAxis categoryField="Date" title="Date"/&gt;
+            &lt;/ilog:horizontalAxis&gt;
+
+            &lt;ilog:horizontalAxisRenderer&gt;
+                &lt;ilog:AxisRenderer3D canDropLabels="true" 
+                                     labelGap="15"&gt;
+                  &lt;ilog:fill&gt;
+                    &lt;mx:SolidColor color="green"/&gt;
+                  &lt;/ilog:fill&gt;
+                &lt;/ilog:AxisRenderer3D&gt;
+            &lt;/ilog:horizontalAxisRenderer&gt;
+
+            &lt;ilog:verticalAxisRenderer&gt;
+              &lt;ilog:AxisRenderer3D&gt;
+                &lt;ilog:fill&gt;
+                  &lt;mx:SolidColor color="green"/&gt;
+                &lt;/ilog:fill&gt;
+              &lt;/ilog:AxisRenderer3D&gt;
+            &lt;/ilog:verticalAxisRenderer&gt;
+            &lt;ilog:series&gt;
+                &lt;ilog:ColumnSeries3D yField="High" minField="Low"/&gt;
+
+            &lt;/ilog:series&gt;
+        &lt;/ilog:ColumnChart3D&gt;
+
+    &lt;/mx:Panel&gt;
+&lt;/mx:Application&gt; 
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex626.html" class="bluelink">Styling 3D charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex628.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex630.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

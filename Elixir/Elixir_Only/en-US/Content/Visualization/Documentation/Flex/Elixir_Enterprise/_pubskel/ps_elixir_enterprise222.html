@@ -1,0 +1,102 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Predefined rectangular gauges</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise214.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise215.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise218.html" class="breadcrumb">Using and customizing predefined gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise222.html" class="breadcrumb">Predefined rectangular gauges</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise221.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise223.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Predefined rectangular gauges</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e37623">
+
+
+
+<div class="section">
+<h2 class="heading">Horizontal gauges</h2>
+<div class="sectionContent">
+<div class="para">Horizontal gauges are rectangular gauges displayed in
+the horizontal direction only (their <span class="apiname">direction</span> attribute is set to <code class="code">horizontal</code>). In IBM® <span class="classificationVariable">ILOG Elixir</span>, the predefined horizontal gauges inherit from the <span class="apiname">NumericRectangularGauge</span> base class which provides
+a simple API for classes that need to display a numeric value along
+a single numeric scale (<span class="apiname">RectangularLinearScale</span> or <span class="apiname">RectangularLogScale</span>).</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">IBM <span class="classificationVariable">ILOG Elixir</span> provides two horizontal gauges:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/controls/black/BlackHorizontalGauge.html" class="bluelink">BlackHorizontalGauge</a></span> (black-style skinned gauge)</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/controls/simple/SimpleHorizontalGauge.html" class="bluelink">SimpleHorizontalGauge</a></span> (full programmatic gauge)</div>
+</li></ul></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">The following code shows how to use some properties,
+including style properties, of predefined horizontal gauges:</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                backgroundColor="0xFFFFFF"&gt;
+  &lt;mx:Style&gt;
+    .tickStyle {
+      fill : blue;
+    }
+  &lt;/mx:Style&gt;
+  &lt;ilog:BlackHorizontalGauge width="100%" 
+                             value="500" minimum="0" maximum="1000"
+                             majorTickInterval="100" 
+                             minorTickInterval="50" 
+                             majorTickStyleName="tickStyle"
+                             minorTickStyleName="tickStyle"
+                             skinColor="0x11ff11" /&gt;
+  &lt;ilog:SimpleHorizontalGauge width="100%" title="The Title"
+                              value="200" minimum="0" maximum="1000"
+                              trackMinimum="250" 
+                              trackMaximum="1000"
+                              majorTickInterval="200"
+                              minorTickInterval="100"
+                              backgroundColors="[0x11ff11, 0x111111]"/&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Vertical gauges</h2>
+<div class="sectionContent">
+<div class="para">Vertical gauges are rectangular gauges displayed in the
+vertical direction only (their <span class="apiname">direction</span> attribute is set to <code class="code">vertical</code>). In IBM <span class="classificationVariable">ILOG Elixir</span>, the predefined vertical gauges inherit from the <span class="apiname">NumericRectangularGauge</span> base class which provides
+a simple API for classes that need to display a numeric value along
+a single numeric scale (<span class="apiname">RectangularLinearScale</span> or <span class="apiname">RectangularLogScale</span>).</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">IBM <span class="classificationVariable">ILOG Elixir</span> provides two vertical gauges:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/controls/black/BlackVerticalGauge.html" class="bluelink">BlackVerticalGauge</a></span> (black-style skinned gauge)</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/controls/simple/SimpleVerticalGauge.html" class="bluelink">SimpleVerticalGauge</a></span> (full programmatic gauge)</div>
+</li></ul></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">The following code shows how to use some properties,
+including style properties, of predefined vertical gauges:</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                backgroundColor="0xFFFFFF"&gt;
+  &lt;mx:Style&gt;
+    .myStyle (
+      color : green;
+    )
+  &lt;/mx:Style&gt;
+  &lt;ilog:BlackVerticalGauge height="100%"
+                           value="500" minimum="0" maximum="1000"
+                           majorTickInterval="100"
+                           minorTickInterval="50" 
+                           skinColor="0x1111ff"
+                           color="red" /&gt;
+  &lt;ilog:SimpleVerticalGauge height="100%" title="The Title"
+                            value="200" minimum="0" maximum="1000"
+                            trackMinimum="250" trackMaximum="1000"
+                            majorTickInterval="200"
+                            minorTickInterval="100" 
+                            backgroundColors="[0x1111ff, 0x111111]"
+                            color="red" 
+                            valueIndicatorStyleName="myStyle" /&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise218.html" class="bluelink">Using and customizing predefined gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise221.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise223.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

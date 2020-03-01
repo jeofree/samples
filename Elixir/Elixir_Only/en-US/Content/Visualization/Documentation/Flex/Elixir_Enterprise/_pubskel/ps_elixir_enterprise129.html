@@ -1,0 +1,64 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Using the MapDataLayer</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Overview"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise122.html" class="breadcrumb">Maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise129.html" class="breadcrumb">Using the MapDataLayer</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise128.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise130.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Using the MapDataLayer</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The MapDataLayer is a group that uses the <code class="code">dataProvider</code> defined on the <code class="code">MapBase</code> component to potentially create a <code class="code">DataRenderer</code> for each item found in the <code class="code">dataProvider</code>. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">The following example creates a Label displaying the
+name of a capital and placed at the location specified in the <code class="code">dataProvider</code>:</div>
+<div class="para">Main application and data provider definition:</div>
+<pre class="programlisting">  &lt;fx:Declarations&gt;
+    &lt;s:ArrayList id="locations"&gt;
+      &lt;fx:Array&gt;
+        &lt;fx:Object name="Paris" latitude="48.85341" longitude="2.3488"
+                   country="FRA"/&gt;
+        &lt;fx:Object name="London" latitude="51.5084152563931"
+                   longitude="-0.125532746315002" country="GBR"/&gt;
+        &lt;fx:Object name="Madrid" latitude="40.4165020941502"
+                   longitude="-3.70256423950195" country="ESP"/&gt;
+        &lt;fx:Object name="Berlin" latitude="52.5166667" longitude="13.4"
+                   country="DEU"/&gt;
+        &lt;fx:Object name="Roma" latitude="41.9" longitude="12.4833333"
+                   country="ITA"/&gt;
+        &lt;fx:Object name="Brussels" latitude="50.8465974826927"
+                   longitude="4.35277462005615" country="BEL"/&gt;
+      &lt;/fx:Array&gt;
+    &lt;/s:ArrayList&gt;
+  &lt;/fx:Declarations&gt;
+  &lt;ibm:ContinentalEuropeMap width="100%" height="100%"
+                            dataProvider="{locations}"
+                            skinClass="EuropeDataSkin"/&gt;
+</pre>
+<div class="para">The <code class="code">EuropeDataSkin</code> defines
+a <code class="code">MapDataGroup</code> referencing a <code class="code">EuropeSymbolRenderer</code>. The <code class="code">keyField</code> property is used to map the data item with the …. </div>
+<pre class="programlisting">&lt;ibm:Scroller panModifierKey="shift" wheelZoomModifierKey="shift" top="0"
+                left="0" width="100%" height="100%" id="scroller"
+                skinClass="com.ibm.ilog.elixir.skins.spark.ScrollerSkin"&gt;
+    &lt;ibm:MapGroup id="mapGroup"&gt;
+      &lt;ibm:MapFeatureGroup id="featureGroup" 
+            featureRenderer="com.ibm.ilog.elixir.maps.skins.DefaultFeatureRenderer"/&gt;
+      &lt;ibm:MapDataGroup itemRenderer="EuropeSymbolRenderer" zoomable="false"
+                                          keyField="country"/&gt;
+    &lt;/ibm:MapGroup&gt;
+  &lt;/ibm:Scroller&gt;
+</pre>
+<div class="para">The <code class="code">EuropeSymbolRenderer</code> creates
+a Label and places it at the longitude and latitude found in the data
+item. The <code class="code">DataRenderer</code> uses <code class="code">verticalCenter</code> and <code class="code">horizontalCenter</code> to place the Label. Top, left, right or bottom properties could
+also have been used to accomplish this.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;s:DataRenderer xmlns="http://ns.adobe.com/mxml/2009"							    xmlns:s="library://ns.adobe.com/flex/spark				         
+                            xmlns:ibm=http://www.ibm.com/xmlns/prod/ilog/elixir/2010
+                            xmlns:mx="library://ns.adobe.com/flex/halo"						   verticalCenter="{data.latitude}"
+                           horizontalCenter="{data.longitude}"&gt;
+	&lt;s:Label text="{data.name}" color="red"/&gt;
+&lt;/s:DataRenderer&gt;
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise122.html" class="bluelink">Maps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise128.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise130.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,67 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Specifying the visible time range</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise39.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise48.html" class="breadcrumb">Configuring a calendar control</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise49.html" class="breadcrumb">Specifying the visible time range</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise48.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise50.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Specifying the visible time range</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e7817">
+
+
+
+<div class="para">By default, the calendar displays the current week.</div>
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">You can specify the visible time range in two different
+ways:</div>
+</div><dl class="descriptionlist"><dt class="term">Specify a date and a mode</dt><dd class="descriptionlistItem"><div class="para">Set the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#date" class="bluelink">date</a></span> property to specify a reference
+date.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The control sets the visible range for the view mode
+according to the following logic:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">day mode: Displays the specified date.</div>
+</li><li class="itemizedlistItem"><div class="para">week mode: Displays the week that contains
+the specified date. This is the default mode.</div>
+</li><li class="itemizedlistItem"><div class="para">work week mode: Displays the work week
+corresponding to the week that contains the specified date. The <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#workWeekRange" class="bluelink">workWeekRange</a></span> property defines the first and last day of the work
+week.</div></li><li class="itemizedlistItem"><div class="para">month mode: Displays the month that
+contains the specified date.</div></li></ul></div>
+</dd><dt class="term">Specify a start and end date</dt><dd class="descriptionlistItem"><div class="para">If the <span class="apiname">date</span> property is not set (that is, is <code class="code">null</code>), the control uses the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#startDate" class="bluelink">startDate</a></span> and  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#endDate" class="bluelink">endDate</a></span> properties to set the visible time range. The time
+of day (hours, minutes, seconds, milliseconds) is not taken into account.
+The end date is included in the visible time range.</div>
+</dd></dl></div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The view mode is then set according to the duration of
+the time range as follows:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">1 day: The view mode is set to day.</div>
+</li><li class="itemizedlistItem"><div class="para">2 to 7 days: The view mode is set to
+week. In week mode, the specified days are displayed, not necessarily
+the whole week.</div></li><li class="itemizedlistItem"><div class="para">More than 8 days: The view mode is set
+to month. The specified time range is rounded up to show whole weeks;
+dates that are out of the specified time interval are shown in a different
+color.</div></li></ul></div>
+<div class="para">At most 6 weeks are shown in the Calendar control; if
+more days are requested, the period will be truncated.</div>
+<div class="para">The following figures show the day, week, and month view
+modes respectively.</div>
+<div class="figure"><div class="mediaobject"><img src="../../Calendar/_media/calendar_day_default.jpg" alt="Calendar&#xA;in day mode showing hours" class="imagedata"/></div><div class="caption">Calendar in day mode showing hours</div></div>
+<div class="figure"><div class="mediaobject"><img src="../../Calendar/_media/calendar_week_default.jpg" alt="Calendar&#xA;in week mode, showing hours of each day" class="imagedata"/></div><div class="caption">Calendar in week mode, showing hours of each day</div></div>
+<div class="figure"><div class="mediaobject"><img src="../../Calendar/_media/calendar_month_default.jpg" alt="Calendar&#xA;in month mode showing days (no hours)" class="imagedata"/></div><div class="caption">Calendar in month mode showing days (no hours)</div></div>
+<div class="para">By default, in work week, week, or day mode, the calendar
+shows the events between 8:00am and  6:00pm. You can change the displayed
+time of day using the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#startDisplayedTime" class="bluelink">startDisplayedTime</a></span> and <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#endDisplayedTime" class="bluelink">endDisplayedTime</a></span> properties of the calendar.</div>
+<div class="para">The following sample shows how to display the events
+between 9:00am and 4:00pm at the start of the application.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+                
+  &lt;ilog:Calendar width="100%" height="100%"
+                 startDisplayedTime="[9,0]" endDisplayedTime="[16,0]" /&gt;
+                 
+&lt;/mx:Application&gt;</pre>
+<div class="para">The <span class="apiname">scrollToTime</span> method
+allows you to make the application scroll to the specified time (with
+an optional animation).</div>
+<div class="para">The zoom method allows you to zoom in or out (increase/decrease
+the height of an hour).</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise48.html" class="bluelink">Configuring a calendar control</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise48.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise50.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

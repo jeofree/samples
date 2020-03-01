@@ -1,0 +1,61 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Styling a pivot chart</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex727.html" class="breadcrumb">OLAP and pivot charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex734.html" class="breadcrumb">Pivot charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex737.html" class="breadcrumb">Styling a pivot chart</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex736.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex738.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Styling a pivot chart</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The <span class="apiname">PivotChart</span> class
+inherits from the <span class="apiname">OLAPChart</span> class.
+This means that you can use all the style properties available on
+the OLAP chart on the pivot chart. For details, see <a href="ps_ganttforflex733.html" class="bluelink">Styling an OLAP chart</a> . In particular, just as
+for the OLAP chart you can use a 3D version of the pivot chart by
+using the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts3d/PivotChart3D.html" class="bluelink">PivotChart3D</a></span> instead of the PivotChart one.</div>
+<pre class="programlisting">&lt;ilog:PivotChart3D width="100%" height="100%" cube="{olapcube}"/&gt;</pre>
+<div class="para">When you use the 3D version of the pivot chart you must
+use 3D OLAP series in series providers instead of the 2D versions.In
+addition, <span class="apiname">PivotChart</span> provides additional
+styling possibilities to make sure the subcomponents of the pivot
+chart (drop areas, legend, and so on) can be styled.</div>
+<div class="section">
+<h2 class="heading">Subcomponent layout</h2>
+<div class="sectionContent">
+<div class="para">You can change the gap between the subcomponents of the
+pivot chart by using the <span class="apiname">verticalGap</span> and <span class="apiname">horizontalGap</span> style properties.</div>
+<pre class="programlisting">&lt;ilog:PivotChart id="pivotchart" width="100%" height="100%" cube="{cube}"
+  horizontalGap="50" verticalGap="50"/&gt;
+</pre>
+<div class="para">Also, as for the <span class="apiname">OLAPChart</span> component, you can use the <span class="apiname">tileStyleName</span> property to configure the layout of the tile.</div>
+<pre class="programlisting">&lt;mx:Style&gt;
+  .tileStyle {
+    horizontalGap : 10,
+    verticalGap : 10
+  }
+&lt;/mx:Style&gt;
+&lt;ilog:PivotChart id=”pivotchart” width=”100%” height=”100%” cube=”{cube}”
+  horizontalGap=”10” verticalGap=”10” tileStyleName=”titleStyle”/&gt; 
+</pre>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Subcomponent styling</h2>
+<div class="sectionContent">
+<div class="para">Each of the subcomponents created by the pivot chart
+has either a style name on the <span class="apiname">PivotChart</span> class or styling properties on that class for styling purposes.
+The following example shows how to change the styling of the legend
+and the drop areas.</div>
+<pre class="programlisting">&lt;mx:Style&gt;
+  .myLegendStyle {
+    backgroundColor : #ffffff;
+    labelPlacement: top;
+  }
+&lt;/mx:Style&gt;
+&lt;ilog:PivotChart id="pivotchart" width="100%" height="100%" cube="{cube}"
+  legendStyleName="myLegendStyle"
+  dropAreaCornerRadius="4"
+  dropAreaBorderColors="[ 0xffffff,  0xffffff ]" /&gt;
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex734.html" class="bluelink">Pivot charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex736.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex738.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

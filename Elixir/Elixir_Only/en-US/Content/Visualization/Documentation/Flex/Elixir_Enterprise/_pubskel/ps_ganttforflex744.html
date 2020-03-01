@@ -1,0 +1,43 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Organization chart data providers</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex739.html" class="breadcrumb">Organization Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex743.html" class="breadcrumb">Configuring organization chart data</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex744.html" class="breadcrumb">Organization chart data providers</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex743.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex745.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Organization chart data providers</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">An  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html" class="bluelink">OrgChart</a></span> control gets
+its data from a hierarchical data provider that can be one of the
+following types:</div>
+</div><dl class="descriptionlist"><dt class="term">XML</dt><dd class="descriptionlistItem"><div class="para">A string containing valid XML text or
+any of the following objects containing valid E4X  format XML data: <code class="code">&lt;mx:XML&gt;</code> compile-time tag or an XML object. The
+tags that represent items in the XML data can have any name. The  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html" class="bluelink">OrgChart</a></span> control reads
+the XML and builds the display hierarchy based on the nested relationship
+of the items.</div></dd><dt class="term">IHierarchicalData</dt><dd class="descriptionlistItem"><div class="para">An <span class="apiname">IHierarchicalData</span> or <span class="apiname">IHierarchicalCollectionView</span> implementation
+instance. These interfaces and their implementations are available
+with Adobe Flash Builder 4.</div>
+</dd><dt class="term">Other objects</dt><dd class="descriptionlistItem"><div class="para">An object where the children of this
+item are contained in a property named <code class="code">children</code>.</div></dd></dl></div>
+<div class="para">In addition to specifying the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#dataProvider" class="bluelink">dataProvider</a></span> of the <code class="code">OrgChart</code> control, you must also
+map the different fields required to display the control to fields
+that exist in the <code class="code">data</code><code class="code">Provider</code> content, see <a href="ps_ganttforflex745.html#usrflprg.uss_flexprg_orgcharts.1016830" class="bluelink">Mapping a field to a data provider attribute</a> for an example.</div>
+<div class="para">The object returned by the <span class="apiname">dataProvider</span> property of the <span class="apiname">OrgChart</span> control,
+regardless of the type of input, is of type <span class="apiname">IHierarchicalCollectionView</span>. When your data can change dynamically (additions, removals, property
+updates), the best practice is to use a collection, which provides
+the necessary notifications of changes.</div>
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">The OrgChart will manipulate the collection to open or
+close the node, so conflicts will appear if the same collection is
+used by an <span class="apiname">OrgChart</span> and another component
+(a <span class="apiname">TreeMap</span> control, for example).
+The solution is to use different collections and synchronize them.</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex743.html" class="bluelink">Configuring organization chart data</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex743.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex745.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

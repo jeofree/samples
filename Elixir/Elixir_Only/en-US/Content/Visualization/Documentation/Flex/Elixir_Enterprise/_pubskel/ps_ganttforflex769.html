@@ -1,0 +1,61 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>View manipulation API</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex739.html" class="breadcrumb">Organization Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex769.html" class="breadcrumb">View manipulation API</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex768.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex770.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">View manipulation API</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The specific methods and properties for navigation are
+shown in the following table.</div>
+<div class="caption">Using the API methods and properties for navigation</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_orgcharts.1018351"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Method/Property</div></th>
+<th rowspan="1" colspan="1"><div class="para">Description</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#centerOn()" class="bluelink">centerOn</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Centers the view on the specified item (without
+changing the zoom level).</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#fitToContents()" class="bluelink">fitToContents</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Shows the entire chart.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#fitToSubTree()" class="bluelink">fitToSubTree</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Zooms to show the entire tree branch.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#scale" class="bluelink">scale</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Allows you to set the zoom level.</div></td>
+</tr>
+<tr>
+<td valign="top" rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#setVisibleBounds()" class="bluelink">setVisibleBounds</a></span></td>
+<td valign="top" rowspan="1" colspan="1">Sets the visible bounds. This method is similar
+to the one for setting the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#visibleBounds" class="bluelink">visibleBounds</a></span> property but also allows you
+to animate the view transition.</td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#zoomBy()" class="bluelink">zoomBy</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Zooms the view by the specified factor.</div></td>
+</tr>
+</tbody></table>
+<div class="para">The methods in this table have an <span class="apiname">animate</span> parameter to display smooth view transitions.</div>
+<div class="para">Since IBM® <span class="classificationVariable">ILOG Elixir</span> 2.0, it is possible to manipulate
+the coordinates of the visible area of the <span class="apiname">OrgChart</span> component through the API. </div>
+<div class="para">The event <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:layoutPerformed" class="bluelink">layoutPerformed</a></span> is dispatched when the OrgChart
+has computed the layout of the item of the data provider.</div>
+
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">Once the layout is computed, you have access to the following:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#modelBounds" class="bluelink">modelBounds</a></span> property, which contains the
+bounds of the chart as a whole</div></li><li class="itemizedlistItem"><div class="para">The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#getItemBounds(Object,Boolean)" class="bluelink">getItemBounds</a></span> method, which returns the bounds
+of  the item renderer associated with the specified item</div>
+</li><li class="itemizedlistItem"><div class="para">The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#getItemSubtreeBounds(Object,Boolean)" class="bluelink">getItemSubtreeBounds</a></span> method, which returns the bounds
+of the subtree of the specified item.</div></li></ul></div>
+
+<div class="para">The event <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:visibleBoundsChange" class="bluelink">visibleBoundsChange</a></span> event is dispatched when the
+visible area has changed. The <span class="apiname">visibleBounds</span> property gives access to the visible area coordinates.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex739.html" class="bluelink">Organization Charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex768.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex770.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

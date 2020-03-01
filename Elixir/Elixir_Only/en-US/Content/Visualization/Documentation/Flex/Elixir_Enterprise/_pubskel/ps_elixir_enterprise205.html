@@ -1,0 +1,59 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Treemap data providers</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise201.html" class="breadcrumb">Treemaps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise204.html" class="breadcrumb">Configuring treemap data</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise205.html" class="breadcrumb">Treemap data providers</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise204.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise206.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Treemap data providers</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">A  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/treemap/TreeMap.html" class="bluelink">TreeMap</a></span> control gets its data from a hierarchical data provider,
+such as XML. If the <span class="apiname">TreeMap</span> represents
+dynamically changing data, you can use an object that implements the <span class="apiname">ICollectionView</span> interface, such as <span class="apiname">ArrayCollection</span> or <span class="apiname">XMLListCollection</span>.</div>
+<div class="para">A <span class="apiname">TreeMap</span> control uses
+a data descriptor to parse and manipulate the contents of the data
+provider. By default, a <span class="apiname">TreeMap</span> control
+uses the <span class="apiname">DefaultDataDescriptor</span> class
+provided by the <span class="trademark">Adobe®
+            </span> <span class="trademark">Flex®
+            </span> framework,
+but you can create your own class and specify it using the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/treemap/TreeMap.html#dataDescriptor" class="bluelink">dataDescriptor</a></span> property.</div>
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">The <span class="trademark">Adobe®
+            </span> <span class="trademark">Flex®
+            </span> framework <span class="apiname">DefaultDataDescriptor</span> class supports the following
+types of data:</div>
+</div><dl class="descriptionlist"><dt class="term">XML</dt><dd class="descriptionlistItem"><div class="para">A string containing valid XML text or
+any of the following objects containing valid E4X format XML data: <code class="code">&lt;mx:XML&gt;</code> or <code class="code">&lt;mx:XMLList&gt;</code> compile-time tag, or an XML or <code class="code">XML</code><code class="code">List</code> object.</div></dd><dt class="term">IHierarchicalData</dt><dd class="descriptionlistItem"><div class="para">An <span class="apiname">IHierarchicalData</span> or <span class="apiname">IHierarchicalCollectionView</span> implementation
+instance. These interfaces and their implementations are available
+with Adobe® Flash® Builder™ 4.</div>
+</dd><dt class="term">Other objects</dt><dd class="descriptionlistItem"><div class="para">An array of items or an object that
+contains an array of items, where the children of a node are contained
+in an item named <span class="italics">children</span>.</div></dd><dt class="term">Collections</dt><dd class="descriptionlistItem"><div class="para">An object that implements the <code class="code">ICollection</code><code class="code">View</code> interface
+(such as the <code class="code">Array</code><code class="code">Collection</code> or <code class="code">XMLList</code><code class="code">Collection</code> classes) and whose data provider conforms to the structure specified
+in either of these items. The <code class="code">DefaultData</code><code class="code">Descriptor</code> class includes code that handles
+collections efficiently. If the data changes dynamically, you must
+always use a collection as the data provider; otherwise the <code class="code">TreeMap</code> control may display obsolete data.</div>
+</dd></dl></div>
+<div class="para">In addition to specifying the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/treemap/TreeMap.html#dataProvider" class="bluelink">dataProvider</a></span> of
+the <span class="apiname">TreeMap</span> control, you must also
+map the different fields required to display the control  to fields
+that exist in the <span class="apiname">dataProvider</span> content.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise204.html" class="bluelink">Configuring treemap data</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise204.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise206.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

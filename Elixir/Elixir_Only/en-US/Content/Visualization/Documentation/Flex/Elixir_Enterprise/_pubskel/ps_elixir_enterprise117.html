@@ -1,0 +1,58 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Configuring a color model</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise108.html" class="breadcrumb">Heat maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise115.html" class="breadcrumb">Configuring heat maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise117.html" class="breadcrumb">Configuring a color model</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise116.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise118.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Configuring a color model</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e16733">
+
+
+
+
+<div class="para">The <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/heatmap/HeatMapBase.html#colorModel" class="bluelink">colorModel</a></span> property of a heat map component allows you to specify
+a color model to map values to colors. You can configure the color
+model by setting up an array of <span class="apiname">colorEntry</span> objects. A color entry has three properties: a <span class="apiname">color</span> property, a <span class="apiname">limit</span> property, and
+an <span class="apiname">alpha</span> property. The <span class="apiname">color</span> property defines the color for this entry.
+The <span class="apiname">limit</span> property is the value at
+which the color is bound. The <span class="apiname">alpha</span> property defines the transparency of the color for this entry. Note
+that the color entries have to be specified in strict descending order
+with respect to the <span class="apiname">limit</span> property.</div>
+<div class="para">A color model is used in each heat map component to provide
+visual rendering. Once the color model is configured, it is possible
+to query colors for a given value. The querying of colors is done
+automatically in each component so that you do not have to query colors
+manually. Colors corresponding to values that do not match a color
+entry are interpolated from the colors found at adjacent entries.</div>
+<div class="para">The following code sample draws squares whose colors
+are taken from a color model.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                layout="absolute" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+&lt;mx:Script&gt;
+  &lt;![CDATA[
+  public override function validateDisplayList():void {
+    var g:Graphics = graphics;
+    var size:int = 20;
+    for(var i:int = 0; i &lt; size; i++) {
+      var value:Number = size * i;
+      g.beginFill(colors.getColor(value), colors.getAlpha(value));
+      g.drawRect(size * i, size, size, size);
+      g.endFill();
+    }
+  }
+  ]]&gt;
+&lt;/mx:Script&gt;
+
+  &lt;ilog:ColorModel id="colors"&gt;
+    &lt;ilog:ColorEntry color="0x00ffff" alpha="0" limit="1" /&gt;
+    &lt;ilog:ColorEntry color="0x0ffff0" alpha="0.5" limit="200" /&gt;
+    &lt;ilog:ColorEntry color="0xffff00" alpha="1" limit="400" /&gt;
+  &lt;/ilog:ColorModel&gt;
+
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">The following figure shows the resulting color squares.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/heatmap_colorModel_default.png" alt="Color&#xA;squares resulting from color model" class="imagedata"/></div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise115.html" class="bluelink">Configuring heat maps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise116.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise118.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

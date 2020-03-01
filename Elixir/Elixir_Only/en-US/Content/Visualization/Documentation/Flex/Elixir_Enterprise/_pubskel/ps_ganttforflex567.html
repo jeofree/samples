@@ -1,0 +1,38 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Task item renderer architecture in task chart</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex550.html" class="breadcrumb">Gantt task charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex564.html" class="breadcrumb">Task chart item renderers</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex567.html" class="breadcrumb">Task item renderer architecture in task chart</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex566.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex568.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Task item renderer architecture in task chart</h1></div></div><div class="content">
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The Gantt sheet component uses task item renderers to
+display the tasks from the task data provider. The same task item
+renderer is also used to display a task while it is being edited.</div>
+<div class="para">For a task item renderer to work with the Gantt sheet
+component, the Gantt sheet component must be able to pass information
+to the task item renderer. During editing, the task item renderer
+must also be able to pass updated information back to the Gantt sheet
+component.</div>
+<div class="para">As with <span class="trademark">Flex®
+            </span> list-based controls, the Gantt sheet component and the task item
+renderer use the <span class="apiname">data</span> property to
+pass information. The contents of the <span class="apiname">data</span> property for a task item renderer are a <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskItem.html" class="bluelink">TaskItem</a></span> object.</div>
+<div class="para">The following diagram shows the task item renderer and <span class="apiname">TaskItem</span> object in context.</div>
+<div class="mediaobject"><img src="../../Gantt4Flex/_media/Elixir-TaskChart-TaskItemRenderer_default.png" alt="The task&#xA;item renderer and TaskItem object in context (class diagram)" class="imagedata"/></div>
+<div class="para">The <span class="apiname">TaskItem</span> object
+has <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskItem.html#startTime" class="bluelink">startTime</a></span>, <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskItem.html#endTime" class="bluelink">endTime</a></span>, <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskItem.html#label" class="bluelink">label</a></span>, <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskItem.html#isSummary" class="bluelink">isSummary</a></span>, and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskItem.html#isMilestone" class="bluelink">isMilestone</a></span> properties that are initialized with the values
+of the corresponding fields in the data provider item, using the settings
+defined on the task chart control. It also has a <span class="apiname">ganttSheet</span> property that references the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html" class="bluelink">GanttSheet</a></span> object that contains it.</div>
+<div class="para">The Gantt sheet component uses the <span class="apiname">startTime</span> and <span class="apiname">endTime</span> properties of the <span class="apiname">TaskItem</span> object to determine the position and size
+of the renderer.</div>
+<div class="para">During editing, the Gantt sheet component modifies the <span class="apiname">startTime</span> and <span class="apiname">endTime</span> properties of the <span class="apiname">TaskItem</span> object.
+The data provider item is updated only at the end of the editing process
+when the editing is successful.</div>
+<div class="para">For more information on the configuration of the <span class="apiname">startTime</span>, <span class="apiname">endTime</span>, <span class="apiname">label</span>,  <span class="apiname">isSummary</span>, and <span class="apiname">isMilestone</span> fields see <a href="ps_ganttforflex554.html" class="bluelink">Configuring task chart data</a>.</div>
+<div class="para">For more information on task editing, see <a href="ps_ganttforflex590.html" class="bluelink">Editing tasks in a task chart</a>.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex564.html" class="bluelink">Task chart item renderers</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex566.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex568.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

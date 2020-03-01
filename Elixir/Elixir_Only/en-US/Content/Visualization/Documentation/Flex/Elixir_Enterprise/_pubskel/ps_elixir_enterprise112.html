@@ -1,0 +1,62 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Creating a ValuedHeatMap component</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise108.html" class="breadcrumb">Heat maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise111.html" class="breadcrumb">Creating heat map controls</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise112.html" class="breadcrumb">Creating a ValuedHeatMap component</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise111.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise113.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Creating a ValuedHeatMap component</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e16137">
+
+<div class="para">You can create a valued heat map control in MXML using
+the <code class="code">&lt;ilog:ValuedHeatMap&gt;</code> tag. If you
+intend to refer to this control elsewhere in your MXML, for example,
+in another tag or in an <span class="trademark">ActionScript®
+            </span> block, you must specify an <code class="code">id</code> value.</div>
+<div class="para">A heat map control displays the <span class="apiname">value</span> property for a set of points using a <span class="apiname">dataProvider</span> object as shown in the following example.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"  
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                layout="absolute"&gt;
+  &lt;ilog:ValuedHeatMap width="100%" height="100%" &gt;
+    &lt;ilog:dataProvider&gt;
+      &lt;mx:XMLList&gt;
+        &lt;point x = "173.2" y = "15.9" value = "60.1" /&gt;
+        &lt;point x = "97.3" y = "169.1" value = "72.5" /&gt;
+        &lt;point x = "297.5" y = "208.0" value = "69.4" /&gt;
+        &lt;point x = "386.4" y = "111.2" value = "32.0" /&gt;
+        &lt;point x = "326.7" y = "135.0" value = "64.0" /&gt;
+        &lt;point x = "85.2" y = "258.7" value = "50.0" /&gt;
+        &lt;point x = "358.0" y = "155.6" value = "50.0" /&gt;
+        &lt;point x = "305.0" y = "289.8" value = "41.1" /&gt;
+        &lt;point x = "199.3" y = "148.0" value = "90.0" /&gt;
+        &lt;point x = "208.0" y = "101.3" value = "86.1" /&gt;
+        &lt;point x = "48.7" y = "223.4" value = "44.8" /&gt;
+        &lt;point x = "10.7" y = "70.2" value = "22.4" /&gt;
+        &lt;point x = "234.9" y = "10.9" value = "57.1" /&gt;
+        &lt;point x = "367.1" y = "181.7" value = "43.7" /&gt;
+        &lt;point x = "339.9" y = "89.6" value = "52.8" /&gt;
+        &lt;point x = "361.7" y = "260.4" value = "28.6" /&gt;
+        &lt;point x = "236.2" y = "73.4" value = "78.5" /&gt;
+        &lt;point x = "98.8" y = "134.4" value = "73.2" /&gt;
+        &lt;point x = "373.0" y = "227.0" value = "32.6" /&gt;
+        &lt;point x = "279.4" y = "48.9" value = "63.6" /&gt;
+        &lt;point x = "0.0" y = "0.0" value = "0.0" /&gt;
+        &lt;point x = "400.0" y = "0.0" value = "0.0" /&gt;
+        &lt;point x = "400.0" y = "300.0" value = "0.0" /&gt;
+        &lt;point x = "0.0" y = "300.0" value = "0.0" /&gt;
+      &lt;/mx:XMLList&gt;
+    &lt;/ilog:dataProvider&gt;
+    &lt;ilog:colorModel&gt;
+     &lt;ilog:ColorModel&gt;
+      &lt;ilog:ColorEntry color="0x0000ff" limit="0" alpha="0"/&gt;
+      &lt;ilog:ColorEntry color="0x00ff00" limit="50" /&gt;
+      &lt;ilog:ColorEntry color="0xff0000" limit="100" alpha="1"/&gt;
+     &lt;/ilog:ColorModel&gt;
+    &lt;/ilog:colorModel&gt;
+  &lt;/ilog:ValuedHeatMap&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">The following figure shows the resulting valued heat
+map.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/heatmap_createValuedHeatMap_default.png" alt="An example&#xA;of a valued heat map" class="imagedata"/></div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise111.html" class="bluelink">Creating heat map controls</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise111.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise113.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

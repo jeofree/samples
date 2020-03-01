@@ -1,0 +1,154 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Creating an OLAP chart</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex727.html" class="breadcrumb">OLAP and pivot charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex730.html" class="breadcrumb">OLAP charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex731.html" class="breadcrumb">Creating an OLAP chart</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex730.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex732.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Creating an OLAP chart</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e122256">
+
+
+
+
+
+<div class="para">To create an <span class="apiname">OLAPChart</span> component, you need to create an OLAP schema or cube that can be
+used to query your flat data using the <span class="trademark">Adobe®
+            </span> <span class="trademark">Flex®
+            </span> <span class="apiname">OLAPCube</span> object. For details, read about <span class="italics">Creating an OLAP Schema</span> in <span class="italics">Advanced Data Grid Controls and Automation Tools</span>&gt;<span class="italics">Creating OLAP Data Grids</span> in the <span class="italics">Flex Data Visualization Developer's
+Guide</span>.</div>
+<div class="para">The following code shows some simple flat data on products.</div>
+<pre class="programlisting">[ {
+   product : "Product 1",
+   quarter : "Q1",
+   month : "January",
+   year : "2008",
+   country : "France",
+   sales : 14
+  },
+   {
+   product : "Product 1",
+   quarter : "Q1",
+   month : "January",
+   year : "2008",
+   country : "US",
+   sales : 11
+  },
+...
+  {
+   product : "Product 2",
+   quarter : "Q4",
+   month : "December",       
+   year : "2008",     
+    country : "US",  
+    sales : 10
+  },
+]
+</pre>
+<div class="para">The following code is an example of an OLAP cube that
+will allow you to query the summary data on products, namely the total
+sales by product, time, and country. This code defines product, time,
+and country as dimensions and sets the <span class="apiname">aggregator</span> property of the <span class="apiname">OLAPMeasure</span> object
+to make use of the <span class="literal">SUM</span> aggregator.</div>
+<pre class="programlisting">&lt;mx:OLAPCube name="Sales" dataProvider="{flatData}" id="cube"&gt;
+    &lt;mx:OLAPDimension name="ProductDim"&gt;
+    &lt;mx:OLAPAttribute name="Product" dataField="product"/&gt;
+    &lt;mx:OLAPHierarchy name="ProductHier" hasAll="true"&gt;
+      &lt;mx:OLAPLevel attributeName="Product"/&gt;
+    &lt;/mx:OLAPHierarchy&gt;
+  &lt;/mx:OLAPDimension&gt;
+
+  &lt;mx:OLAPDimension name="TimeDim"&gt;
+    &lt;mx:OLAPAttribute name="Year" dataField="year"/&gt;          
+    &lt;mx:OLAPAttribute name="Quarter" dataField="quarter"/&gt;
+    &lt;mx:OLAPAttribute name="Month" dataField="month"/&gt;           
+    &lt;mx:OLAPHierarchy name="TimeHier" hasAll="true"&gt;
+      &lt;mx:OLAPLevel attributeName="Year"/&gt;            
+      &lt;mx:OLAPLevel attributeName="Quarter"/&gt;
+      &lt;mx:OLAPLevel attributeName="Month"/&gt;            
+    &lt;/mx:OLAPHierarchy&gt;
+  &lt;/mx:OLAPDimension&gt;
+    
+  &lt;mx:OLAPDimension name="CountryDim"&gt;
+    &lt;mx:OLAPAttribute name="Country" dataField="country"/&gt;
+    &lt;mx:OLAPHierarchy name="CountryHier" hasAll="true"&gt;
+      &lt;mx:OLAPLevel attributeName="Country"/&gt;
+    &lt;/mx:OLAPHierarchy&gt;
+  &lt;/mx:OLAPDimension&gt;   
+ 
+  &lt;mx:OLAPMeasure name="Sales" dataField="sales"
+        aggregator="SUM"/&gt;
+               
+&lt;/mx:OLAPCube&gt;
+</pre>
+<div class="para">You can change the <span class="apiname">aggregator</span> property of the measure to something other than <span class="literal">SUM</span>, for example, to the <span class="literal">AVG</span> aggregator to compute the average sales value instead.</div>
+<div class="para">Once your cube has been defined you need to write a query
+to extract data from the cube. The following code shows the query
+for the example cube. </div>
+<pre class="programlisting">private function getQuery(cube:IOLAPCube):IOLAPQuery {
+  var query:OLAPQuery = new OLAPQuery();
+ 
+  // on row axis, cluster by product and country dimensions
+  var rowQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.ROW_AXIS);
+  var productSet:OLAPSet = new OLAPSet();
+  productSet.addElements(cube.findDimension("ProductDim").
+    findAttribute("Product").children);
+  var countrySet:OLAPSet = new OLAPSet();
+  countrySet.addElements(cube.findDimension("CountryDim").
+    findAttribute("Country").children);
+  rowQueryAxis.addSet(productSet.crossJoin(countrySet));
+
+  // on column axis, cluster, by Year, Quarter
+  var colQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.COLUMN_AXIS);
+  var yearSet:OLAPSet = new OLAPSet();
+  yearSet.addElements(cube.findDimension("TimeDim").
+    findAttribute("Year").children);  
+  var quarterSet:OLAPSet= new OLAPSet();
+  quarterSet.addElements(cube.findDimension("TimeDim").
+   findAttribute("Quarter").children);
+  colQueryAxis.addSet(yearSet.crossJoin(quarterSet));
+
+  return query;
+}
+</pre>
+<div class="para">You need to make sure the query is run after the cube
+has been completed and that a <span class="apiname">showResult</span> function is called. The following code shows how to specify a function
+to execute the query and how to set up a result handler.</div>
+<pre class="programlisting">&lt;mx:Script&gt;
+  &lt;![CDATA[
+  private function runQuery(event:Event):void {
+    var query:IOLAPQuery = getQuery(event.target as OLAPCube);
+    // Execute the query.
+    var token:AsyncToken = cube.execute(query);
+    // Set up handlers for the query results.
+    token.addResponder(new AsyncResponder(showResult, showFault));
+  }
+  ]]&gt;
+&lt;/mx:Script&gt;
+&lt;mx:OLAPCube name="salesCube" dataProvider="{flatData}" id="cube"
+  complete="runQuery(event);"/&gt;
+</pre>
+<div class="para">The following code shows how the <span class="apiname">showResult</span> function sets the the <span class="apiname">OLAPChart</span> data provider to the <span class="apiname">OLAPResult</span> and how to create an <span class="apiname">OLAPChart</span> object.</div>
+<pre class="programlisting">&lt;mx:Script&gt;
+  &lt;![CDATA[
+  private function showResult(result:Object, token:Object):void {
+    if (!result) {
+      Alert.show("No results from query.");
+      return;
+    }
+    olapchart.dataProvider = result as IOLAPResult;
+  }
+  ]]&gt;
+&lt;/mx:Script&gt;
+&lt;ilog:OLAPChart width=”100%” height=”100%” id=”olapachart”/&gt;
+</pre>
+<div class="para">By default the <span class="apiname">OLAPChart</span> object displays the entire result in a single <span class="apiname">ColumnChart</span> using column series.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/olappivot_ss1_default.png" alt="Data&#xA;series in an OLAP column chart" class="imagedata"/></div>
+<div class="para">The first series (orange) corresponds to the <span class="quote">“Product 1”</span> sales in France, the second one (green)
+corresponds to the <span class="quote">“Product 1”</span> sales in
+the US, the third one (blue) corresponds to the <span class="quote">“Product
+2”</span> sales in France and the last one to <span class="quote">“Product 2”</span> sales in the US. This is because the row
+axis of the OLAP query is configured to be a cross-join of the products
+and the countries.</div>
+<div class="para">If you want a different display, you can configure what
+is rendered. See <a href="ps_ganttforflex732.html" class="bluelink">Configuring an OLAP chart</a>.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex730.html" class="bluelink">OLAP charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex730.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex732.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

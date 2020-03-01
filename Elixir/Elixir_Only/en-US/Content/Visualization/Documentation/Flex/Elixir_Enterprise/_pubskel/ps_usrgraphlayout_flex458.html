@@ -1,0 +1,61 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Generic features and parameters of the GL</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex454.html" class="breadcrumb">Grid layout  (GL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex458.html" class="breadcrumb">Generic features and parameters of the GL</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex457.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex459.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Generic features and parameters of the GL</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/grid/IlvGridLayout.html" class="bluelink">IlvGridLayout</a></span> class supports the following generic parameters defined in the <code class="code">IlvGraphLayout</code> class (see <a href="ps_usrgraphlayout_flex369.html" class="bluelink">Base class parameters and features</a>):  </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><a href="ps_usrgraphlayout_flex458.html#usrgraphlayout.uss_graphlay_layouts.1044936" class="bluelink">Allowed time (GL)</a> </div>
+</li><li class="itemizedlistItem"><div class="para"><a href="ps_usrgraphlayout_flex458.html#usrgraphlayout.uss_graphlay_layouts.1044711" class="bluelink">Layout region (GL)</a>  </div>
+</li><li class="itemizedlistItem"><div class="para"><a href="ps_usrgraphlayout_flex458.html#usrgraphlayout.uss_graphlay_layouts.1044721" class="bluelink">Preserve fixed nodes (GL)</a>  </div>
+</li><li class="itemizedlistItem"><div class="para"><a href="ps_usrgraphlayout_flex458.html#usrgraphlayout.uss_graphlay_layouts.1044969" class="bluelink">Stop immediately (GL)</a> </div>
+</li></ul></div>
+
+<div class="para">The following comments describe the particular way in
+which these parameters are used by this subclass.  </div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1044936">
+<h2 class="heading">Allowed time (GL)</h2>
+
+<div class="sectionContent">
+<div class="para">The layout algorithm stops if the allowed time setting
+has elapsed. (For a description of this layout parameter in the <code class="code">IlvGraphLayout</code> class, see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1017208" class="bluelink">Allowed time</a>.) The result
+code in the layout report is <code class="code">IlvGraphLayoutReport.STOPPED_AND_INVALID</code>.  </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1044711">
+<h2 class="heading">Layout region (GL)</h2>
+
+<div class="sectionContent">
+
+
+<div class="para">The layout region is considered differently depending
+on the layout mode. For details, see <a href="ps_usrgraphlayout_flex459.html#usrgraphlayout.uss_graphlay_layouts.1044759" class="bluelink">Layout modes (GL)</a>.) </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1044721">
+<h2 class="heading">Preserve fixed nodes (GL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm does not move the nodes that are
+specified as fixed. (See <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1022740" class="bluelink">Preserve fixed nodes</a>.) Moreover,
+nonfixed nodes are placed in such a manner that overlaps with fixed
+nodes are avoided. </div>
+</div>
+</div>
+
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1044969">
+<h2 class="heading">Stop immediately (GL)</h2>
+
+<div class="sectionContent">
+<div class="para">The layout algorithm stops after cleanup if the method  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html#stopImmediately()" class="bluelink">stopImmediately</a></span> is called. (For a description of this method in
+the <code class="code">IlvGraphLayout</code> class, see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1022821" class="bluelink">Stop immediately</a>.) If the layout
+stops early because the allowed time has elapsed, the result code
+in the layout report is <code class="code">IlvGraphLayoutReport.STOPPED_AND_INVALID</code>.  </div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex454.html" class="bluelink">Grid layout  (GL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex457.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex459.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

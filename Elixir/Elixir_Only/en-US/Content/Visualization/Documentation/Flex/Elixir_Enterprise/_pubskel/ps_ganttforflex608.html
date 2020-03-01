@@ -1,0 +1,105 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Building an IBM ILOG Elixir application using Adobe Flash Builder 4</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="HowTo"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex601.html" class="breadcrumb">Introduction</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex607.html" class="breadcrumb">Building IBM <span class="classificationVariable">ILOG Elixir</span> applications</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex608.html" class="breadcrumb">Building an IBM <span class="classificationVariable">ILOG Elixir</span> application using Adobe Flash Builder 4</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex607.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex609.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Building an IBM <span class="classificationVariable">ILOG Elixir</span> application using Adobe Flash Builder 4</h1></div></div><div class="content">
+
+
+<div class="proceduralTopicContent">
+<div class="stage" id="usrflprg.uss_flexprg_getstart.1023778">
+<h2 class="heading">Setting up the application project</h2>
+
+
+<div class="stageContent">
+<div class="summary">
+<div class="para">You can use the IBM® <span class="classificationVariable">ILOG Elixir</span> components in an <span class="trademark">Adobe®
+            </span> <span class="trademark">Flex®
+            </span> application alongside Adobe
+Flex components.</div>
+<div class="para">For more information about building your application
+using Adobe Flash Builder 4, see <span class="italics">Building Projects</span> in the <span class="italics">Using Flex Builder 4</span> Adobe documentation.</div>
+
+<div class="para">To set up the application project for your IBM <span class="classificationVariable">ILOG Elixir</span> application:</div>
+</div>
+<div class="procedure">
+<div class="procedureContent"><ol class="steps"><li class="step">
+<div class="stepContent">
+<div class="para">In Adobe Flash Builder 4, create
+a new Adobe Flex project, either for the Web (run in <span class="trademark">Flash®
+            </span> <span class="trademark">Player™
+            </span>), or for the Desktop (run in <span class="trademark">AIR™
+            </span>), by clicking <span class="guicommand">File&gt;New</span>.</div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Click the right mouse button on your project and choose
+the <span class="guicommand">Properties</span> menu item.</div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Choose the <span class="guicommand">Flex Build Path</span> or <span class="guicommand">AIR Build Path</span> section
+accordingly.</div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">In the library path tab, add the IBM <span class="classificationVariable">ILOG Elixir</span> SWC files to your project
+using the <span class="guicommand">Add SWC…</span> button.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">IBM <span class="classificationVariable">ILOG Elixir</span> comes in the form of
+two SWC files:</div>
+
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The file <span class="filename">ilog-elixir.swc</span> contains the IBM <span class="classificationVariable">ILOG Elixir</span> classes and can be
+found in the <span class="filename">&lt;installation-dir&gt;/frameworks/libs</span> directory. </div></li><li class="itemizedlistItem"><div class="para">The file <span class="filename">ilog-elixir_rb.swc</span> contains US resource bundles for IBM <span class="classificationVariable">ILOG Elixir</span> and can be found in the <span class="filename">&lt;installation-dir&gt;/frameworks/locale/en_US</span> directory.</div>
+</li></ul></div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Optionally, you can indicate to Adobe Flash Builder 4 where it can find the IBM <span class="classificationVariable">ILOG Elixir</span> source code to help
+with debugging.</div>
+
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">In the <span class="literal">Flex Build Path</span> or <span class="literal">AIR Build Path</span> section:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Expand the <code class="code">ilog-elixir.swc</code> tree item and edit the <span class="literal">Source attachment</span> item.</div></li><li class="itemizedlistItem"><div class="para">Specify the path to the source: <span class="filename">&lt;installation-dir&gt;/frameworks/projects/ilog-elixir/src</span>.</div></li></ul></div>
+</div>
+</li></ol></div>
+</div>
+<div class="expectedResult">
+<div class="para">For details of the installation directories for <span class="trademark">Microsoft®
+            </span> <span class="trademark">Windows®
+            </span>, <span class="trademark">Mac OS®
+            </span>, and <span class="trademark">Linux®
+            </span>, see <a href="ps_ganttforflex490.html" class="bluelink">Your IBM <span class="classificationVariable">ILOG Elixir</span> installation</a>.</div>
+<div class="para">When you have created your application files, you can
+then do one of the following:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Instantiate them in <span class="trademark">ActionScript®
+            </span> files (<code class="code">.as</code>):</div><div class="para">Example: <code class="code">var myTreeMap:TreeMap = new TreeMap();</code></div>
+</li><li class="itemizedlistItem"><div class="para">Use them in MXML files (<code class="code">.mxml</code>):</div><div class="para">Example: <code class="code">&lt;ilog:TreeMap id="myTreeMap"/&gt;</code></div>
+</li><li class="itemizedlistItem"><div class="para">Use them in a design view:</div>
+<div class="para">You can use the drag-and-drop feature to move components
+from the IBM <span class="classificationVariable">ILOG Elixir</span> folder of the component
+panel onto the design view.</div>
+</li></ul></div>
+</div>
+</div>
+</div>
+<div class="stage" id="usrflprg.uss_flexprg_getstart.1023820">
+<h2 class="heading">Compiling and running the application</h2>
+<div class="stageContent">
+<div class="summary">
+<div class="para">You compile and run the application from the main MXML
+file.</div>
+</div>
+<div class="procedure">
+<div class="procedureContent"><div class="procedureIntro">
+<div class="para">To compile and run the application:</div>
+</div><ul class="steps"><li class="step">
+<div class="stepContent">
+<div class="para">Click the right mouse button on the main MXML file of
+your application and choose the <span class="guicommand">Run Application</span> menu item to get your IBM <span class="classificationVariable">ILOG Elixir</span> application compiled
+and running.</div>
+</div>
+</li></ul></div>
+</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex607.html" class="bluelink">Building IBM <span class="classificationVariable">ILOG Elixir</span> applications</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex607.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex609.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

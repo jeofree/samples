@@ -1,0 +1,24 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Order of layouts in recursive layouts</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex460.html" class="breadcrumb">Nested layouts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex462.html" class="breadcrumb">Layout of nested graphs in code</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex464.html" class="breadcrumb">Order of layouts in recursive layouts</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex463.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex465.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Order of layouts in recursive layouts</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">Assume grapher <code class="code">1</code> contains
+two subgraphers L<code class="code">1.1</code> and <code class="code">L1.2,</code> and subgrapher <code class="code">1.1</code> contains two subgraphers
+L<code class="code">1.1.1</code> and L<code class="code">1.1.2</code>, as shown in the following figure. The recursive layout needs to
+be applied in reverse order, as follows: </div>
+<div class="orderedlist"><ol class="orderedlist"><li class="orderedlistItem"><div class="para">Layout on L<code class="code">1.1.1</code> </div></li><li class="orderedlistItem"><div class="para">Layout on <code class="code">L1.1.2</code> </div></li><li class="orderedlistItem"><div class="para">Layout on <code class="code">L1.1</code> </div></li><li class="orderedlistItem"><div class="para">Layout on <code class="code">L1.2</code> </div></li><li class="orderedlistItem"><div class="para">Layout on <code class="code">L1</code> </div></li></ol></div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_nested.1006285"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Recursive-prepostorder2_default.gif" alt="Nested&#xA;graph with recursive layouts" class="imagedata"/></div><div class="caption">Nested graph with recursive layouts</div></div>
+<div class="para">This means that the layout is applied to the graph after
+all the layouts of its subgraphs have been applied. In this example,
+all layouts of subgrapher L<code class="code">1.1</code> are finished
+before the layout of grapher L<code class="code">1</code> starts.
+This is the correct order for a recursive layout. This order ensures
+that the layout of a subgraph does not invalidate the layout of its
+parent graphs.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex462.html" class="bluelink">Layout of nested graphs in code</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex463.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex465.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

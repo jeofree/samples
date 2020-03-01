@@ -1,0 +1,101 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Drawing</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex809.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex849.html" class="breadcrumb">MX Maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex867.html" class="breadcrumb">Using extra map features</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex868.html" class="breadcrumb">Drawing</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex867.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex869.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Drawing</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e149311">
+
+
+
+
+
+
+<div class="para">You can put additional drawing onto a map using the <span class="apiname">drawingCanvas</span> property of a map. Using this Canvas
+often requires a coordinate transformation API to convert coordinates.
+This can be achieved by using longitude/latitude coordinates and the
+related conversion methods. The drawing is made on the drawing canvas
+and the coordinates are converted using the longitude/latitude conversion
+methods <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/maps/MapBase.html#canvasToLatLong()" class="bluelink">canvasToLatLong</a></span> and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/maps/MapBase.html#latLongToCanvas()" class="bluelink">latLongToCanvas</a></span>.</div>
+
+<div class="para">The following example draws a line between the mouse
+pointer and the barycenter of the nearest map feature.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="absolute" 
+	xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+	creationComplete="init()"&gt;
+&lt;mx:Script&gt;
+  &lt;![CDATA[
+    import mx.controls.Button;
+    import ilog.maps.MapFeature;
+    import mx.graphics.Stroke;
+    import mx.containers.Canvas;
+	  
+    private var _label:Button;
+    private var _stroke:Stroke = new Stroke(0xff0000, 1);
+	   
+    internal function init():void {				
+       map.addEventListener(MouseEvent.MOUSE_MOVE, mouseMove);
+    }
+
+   // mouse is moving
+   internal function mouseMove(e:MouseEvent):void {
+     var m:Point = new Point(e.stageX, e.stageY);
+     var ml:Point = map.drawingCanvas.globalToLocal(m);
+     // drawing canvas to long/lat conversion
+     var p:Point = map.canvasToLatLong(ml); 
+     var f:MapFeature = nearest(p);
+     if(f != null) { 
+       var b:Point = f.barycenter;
+       var c:Canvas = map.drawingCanvas;
+       var g:Graphics = c.graphics;
+       g.clear();
+       _stroke.apply(g);
+       // convert back to canvas coordinates
+       p = map.latLongToCanvas(p);
+       // convert to canvas coordinates
+       b = map.latLongToCanvas(b);
+       // draw the line (and a circle)
+       g.moveTo(p.x, p.y);
+       g.lineTo(b.x, b.y);
+       g.drawCircle(b.x, b.y, 10);
+       // put a label at mouse location 
+       if(_label == null) {
+         _label = new Button();
+         _label.width = 100;
+         _label.height = 30;
+         map.addChild(_label);          
+       }
+       _label.label = map.getString(f.key);  
+       m = map.globalToLocal(m);      
+       _label.move(m.x, m.y);
+      }
+    }
+		
+    // pseudo distance between two points
+    internal static function distance(p1:Point, p2:Point):Number {
+      var dx:Number = p1.x - p2.x;
+      var dy:Number = p1.y - p2.y;
+        return dx * dx + dy * dy;
+    }
+    // find the nearest map feature
+    internal function nearest(p:Point):MapFeature {
+     var min:Number = Number.MAX_VALUE;
+     var ret:MapFeature = null;
+     for each (var f:MapFeature in map.mapFeatures) {
+       var b:Point = f.barycenter;
+       var d:Number = distance(p, b);
+       if(d &lt; min) {
+         ret = f;
+         min = d;
+        }
+      }
+      return ret;
+     }	
+  ]]&gt;
+&lt;/mx:Script&gt;	
+  &lt;ilog:ContinentalEuropeMap id="map" x="10" y="20" width="600" height="500"  allowNavigation="true" /&gt;
+&lt;/mx:Application&gt;</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex867.html" class="bluelink">Using extra map features</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex867.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex869.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,69 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Defining working and nonworking periods</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex634.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex643.html" class="breadcrumb">Configuring a calendar control</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex645.html" class="breadcrumb">Defining working and nonworking periods</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex644.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex646.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Defining working and nonworking periods</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e111760">
+
+
+<div class="para">The Calendar control displays a grid behind the events.
+This grid shows the working and  nonworking periods.</div>
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">The working and nonworking periods are defined by the
+following properties of the Calendar object.</div>
+</div><dl class="descriptionlist"><dt class="term">nonWorkingDays</dt><dd class="descriptionlistItem"><div class="para">The list of days of the week that are
+nonworking days.</div></dd><dt class="term">workingTimes </dt><dd class="descriptionlistItem"><div class="para">The ranges of working time for each
+day of the week. Each day of the week can have no, one, or several
+ranges of working time.</div></dd><dt class="term">nonWorkingRanges</dt><dd class="descriptionlistItem"><div class="para">Additional arbitrary ranges of nonworking
+time. These ranges are defined as  full days or ranges of time of
+any duration. The nonworking time periods defined by this property
+take precedence over the working and nonworking times defined by the
+other properties.</div></dd></dl></div>
+<div class="para">The following example defines Saturday and Sunday as
+the nonworking days of the week.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;ilog:Calendar width="100%" height="100%" nonWorkingDays="{[0,6]}" /&gt;
+&lt;/mx:Application&gt;
+
+</pre>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The following example defines the working times as follows:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">For all working days but Friday: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">from 8:00 to 11:45</div>
+</li><li class="itemizedlistItem"><div class="para">from 12:45 to 17:30</div>
+</li></ul></div>
+</li><li class="itemizedlistItem"><div class="para">For Friday: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">from 8:00 to 11:45</div>
+</li><li class="itemizedlistItem"><div class="para">from 12:45 to 16:30</div>
+</li></ul></div>
+</li></ul></div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;ilog:Calendar width="100%" height="100%"&gt;
+    &lt;ilog:workingTimes&gt;
+      &lt;mx:Array&gt;
+        &lt;mx:Object rangeStart="8:00" rangeEnd="11:45" /&gt;
+        &lt;mx:Object rangeStart="12:45" rangeEnd="17:30" /&gt;
+        &lt;mx:Object days="[5]" rangeStart="8:00" rangeEnd="11:45" /&gt;
+        &lt;mx:Object days="[5]" rangeStart="12:45" rangeEnd="16:30" /&gt;        
+      &lt;/mx:Array&gt;
+    &lt;/ilog:workingTimes&gt;
+  &lt;/ilog:Calendar&gt;    
+&lt;/mx:Application&gt;</pre>
+<div class="para">The following example defines 2008-04-14 as a nonworking
+day, and the range  from 2008-04-15 12:00:00 to 2008-04-18 14:30:00
+as nonworking time.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;ilog:Calendar width="100%" height="100%" mode="month"
+                 nonWorkingRanges="{[ new Date(2008,3,14),
+                                      {rangeStart: new Date(2008,3,15,12,0),
+                                       rangeEnd: new Date(2008,3,18,14,30}]" /&gt;
+&lt;/mx:Application&gt;</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex643.html" class="bluelink">Configuring a calendar control</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex644.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex646.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,69 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Using a repeater control</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise214.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise254.html" class="breadcrumb">MX Maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise259.html" class="breadcrumb">Styling maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise265.html" class="breadcrumb">Using a repeater control</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise264.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise266.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Using a repeater control</h1></div></div><div class="content">
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">If you want to iterate the same kind of styling over
+map features using data from a data provider, you can use a <span class="apiname">Repeater</span> object as the single child of a map. The <span class="apiname">dataProvider</span> property of the repeater points to
+your data provider. The repeater takes its <span class="apiname">MapFeature</span> child and instantiates it for each data item in the <span class="apiname">dataProvider</span>. For more details about the <span class="trademark">Adobe®
+            </span> <span class="trademark">Flex®
+            </span> <span class="apiname">Repeater</span> object, see <span class="italics">Using the Repeater</span> in the <span class="italics">Adobe Flex 3.0 Developer’s
+Guide</span>.</div>
+
+<div class="para">In the following example, the <span class="apiname">dataProvider</span> is an <span class="apiname">ArrayCollection</span> that contains
+all the styles of the map in a single array. Writing the map customization
+in this way is more concise than writing the equivalent customization
+without the repeater.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                 xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+&lt;mx:Script&gt;
+   &lt;![CDATA[
+     import mx.collections.HierarchicalCollectionView;
+     import mx.effects.Blur;
+     import mx.graphics.GradientEntry;
+     import mx.graphics.LinearGradient;
+     import mx.collections.ArrayCollection;
+   internal static var gradient:LinearGradient = new LinearGradient();
+   gradient.entries = [
+     new GradientEntry(0xff0000, 0, 1),
+     new GradientEntry(0x00ff00, 0.5, 1),
+     new GradientEntry(0x0000ff, 1, 1)
+   ];
+   internal static var blur:BlurFilter = new BlurFilter();
+   [Bindable]
+   private var countries:ArrayCollection = new ArrayCollection([
+     { country : "GBR", color : "green", line : "red" ,
+      highlightFill : gradient, highlightStroke : 0xff0000 },
+     { country : "FRA", color : "blue", line : "yellow" },
+     { country : "ITA", filters : [blur] }
+   ]);
+    ]]&gt;
+&lt;/mx:Script&gt;
+&lt;ilog:ContinentalEuropeMap
+   id="europe"
+   x="10"
+   y="20"
+   width="600"
+   height="400"&gt;
+   &lt;mx:Repeater dataProvider="{countries}" id = "r"&gt;
+     &lt;ilog:MapFeature key = "{r.currentItem.country}"
+                      fill = "{r.currentItem.color}"
+                      stroke = "{r.currentItem.line}"
+                      highlightFill= "{r.currentItem.highlightFill}"
+                      highlightStroke = "{r.currentItem.highlightStroke}"
+                      filters="{r.currentItem.filters}"
+                      highlightFilters="{r.currentItem.hfilters}" &gt;
+     &lt;/ilog:MapFeature&gt;
+   &lt;/mx:Repeater&gt;
+&lt;/ilog:ContinentalEuropeMap&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise259.html" class="bluelink">Styling maps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise264.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise266.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

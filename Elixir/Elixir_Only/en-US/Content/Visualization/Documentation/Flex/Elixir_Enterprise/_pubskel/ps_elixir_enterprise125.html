@@ -1,0 +1,67 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Map control user interaction</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Overview"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise122.html" class="breadcrumb">Maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise125.html" class="breadcrumb">Map control user interaction</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise124.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise126.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Map control user interaction</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para"><span class="bold">Selection</span></div>
+<div class="para">Map features can be selected or not depending on the
+value of the <code class="code">selectionMode</code> property of
+the map. If this property is set to “none”, no selection
+is possible. If set to “singleSelection”, only one feature
+can be selected at a time. If set to “multipleSelection”,
+the selection can be adjusted using a keyboard modifier. This keyboard
+modifier is hosted by the <code class="code">adjustSelectionModifier</code> property.</div>
+<div class="para">Selected item indices can be retrieved in the <code class="code">selectedIndices</code> property. The selected items can be
+retrieved in the <code class="code">selectedItems</code> property
+of the map. The <code class="code">selectedIndices</code> is a Vector
+of type int, and the <code class="code">selectedItems</code> property
+is a Vector of type <code class="code">MapFeature</code></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">The following example shows the three selection modes
+in action:</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.adobe.com/flex/spark"
+               xmlns:mx="library://ns.adobe.com/flex/halo"
+               xmlns:ibm="http://www.ibm.com/xmlns/prod/ilog/elixir/2010"&gt;
+  &lt;mx:HDividedBox width="100%" height="100%"&gt;
+    &lt;s:VGroup width="100%" height="100%"&gt;
+      &lt;ibm:ContinentalEuropeMap id="map" width="100%" height="100%"
+        mapChange="area.text = 'indices : ' + map.selectedIndices + '\n' + map.selectedItems"/&gt;
+      &lt;s:HGroup&gt;
+        &lt;s:RadioButton id="none" label="none"
+             selected="true"
+             change="if(none.selected) map.selectionMode = 'none'"/&gt;
+        &lt;s:RadioButton id="single" label="single"
+             change="if(single.selected) map.selectionMode = 'single'"/&gt;
+        &lt;s:RadioButton id="multiple" label="multiple"
+             change="if(multiple.selected) map.selectionMode = 'multiple'"/&gt;
+      &lt;/s:HGroup&gt;
+    &lt;/s:VGroup&gt;
+    &lt;s:TextArea id="area" width="100%" height="100%"/&gt;
+  &lt;/mx:HDividedBox&gt;
+&lt;/s:Application&gt;
+
+</pre>
+</div>
+</div>
+<div class="para"><span class="bold">Scroller</span></div>
+<div class="para">When associated with a Scroller, the map component is
+able to navigate through the map. Keyboard modifiers and mouse button
+associations for panning and zooming are defined in the Scroller.
+To pan through or  zoom into the map, use ._____ By default the Map-Skin
+skin uses a scroller. See  ‘Using Maps control skins’
+ for more information about using a Scroller control with the Maps
+component.</div>
+<div class="para"><span class="bold">Keyboard navigation</span></div>
+<div class="para">Keyboard navigation is also possible in the map component,
+available if the selection-Mode property is set to “single”.
+In this case, the keyboard navigation is performed by pressing the
+keyboard modifier and the arrow keys that are defined for navigation.
+The keyboard modifier is defined by the keyboardNavigation property
+of the map.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise122.html" class="bluelink">Maps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise124.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise126.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

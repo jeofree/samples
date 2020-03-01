@@ -1,0 +1,88 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Laying out graphs automatically</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f302.html" class="breadcrumb">Getting started</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f304.html" class="breadcrumb">Understanding core concepts and classes</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f311.html" class="breadcrumb">Laying out graphs automatically</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f310.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f312.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Laying out graphs automatically</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">D4F provides many built-in layout algorithms that allow
+you to lay out graphs made up of nodes and links automatically. The <span class="apiname">GraphLayout</span> class is the base class for layout.
+You will find classes to create tree or hierarchical representations
+automatically. To learn about graph layout algorithms see Graph Layout
+Algorithms.</div>
+
+<div class="para">In some situations, diagrams can be drawn manually and
+still kept clear to read. The user typically places the nodes and
+links and repositions the nodes manually if the diagram becomes cluttered.</div>
+<div class="para">In many cases, the diagram is too complex to be handled
+manually, or there is no human being involved: the diagram is built
+dynamically with application data that does not contain any geometric
+information. In such cases, automatic layout algorithms are required
+to position the nodes and to route the links.</div>
+<div class="para">The Graph Layout package is a set of layout algorithms
+provided with D4F to position nodes and route links automatically.
+The goal of a layout algorithm is to propose solutions in which nodes
+do not overlap and links do not cross nodes or links. Ideal solutions
+do not always exist, but an algorithm will tend to an optimal one,
+see the following figure.</div>
+
+<div class="para">The most effective way of displaying a graph depends
+on its type and sometimes on industry standards. D4F offers various
+algorithms with many parameters to adapt to the many situations. For
+example, the hierarchical layout is mainly used for displaying flows
+and processes; radial tree layout for semantic networks and website
+maps; and tree layout for organization charts, decision trees, and
+directories.</div>
+<div class="para">In D4F, several graph layouts can be applied to a single
+diagram: a subgraph may require a different layout from its parent;
+or one layout can be applied to only a subset of the nodes. Constraints
+can also be set, for example, to make nodes with a certain property
+stay above the others.</div>
+<div class="para">When it comes to routing links, D4F offers the following:
+strategies to limit the length of links, and algorithms to bundle
+links or connect nicely to nodes, especially when several links arrive
+at a single node.</div>
+<div class="section">
+<h2 class="heading">User interactions</h2>
+<div class="sectionContent">
+<div class="para">When you have populated your diagram, you still need
+to provide the user with a means of interacting with the diagram.</div>
+<div class="para">Modeling applications require interactions for creating
+nodes of many sorts, for creating links with various shapes, for setting
+user-defined properties, for selecting nodes and links, for moving
+nodes around, for editing subgraphs, and for other similar purposes.</div>
+<div class="para">D4F offers a wide range of editing capabilities implemented
+by the <span class="apiname">DiagramEditor</span> class, which
+allows the most common editing actions.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The predefined interactions provided by the <span class="apiname">DiagramEditor</span> include: </div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Drop (from a palette)</div>
+</li><li class="itemizedlistItem"><div class="para">Select (single or multiple)</div>
+</li><li class="itemizedlistItem"><div class="para">Move </div></li><li class="itemizedlistItem"><div class="para">Resize</div></li><li class="itemizedlistItem"><div class="para">Reparent to/from a different SubGraph</div>
+</li><li class="itemizedlistItem"><div class="para">Link creation</div>
+</li><li class="itemizedlistItem"><div class="para">Link reconnection</div>
+</li><li class="itemizedlistItem"><div class="para">In-place text editing </div>
+</li></ul></div>
+<div class="para">Monitoring applications often require a subset of the
+interactions proposed in modeling applications. The most common ones
+are zoom, pan, and select. In monitoring applications, selection is
+often specific to the application: when the user selects a node or
+a link, D4F performs a specific action like opening a dialog box or
+selecting all the alarms generated by the selected object. To implement
+application-specific interactions, you will have to listen for the
+diagram events and perform the application-specific task using a listener
+function.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Backgrounds and maps</h2>
+<div class="sectionContent">
+<div class="para">If your application requires a map as a background, you
+can add a vector or a bitmap background. The background is added to
+the diagram as part of its skin. See the following figure for details.</div>
+
+<div class="figure"><div class="mediaobject"><img src="../../Diagram4Flex/_media/mapsample_default.png" alt="" class="imagedata"/></div></div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f304.html" class="bluelink">Understanding core concepts and classes</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f310.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f312.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

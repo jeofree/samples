@@ -1,0 +1,28 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Creating a calendar control</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex634.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex637.html" class="breadcrumb">Creating a calendar control</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex636.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex638.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Creating a calendar control</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e110724">
+
+
+<div class="para">You can define a calendar control in MXML using the  <code class="code">&lt;ilog:Calendar&gt;</code> tag. If you intend to refer to this
+control elsewhere in your MXML, for example, in another tag or  in
+an <span class="trademark">ActionScript®
+            </span> block, you must specify an <code class="code">id</code> value.
+A calendar control displays a list of events using a <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html#dataProvider" class="bluelink">dataProvider</a></span> as shown in the following code.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"  
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                layout="absolute"&gt;
+  &lt;ilog:Calendar width="100%" height="100%"&gt;
+    &lt;ilog:dataProvider&gt;
+      &lt;mx:XML&gt;
+        &lt;event startTime="2008/4/16 10:00" endTime="2008/4/16 16:00" summary="Do something"/&gt; 
+      &lt;/mx:XML&gt;
+    &lt;/ilog:dataProvider&gt;
+  &lt;/ilog:Calendar&gt;
+&lt;/mx:Application&gt;</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex634.html" class="bluelink">Calendar</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex636.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex638.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,134 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Spacing parameters in long link mode</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex437.html" class="breadcrumb">Link layout (LL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex444.html" class="breadcrumb">Spacing parameters in long link mode</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex443.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex445.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Spacing parameters in long link mode</h1></div></div><div class="content">
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The long link mode places the links on a grid. Four parameters
+control the grid offsets and five parameters control the spacing of
+links in relation to other objects. <a href="ps_usrgraphlayout_flex444.html#usrgraphlayout.uss_graphlay_layouts.1043516" class="bluelink">Spacing parameters for the long link mode</a> shows the
+spacing parameters used in the long link mode. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1043516"><div class="mediaobject"><img src="../../../GraphLayout/_media/longlinkspaceparam101_default.gif" alt="Graph&#xA;showing the use of spacing parameters in the long link mode" class="imagedata"/></div><div class="caption">Spacing parameters for the long link mode</div></div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043519">
+<h2 class="heading">Grid offset parameters</h2>
+
+
+
+<div class="sectionContent">
+<div class="para">The grid offset parameters control the spacing between
+grid lines. Links are routed such that the center of the orthogonal
+link segments are on the grid lines. The grid offsets should be set
+to a value larger than the largest link width value to avoid links
+that visually overlap. </div>
+<div class="example">
+<div class="title">Example of specifying grid offset parameters (Link Layout
+algorithm)</div>
+<div class="exampleContent">
+<div class="para">To set the horizontal and vertical grid offset: </div>
+</div>
+
+
+</div>
+<div class="para">The grid offset is the critical parameter for the long
+link mode. If the grid offset is too large, there may be no grid lines
+between nodes even though some free space exists between the nodes.
+In this case, the link routings cannot use the free space. However,
+if the grid offset is too small, the algorithm needs a long time to
+traverse the grid. </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043528">
+<h2 class="heading">Grid base parameters</h2>
+
+
+
+<div class="sectionContent">
+<div class="para">Sometimes it is necessary to shift the whole grid by
+a small amount because the nodes are not aligned on the grid. For
+instance, to have grid lines at positions 3, 13, 23, 33, and so on,
+you can set the grid offset to 10 and the grid base to 3. </div>
+<div class="example">
+<div class="title">Example of specifying grid base parameters (Link Layout
+algorithm)</div>
+<div class="exampleContent">
+<div class="para">To adjust the grid base: </div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043535">
+<h2 class="heading">Minimum distance parameters</h2>
+
+
+
+<div class="sectionContent">
+<div class="para">The minimum distance controls how closely a link can
+be placed to the border of a node that needs to be bypassed. If the
+node border is not aligned to the grid, the minimum distance specifies
+the next grid line close to the border that can be used. For instance,
+if a node covers the x-coordinates 25 to 65 on a grid with offset
+10 and base 0, the next grid lines used to bypass the node would normally
+be at 20 and 70. If you specify a minimum distance of 8, these grid
+lines are too close to the node and then the grid lines at 10 and
+80 would be used. </div>
+<div class="example">
+<div class="title">Example of specifying minimum distance parameters (Link
+Layout algorithm)</div>
+<div class="exampleContent">
+<div class="para">To set the minimum distance: </div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043542">
+<h2 class="heading">Minimum node corner offset parameter</h2>
+
+
+
+<div class="sectionContent">
+<div class="para">The minimum corner offset is the minimum distance between
+a node corner and a link that connects to the node. This parameter
+is used to avoid having a link that connects exactly to the corner
+or outside the border of the node (see <a href="ps_usrgraphlayout_flex444.html#usrgraphlayout.uss_graphlay_layouts.1043563" class="bluelink">Minimum corner offset</a>). </div>
+<div class="example">
+<div class="title">Example of specifying minimum node corner offset parameter
+(Link Layout algorithm)</div>
+<div class="exampleContent">
+<div class="para">To set the minimum corner offset: </div>
+</div>
+
+
+</div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1043563"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-95online102_default.gif" alt="Connections&#xA;to a node showing the minimum offset from a corner" class="imagedata"/></div><div class="caption">Minimum corner offset</div></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043567">
+<h2 class="heading">Minimum final segment length</h2>
+
+
+
+<div class="sectionContent">
+<div class="para">As with the short link mode, the long link mode respects
+the minimum value for the length of the final connecting segments
+of the links. </div>
+<div class="example">
+<div class="title">Example of specifying minimum final segment length (Link
+Layout algorithm)</div>
+<div class="exampleContent">
+<div class="para">To set the minimum length of the final segment: </div>
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex437.html" class="bluelink">Link layout (LL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex443.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex445.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

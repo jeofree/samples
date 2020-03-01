@@ -1,0 +1,74 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Features and limitations of the LL</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex437.html" class="breadcrumb">Link layout (LL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex439.html" class="breadcrumb">Features and limitations of the LL</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex438.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex440.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Features and limitations of the LL</h1></div></div><div class="content">
+
+
+
+<div class="descriptiveTopicContent">
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043003">
+<h2 class="heading">Features of both modes (LL)</h2>
+<div class="sectionContent">
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Reshapes the links of a graph in either
+an orthogonal or a direct style, without moving the nodes. Orthogonal
+and direct style links can be combined in the same layout. </div>
+</li><li class="itemizedlistItem"><div class="para">Allows you to specify which side of
+the node (top, bottom, left, or right) a link can be connected to,
+or to preserve the existing connection points of the links. </div>
+</li><li class="itemizedlistItem"><div class="para">Supports self-links (that is, links
+with the same origin and destination node). </div>
+</li><li class="itemizedlistItem"><div class="para">Supports multiple links (that is, more
+than one link between the same origin and destination nodes). </div>
+</li><li class="itemizedlistItem"><div class="para">Allows you to specify pinned (fixed)
+links that the layout algorithm cannot reshape. </div>
+</li><li class="itemizedlistItem"><div class="para">Supports intergraph links of nested
+graphs. An intergraph link is a link whose end nodes belong to different
+subgraphs of a nested graph. </div></li><li class="itemizedlistItem"><div class="para">Supports an incremental mode: If new
+links are added to a drawing, the next layout takes the shapes of
+the old links into account. </div></li><li class="itemizedlistItem"><div class="para">Two layout modes: <span class="italics">short links </span>with a limited number
+of bends or <span class="italics">long links </span>with unlimited number of bends. </div></li></ul></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043016">
+<h2 class="heading">Features of short link mode (LL)</h2>
+
+<div class="sectionContent">
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Links are placed freely in the space. </div>
+</li><li class="itemizedlistItem"><div class="para">Link-to-link and link-to-node crossings
+are reduced, if this is possible with link shapes that have a maximum
+of 4 bends. </div></li><li class="itemizedlistItem"><div class="para">Links of different width are supported. </div>
+</li><li class="itemizedlistItem"><div class="para">Link bundles between the same pair of
+nodes are supported. Optionally, the algorithm can ensure that multiple
+links are bundled together by giving them parallel shapes. </div>
+</li><li class="itemizedlistItem"><div class="para">Automatically arranges the final segments
+of the links (the segments near the origin or destination node) to
+obtain a bundle of parallel links. </div></li><li class="itemizedlistItem"><div class="para">Provides two optional shapes for the
+self-links. </div></li><li class="itemizedlistItem"><div class="para">Very fast algorithm with low memory
+footprint. </div></li></ul></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043024">
+<h2 class="heading">Features of long link mode (LL)</h2>
+
+<div class="sectionContent">
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Links are placed on a grid. </div>
+</li><li class="itemizedlistItem"><div class="para">Link-to-node crossings of orthogonal
+links are avoided, even if this introduces many bends. </div>
+</li><li class="itemizedlistItem"><div class="para">Orthogonal link segments do not overlap. </div>
+</li><li class="itemizedlistItem"><div class="para">Does not bundle the final segments.
+Instead, it distributes the links on the border of each end node according
+to which border has more free space. </div></li><li class="itemizedlistItem"><div class="para">Fast algorithm: speed and memory footprint
+depend on the grid spacing.  </div></li></ul></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1028334">
+<h2 class="heading">Limitations</h2>
+
+
+<div class="sectionContent">
+
+
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex437.html" class="bluelink">Link layout (LL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex438.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex440.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

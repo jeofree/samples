@@ -1,0 +1,75 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Custom item renderers</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex634.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex646.html" class="breadcrumb">Calendar item renderers</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex650.html" class="breadcrumb">Custom item renderers</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex649.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex651.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Custom item renderers</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">A <span class="apiname">Calendar</span> control can
+use custom renderers to display the data items.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">A custom item renderer must:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Extend a <span class="apiname">UIComponent</span> subclass</div></li><li class="itemizedlistItem"><div class="para">Implement the <span class="apiname">IListItemRenderer</span> interface</div></li></ul></div>
+<div class="para">Before you decide whether and how to develop a custom
+item renderer, make sure you read about Custom Component Development
+in the <span class="trademark">Adobe®
+            </span> <span class="trademark">Flex®
+            </span> documentation.</div>
+<div class="para">The content of the <span class="apiname">data</span> property for an item renderer is of the type <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/CalendarItem.html" class="bluelink">CalendarItem</a></span>.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The <span class="apiname">CalendarItem</span> type
+gives access to:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The data fields to display in the item
+renderer</div></li><li class="itemizedlistItem"><div class="para">The calendar control</div>
+</li></ul></div>
+<div class="para">The calendar provides the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/CalendarItemRendererBase.html" class="bluelink">CalendarItemRendererBase</a></span> class, which is the base class of the supplied item
+renderers, to make the creation of efficient calendar item renderers
+easier in <span class="trademark">ActionScript®
+            </span>.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The <span class="apiname">CalendarItemRendererBase</span> class:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Declares the usual style properties</div>
+</li><li class="itemizedlistItem"><div class="para">Declares the usual subcomponents (but
+does not create them)</div></li><li class="itemizedlistItem"><div class="para">Manages a border skin to render the
+border and the background of the item renderer</div>
+</li><li class="itemizedlistItem"><div class="para">Provides an API to determine the state
+of the represented item easily (selected, highlighted, being edited,
+being animated, and so on)</div></li></ul></div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">A subclass typically:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Creates the required subcomponents in
+the <span class="apiname">createChildren</span> method</div>
+</li><li class="itemizedlistItem"><div class="para">Implements the <span class="apiname">measure</span> method for the measure constraint (see the table that follows)</div>
+</li><li class="itemizedlistItem"><div class="para">Uses the <span class="apiname">data</span> property to set the value to display for each subcomponent, in the <span class="apiname">commitProperties</span> method</div>
+</li><li class="itemizedlistItem"><div class="para">Applies the style properties on subcomponents</div>
+</li><li class="itemizedlistItem"><div class="para">Lays out the subcomponents in the <span class="apiname">updateDisplayList</span> method</div>
+</li></ul></div>
+<div class="para">The default item renderer implementations give examples
+of this behavior.</div>
+<div class="para">For the <span class="apiname">Calendar</span> control
+to lay out the item renderer, some item renderers must have a valid
+measure. The following table lists the measure constraint for each
+type of item renderer.</div>
+<table border="1" cellpadding="4" cellspacing="0" class="ShadedHead"><colgroup align="left" span="1">
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr bgcolor="#BFD6E7">
+<th valign="top" rowspan="1" colspan="1">Type</th>
+<th valign="top" rowspan="1" colspan="1">Measure constraint</th>
+</tr>
+</thead><tbody valign="top">
+<tr>
+<td rowspan="1" colspan="1">Vertical</td>
+<td rowspan="1" colspan="1">No need to measure</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Horizontal</td>
+<td rowspan="1" colspan="1">Need of a valid measured height</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Label</td>
+<td rowspan="1" colspan="1">Need of a valid measured height</td>
+</tr>
+</tbody></table>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex646.html" class="bluelink">Calendar item renderers</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex649.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex651.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

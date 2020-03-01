@@ -1,0 +1,275 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Creating a graph with an automatic tree layout</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f340.html" class="breadcrumb">Creating graph displays</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f343.html" class="breadcrumb">Creating a graph with an automatic tree layout</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f342.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f344.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Creating a graph with an automatic tree layout</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The following example shows how to use a Graph control
+in MXML, and how to specify the nodes and links as children of the
+Graph.</div>
+<div class="para"/>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:ibm="http://www.ibm.com/xmlns/prod/ilog/flex/diagram/2010" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               minWidth="1024" minHeight="768"&gt;
+  &lt;s:layout&gt;
+    &lt;s:VerticalLayout paddingBottom="20" paddingLeft="20" paddingRight="20" paddingTop="20"/&gt;
+  &lt;/s:layout&gt;
+  
+  &lt;fx:Style&gt;
+    @namespace ibm "http://www.ibm.com/xmlns/prod/ilog/flex/diagram/2010"; 
+        
+    ibm|Node{
+      chrome-color: #CFEDFC;      
+    }
+    
+    ibm|Subgraph {
+      chrome-color: #DFDFDF;
+    }
+    
+    ibm|Link {
+      stroke-width: 2;
+      start-arrow-type: triangle;
+    }
+    
+  &lt;/fx:Style&gt;
+
+  &lt;ibm:Graph automaticGraphLayout="true"&gt;
+    &lt;ibm:Node id="node0" label="Node 0" width="90" height="40" /&gt;
+    &lt;ibm:Node id="node1" label="Node 1" width="70" height="40" /&gt;
+    &lt;ibm:Node id="node2" label="Node 2" width="62" height="40" /&gt;
+    &lt;ibm:Node id="node3" label="Node 3" width="65" height="40" /&gt;
+    &lt;ibm:Node id="node4" label="Node 4" width="70" height="80"&gt;
+      &lt;ibm:ports&gt;
+        &lt;ibm:Port id="port1" x="0" y=".50" /&gt;
+        &lt;ibm:Port id="port2" x="1" y=".50" /&gt;
+      &lt;/ibm:ports&gt;
+    &lt;/ibm:Node&gt;
+    &lt;ibm:Node id="node5" label="Node 5" width="90" height="55" /&gt;
+       
+    &lt;ibm:Link startNode="{node0}" endNode="{node1}" strokeColor="#4181AB"/&gt;
+    &lt;ibm:Link startNode="{node0}" endNode="{node5}" strokeColor="#4181AB"/&gt;
+    &lt;ibm:Link startNode="{node1}" endNode="{node3}" strokeColor="#4181AB"/&gt;
+    &lt;ibm:Link startNode="{node1}" endNode="{node2}" strokeColor="#4181AB"/&gt;
+    &lt;ibm:Link startNode="{node3}" endNode="{node4}" strokeColor="#4181AB"/&gt;
+    
+    &lt;ibm:Subgraph automaticGraphLayout="true" id="node6" label="Node 6" graphMargin="20"&gt;
+      &lt;ibm:nodeLayout&gt;
+        &lt;ibm:HierarchicalLayout/&gt;
+      &lt;/ibm:nodeLayout&gt;
+      &lt;ibm:Node id="node9" label="Node 9" width="70" height="30" /&gt;
+      &lt;ibm:Node id="node8" label="Node 8" width="70" height="30" /&gt;
+      &lt;ibm:Node id="node7" label="Node 7" width="76" height="30" &gt;
+        &lt;ibm:ports&gt;
+          &lt;ibm:Port id="port3" x=".50" y=".50" /&gt;
+          &lt;ibm:Port id="port4" x=".50" y="0" /&gt;
+        &lt;/ibm:ports&gt;
+      &lt;/ibm:Node&gt;
+      
+      &lt;ibm:Link startNode="{node7}" endNode="{node8}"
+                strokeColor="#4444A8" /&gt;
+      &lt;ibm:Link startNode="{node9}" endNode="{node7}"
+                strokeColor="#4444A8" /&gt;
+      &lt;ibm:Link startNode="{node9}" endNode="{node8}"
+                strokeColor="#4444A8" /&gt;
+    &lt;/ibm:Subgraph&gt;
+    
+    &lt;ibm:Link startNode="{node4}" endNode="{node7}" 
+              shapeType="orthogonal" strokeColor="#FF8000"
+              startPort="{port2}" endPort="{port4}"/&gt;
+    
+    &lt;ibm:Link startNode="{node5}" endNode="{node6}" strokeColor="#4181AB"/&gt;
+    &lt;ibm:nodeLayout&gt;
+      &lt;ibm:TreeLayout globalLinkStyle="orthogonal" connectorStyle="evenly spaced"/&gt;
+    &lt;/ibm:nodeLayout&gt;
+  &lt;/ibm:Graph&gt;
+&lt;/s:Application&gt;
+</pre>
+<div class="para">This MXML example defines a top graph that contains the
+nodes from node 0 to node 6. The top graph has its nodeLayout property
+set to a TreeLayout instance. Node 6 is a subgraph where it is possible
+to expand and collapse its content. Subgraphs contain in the skin
+a Graph instance. In this example, node 6 contains node 7 to node
+9. This subgraph has a nodeLayout property set to an instance of the
+Hierarchical layout algorithm. This example also illustrates the configuration
+of nodes, links and subgraphs. Here is the resulting graph:</div>
+<div class="figure"><div class="mediaobject"><img src="../../Diagram4Flex/_media/graphautomaticlayout_default.png" alt="Example&#xA;of a top graph that contains the nodes from node 0 to node 6. Node&#xA;6 is a subgraph that contains node 6 to node 9." class="imagedata"/></div></div>
+<div class="para">Note that the link between node 4 and node 7 is crossing
+graph boundaries. This is an intergraph link (the start node is part
+of a graph which is not the same one that contains the end node).
+The only restriction is that the start and end nodes should have a
+common ancestor with the link. As you expand and collapse the subgraph,
+the top graph automatically re-arranges its content by applying the
+specified tree layout algorithm.</div>
+<div class="section">
+<h2 class="heading">Example of nodes and links in a graph by code</h2>
+<div class="sectionContent">
+<div class="para">The same example presented above can also be written
+by code. Nodes, links and subgraphs are created and their properties
+as well as styling properties are changed to customize their graphical
+representation. This example also illustrates how to configure graph
+layout algorithms by code setting the property nodeLayout.</div>
+<pre class="programlisting">  import com.ibm.ilog.diagram.*;
+      import com.ibm.ilog.diagram.graphlayout.tree.TreeLayout;
+      import com.ibm.ilog.diagram.graphlayout.hierarchical.HierarchicalLayout;
+      
+      public function createObjects():void
+      {
+        // Create top level nodes
+        var node0:Node = new Node();
+        node0.label = "Node 0";
+        node0.width = 90;
+        node0.height = 40;
+        graph.addElement(node0);
+        
+        var node1:Node = new Node();
+        node1.label = "Node1";
+        node1.width = 70;
+        node1.height = 40;
+        graph.addElement(node1);
+        
+        var node2:Node = new Node();
+        node2.label = "Node2";
+        node2.width = 62;
+        node2.height = 40;
+        graph.addElement(node2);
+
+        var node3:Node = new Node();
+        node3.label = "Node3";
+        node3.width = 65;
+        node3.height = 40;
+        graph.addElement(node3);
+        
+        var node4:Node = new Node();
+        node4.label = "Node4";
+        node4.width = 70;
+        node4.height = 80;
+        var ports:Vector. = new Vector.();
+        var port1:Port = new Port("port1", 0, 0.5);
+        var port2:Port = new Port("port2", 1, 0.5);
+        ports.push(port1);
+        ports.push(port2);
+        node4.ports = ports;
+        graph.addElement(node4);
+
+        var node5:Node = new Node();
+        node5.label = "Node 5";
+        node5.width = 90;
+        node5.height = 55;
+        graph.addElement(node5);
+        
+        // Create top level links
+        var link:Link = new Link();
+        link.startNode = node0;
+        link.endNode = node1;
+        link.setStyle("strokeColor", "#4181AB");
+        graph.addElement(link);
+        
+        link = new Link();
+        link.startNode = node0;
+        link.endNode = node5;
+        link.setStyle("strokeColor", "#4181AB");
+        graph.addElement(link);
+        
+        link = new Link();
+        link.startNode = node1;
+        link.endNode = node3;
+        link.setStyle("strokeColor", "#4181AB");
+        graph.addElement(link);
+        
+        link = new Link();
+        link.startNode = node1;
+        link.endNode = node2;
+        link.setStyle("strokeColor", "#4181AB");
+        graph.addElement(link);
+        
+        link = new Link();
+        link.startNode = node3;
+        link.endNode = node4;
+        link.setStyle("strokeColor", "#4181AB");
+        graph.addElement(link);
+        
+        // Create subgraph with content
+        var sub:Subgraph = new Subgraph();
+        sub.automaticGraphLayout = true;
+        sub.label = "Node 6";
+        sub.graphMargin = 20;
+        sub.nodeLayout = new HierarchicalLayout();
+        graph.addElement(sub);
+        
+        var node9:Node = new Node();
+        node9.label = "Node 9";
+        node9.width = 70;
+        node9.height = 30;
+        sub.graph.addElement(node9);
+        
+        var node8:Node = new Node();
+        node8.label = "Node 8";
+        node8.width = 70;
+        node8.height = 30;
+        sub.graph.addElement(node8);
+        
+        var node7:Node = new Node();
+        node7.label = "Node 7";
+        node7.width = 76;
+        node7.height = 30;
+        sub.graph.addElement(node7);
+        ports = new Vector.();
+        var port3:Port = new Port("port3", 0.5, 0.5);
+        var port4:Port = new Port("port4", 0.5, 0);
+        ports.push(port3);
+        ports.push(port4);
+        node7.ports = ports;
+        
+        link = new Link();
+        link.startNode = node7;
+        link.endNode = node8;
+        link.setStyle("strokeColor", "#4444A8");
+        sub.graph.addElement(link);
+        
+        link = new Link();
+        link.startNode = node9;
+        link.endNode = node7;
+        link.setStyle("strokeColor", "#4444A8");
+        sub.graph.addElement(link);
+        
+        link = new Link();
+        link.startNode = node9;
+        link.endNode = node8;
+        link.setStyle("strokeColor", "#4444A8");
+        sub.graph.addElement(link);
+        
+        // Create intergraph link
+        link = new Link();
+        link.startNode = node4;
+        link.startPort = port2;
+        link.endNode = node7;
+        link.endPort = port4;
+        link.setStyle("shapeType", "orthogonal");
+        link.setStyle("strokeColor", "#FF8000");
+        graph.addElement(link);
+        
+        link = new Link();
+        link.startNode = node5;
+        link.endNode = sub;
+        link.setStyle("strokeColor", "#41818AB");
+        graph.addElement(link);
+        
+        // Configure the top level graph layout algorithm
+        configureGraphLayout();
+      }
+      
+      public function configureGraphLayout():void
+      {
+        var tl:TreeLayout = new TreeLayout();
+        tl.globalLinkStyle = TreeLayout.ORTHOGONAL_STYLE;
+        tl.connectorStyle = TreeLayout.EVENLY_SPACED_PINS;
+        graph.nodeLayout = tl;        
+      }
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f340.html" class="bluelink">Creating graph displays</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f342.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f344.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

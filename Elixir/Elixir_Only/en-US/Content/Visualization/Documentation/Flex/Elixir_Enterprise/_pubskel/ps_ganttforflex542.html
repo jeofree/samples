@@ -1,0 +1,40 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Task editing process</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex497.html" class="breadcrumb">Gantt resource charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex540.html" class="breadcrumb">Editing tasks in a resource chart</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex542.html" class="breadcrumb">Task editing process</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex541.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex543.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Task editing process</h1></div></div><div class="content">
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="orderedlist"><div class="orderedlistIntro">
+<div class="para">The following sequence of steps occurs when a task is
+edited in the Gantt sheet:</div>
+</div><ol class="orderedlist"><li class="orderedlistItem"><div class="para">The user holds down the mouse button
+on a task and starts dragging.</div><div class="para">The kind
+of editing operation performed depends on which area of the task is
+being dragged:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The start extremity – when dragged,
+resizes the task by modifying its start time. </div>
+</li><li class="itemizedlistItem"><div class="para">The end extremity – when dragged,
+resizes the task by modifying its end time.</div>
+</li><li class="itemizedlistItem"><div class="para">The body of the task – when dragged,
+moves the task along the time axis or reassigns the task to another
+resource.</div></li></ul></div>
+</li><li class="orderedlistItem"><div class="para">The Gantt sheet dispatches the <span class="apiname">itemEditBegin</span> event and shows the editing tooltip.
+You can use this event to prepare data for editing.</div>
+<div class="para">The next two steps can be repeated any number of times
+while the user is dragging.</div>
+</li><li class="orderedlistItem"><div class="para">The user moves or resizes the task.</div>
+</li><li class="orderedlistItem"><div class="para">The Gantt sheet dispatches the <span class="apiname">itemEditMove</span>, <span class="apiname">itemEditReassign</span> or <span class="apiname">itemEditResize</span> event. You can
+use these events to modify the task that is being edited. For more
+information, see <a href="ps_ganttforflex548.html#usrflprg.uss_flexprg_gantt.1026282" class="bluelink">Enforcing a minimum duration when resizing tasks</a>.</div>
+</li><li class="orderedlistItem"><div class="para">The user ends the editing session. Typically
+the task editing session ends when the user releases the mouse button.</div>
+</li><li class="orderedlistItem"><div class="para">The Gantt sheet dispatches the <span class="apiname">itemEditEnd</span> event to update the data item and the
+Gantt sheet. You can use this event to modify the task item before
+it is saved.</div></li><li class="orderedlistItem"><div class="para">The task that was being edited is updated
+in the Gantt sheet.</div></li></ol></div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex540.html" class="bluelink">Editing tasks in a resource chart</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex541.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex543.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

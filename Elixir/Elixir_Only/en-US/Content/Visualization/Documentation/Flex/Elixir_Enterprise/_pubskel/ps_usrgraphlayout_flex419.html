@@ -1,0 +1,652 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Specific parameters of the HL</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex414.html" class="breadcrumb">Hierarchical Layout (HL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex419.html" class="breadcrumb">Specific parameters of the HL</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex418.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex420.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Specific parameters of the HL</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1029346">
+<h2 class="heading">Flow direction (HL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The flow direction parameter specifies the direction
+in which the majority of the links should point. If the flow direction
+is to the top or to the bottom, the node levels are oriented horizontally
+and the links mostly vertically. If the flow direction is to the left
+or to the right, the node levels are oriented vertically and the links
+mostly horizontally.  </div>
+<div class="para">If the flow direction is to the bottom, the nodes of
+the level with index 0 are placed at the top border of the drawing.
+The nodes with level index 0 are usually the root nodes of the drawing
+(that is, the nodes without incoming links). If the flow direction
+is to the top, the nodes with level index 0 are placed at the bottom
+border of the drawing. If the flow direction is to the right, the
+nodes are placed at the left border of the drawing. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1030927"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-60online63_default.gif" alt="Flow&#xA;directions in a hierarchical layout" class="imagedata"/></div><div class="caption">Flow directions</div></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To specify the flow direction towards the bottom: </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for the flow direction are: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvDirection.Right</code> (the default) </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvDirection.Left</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvDirection.Bottom</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvDirection.Top</code>  </div></li></ul></div>
+
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1269069">
+<h2 class="heading">Leveling strategy (HL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm partitions the nodes into levels
+(see <a href="ps_usrgraphlayout_flex417.html#usrgraphlayout.uss_graphlay_layouts.1029218" class="bluelink">A brief description of the HL algorithm</a>). The leveling
+strategy specifies how the levels are calculated. Besides the leveling
+strategy, layout constraints (see <a href="ps_usrgraphlayout_flex421.html" class="bluelink">Layout constraints for HL</a>), level indices
+(see <a href="ps_usrgraphlayout_flex435.html" class="bluelink">For experts: more indices (HL)</a>) as well
+as the incremental mode (see <a href="ps_usrgraphlayout_flex420.html" class="bluelink">Incremental mode with HL</a>) also affect
+the way  the levels are calculated. If the incremental mode is disabled,
+the leveling strategy determines the levels of all nodes that are
+not subject to layout constraints and level index specifications. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1268882"><div class="mediaobject"><img src="../../../GraphLayout/_media/levelingstrategy83_default.gif" alt="Leveling&#xA;strategies in a hierarchical layout" class="imagedata"/></div><div class="caption">Leveling strategies</div></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To specify the leveling strategy:  </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for the leveling strategy are:  </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.SEMI_OPTIMAL</code> (the default) </div><div class="para">This produces often the
+same result as the optimal strategy, but it is quicker. The layout
+algorithm uses a heuristic to minimize the sum of level distances
+for all edges. It pulls root nodes to the highest-numbered possible
+level and leaf nodes to the lowest-numbered possible level.  </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.OPTIMAL</code>  </div><div class="para">This uses an algorithm that minimizes
+the sum of level distances for all edges. The optimal strategy is
+slower than the other strategies, but often produces the best result.
+ </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.HIGHER_LEVELS</code>  </div><div class="para">Nodes have a tendency to use the possible
+level with the highest level number. All leaf nodes will be at the
+higest-numbered level. All root nodes are pulled to high-numbered
+levels as much as possible.  </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.LOWER_LEVELS</code>  </div><div class="para">Nodes have a tendency to use the possible
+level with the lowest level number. All root nodes will be at level
+0. All leaf nodes are pulled to low-numbered levels as much as possible.
+ </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.SPREAD_OUT</code>  </div><div class="para">This is a combination of the lower-level
+and higher-level strategies. All root nodes will be at level 0. All
+leaf nodes will be at the higest-numbered level. All inner nodes are
+at balanced positions.  </div>
+</li></ul></div>
+
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1268725">
+<h2 class="heading">Level justification (HL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">If the layout uses horizontal levels, the nodes of the
+same level are placed approximately at the same y-coordinate. The
+nodes can be justified, depending on whether the top border, or the
+bottom border, or the center of all nodes of the same level should
+have the same y-coordinate. </div>
+<div class="para">If the layout uses vertical levels, the nodes of the
+same level are placed approximately at the same x-coordinate. In this
+case, the nodes can be justified to be aligned at the left border,
+at the right border, or at the center of the nodes that belong to
+the same level. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To specify the level justification towards the top: </div>
+</div>
+
+
+</div>
+<div class="para">If the flow direction is to the top or to the bottom,
+the valid values for the level justification are: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvDirection.Top</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvDirection.Bottom</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvDirection.Center</code> (the default) </div></li></ul></div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1240052"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-61online65_default.gif" alt="Level&#xA;justification for horizontal levels in a hierarchical layout" class="imagedata"/></div><div class="caption">Level justification for horizontal levels</div></div>
+<div class="para">If the flow direction is to the left or to the right,
+the valid values for the level justification are: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvDirection.Left</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvDirection.Right</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvDirection.Center</code> (the default) </div></li></ul></div>
+
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1029414"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-62online66_default.gif" alt="Level&#xA;justification for vertical levels in a hierarchical layout" class="imagedata"/></div><div class="caption">Level justification for vertical levels</div></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1029420">
+<h2 class="heading">Link style (HL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm positions the nodes and routes the
+links. To avoid overlapping nodes and links, it creates bend points
+for the shapes of links. The link style parameter controls the position
+and number of bend points. The link style can be set globally, in
+which case all links have the same kind of shape, or locally on each
+link such that different link shapes occur in the same drawing.  </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1030813"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-63online67_default.gif" alt="Polyline&#xA;links, orthogonal links, and straight-line links" class="imagedata"/></div><div class="caption">Link styles</div></div>
+
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1030844">
+<h3 class="heading">Global link style</h3>
+
+
+
+
+<div class="sectionContent">
+<div class="example">
+<div class="exampleContent">
+<div class="para">To set the global link style: </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for the link style are:  </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.POLYLINE_STYLE</code>  </div><div class="para">All links get a polyline shape. A polyline
+shape consists of a sequence of line segments that are connected at
+bend points. The line segments can be turned into any direction. This
+is the default value. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.ORTHOGONAL_STYLE</code>  </div><div class="para">All links get an orthogonal shape. An
+orthogonal shape consists of orthogonal line segments that are connected
+at bend points. An orthogonal shape is a polyline shape where the
+segments can be turned only in directions of 0, 90, 180 or 270 degrees. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.STRAIGHT_LINE_STYLE</code>  </div><div class="para">All links get a straight-line shape. All intermediate bend points (if any)
+are removed. This often causes overlapping nodes and links. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.NO_RESHAPE_STYLE</code>  </div><div class="para">None of the links is reshaped in any
+manner. Note, however, that unlike fixed links, the links are not
+ignored completely. They are still used to calculate the leveling. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.MIXED_STYLE</code>  </div><div class="para">Each link can have a different link
+style. The style of each individual link can be set such that different
+link shapes can occur in the same graph. </div>
+</li></ul></div>
+
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1029455">
+<h3 class="heading">Individual link style</h3>
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">All links have the same style of shape unless the global
+link style is <code class="code">MIXED_STYLE</code>. Only when the
+global link style is <code class="code">MIXED_STYLE</code> can each
+link have an individual link style.  </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1030949"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Hierarchical-mixed87_default.gif" alt="Different&#xA;link styles mixed in the same drawing" class="imagedata"/></div><div class="caption">Different link styles mixed in the same drawing</div></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To specify the style of an individual link: </div>
+</div>
+
+
+
+</div>
+<div class="para">The valid values for the link style of local links are
+the same as for the global link style:  </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.POLYLINE_STYLE</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.ORTHOGONAL_STYLE</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.STRAIGHT_LINE_STYLE</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.NO_RESHAPE_STYLE</code>  </div></li></ul></div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1029468">
+<h2 class="heading">Connector style (HL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm positions the end points of links
+(the connector pins) at the nodes automatically. The connector style
+parameter specifies how these end points are calculated. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1030810"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-65online69_default.gif" alt="Centered&#xA;connector pins, clipped connector pins, evenly spaced connector pins,&#xA;and evenly spaced connector pins with orthogonal links" class="imagedata"/></div><div class="caption">Connector styles</div></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To specify the connector style: </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for <code class="code">style</code> are: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.CENTERED_PINS</code>  </div><div class="para">The end points of the links are placed
+in the center of the border where the links are attached. This option
+is well-suited for polyline links and straight-line links. It is less well-suited for orthogonal
+links, because orthogonal links can look ambiguous in this style. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.CLIPPED_PINS</code>  </div><div class="para">Each link pointing to the center of
+the node is clipped at the node border. The connector pins are placed
+at the points on the border where the links are clipped. This option
+is particularly well-suited for polyline links without port specifications.
+It should not be used if a port side for any link is specified. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.EVENLY_SPACED_PINS</code>  </div><div class="para">The connector pins are evenly distributed
+along the node border. This style guarantees that the end points of
+the links do not overlap. This is the best style for orthogonal links
+and works well for other link styles. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.AUTOMATIC_PINS</code>  </div><div class="para">The connector style is selected automatically
+depending on the link style. If any of the links has an orthogonal
+style or if any of the links has a port side specification, the algorithm
+chooses evenly spaced connectors. If all the links are straight, it
+chooses centered connectors. Otherwise, it chooses clipped connectors. </div>
+</li></ul></div>
+
+
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1176495">
+<h2 class="heading">End point mode (HL)</h2>
+
+
+<div class="sectionContent">
+
+
+<div class="para">The layout algorithm provides two end point modes. You
+can set the end point mode globally, in which case all end points
+have the same mode, or locally on each link, in which case different
+end point modes occur in the same drawing. </div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1197735">
+<h3 class="heading">Global end point mode</h3>
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="example">
+<div class="exampleContent">
+<div class="para">To set the global end point mode: </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for <code class="code">mode</code> are:
+ </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvLinkLayout.FREE_MODE </code>(the default) </div><div class="para">The layout is free to choose
+the appropriate position of the connection point on the origin/destination
+node. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvLinkLayout.FIXED_MODE</code>   </div><div class="para">The layout must keep the current position
+of the connection point on the origin/destination node.  </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvLinkLayout.MIXED_MODE</code>   </div><div class="para">Each link can have a different end
+point mode. </div>
+</li></ul></div>
+
+
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1176550">
+<h3 class="heading">Individual end point mode</h3>
+
+
+
+
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">All links have the same end point mode unless the global
+end point mode is <code class="code">IlvLinkLayout.MIXED_MODE</code>. Only when the global end point mode is set to <code class="code">MIXED_MODE</code> can each link have an individual end point mode. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To set the end point mode of an individual link: </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for <code class="code">mode</code> are: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvLinkLayout.FREE_MODE</code> (the default)  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvLinkLayout.FIXED_MODE</code>  </div></li></ul></div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1129845">
+<h2 class="heading">Using a link connection box interface (HL)</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">By default, the connector style determines how the connection
+points of the links are distributed on the border of the bounding
+box of the nodes, symmetrically with respect to the middle of each
+side. Sometimes it may be necessary to place the connection points
+on a rectangle smaller or larger than the bounding box. For instance,
+this can happen when labels are displayed below or above nodes.  </div>
+<div class="para">You can modify the position of the connection points
+of the links by providing a class that implements the  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvLinkConnectionBoxInterface.html" class="bluelink">IlvLinkConnectionBoxInterface</a></span>. An example for the implementation of a link connection
+box interface is in <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1017739" class="bluelink">Link connection box</a>. To set a
+link connection box interface in Java, use the method:  </div>
+<div class="para"><span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html#setLinkConnectionBoxInterface(ilog.views.graphlayout.IlvLinkConnectionBoxInterface)" class="bluelink">setLinkConnectionBoxInterface</a></span></div>
+<div class="para">The link connection box interface provides each node
+with a link connection box and tangential shift offsets. The Hierarchical
+Layout uses the link connection box but does not use the tangential
+offsets.  </div>
+
+
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1129872"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-66online70_default.gif" alt="Shows&#xA;how the connection box interface affects connection points to a node" class="imagedata"/></div><div class="caption">Effect of connection box interface</div></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1130180">
+<h2 class="heading">Using a link clipping interface (HL)</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">By default, the Hierarchical Layout places the connection
+points of links at the border of the bounding box of the nodes. If
+the node has a nonrectangular shape such as a triangle, rhombus, or
+circle, you may want the connection points to be placed exactly on
+the border of the shape. This can be achieved by specifying a link
+clip interface. The link clip interface allows you to correct the
+calculated connection point so that it lies on the border of the shape.
+The following figure shows an example. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1129886"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-67online71_default.gif" alt="Shows&#xA;the connection points to nodes without link clipping and then with&#xA;link clipping" class="imagedata"/></div><div class="caption">Effect of link clipping interface</div></div>
+<div class="para">You can modify the position of the connection points
+of the links by providing a class that implements the  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvLinkClipInterface.html" class="bluelink">IlvLinkClipInterface</a></span>. An example for the implementation of a link clip
+interface is in <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1017682" class="bluelink">Link clipping</a>. To set a
+link clip interface in Java, use the method:  </div>
+<pre class="programlisting">
+void setLinkClipInterface(IlvLinkClipInterface interface) 
+</pre>
+
+<div class="para">The connector style, the link connection box interface,
+and the link clip interface work together in the following way: by
+respecting the connector style, the proposed connection points are
+calculated on the rectangle obtained from the link connection box
+interface (or on the bounding box of the node, if no link connection
+box interface was specified). Then, the proposed connection point
+is passed to the link clip interface and the returned connection points
+are used to connect the link to the node. </div>
+<div class="para">The following figure shows an example of the combined
+effect.</div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1129913"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-68online72_default.gif" alt="Shows&#xA;the connection points to a complex shape with link clipping alone&#xA;and then with link clipping and a connection box to concentrate the&#xA;points in a smaller area" class="imagedata"/></div><div class="caption">Combined effect of link clipping interface and link
+connection box</div></div>
+<div class="para">If the links are clipped at the red node in previous
+figure (left), they appear unsymmetrical with respect to the node
+shape, because the relevant part of the node (here: the triangle)
+is not in the center of the bounding box of the node, but the proposed
+connection points are calculated with respect to the bounding box.
+This can be corrected by using a link connection box interface to
+explicitly specify a smaller connection box for the relevant part
+of the node (previous figure, right) such that the proposed connection
+points are placed symmetrically around the apex of the triangle of
+the node. </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1042438">
+<h2 class="heading">For experts: thick links (HL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">If evenly spaced pins are used as connector style, the
+links can be evenly spaced with respect to the link center or with
+respect to the link border. The difference is only visible when links
+that connect to the same node have different widths. For instance,
+when the link width indicates the cost or capacity of a flow in the
+application, many different link width may occur.  </div>
+<div class="para"><a href="ps_usrgraphlayout_flex419.html#usrgraphlayout.uss_graphlay_layouts.1042461" class="bluelink">Using the link width</a> shows the
+effect of using different link widths. In the drawing on the left,
+the center of the links are evenly distributed at the left node. Each
+link has the same space available at the node side. Therefore, the
+thick links appear closer to each other than do the thinner links
+and the offsets between the link borders are different. In the drawing
+on the right, the thick links have more space available than do the
+thinner links. The offset between the link border (at the segments
+that connect to the left node) is constant because the link width
+is considered in the calculation of the connection points. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1042461"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-69online73_default.gif" alt="Shows&#xA;links with link width not used and then with link width used to space&#xA;the links" class="imagedata"/></div><div class="caption">Using the link width</div></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To enable the connector calculation to respect the link
+width: </div>
+</div>
+
+
+</div>
+<div class="para">The link width setting is disabled by default. The link
+width has no effect if the connector styles <code class="code">CENTERED_PINS</code> or <code class="code">CLIPPED_PINS</code> are used.  </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1042468">
+<h2 class="heading">Port sides parameter (HL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The Hierarchical Layout algorithm produces a layout where
+the majority of the link flows are in the same direction. If the flow
+direction is toward the bottom, usually the incoming links are connected
+to the top side of the node and the outgoing links are connected to
+the bottom side of the node. It is also possible to specify on which
+side a link connects to the node.</div>
+<div class="para">To simplify the explanations of port sides, these are
+referred to by the compass directions <span class="italics">north, south, east,</span> and <span class="italics">west</span>. The specified link flow direction
+is always toward south and the first level is toward north. If the
+flow direction is toward the bottom, north is at the top, south at
+the bottom, east on the right, and west on the left side of the drawing.
+If the flow direction is toward right, north is on the left, south
+on the right, east at the top, and west at the bottom.</div>
+<div class="para"><a href="ps_usrgraphlayout_flex419.html#usrgraphlayout.uss_graphlay_layouts.1042559" class="bluelink">Link connections to port sides</a> shows a drawing
+where the links connect to the larger middle node at the specified
+port sides. A compass icon shows the compass directions in these drawings. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1042559"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-70online74_default.gif" alt="Link&#xA;connections to port sides showing the compass values for the four&#xA;different flow directions" class="imagedata"/></div><div class="caption">Link connections to port sides</div></div>
+<div class="para">You can set at which side the link connects to its source
+node. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To set at which side the link connects to its source
+node: </div>
+</div>
+
+
+</div>
+<div class="para">In a similar way, you can set at which side the link
+connects to its destination node. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To set at which side the link connects to its destination
+node: </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for <code class="code">side</code> are: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.UNSPECIFIED</code> (the default) </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.NORTH</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.SOUTH</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.EAST</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvHierarchicalLayout.WEST</code>  </div></li></ul></div>
+
+
+<div class="para">The port sides east and west work particularly well with
+the orthogonal link style. Polyline links with these port sides sometimes
+have unnecessary bends. Furthermore, if port sides are specified,
+the connector style <code class="code">CLIPPED_PINS</code> should
+not be used. </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1042576">
+<h2 class="heading">Port index parameter (HL)</h2>
+
+
+<div class="sectionContent">
+
+
+<div class="para">Links that have the same port index connect at the same
+point of the node. The ports are evenly distributed at the node sides,
+in a similar way as with the connector style  <code class="code">EVENLY_SPACED_PINS</code>.The ports are ordered according to their indices. On the north and
+south side of a node, the port indices increase toward the east. On
+the east and west sides of a node, the port indices increase toward
+the south. By using port indices in this way, it is easier to rotate
+a graph by simply changing the flow direction without needing to update
+all the port specifications.  </div>
+<div class="para"><a href="ps_usrgraphlayout_flex419.html#usrgraphlayout.uss_graphlay_layouts.1042636" class="bluelink">Port index numbering conventions in relation to flow
+direction</a> show how
+the port indices depend on the flow direction. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1042636"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-71online75_default.gif" alt="Connections&#xA;showing port numbers for two flow directions" class="imagedata"/></div><div class="caption">Port index numbering conventions in relation to flow
+direction</div></div>
+<div class="para">Port numbers are normally used in combination with port
+sides. Therefore, you must specify how many ports are available on
+each side of a node.</div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To specify the number of ports: </div>
+</div>
+
+
+</div>
+<div class="para">After the number of ports per side is specified, you
+can choose which port each link connects to. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To choose the port side and the port index for a link: </div>
+</div>
+
+
+</div>
+<div class="para">Using the port side and port index specifications are
+additional constraints for the layout algorithm. The more constraints
+are specified, the more difficult it is to calculate a layout. Therefore,
+if too many links have a specified port index, this resulting layout
+may have more link crossings and be less balanced.  </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1167457">
+<h2 class="heading">Fork link shapes (HL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">If several links start at the same position and are orthogonally
+routed, it is sometimes preferred that the links share the first two
+link segments. The shape of a link bundle of this kind looks like
+a fork. To enable the fork shape mode for outgoing links, call: </div>
+<pre class="programlisting">
+layout.setFromFork(true);
+</pre>
+
+<div class="example">
+<div class="exampleContent">
+<div class="para">To enable the fork shape mode for incoming links: </div>
+</div>
+
+
+</div>
+<div class="para">These statements have an effect only if the links are
+routed orthogonally. The fork appears only at those links that start
+or end exactly at the same point. Specifying <code class="code">setFromFork(true)</code> by itself does not force the links to start at the same point. To
+force links to start or end at the same point, use the center connector
+style (see <a href="ps_usrgraphlayout_flex419.html#usrgraphlayout.uss_graphlay_layouts.1029468" class="bluelink">Connector style (HL)</a>) or specify
+the same port for the links (see <a href="ps_usrgraphlayout_flex419.html#usrgraphlayout.uss_graphlay_layouts.1042576" class="bluelink">Port index parameter (HL)</a>). </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1167544"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Hierarchical-fromtoforks76_default.gif" alt="From&#xA;and To fork shapes for fork links" class="imagedata"/></div><div class="caption">Fork link shapes</div></div>
+<div class="para">There are two spacing parameters for the fork shape: </div>
+
+<div class="para">Fork link shapes may sometimes look ambiguous, in particular
+when a link starts at the same point where another link ends, because
+in this case it is impossible to recognize whether the arrowhead belongs
+to one or the other link. </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1042436">
+<h2 class="heading">Link priority parameter (HL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm tries to place the nodes such that
+all links are short, point in the flow direction, and do not cross
+each other. However, this is not always possible. Often, links cannot
+have the same length. If the graph has cycles, some links must be reversed against the
+flow direction. If the graph is a nonplanar graph, some links have to cross each other. </div>
+<div class="para">The link priority parameter controls which links should
+be selected if long, reversed, or crossing links are necessary. Links
+with a low priority are more likely to be selected than links with
+a high priority. This does not mean that low-priority links are always
+longer, reversed, or crossed, because the graph may have a structure
+such that no long, reversed or crossing links are necessary. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To set the link priority: </div>
+</div>
+
+
+</div>
+<div class="para">The default value of the link priority is 1.0. Negative
+link priorities are not allowed.  </div>
+<div class="para">For an example of using the link priority, consider a
+cycle A-&gt;B-&gt;C-&gt;D-&gt;E-&gt;A. It is impossible to lay out this graph without
+reversing any link. Therefore, the layout algorithm selects one link
+to be reversed. To control which link is selected, you can give one
+link a lower priority than the others. This link will be reversed.
+In <a href="ps_usrgraphlayout_flex419.html#usrgraphlayout.uss_graphlay_layouts.1029540" class="bluelink">Working with link priorities</a>, the bottom
+layout shows the use of the link priority. The link C-&gt;D was given
+the priority 0.5, while all the other links have the priority 1.0.
+Therefore C-D is reversed. The top layout in <a href="ps_usrgraphlayout_flex419.html#usrgraphlayout.uss_graphlay_layouts.1029540" class="bluelink">Working with link priorities</a> shows what
+happens when all links have the same priority. Link E-&gt;A is reversed.
+ </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1029540"><div class="mediaobject"><img src="../../../GraphLayout/_media/hier-prioritylevels77_default.gif" alt="Working&#xA;with link priorities" class="imagedata"/></div><div class="caption">Working with link priorities</div></div>
+<div class="para">The use of link priorities is important in combination
+with ports. Links with “from” ports on the south side
+and “to” ports on the north side are preferably laid
+out opposite to the flow direction. Such a feedback link may cause
+parts of the drawing to tip over. <a href="ps_usrgraphlayout_flex419.html#usrgraphlayout.uss_graphlay_layouts.1086382" class="bluelink">Using link priorities and ports</a> shows an
+example. The red link is a feedback link with port specifications.
+To obtain the correct result as shown in the right side of the following
+figure, you would set the priority of the feedback link to a very
+low value. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1086382"><div class="mediaobject"><img src="../../../GraphLayout/_media/hier-prioritylevels278_default.gif" alt="An example&#xA;of the effect of giving one link a lower priority" class="imagedata"/></div><div class="caption">Using link priorities and ports</div></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1042762">
+<h2 class="heading">Spacing parameters (HL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The spacing of the layout is controlled by three kinds
+of spacing parameters: the minimum offset between nodes, the minimum
+offset between parallel segments of links and the minimum offset between
+a node border and a bend point of a link or a link segment that is
+parallel to this border. The offset between parallel segments of links
+is at the same time the offset between bend points of links. All three
+kinds of parameter occur in both directions: horizontally and vertically.</div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1042802"><div class="mediaobject"><img src="../../../GraphLayout/_media/hier-horizonoffset79_default.gif" alt="The horizontal&#xA;and vertical spacing parameters used by the hierarchical layout" class="imagedata"/></div><div class="caption">Spacing parameters</div></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To set the spacing parameters: </div>
+</div>
+
+
+</div>
+<div class="para">For a layout with horizontal levels (the flow direction
+is to the top or to the bottom), the horizontal node offset is the
+minimum distance between nodes of the same level. The vertical node
+offset is the minimum distance between nodes of different levels,
+that is, the minimum distance between the levels. For non-orthogonal
+link styles, the horizontal link offset is basically the minimum distance
+between bend points of links. The horizontal node-link offset is the
+minimum distance between the node border and the bend point of a link.
+For horizontal levels, the vertical link offset and the vertical node-link
+offset play a role only if the link shapes are orthogonal. </div>
+<div class="para">Similarly, for a layout with vertical levels (the flow
+direction is to the left or to the right), the vertical node offset
+controls node distances within the levels. The horizontal node offset
+is the minimum  distance between the levels. In this case, the vertical
+link offset and the vertical node-link offset always play a role,
+while the horizontal link offset and the horizontal node-link offset
+affect the layout only with orthogonal links. </div>
+<div class="para">For orthogonal links, the horizontal link offset is the
+minimum distance between parallel, vertical link segments. The vertical
+link offset is the minimum distance between parallel, horizontal link
+segments. However, the layout algorithm cannot always satisfy these
+offset requirements. If a node is very small but has many incident
+links, it may be impossible to place the links orthogonally with the
+specified minimum link distance on the node border. In this case,
+the algorithm places some link segments closer than the specified
+link offset. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1042890"><div class="mediaobject"><img src="../../../GraphLayout/_media/hier-verticaloffset80_default.gif" alt="Spacing&#xA;parameters for orthogonal links in a hierarchical layout" class="imagedata"/></div><div class="caption">Spacing parameters for orthogonal links </div></div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex414.html" class="bluelink">Hierarchical Layout (HL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex418.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex420.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

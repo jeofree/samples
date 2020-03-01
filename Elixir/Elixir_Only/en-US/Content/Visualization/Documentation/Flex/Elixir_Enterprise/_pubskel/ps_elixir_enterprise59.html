@@ -1,0 +1,50 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Items</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise39.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise56.html" class="breadcrumb">Styling a calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise59.html" class="breadcrumb">Items</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise58.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise60.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Items</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e9107">
+
+<div class="para">The default item renderers use the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#getItemColor()" class="bluelink">getItemColor</a></span> method of the Calendar control to set their background
+color.</div>
+<div class="para">This method uses a default <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#itemColorFunction" class="bluelink">itemColorFunction</a></span> that associates a color from the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#style:itemColors" class="bluelink">itemColors</a></span> style property with each calendar. You can set the <span class="apiname">itemColors</span> style property to specify different colors
+for each calendar. You can also provide a custom function for the <span class="apiname">itemColorFunction</span> property to specify a color for
+each item of the data provider.</div>
+<div class="para">The following example uses a custom color function to
+display the events that end before 26th May 2008 in grey and the other
+events in green.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import ilog.calendar.CalendarItem;
+      
+      private function itemColorFunction(calItem:CalendarItem):Object {        
+        var color:uint;
+        
+        if (calItem.endTime &lt; new Date(2008, 3, 16)) {
+          color = 0xCCCCCC;
+        } else {
+          color = 0x00FF00;
+        }
+        return color;
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt; 
+  &lt;ilog:Calendar id="cal" width="100%" height="100%" 
+                  startDate="{new Date(2008, 3, 13)}" 
+                  endDate="{new Date(2008, 3, 19)}"
+                  itemColorFunction="{itemColorFunction}"&gt;
+    &lt;ilog:dataProvider&gt;
+      &lt;mx:XMLList&gt;
+        &lt;event startTime="2008/4/14 10:00" endTime="2008/4/14 16:00" summary="Event1"/&gt;
+        &lt;event startTime="2008/4/16 10:00" endTime="2008/4/16 16:00" summary="Event2"/&gt; 
+        &lt;event startTime="2008/4/15 10:00" endTime="2008/4/18 16:00" summary="Event3"/&gt;                  
+      &lt;/mx:XMLList&gt;
+    &lt;/ilog:dataProvider&gt;  
+  &lt;/ilog:Calendar&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise56.html" class="bluelink">Styling a calendar</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise58.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise60.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

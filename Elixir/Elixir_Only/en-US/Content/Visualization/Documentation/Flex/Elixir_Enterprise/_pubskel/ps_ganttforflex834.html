@@ -1,0 +1,56 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>The CircularGaugeAsset class</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex809.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex810.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex821.html" class="breadcrumb">Building custom gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex823.html" class="breadcrumb">Custom circular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex826.html" class="breadcrumb">The visual elements of circular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex834.html" class="breadcrumb">The CircularGaugeAsset class</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex833.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex835.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">The CircularGaugeAsset class</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e143984">
+
+
+
+
+
+<div class="para">The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularGaugeAsset.html" class="bluelink">CircularGaugeAsset</a></span> class allows you to add external
+assets to a circular gauge. It can be used to display static assets,
+like backgrounds, or assets that will be rotated, like needles.</div>
+<div class="para">The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularGaugeAsset.html#mode" class="bluelink">mode</a></span> property defines whether the
+asset is a static decoration (<code class="code">decoration</code>) that must not change with the value of the <span class="apiname">CircularGaugeAsset</span> or whether the asset must rotate according to the value of the renderer
+(<code class="code">rotation</code>).</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularGaugeAsset.html" class="bluelink">CircularGaugeAsset</a></span> defines:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularGaugeAsset.html#assetOriginX" class="bluelink">assetOriginX</a></span> and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularGaugeAsset.html#assetOriginY" class="bluelink">assetOriginY</a></span> properties that represent the
+pivot of the asset. These properties can be expressed in a percentage
+of the asset's original size or in pixels.</div>
+</li><li class="itemizedlistItem"><div class="para">The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularGaugeAsset.html#offsetAngle" class="bluelink">offsetAngle</a></span> property that allows you to
+apply an additional offset to the asset rotation. Indeed, for the
+rotation of the asset to be correct with respect to the renderer value
+in <code class="code">rotation</code> mode, the asset must be drawn
+horizontally from left to right.</div><div class="para">For example:
+a designer has provided a needle asset drawn vertically from top to
+bottom. To use this asset as a needle which points to the renderer
+value in <code class="code">rotation</code> mode, you need to adjust
+its angle by setting the <span class="apiname">offsetAngle</span> to 90.</div>
+</li></ul></div>
+<div class="para">The following code example shows how to use an asset
+oriented from left to right as a needle.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" 
+  xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;ilog:CircularGauge width="100%" height="100%"&gt;
+    &lt;ilog:scales&gt;
+      &lt;ilog:CircularLinearScale/&gt;
+    &lt;/ilog:scales&gt;
+    &lt;ilog:elements&gt;
+    &lt;ilog:CircularScaleRenderer/&gt;
+      &lt;ilog:CircularGaugeAsset 
+        assetOriginX="0%" 
+        mode="rotation"  
+        asset="@Embed(source='needle.swf')" 
+        radius="50%" radiusRelativeTo="width" value="20" /&gt;
+    &lt;/ilog:elements&gt;
+  &lt;/ilog:CircularGauge&gt;
+&lt;/mx:Application&gt;
+
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex826.html" class="bluelink">The visual elements of circular gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex833.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex835.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

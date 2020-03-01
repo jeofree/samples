@@ -1,0 +1,49 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Sheet events</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex634.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex656.html" class="breadcrumb">Managing calendar events</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex660.html" class="breadcrumb">Sheet events</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex659.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex661.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Sheet events</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e113356">
+
+<div class="para">The calendar control fires an event when the user clicks
+in the column or row header or elsewhere in the sheet.</div>
+<div class="para">You can create an event handler for each of the following
+event types.</div>
+<table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="table1235640404585"><colgroup align="left" span="1">
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr bgcolor="#BFD6E7">
+<th valign="top" rowspan="1" colspan="1">Calendar sheet event</th>
+<th valign="top" rowspan="1" colspan="1">Description</th>
+</tr>
+</thead><tbody valign="top">
+<tr>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html#event:sheetClick" class="bluelink">sheetClick</a></span></td>
+<td rowspan="1" colspan="1">Indicates that the user clicked in the calendar. </td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html#event:sheetDoubleClick" class="bluelink">sheetDoubleClick</a></span></td>
+<td rowspan="1" colspan="1">Indicates that the user double-clicked in the calendar.</td>
+</tr>
+</tbody></table>
+<div class="para">These events are of type <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/CalendarEvent.html" class="bluelink">CalendarEvent</a></span>. The area clicked is available
+in the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/CalendarEvent.html#calendarArea" class="bluelink">calendarArea</a></span> property. The property <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/CalendarEvent.html#startDate" class="bluelink">startDate</a></span> contains the time information related to the clicked
+area.</div>
+<div class="para">The calendar areas are described in the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/CalendarArea.html" class="bluelink">CalendarArea</a></span> class.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">In month mode:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">If the area is the row header (<span class="apiname">CalendarArea.ROW_HEADER</span>), the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/CalendarEvent.html#startDate" class="bluelink">startDate</a></span> property contains the first day of the clicked week.</div>
+</li><li class="itemizedlistItem"><div class="para">If the area is the column header  (<span class="apiname">CalendarArea.COLUMN_HEADER</span>), the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/CalendarEvent.html#startDate" class="bluelink">startDate</a></span> property contains the first date for the specified
+day of the week in the displayed time range.</div>
+</li></ul></div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">In the other modes:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">If the area is the row header (<span class="apiname">CalendarArea.ROW_HEADER</span>), only the hour part of
+the <span class="apiname">Date</span> object is meaningful.</div>
+</li><li class="itemizedlistItem"><div class="para">If the area is the column header  (<span class="apiname">CalendarArea.COLUMN_HEADER</span>), the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/CalendarEvent.html#startDate" class="bluelink">startDate</a></span> property contains the clicked date.</div>
+</li></ul></div>
+<div class="para">The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html#columnHeaderEnabled" class="bluelink">columnHeaderEnabled</a></span> or <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html#rowHeaderEnabled" class="bluelink">rowHeaderEnabled</a></span> property must be set to <code class="code">true</code> for the Calendar control to dispatch calendar
+events when the user clicks in the corresponding header.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex656.html" class="bluelink">Managing calendar events</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex659.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex661.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,100 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Series styling</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise19.html" class="breadcrumb">3D Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise31.html" class="breadcrumb">Styling 3D charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise33.html" class="breadcrumb">Series styling</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise32.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise34.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Series styling</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">In addition to the properties of the chart itself, some
+common properties are available for 3D chart series.</div>
+<div class="para">All Cartesian series support the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts3d/series/AreaSeries3D.html#style:fill" class="bluelink">fill</a></span> and  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts3d/series/AreaSeries3D.html#style:stroke" class="bluelink">stroke</a></span> style properties. You can use these properties to
+decide how you want to render a given series. For example, you can
+change the series definition of the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts3d/ColumnChart3D.html" class="bluelink">ColumnChart3D</a></span> example
+(see <a href="ps_elixir_enterprise24.html" class="bluelink">3D column chart</a>) to the following:</div>
+<pre class="programlisting">&lt;ilog:ColumnSeries3D yField="London" /&gt;
+&lt;ilog:ColumnSeries3D yField="Sydney" /&gt;
+&lt;ilog:ColumnSeries3D yField="Beijing"&gt;
+  &lt;ilog:fill&gt;
+    &lt;mx:SolidColor color="blue"/&gt;
+   &lt;/ilog:fill&gt;
+   &lt;ilog:stroke&gt;
+    &lt;mx:Stroke color="black" weight="2"/&gt;
+   &lt;/ilog:stroke&gt;  
+&lt;/ilog:ColumnSeries3D&gt;
+</pre>
+<div class="para">This causes the last series (Beijing) to be rendered
+in blue with a thick black border as shown in the following figure.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/3dseriesstyle_default.png" alt="Example&#xA;of fill and stroke styling properties in a column chart" class="imagedata"/></div>
+<div class="para">If you need each column or bar in a series, or each slice
+of a pie to be of a given color, you can either use the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts3d/series/ColumnSeries3D.html#style:fill" class="bluelink">fill</a></span> style property or give a  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts3d/series/ColumnSeries3D.html#fillFunction" class="bluelink">fillFunction</a></span> to the series that will be in charge of color computation.</div>
+<div class="para">Another set of properties common to all the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts3d/charts3dClasses/Series3D.html" class="bluelink">Series3D</a></span>s are the various axis properties. For example, all  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts3d/charts3dClasses/CartesianSeries3D.html" class="bluelink">CartesianSeries3D</a></span> series have a  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts3d/charts3dClasses/CartesianSeries3D.html#verticalAxis" class="bluelink">verticalAxis</a></span> and a  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts3d/charts3dClasses/CartesianSeries3D.html#horizontalAxis" class="bluelink">horizontalAxis</a></span>  property. When these properties are specified,
+the series uses these axes as references instead of the chart axes.
+This allows you, for example, to compare data with different data
+ranges on a single chart.</div>
+<div class="para">The following example shows how to use this feature.</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;!-- Multiple Axis example to demonstrate the CartesianChart3D class. --&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+
+    &lt;mx:Script&gt;
+        &lt;![CDATA[
+
+        import mx.collections.ArrayCollection;
+
+        [Bindable]
+        private var expensesAC:ArrayCollection = new ArrayCollection( [
+            { Month: "Jan", Profit: 200, Revenues: 1500 },
+            { Month: "Feb", Profit: 100, Revenues: 2000 },
+            { Month: "Mar", Profit: 150, Revenues: 1750 },
+            { Month: "Apr", Profit: 180, Revenues: 1800 },
+            { Month: "May", Profit: 240, Revenues: 1775} ]);
+        ]]&gt;
+    &lt;/mx:Script&gt;
+
+    &lt;mx:Panel title="Multiple Axis Example" height="100%" width="100%"&gt;
+
+        &lt;ilog:ColumnChart3D id="columnchart" height="100%" width="100%"
+            paddingLeft="5" paddingRight="5" 
+            showDataTips="true" dataProvider="{expensesAC}"&gt;
+            &lt;ilog:horizontalAxis&gt;
+                &lt;mx:CategoryAxis categoryField="Month"/&gt;
+            &lt;/ilog:horizontalAxis&gt;
+              
+            &lt;!-- Use two different axes to make sure the vertical values
+                 of the two different series are spread on the whole
+                 axis length. --&gt;              
+            &lt;ilog:series&gt;
+                &lt;ilog:ColumnSeries3D yField="Profit" displayName="Profit"&gt;
+                  &lt;ilog:verticalAxis&gt;
+                    &lt;mx:LinearAxis/&gt;
+                  &lt;/ilog:verticalAxis&gt;
+                &lt;/ilog:ColumnSeries3D&gt;
+                &lt;ilog:ColumnSeries3D yField="Revenues" displayName="Expenses"&gt;
+                  &lt;ilog:verticalAxis&gt;
+                    &lt;mx:LinearAxis/&gt;
+                  &lt;/ilog:verticalAxis&gt;
+                &lt;/ilog:ColumnSeries3D&gt;
+            &lt;/ilog:series&gt;
+        &lt;/ilog:ColumnChart3D&gt;
+
+    &lt;/mx:Panel&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">The following figure shows the chart rendered without
+the axes specified on the series and then with the axes specified.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/3dmultiple_default.png" alt="3D column&#xA;chart without and with axes" class="imagedata"/></div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise31.html" class="bluelink">Styling 3D charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise32.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise34.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

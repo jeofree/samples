@@ -1,0 +1,49 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>How to make the diagram reflect the changes in the data source</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f312.html" class="breadcrumb">Creating a graph display from data providers using the Diagram
+class</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f315.html" class="breadcrumb">How to make the diagram reflect the changes in the data source</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f314.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f316.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">How to make the diagram reflect the changes in the data source</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">Both nodeDataProvider and linkDataProvider are of types
+that extends flash.events.IEventDispatcher. Hence the Diagram can
+install listeners on those properties to monitor events  widely used
+in Flex, like mx.events.CollectionEvent or mx.events.PropertyChangeEvent.
+If data nodes or link nodes are added to the data provider properties,
+or removed, their renderer instances will be removed from the Diagram
+component accordingly. Installing a filter on an ICollectionView will
+somehow produce the same result : objects that are filtered out from
+the data provider are not reachable when parsing the collection, and
+will consequently not be rendered in the Diagram. Other changes in
+data providers can be monitored as well : property changes. When a
+data node for instance has a property called ‘label’
+that appears in its renderer, you usually want a value change to be
+reflected in the  Diagram. But for that to happen, the data node Object
+has to dispatch events when such changes occur. The common way to
+achieve that is to declare the properties of the data node bindable
+in Flex sense. For example, here is a class representing a node in
+the data model exposing a property called name which is declared bindable.
+Thus, when this property changes, a mx.events.PropertyChangeEvent
+will be propagated to the collection it belongs to, and this event
+will be treated by the Diagram component to reflect the changes graphically.</div>
+<pre class="programlisting">// class representing a node in the data model
+public dynamic class DataNode
+{
+  private var _name:String;
+    
+  [Bindable]
+  public function get name():String
+  {
+    return _name;
+  }
+    
+    // some other properties...
+}
+</pre>
+<div class="para">Note : you can also declare the whole class bindable
+(by putting the [bindable] tag befor the class declaration) for making
+all its properties bindable.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f312.html" class="bluelink">Creating a graph display from data providers using the Diagram
+class</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f314.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f316.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

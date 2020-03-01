@@ -1,0 +1,69 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Animating changes</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Principle"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex739.html" class="breadcrumb">Organization Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex777.html" class="breadcrumb">Animating changes</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex776.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex778.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Animating changes</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e131066">
+
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The <span class="apiname">OrgChart</span> component
+manages two different kinds of animation that can be run at the same
+time:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">View animation</div>
+</li><li class="itemizedlistItem"><div class="para">Item animation</div>
+</li></ul></div>
+<div class="section">
+<h2 class="heading">View animation</h2>
+<div class="sectionContent" id="d0e131107">
+
+
+
+
+
+<div class="para">View animation consists of changing the visible area
+of the chart smoothly, resulting in panning and/or zooming the  view.
+It is triggered by the view manipulation API, see <a href="ps_ganttforflex769.html" class="bluelink">View manipulation API</a>.</div>
+<div class="para">The duration of the view animation is defined by the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#style:animationDuration" class="bluelink">animationDuration</a></span> style property and the motion is defined by the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#style:easingFunction" class="bluelink">easingFunction</a></span> style property.</div>
+<div class="para">When the visible bounds are changed during view animation,
+a <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:visibleBoundsChange" class="bluelink">visibleBoundsChange</a></span> event is  dispatched. The current visible bounds
+are accessible through the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#visibleBounds" class="bluelink">visibleBounds</a></span> property.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Item animation</h2>
+<div class="sectionContent" id="d0e131233">
+
+
+
+<div class="para">Item animation consists of moving each item renderer
+smoothly when the <span class="apiname">OrgChart</span> layout
+has changed.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">Item animation can be triggered by any of the following:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">A node has been expanded or collapsed
+(see <a href="ps_ganttforflex776.html" class="bluelink">Opening and closing nodes</a>). </div>
+</li><li class="itemizedlistItem"><div class="para">A node has been added or removed as
+the child of another node.</div></li><li class="itemizedlistItem"><div class="para">A node layout has changed.</div>
+</li><li class="itemizedlistItem"><div class="para">A node assistant state has changed.</div>
+</li></ul></div>
+<div class="para">The duration of the item animation is defined by the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#style:itemAnimationDuration" class="bluelink">itemAnimationDuration</a></span> style property and the motion is defined by the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#style:itemEasingFunction" class="bluelink">itemEasingFunction</a></span> style property.</div>
+<div class="para">When item animation is in progress, an <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:itemsAnimated" class="bluelink">itemsAnimated</a></span> event is dispatched.</div>
+<div class="para">The current bounds of the item renderer associated with
+a data item are accessible using the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#getItemBounds(Object,Boolean)" class="bluelink">getItemBounds</a></span> method.</div>
+<div class="para">If the <span class="apiname">animation</span> Boolean
+parameter of this method is set to <code class="code">true</code>, the current bounds are returned; otherwise the bounds at the end
+of animation are returned.</div>
+<div class="para">The bounds of the subtree of an item are returned by
+the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#getItemSubtreeBounds(Object,Boolean)" class="bluelink">getItemSubtreeBounds</a></span> method.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Determining the end of animation</h2>
+<div class="sectionContent" id="d0e131385">
+
+<div class="para">When animation is in progress, animation events of type <span class="apiname">OrgChartEvent</span> are dispatched. The <span class="apiname">adjusting</span> property of the event is set to <code class="code">true</code> when animation is in progress and then to <code class="code">false</code> on the final step of animation.</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex739.html" class="bluelink">Organization Charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex776.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex778.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

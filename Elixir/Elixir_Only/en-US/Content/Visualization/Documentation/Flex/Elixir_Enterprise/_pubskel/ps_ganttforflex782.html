@@ -1,0 +1,33 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Creating a radar chart control</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex779.html" class="breadcrumb">Radar Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex782.html" class="breadcrumb">Creating a radar chart control</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex781.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex783.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Creating a radar chart control</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">In IBM® <span class="classificationVariable">ILOG Elixir</span> a radar chart control follows the
+architecture and paradigms of the Adobe® Flash® Builder™ 4 controls as closely as possible. You
+can use a radar chart like any other Adobe® Flash® Builder™ 4 type, for example, <span class="apiname">LineChart</span>, <span class="apiname">ColumnChart</span> or <span class="apiname">PlotChart</span>.</div>
+<div class="para">An example of a radar chart control is given below.</div>
+<pre class="programlisting">&lt;ilog:RadarChart dataProvider="{temperature}"&gt;
+   &lt;ilog:angularAxis&gt;
+     &lt;ilog:AngularAxis categoryField="Month" displayName="Month"/&gt;
+   &lt;/ilog:angularAxis&gt;
+   &lt;ilog:radialAxis&gt;
+     &lt;mx:LinearAxis  displayName="Temperature (˚F)"/&gt;
+   &lt;/ilog:radialAxis&gt;
+   &lt;ilog:series&gt;
+     &lt;series:RadarLineSeries dataField="London" displayName="London"/&gt;
+     &lt;series:RadarLineSeries dataField="Sydney" displayName="Sydney"/&gt;
+   &lt;/ilog:series&gt;
+&lt;/ilog:RadarChart&gt;
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex779.html" class="bluelink">Radar Charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex781.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex783.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

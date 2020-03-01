@@ -1,0 +1,295 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Specific parameters of the GL</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex454.html" class="breadcrumb">Grid layout  (GL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex459.html" class="breadcrumb">Specific parameters of the GL</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex458.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex460.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Specific parameters of the GL</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1267065">
+<h2 class="heading">Order parameter (GL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The order parameter specifies how to arrange the nodes. </div>
+<div class="example">
+<div class="title">Example of specifying node placement iterations and
+allowed time (GL algorithm)</div>
+<div class="exampleContent">
+<div class="para">To specify the ordering option for the nodes: </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for <code class="code">comparator</code> are:  </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">AUTOMATIC_ORDERING </div>
+<div class="para">The algorithm is free to choose the order in such a way
+that it tries to reduce the total area occupied by the layout. </div>
+</li><li class="itemizedlistItem"><div class="para">NO_ORDERING </div><div class="para">No ordering is performed. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">DESCENDING_HEIGHT</code>   </div><div class="para">The nodes are ordered in the descending
+order of their height. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">ASCENDING_HEIGHT</code>   </div><div class="para">The nodes are ordered in the ascending
+order of their height.  </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">DESCENDING_WIDTH</code> </div><div class="para">The nodes are ordered in the descending
+order of their width.  </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">ASCENDING_WIDTH</code> </div><div class="para">The nodes are ordered in the ascending
+order of their width. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">DESCENDING_AREA</code> </div><div class="para">The nodes are ordered in the descending
+order of their area. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">ASCENDING_AREA</code> </div><div class="para">The nodes are ordered in the ascending
+order of their area. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">ASCENDING_INDEX</code> </div><div class="para">The nodes are ordered in the ascending
+order of their index (see  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/grid/IlvGridLayout.html#setIndex(java.lang.Object, int)" class="bluelink">setIndex</a></span>). </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">DESCENDING_INDEX</code> </div><div class="para">The nodes are ordered in the descending
+order of their index (see  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/grid/IlvGridLayout.html#setIndex(java.lang.Object, int)" class="bluelink">setIndex</a></span>). </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">null</code> </div>
+<div class="para">The nodes are ordered in an arbitrary way. </div>
+</li><li class="itemizedlistItem"><div class="para">Any other implementation of the <code class="code">java.util.Comparator</code> interface. </div>
+<div class="para">The nodes are ordered according to this custom comparator.
+ </div>
+</li></ul></div>
+<div class="para">The default is AUTOMATIC_ORDERING.  </div>
+<div class="para">Note that in incremental mode (see  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/grid/IlvGridLayout.html#setIncrementalMode(boolean)" class="bluelink">setIncrementalMode</a></span>) and with fixed nodes (see  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html#setFixed(java.lang.Object, boolean)" class="bluelink">setFixed</a></span>), the order of the nodes is not completely preserved.
+  </div>
+<div class="para">Note also that, if the layout mode is  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/grid/IlvGridLayout.html#TILE_TO_GRID_FIXED_WIDTH" class="bluelink">TILE_TO_GRID_FIXED_WIDTH</a></span> or  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/grid/IlvGridLayout.html#TILE_TO_GRID_FIXED_HEIGHT" class="bluelink">TILE_TO_GRID_FIXED_HEIGHT</a></span>, the order options are applied only for nodes whose
+size (including margins) is smaller than the grid cell size (see  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/grid/IlvGridLayout.html#setHorizontalGridOffset(float)" class="bluelink">setHorizontalGridOffset</a></span> and  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/grid/IlvGridLayout.html#setVerticalGridOffset(float)" class="bluelink">setVerticalGridOffset</a></span>).  </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1044759">
+<h2 class="heading">Layout modes (GL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The Grid Layout algorithm has four layout modes. </div>
+<div class="example">
+<div class="title">Example of selecting a layout mode (GL algorithm)</div>
+<div class="exampleContent">
+<div class="para">To To select a layout mode:</div>
+</div>
+
+
+</div>
+<div class="para">The valid values for <code class="code">mode</code> are: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvGridLayout.TILE_TO_GRID_FIXED_WIDTH</code> (the default). </div><div class="para">The nodes are placed in
+the cells of a grid (matrix) that has a fixed maximum number of columns.
+This number is equal to the width of the layout region parameter divided
+by the horizontal grid offset. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvGridLayout.TILE_TO_GRID_FIXED_HEIGHT</code>  </div><div class="para">The nodes are placed in the cells of
+a grid (matrix) that has a fixed maximum number of rows. This number
+is equal to the height of the layout region parameter divided by the
+vertical grid offset. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvGridLayout.TILE_TO_ROWS</code>  </div><div class="para">The nodes are placed in rows. The maximum
+width of the rows is equal to the width of the layout region parameter.
+The height of the row is the maximum height of the nodes contained
+in the row (plus margins). </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvGridLayout.TILE_TO_COLUMNS</code>  </div><div class="para">The nodes are placed in columns. The
+maximum height of the columns is equal to the height of the layout
+region parameter. The width of the column is the maximum width of
+the nodes contained in the column (plus margins). </div>
+</li></ul></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1044772">
+<h2 class="heading">Alignment parameters (GL)</h2>
+
+
+<div class="sectionContent">
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1044775">
+<h3 class="heading">Global alignment parameters</h3>
+
+
+<div class="sectionContent">
+<div class="para">The alignment options control how a node is placed over
+its grid cell or over its row or column (depending on the layout mode).
+The alignment can be set globally, in which case all nodes are aligned
+in the same way, or locally on each node, with the result that different
+alignments occur in the same drawing. </div>
+<div class="example">
+<div class="title">Example of setting global alignment (GL algorithm)</div>
+<div class="exampleContent">
+<div class="para">To set the global alignment: </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for the alignment parameter are: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvGridLayout.CENTER</code> (the default) </div><div class="para">The node is horizontally
+and/or vertically centered over its grid cell or row or column. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvGridLayout.TOP</code>  </div><div class="para">The node is vertically aligned on the
+top of its cell(s) or row. Not used if the layout mode is <code class="code">TILE_TO_COLUMNS</code>. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvGridLayout.BOTTOM</code>  </div><div class="para">The node is vertically aligned on the
+bottom of its grid cell(s) or row. Not used if the layout mode is <code class="code">TILE_TO_COLUMNS</code>. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvGridLayout.LEFT</code>  </div><div class="para">The node is horizontally aligned on
+the left of its grid cell(s) or column. Not used if the layout mode
+is <code class="code">TILE_TO_ROWS</code>. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvGridLayout.RIGHT</code>  </div><div class="para">The node is horizontally aligned on
+the right of its grid cell(s) or column. Not used if the layout mode
+is <code class="code">TILE_TO_ROWS</code>. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvGridLayout.MIXED</code>  </div><div class="para">Each node can have a different alignment.
+The alignment of each individual node can be set with the result that
+different alignments can occur in the same graph. </div>
+</li></ul></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1044799">
+<h3 class="heading">Alignment of individual nodes</h3>
+
+
+
+
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">All nodes have the same alignment unless the global alignment
+is set to <code class="code">IlvGridLayout.MIXED</code>. Only when
+the global alignment is set to mixed can each node have an individual
+alignment style. </div>
+<div class="example">
+<div class="title">Example of setting alignment of individual nodes (GL
+algorithm)</div>
+<div class="exampleContent">
+<div class="para">To set and retrieve the alignment of an individual node: </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for the alignment parameter are: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvGridLayout.CENTER</code> (the default) </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvGridLayout.TOP</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvGridLayout.BOTTOM</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvGridLayout.LEFT</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvGridLayout.RIGHT</code>  </div></li></ul></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1165917">
+<h2 class="heading">Maximum number of nodes per row or column (GL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">By default, in <code class="code">IlvGridLayout.TILE_TO_ROWS</code> or <code class="code">IlvGridLayout.TILE_TO_COLUMNS</code> mode,
+the layout places as many nodes on each row or column as possible
+given the size of the nodes and the dimensional parameters (layout
+region and margins). If needed, the layout can additionally respect
+a specified maximum number of nodes per row or column. </div>
+<div class="example">
+<div class="title">Example of specifying the maximum number of nodes per
+row or column (GL algorithm)</div>
+<div class="exampleContent">
+<div class="para">To set the maximum number of nodes per row or column:
+ </div>
+</div>
+
+
+</div>
+<div class="para">The default value is <code class="code">Integer.MAX_VALUE</code>, that is, the number of nodes placed in each row or column is bounded
+only by the size of the nodes and the dimensional parameters. The
+specified value must be at least <code class="code">1</code>. The
+parameter has no effect if the layout mode is <code class="code">IlvGridLayout.TILE_TO_GRID_FIXED_WIDTH</code> or <code class="code">IlvGridLayout.TILE_TO_GRID_FIXED_HEIGHT</code>. </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1044816">
+<h2 class="heading">Incremental mode (GL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The Grid Layout algorithm normally places all the nodes
+from scratch. If the graph incrementally changes because you add,
+remove, or resize nodes, the subsequent layout may differ considerably
+from the previous layout. To avoid this effect and to help the user
+to retain a mental map of the graph, the algorithm has an incremental
+mode. In incremental mode, the layout tries to place the nodes at
+the same location or in the same order as in the previous layout whenever
+it is possible. </div>
+<div class="example">
+<div class="title">Example of enabling the incremental mode (GL algorithm)</div>
+<div class="exampleContent">
+<div class="para">To enable the incremental mode: </div>
+</div>
+
+
+</div>
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">To preserve the stability, the incremental mode may keep
+some regions free. Therefore, the total area of the layout may be
+larger than in nonincremental mode, and, in general, the layout may
+not look as nice as in nonincremental mode.  </div>
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1044823">
+<h2 class="heading">Dimensional parameters (GL)</h2>
+
+
+<div class="sectionContent">
+<div class="para"><a href="ps_usrgraphlayout_flex459.html#usrgraphlayout.uss_graphlay_layouts.1044831" class="bluelink">Dimensional parameters for the grid mode of the Grid
+Layout algorithm</a> and <a href="ps_usrgraphlayout_flex459.html#usrgraphlayout.uss_graphlay_layouts.1044836" class="bluelink">Dimensional parameters for the row-and-column mode
+of the Grid Layout algorithm</a> illustrate
+the dimensional parameters used in the Grid Layout algorithm. These
+parameters are explained in the sections that follow. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1044831"><div class="mediaobject"><img src="../../../GraphLayout/_media/grid-offset-dimensions137_default.gif" alt="Dimensional&#xA;parameters used by the grid mode of the Grid Layout algorithm" class="imagedata"/></div><div class="caption">Dimensional parameters for the grid mode of the Grid
+Layout algorithm</div></div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1044836"><div class="mediaobject"><img src="../../../GraphLayout/_media/grid-rowcolumn-dimensions138_default.gif" alt="Dimensional&#xA;parameters for the row-and-column mode of the Grid Layout algorithm" class="imagedata"/></div><div class="caption">Dimensional parameters for the row-and-column mode
+of the Grid Layout algorithm</div></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1044840">
+<h2 class="heading">Grid offset (GL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The grid offset parameters control the spacing between
+grid lines. It is taken into account only by the grid mode (layout
+modes <code class="code">TILE_TO_GRID_FIXED_WIDTH</code> and <code class="code">TILE_TO_GRID_FIXED_HEIGHT</code>). </div>
+<div class="example">
+<div class="title">Example of setting grid offset (GL algorithm)</div>
+<div class="exampleContent">
+<div class="para">To set the horizontal and vertical grid offset:  </div>
+</div>
+
+
+</div>
+<div class="para">The grid offset is the critical parameter for the grid
+mode. If the grid offset is larger than the size of the nodes (plus
+margins), an empty space is left around the node. If the grid offset
+is smaller than the size of the nodes (plus margins), the node will
+need to be placed on more than one grid cell. The best choice for
+the grid offsets depends on the application. It can be computed according
+to either the maximum size of the nodes (plus margins) or the medium
+size, and so on. Of course, if all the nodes have a similar size,
+the choice is straight-forward.  </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1044854">
+<h2 class="heading">Margins (GL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The margins control the space around each node that the
+layout algorithm keeps empty.  </div>
+<div class="example">
+<div class="title">Example of specifying margins (GL algorithm)</div>
+<div class="exampleContent">
+<div class="para">To set the margins:   </div>
+</div>
+
+
+</div>
+<div class="para">The meaning of the margin parameters is not the same
+for the grid modes as for the row/column modes.: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">In grid modes, they represent the minimum
+distance between the node border and the grid line (see <a href="ps_usrgraphlayout_flex459.html#usrgraphlayout.uss_graphlay_layouts.1044831" class="bluelink">Dimensional parameters for the grid mode of the Grid
+Layout algorithm</a>.)  </div>
+</li><li class="itemizedlistItem"><div class="para">In row/column modes, they are used to
+control the vertical distance between the rows or the horizontal distance
+between the columns and the horizontal or vertical minimum distance
+between the nodes in the same row or column (see <a href="ps_usrgraphlayout_flex459.html#usrgraphlayout.uss_graphlay_layouts.1044836" class="bluelink">Dimensional parameters for the row-and-column mode
+of the Grid Layout algorithm</a>). </div>
+</li></ul></div>
+<div class="para">The default value for all the margin parameters is <code class="code">5</code>.  </div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex454.html" class="bluelink">Grid layout  (GL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex458.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex460.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

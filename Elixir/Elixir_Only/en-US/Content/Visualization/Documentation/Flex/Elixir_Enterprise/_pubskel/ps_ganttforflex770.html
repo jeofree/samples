@@ -1,0 +1,259 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Adding managed data fields</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="HowTo"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex739.html" class="breadcrumb">Organization Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex770.html" class="breadcrumb">Adding managed data fields</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex769.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex771.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Adding managed data fields</h1></div></div><div class="content">
+
+
+
+
+
+
+<div class="proceduralTopicContent">
+<div class="summary">
+<div class="para">The organization chart control manages a list of fields
+displayed by the default item renderers.</div>
+<div class="para">To add fields and display them using the default item
+renderers, you need to subclass the main classes.</div>
+<div class="para">The following example adds a managed salary field.</div>
+</div>
+<div class="procedure">
+<div class="procedureContent"><div class="procedureIntro">
+<div class="para">To add a managed salary field:</div>
+</div><ol class="steps"><li class="step">
+<div class="stepContent" id="d0e129611">
+
+
+<div class="para">Subclass the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChartFields.html" class="bluelink">OrgChartFields</a></span> class that holds the field data mapping</div>
+<pre class="programlisting">package
+{
+  import ilog.orgchart.OrgChartFields;
+  import flash.events.Event;
+
+  /**
+   * This sample class shows how to add field mappings.
+   */  
+  public class ExtendedFields extends OrgChartFields
+  {
+    private var _salaryField:String = "salary";
+
+    /**
+     * @private
+     */    
+    public function set salaryField(value:String):void {
+      if (_salaryField != value) {
+        _salaryField = value;
+        dispatchEvent(new Event(Event.CHANGE));
+      }
+    }
+
+    [Inspectable (category="OrgChart", defaultValue="salary")]    
+    /**
+     * The name of the property chosen to determine the salary
+     * of a person, if the &lt;code&gt;salaryFunction&lt;/code&gt; is not set.
+     * 
+     * @default "salary"
+     */     
+    public function get salaryField():String {
+      return _salaryField;
+    }  
+    
+    private var _salaryFunction:Function = null;
+    
+    /**
+     * @private
+     */ 
+    public function set salaryFunction(value:Function):void {
+      if (_salaryFunction != value) {
+        _salaryFunction = value;
+        dispatchEvent(new Event(Event.CHANGE));
+      }
+    }
+     
+    /**
+     * The function used to determine the salary of a person.
+     * It must have the following signature:
+     * &lt;pre&gt;
+     * salaryFunction(&lt;i&gt;item:Object&lt;/i&gt;):String
+     * &lt;/pre&gt;
+     * This returns the salary from the
+     * &lt;code&gt;item&lt;/code&gt; provided by the data provider.
+     * 
+     * @default null
+     */     
+    public function get salaryFunction():Function {
+      return _salaryFunction;
+    }      
+  }
+}</pre>
+</div>
+</li><li class="step">
+<div class="stepContent" id="d0e129673">
+
+
+<div class="para">Subclass the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChartItem.html" class="bluelink">OrgChartItem</a></span> class to provide the item renderers with access
+to the data.</div>
+<pre class="programlisting">package
+{
+  import ilog.orgchart.OrgChartItem;
+  import mx.core.IUIComponent;
+
+  /** 
+   * This sample data item shows how to add a data field to the
+   * &lt;code&gt;OrgChartItem&lt;/code&gt;.
+   */
+  public class ExtendedDataItem extends OrgChartItem
+  {
+    public function ExtendedDataItem(owner:IUIComponent, item:Object,
+                                     data:Object) {
+      super(owner, item, data);
+    }
+   
+    public function get salary():String {
+      var fields:ExtendedFields = orgChart.fields as ExtendedFields;
+      return getFieldValue(fields.salaryField, null,
+                           fields.salaryFunction) as String;
+    }
+   }
+ }
+</pre>
+</div>
+</li><li class="step">
+<div class="stepContent" id="d0e129735">
+
+
+<div class="para">Subclass the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html" class="bluelink">OrgChart</a></span> class to create <span class="apiname">ExtendedDataItem</span> instances and pass them to the item renderers.</div>
+<pre class="programlisting">package
+{
+  import ilog.orgchart.OrgChart;
+  import ilog.orgchart.OrgChartItem;
+
+  /** 
+   * This sample OrgChart shows how to use an OrgChartItem subclass.
+   */
+  public class ExtendedOrgChart extends OrgChart
+  {
+    override protected function createOrgChartItem(item:Object):OrgChartItem {
+      var collection:IHierarchicalCollectionView = dataProvider as 
+                                                   IHierarchicalCollectionView;
+      var hData:IHierarchicalData = collection.source;
+      return new ExtendedDataItem(this, item, hData.getData(item));
+    }
+  }
+ }
+</pre>
+</div>
+</li><li class="step">
+<div class="stepContent" id="d0e129800">
+
+<div class="para">Subclass the two default item renderers to display the
+new field.</div>
+<div class="para">The following example shows the subclass of <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChartItemRenderer.html" class="bluelink">OrgChartItemRenderer</a></span>.</div>
+<pre class="programlisting">package
+{
+  import ilog.orgchart.OrgChartItemRenderer;
+  import ilog.orgchart.OrgChartItem;
+  import mx.core.FlexTextField;
+
+ /**
+  * This sample item renderer shows how to add a field label to the
+  * OrgChartItemRenderer
+  */
+  public class ExtendedItemRenderer extends OrgChartItemRenderer
+  {
+    
+    private var _salaryLabel:FlexTextField;
+    
+    override protected function getFieldLabels():Array {
+      var labels:Array = super.getFieldLabels();
+      labels.push(_salaryLabel); 
+      return labels;
+    }
+    
+    override protected function applyData(data:OrgChartItem):void {
+      _salaryLabel = setLabelProperty(_salaryLabel, "salary");
+      super.applyData(data);            
+    }
+  }</pre>
+<div class="para">The following example shows the subclass of <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChartDetailedItemRenderer.html" class="bluelink">OrgChartDetailedItemRenderer</a></span>.</div>
+<pre class="programlisting">package
+{
+  import ilog.orgchart.OrgChartDetailedItemRenderer;
+  import mx.core.FlexTextField;
+  import ilog.orgchart.OrgChartItem;
+
+  /**
+   * This sample item renderer shows how to add a field label to the
+   * OrgChartDetailedItemRenderer 
+   */  
+  public class ExtendedDetailedItemRenderer extends OrgChartDetailedItemRenderer
+  {        
+    private var _salaryLabel:FlexTextField;
+    private var _salaryLeftLabel:FlexTextField;
+    
+    override protected function createChildren():void {
+      _salaryLeftLabel = new FlexTextField();
+      addChild(_salaryLeftLabel);
+      super.createChildren();      
+    }
+    
+    override protected function setLeftLabelsText():void {
+      super.setLeftLabelsText();
+      if (_salaryLeftLabel != null) {
+        _salaryLeftLabel.text = "Salary";                
+      }
+    }
+    
+    override protected function getFieldLabels():Array {
+      var labels:Array = super.getFieldLabels();
+      labels.push(_salaryLabel); 
+      return labels;
+    }
+    
+    override protected function getFieldValueLabels():Array {
+      var labels:Array = super.getFieldValueLabels();
+      labels.push(_salaryLeftLabel); 
+      return labels;
+    }
+    
+    override protected function applyData(data:OrgChartItem):void {
+      _salaryLabel = setLabelProperty(_salaryLabel, "salary");
+      super.applyData(data);
+            
+    }
+  }
+}</pre>
+</div>
+</li></ol></div>
+</div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">The following MXML sample shows how to use all the components.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                xmlns:local="*"
+                layout="absolute"&gt;
+
+  &lt;local:ExtendedOrgChart id="chart" width="100%" height="100%" &gt;
+    &lt;mx:XML&gt;
+      &lt;employee name="Employee 1" email="e1@company.com" salary="123456" &gt;
+        &lt;employee name="Employee 2" email="e1@company.com" salary="123456" /&gt;
+        &lt;employee name="Employee 3" email="e1@company.com" salary="123456" /&gt;
+      &lt;/employee&gt;
+    &lt;/mx:XML&gt;
+    &lt;local:fields&gt;
+      &lt;local:ExtendedFields /&gt;
+    &lt;/local:fields&gt;
+    &lt;local:itemRenderer&gt;
+      &lt;mx:Component&gt;
+        &lt;local:ExtendedItemRenderer /&gt;
+      &lt;/mx:Component&gt;
+    &lt;/local:itemRenderer&gt;
+  &lt;/local:ExtendedOrgChart&gt;
+
+&lt;/mx:Application&gt;</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex739.html" class="bluelink">Organization Charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex769.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex771.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

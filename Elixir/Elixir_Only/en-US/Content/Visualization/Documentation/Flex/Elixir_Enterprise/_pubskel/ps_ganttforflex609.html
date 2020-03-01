@@ -1,0 +1,74 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Building an IBM ILOG Elixir application using the command-line compiler</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="HowTo"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex601.html" class="breadcrumb">Introduction</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex607.html" class="breadcrumb">Building IBM <span class="classificationVariable">ILOG Elixir</span> applications</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex609.html" class="breadcrumb">Building an IBM <span class="classificationVariable">ILOG Elixir</span> application using the
+command-line compiler</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex608.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex610.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Building an IBM <span class="classificationVariable">ILOG Elixir</span> application using the
+command-line compiler</h1></div></div><div class="content">
+
+
+<div class="proceduralTopicContent">
+<div class="summary">
+<div class="para">For more information about compiling your application,
+see <span class="italics">Using the Flex Compilers</span> in the <span class="italics">Application Development</span> <span class="trademark">Adobe®
+            </span> documentation.</div>
+</div>
+<div class="stage" id="usrflprg.uss_flexprg_getstart.1023858">
+<h2 class="heading">Creating the application files</h2>
+<div class="stageContent">
+<div class="summary">
+<div class="para">To create the application:</div>
+</div>
+<div class="procedure">
+<div class="procedureContent"><ol class="steps"><li class="step">
+<div class="stepContent">
+<div class="para">Create your application <span class="trademark">ActionScript®
+            </span> and MXML files with your preferred
+editor.</div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">Use IBM® <span class="classificationVariable">ILOG Elixir</span> components by:</div>
+
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Instantiating them in ActionScript files
+(<code class="code">.as</code>).</div><div class="para">Example: <code class="code">var myTreeMap:TreeMap = new TreeMap();</code></div>
+</li><li class="itemizedlistItem"><div class="para">Using them in MXML files (<code class="code">.mxml</code>).</div><div class="para">Example: <code class="code">&lt;ilog:TreeMap id="myTreeMap"/&gt;</code></div>
+</li></ul></div>
+</div>
+</li></ol></div>
+</div>
+</div>
+</div>
+<div class="stage" id="usrflprg.uss_flexprg_getstart.1023863">
+<h2 class="heading">Compiling the application on the command line</h2>
+<div class="stageContent">
+<div class="summary">
+
+<div class="para">To compile the application:</div>
+</div>
+<div class="procedure">
+<div class="procedureContent"><ol class="steps"><li class="step">
+<div class="stepContent">
+<div class="para">Use the following command line for a Web-based Adobe
+Flex application to be run in Flash Player:</div>
+<pre class="programlisting">mxmlc -library-path+=&lt;installation-dir&gt;/frameworks/libs/ilog-
+elixir.swc,&lt;installation-dir&gt;/frameworks/locale/en_US/ilog-
+elixir_rb.swc myElixirApplication.mxml
+</pre>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Use the following command line for a Desktop-based Adobe
+Flex application to be run in <span class="trademark">AIR™
+            </span>:</div>
+<pre class="programlisting">amxmlc -library-path+=&lt;installation-dir&gt;/frameworks/libs/ilog-
+elixir.swc,&lt;installation-dir&gt;/frameworks/locale/en_US/ilog-
+elixir_rb.swc myElixirApplication.mxml
+</pre>
+</div>
+</li></ol></div>
+</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex607.html" class="bluelink">Building IBM <span class="classificationVariable">ILOG Elixir</span> applications</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex608.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex610.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

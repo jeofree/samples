@@ -1,0 +1,43 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Specifying treemap data with custom functions</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex796.html" class="breadcrumb">Treemaps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex799.html" class="breadcrumb">Configuring treemap data</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex802.html" class="breadcrumb">Specifying treemap data with custom functions</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex801.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex803.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Specifying treemap data with custom functions</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">If the data values for a field in a treemap control are
+not directly available in one of the fields of the data provider items,
+you can use the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#areaFunction" class="bluelink">areaFunction</a></span>,  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#colorFunction" class="bluelink">colorFunction</a></span>,
+or  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#labelFunction" class="bluelink">labelFunction</a></span> property
+to specify a custom function to provide the area, color, or label
+respectively of each treemap item.</div>
+<div class="para">For example, you can change the label displayed by the
+treemap and prefix it with an arrow by using the following code, which
+specifies the custom function <code class="code">lFunction</code> to retrieve the label.</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+   &lt;![CDATA[
+    public function lFunction(item:Object):String {
+      return "-&gt;"+item.@label;
+    }
+   ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:TreeMap width="200" height="400"
+                 areaField="@total" labelFunction="{lFunction}"
+                 labelThreshold="2"&gt;
+        &lt;!-- data --&gt;
+  &lt;/ilog:TreeMap&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">Similarly, you can use the <span class="apiname">colorFunction</span> property to specify a custom function that returns a color dependent
+on the treemap item.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex799.html" class="bluelink">Configuring treemap data</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex801.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex803.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

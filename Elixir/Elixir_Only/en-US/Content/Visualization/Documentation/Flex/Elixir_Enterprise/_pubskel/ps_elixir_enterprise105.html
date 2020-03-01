@@ -1,0 +1,78 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Using indicators</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise95.html" class="breadcrumb">Gauges and indicators</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise102.html" class="breadcrumb">Indicators</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise105.html" class="breadcrumb">Using indicators</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise104.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise106.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Using indicators</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="section">
+<h2 class="heading">Using the NumericIndicator control</h2>
+<div class="sectionContent" id="d0e15074">
+
+
+<div class="para">The <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/indicators/NumericIndicator.html" class="bluelink">NumericIndicator</a></span> control is able to render digits and punctuation
+marks. It uses <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/indicators/indicatorsClasses/NumericRenderer.html" class="bluelink">NumericRenderer</a></span> (a 7-segment renderer) as the
+main character renderer and <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/indicators/indicatorsClasses/ExtraCharRenderer.html" class="bluelink">ExtraCharRenderer</a></span> for punctuation marks.</div>
+<div class="para">The following example shows an indicator with 6 green
+numeric characters.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx=http://www.adobe.com/2006/mxml 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"         
+                backgroundColor="0x000000"&gt;
+    &lt;ilog:NumericIndicator width="100%" height="100" 
+      offSegmentColor="0x003300" onSegmentColor="0x00FF00"
+      horizontalAlign="center" verticalAlign="middle" 
+      textHorizontalAlign="center"
+      text="153.78" charHeight="50"/&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Using the AlphaNumericIndicator14 control</h2>
+<div class="sectionContent" id="d0e15150">
+
+
+<div class="para">The <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/indicators/AlphaNumericIndicator14.html" class="bluelink">AlphaNumericIndicator14</a></span> control is able to render capital letters, digits
+and punctuation marks. It uses <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/indicators/indicatorsClasses/AlphaNumericRenderer14.html" class="bluelink">AlphaNumericRenderer14</a></span> (a 14-segment renderer) as the
+main character renderer and <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/indicators/indicatorsClasses/ExtraCharRenderer.html" class="bluelink">ExtraCharRenderer</a></span> for punctuation marks.</div>
+<div class="para">The following example shows an indicator with 15 green
+numeric characters.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"               
+                backgroundColor="0xFFFFFF"&gt;
+    &lt;ilog:AlphaNumericIndicator14 width="100%" height="100" 
+      offSegmentColor="0x003300" onSegmentColor="0x00FF00"
+      horizontalAlign="center" verticalAlign="middle" 
+      textHorizontalAlign="center"
+      text="IBM ILOG Elixir" charHeight="30" numChars="20"/&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Using the AlphaNumericIndicator35 control</h2>
+<div class="sectionContent" id="d0e15227">
+
+
+<div class="para">The <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/indicators/AlphaNumericIndicator35.html" class="bluelink">AlphaNumericIndicator35</a></span> control is able to render uppercase and lowercase
+letters, digits, and punctuation marks. It uses <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/indicators/indicatorsClasses/AlphaNumericRenderer35.html" class="bluelink">AlphaNumericRenderer35</a></span> (a 35-dot renderer) which can
+render any characters.</div>
+<div class="para">The following example shows an indicator with 15 green
+alphanumeric characters.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"            
+                backgroundColor="0xFFFFFF"&gt;
+    &lt;ilog:AlphaNumericIndicator35 width="100%" height="100" 
+      offSegmentColor="0x003300" onSegmentColor="0x00FF00"
+      horizontalAlign="center" verticalAlign="middle" 
+      textHorizontalAlign="center"
+      text="IBM ILOG Elixir" charHeight="30" numChars="20"/&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise102.html" class="bluelink">Indicators</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise104.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise106.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

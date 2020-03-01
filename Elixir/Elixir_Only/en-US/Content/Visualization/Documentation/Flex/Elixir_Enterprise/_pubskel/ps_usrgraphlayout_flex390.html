@@ -1,0 +1,74 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Link style (TL)</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex379.html" class="breadcrumb">Tree Layout (TL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex385.html" class="breadcrumb">Layout modes of the TL algorithm</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex386.html" class="breadcrumb">Free layout mode</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex390.html" class="breadcrumb">Link style (TL)</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex389.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex391.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Link style (TL)</h1></div></div><div class="content">
+
+
+
+
+
+<div class="descriptiveTopicContent">
+
+
+
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1200674">
+<h2 class="heading">Global link style</h2>
+
+
+
+
+
+<div class="sectionContent">
+<div class="example">
+<div class="exampleContent">
+<div class="para">To specify the global link style: </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for <code class="code">style</code> are:  </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.NO_RESHAPE_STYLE</code>   </div><div class="para">None of the links is reshaped in any
+manner. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.STRAIGHT_LINE_STYLE</code>   </div><div class="para">All the intermediate points of the
+links (if any) are removed. This is the default value. See <a href="ps_usrgraphlayout_flex380.html#usrgraphlayout.uss_graphlay_layouts.1198516" class="bluelink">Tree layout in free layout mode with center alignment
+and flow direction to the right</a> and <a href="ps_usrgraphlayout_flex380.html#usrgraphlayout.uss_graphlay_layouts.1198530" class="bluelink">Tree layout in radial layout mode with aspect ratio
+1.5</a> as examples.
+ </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.ORTHOGONAL_STYLE</code>   </div><div class="para">The links are reshaped in an orthogonal
+form (alternating horizontal and vertical segments). See <a href="ps_usrgraphlayout_flex380.html#usrgraphlayout.uss_graphlay_layouts.1198523" class="bluelink">Tree layout with flow direction to the bottom, orthogonal
+link style, and tip-over alignment at some leaf nodes</a> and<a href="ps_usrgraphlayout_flex389.html#usrgraphlayout.uss_graphlay_layouts.1199178" class="bluelink">Tip-over alignment</a> as examples. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.MIXED_STYLE</code>   </div><div class="para">Each link can have a different link
+style. The style of each individual link can be set to have different
+link shapes occurring on the same graph. </div>
+</li></ul></div>
+
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1199263">
+<h2 class="heading">Individual link style</h2>
+
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">All links have the same style of shape unless the global
+link style is <code class="code">MIXED_STYLE</code>. Only when the
+global link style is set to <code class="code">MIXED_STYLE</code> can each link have an individual link style. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1199268"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Tree-mixedlinks39_default.gif" alt="A sample&#xA;graph with different link styles in each subtree" class="imagedata"/></div><div class="caption">Different link styles mixed in the same drawing</div></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To specify the style of an individual link: </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for <code class="code">style</code> are: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.STRAIGHT_LINE_STYLE</code>  (the default)  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.NO_RESHAPE_STYLE</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.ORTHOGONAL_STYLE</code>  </div></li></ul></div>
+
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex386.html" class="bluelink">Free layout mode</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex389.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex391.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

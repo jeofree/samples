@@ -1,0 +1,101 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Using event listeners</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex470.html" class="breadcrumb">Using advanced features</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex476.html" class="breadcrumb">Using event listeners</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex475.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex477.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Using event listeners</h1></div></div><div class="content">
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">All layout classes support two kinds of events: layout
+events and parameter events. The listening mechanism therefore provides: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><a href="ps_usrgraphlayout_flex476.html#usrgraphlayout.uss_graphlay_advanced.1026354" class="bluelink">Graph layout event listeners</a> </div>
+</li><li class="itemizedlistItem"><div class="para"><a href="ps_usrgraphlayout_flex476.html#usrgraphlayout.uss_graphlay_advanced.1031929" class="bluelink">Parameter event listeners</a> </div>
+</li></ul></div>
+<div class="section" id="usrgraphlayout.uss_graphlay_advanced.1026354">
+<h2 class="heading">Graph layout event listeners</h2>
+
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">The layout event listening mechanism provides a way to
+inform the end user of what is happening during the layout. At times,
+a layout algorithm may take a long time to execute, especially when
+dealing with large graphs. In addition, an algorithm may not converge
+in some cases. No matter what the situation, the end user should be
+informed of the events that occur during the layout. This can be done
+by implementing a simple progress bar or by displaying appropriate
+information, such as the percentage of completion after each iteration
+or step.  </div>
+<div class="para">The layout event listener is defined by the <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/GraphLayoutEventListener.html" class="bluelink">GraphLayoutEventListener</a></span> interface. To receive the
+layout events delivered during the layout, a class must implement
+the <span class="apiname">GraphLayoutEventListener</span> interface
+and must register itself using the <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html#addGraphLayoutEventListener(ilog.views.graphlayout.GraphLayoutEventListener)" class="bluelink">addGraphLayoutEventListener</a></span> method of the <span class="apiname">IlvGraphLayout</span> class. </div>
+<div class="para">When you implement the <span class="apiname">GraphLayoutEventListener</span> interface, you must implement the <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/GraphLayoutEventListener.html#layoutStepPerformed(ilog.views.graphlayout.GraphLayoutEvent)" class="bluelink">layoutStepPerformed</a></span> method. The layout algorithm
+will call this method on all the registered layout event listeners,
+passing the layout report as an argument (see <a href="ps_usrgraphlayout_flex472.html" class="bluelink">Using a graph layout report</a>). In this
+way, you can read information about the current state of the layout
+report. (For example, you can read this information after each iteration
+or step of the layout algorithm). </div>
+<div class="para">The following example shows how to implement a layout
+event listener: </div>
+<pre class="programlisting">
+class LayoutIterationListener 
+  implements GraphLayoutEventListener 
+{ 
+  public void layoutStepPerformed(GraphLayoutEvent event)
+  { 
+    IlvGraphLayoutReport layoutReport = event.getLayoutReport(); 
+    System.out.println("percentage of completion: " + 
+                       layoutReport.getPercentageComplete()); 
+  } 
+}
+</pre>
+<div class="para">Then, register the listener on the layout instance as
+follows: </div>
+<pre class="programlisting">
+layout.addGraphLayoutEventListener(new LayoutIterationListener()); 
+</pre>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_advanced.1031929">
+<h2 class="heading">Parameter event listeners</h2>
+<div class="sectionContent">
+<div class="para">The layout parameter event listeners mechanism provides
+a way to inform the end user that any layout parameter has changed.
+This is useful when the layout parameter values are displayed in a
+dialog box that needs to be updated to indicate parameter changes. </div>
+<div class="para">The parameter event listener is defined by the  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/GraphLayoutParameterEventListener.html" class="bluelink">GraphLayoutParameterEventListener</a></span> interface. To receive the layout parameter events,
+a class must implement the <span class="apiname">GraphLayoutParameterEventListener</span> interface and must register itself using the <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html#addGraphLayoutParameterEventListener(ilog.views.graphlayout.GraphLayoutParameterEventListener)" class="bluelink">addGraphLayoutParameterEventListener</a></span> method of the <span class="apiname">IlvGraphLayout</span> class. </div>
+<div class="para">When you implement the <span class="apiname">GraphLayoutParameterEventListener</span> interface, you must implement the <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/GraphLayoutParameterEventListener.html#parametersUpToDate(ilog.views.graphlayout.GraphLayoutParameterEvent)" class="bluelink">parametersUpToDate</a></span> method. The layout class will
+call this method on all the registered layout parameter event listeners.
+The layout parameter event contains a flag accessible by the <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html#isParametersUpToDate()" class="bluelink">isParametersUpToDate</a></span> method: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">It returns <code class="code">true</code> if the event occurs at the end of a run of the layout when the layout
+is considered up-to-date with respect to the layout parameters. </div>
+</li><li class="itemizedlistItem"><div class="para">It returns <code class="code">false</code> if the event occurs when any layout parameter has changed. </div>
+</li></ul></div>
+<div class="para">The following example shows how to implement a layout
+parameter event listener.  </div>
+<pre class="programlisting">
+class LayoutParameterListener 
+  implements GraphLayoutParameterEventListener 
+{ 
+  public void parametersUpToDate(GraphLayoutParameterEvent event)
+  { 
+    if (!event.isParametersUpToDate())
+      System.out.println("Any layout parameter has changed.”);
+  } 
+}
+</pre>
+<div class="para">Then, register the listener with the layout instance
+as follows: </div>
+<pre class="programlisting">
+layout.addGraphLayoutParameterEventListener(new LayoutParameterListener());
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex470.html" class="bluelink">Using advanced features</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex475.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex477.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

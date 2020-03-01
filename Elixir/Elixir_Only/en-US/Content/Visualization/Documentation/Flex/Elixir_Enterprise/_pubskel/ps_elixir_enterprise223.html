@@ -1,0 +1,62 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Customizing predefined rectangular gauges</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise214.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise215.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise218.html" class="breadcrumb">Using and customizing predefined gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise223.html" class="breadcrumb">Customizing predefined rectangular gauges</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise222.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise224.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Customizing predefined rectangular gauges</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e37869">
+
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">You can go one step further than just styling predefined
+gauges and customize them by replacing some of their inner elements.
+The following code shows how to:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Replace the default scale by a logarithmic
+scale</div></li><li class="itemizedlistItem"><div class="para">Customize track colors</div>
+</li><li class="itemizedlistItem"><div class="para">Replace the default value renderer (<span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/rectangular/renderers/MarkerRenderer.html" class="bluelink">MarkerRenderer</a></span> ) with a <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularBarRenderer.html" class="bluelink">RectangularBarRenderer</a></span></div></li><li class="itemizedlistItem"><div class="para">Make sure the value renderer is editable
+so that you can drag the bar to change the gauge value</div>
+</li><li class="itemizedlistItem"><div class="para">Use an indicator label function to specialize
+the display of the label</div></li></ul></div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                backgroundColor="0xFFFFFF"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      public function labelFunction(value:Object):String {
+        return String(Math.round(value as Number));
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt;                
+  &lt;ilog:SimpleHorizontalGauge width="100%" value="10" editable="true" 
+       minimum="1" maximum="100000" 
+       trackMinimum="1000" trackMaximum="100000"
+       indicatorLabelFunction="{labelFunction}"&gt;
+    &lt;ilog:scale&gt;
+      &lt;ilog:RectangularLogScale/&gt;
+    &lt;/ilog:scale&gt;
+    &lt;ilog:track&gt;
+      &lt;ilog:RectangularTrackRenderer&gt;
+        &lt;ilog:gradientEntries&gt;
+          &lt;mx:GradientEntry color="0x005500" ratio="0"/&gt;
+          &lt;mx:GradientEntry color="0x00AA00" ratio="0.2"/&gt;
+          &lt;mx:GradientEntry color="0x00FF00" ratio="0.4"/&gt;
+          &lt;mx:GradientEntry color="0xAA0000" ratio="0.8"/&gt;
+          &lt;mx:GradientEntry color="0xFF0000" ratio="1.0"/&gt;  
+        &lt;/ilog:gradientEntries&gt;
+      &lt;/ilog:RectangularTrackRenderer&gt;
+    &lt;/ilog:track&gt;
+    &lt;ilog:valueRenderer&gt;
+      &lt;ilog:RectangularBarRenderer&gt;
+        &lt;ilog:fill&gt;
+          &lt;mx:LinearGradient&gt;
+            &lt;mx:GradientEntry color="0x00FF00" ratio="0" alpha="0.1"/&gt;
+            &lt;mx:GradientEntry color="0xFF0000" ratio="1" alpha="0.8"/&gt;
+          &lt;/mx:LinearGradient&gt;
+        &lt;/ilog:fill&gt;
+      &lt;/ilog:RectangularBarRenderer&gt;
+    &lt;/ilog:valueRenderer&gt;
+  &lt;/ilog:SimpleHorizontalGauge&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise218.html" class="bluelink">Using and customizing predefined gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise222.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise224.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

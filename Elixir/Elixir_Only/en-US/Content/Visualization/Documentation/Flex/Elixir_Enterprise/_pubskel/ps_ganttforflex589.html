@@ -1,0 +1,146 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>User interaction in the Gantt sheet</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex550.html" class="breadcrumb">Gantt task charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex586.html" class="breadcrumb">User interaction with task charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex589.html" class="breadcrumb">User interaction in the Gantt sheet</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex588.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex590.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">User interaction in the Gantt sheet</h1></div></div><div class="content">
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The Gantt sheet and tasks respond to mouse gestures to
+provide end users with interactions.</div>
+<div class="section" id="section1216726955599">
+<h2 class="heading">Interactions with the Gantt sheet</h2>
+<div class="sectionContent">
+<div class="para">The following table shows the mouse interactions available
+in the Gantt sheet. </div>
+<div class="caption">Mouse interactions in the Gantt sheet</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="table1216739985438"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Interaction</div></th>
+<th rowspan="1" colspan="1"><div class="para">Action</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Hold down the CTRL key and rotate the mouse
+wheel forward or backward</div></td>
+<td rowspan="1" colspan="1"><div class="para">Zooms the visible time in or out. The time
+under the mouse pointer is the same before and after zooming.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Drag</div></td>
+<td rowspan="1" colspan="1"><div class="para">Lets the user move up, down, or from side
+to side in the Gantt sheet.</div></td>
+</tr>
+</tbody></table>
+<div class="para">The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html" class="bluelink">GanttSheet</a></span> control
+broadcasts  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#event:visibleTimeRangeChange" class="bluelink">visibleTimeRangeChange</a></span> events when the visible time range is modified by
+user interaction.</div>
+<div class="para">The Gantt sheet has the mouse navigation features shown
+in the following table.</div>
+<div class="caption">Keyboard navigation features in the Gantt sheet </div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead"><colgroup align="left" span="1">
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr bgcolor="#BFD6E7">
+<th valign="top" rowspan="1" colspan="1">Interaction</th>
+<th valign="top" rowspan="1" colspan="1">Description</th>
+</tr>
+</thead><tbody valign="top">
+<tr>
+<td rowspan="1" colspan="1">+</td>
+<td rowspan="1" colspan="1">Zooms the visible time in.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">-</td>
+<td rowspan="1" colspan="1">Zooms the visible time out.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Keyboard arrows</td>
+<td rowspan="1" colspan="1">Lets the user move up, down, or from side to side in the
+Gantt sheet</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="section" id="section1216726964833">
+<h2 class="heading">Interactions with tasks</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html" class="bluelink">GanttSheet</a></span> control
+broadcasts:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apiname">change</span> events when the selection is modified by a user interaction.</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apiname">itemEditBegin</span>, <span class="apiname">itemEditMove</span>, <span class="apiname">itemEditResize</span>, and <span class="apiname">itemEditEnd</span> events when the user moves or resizes tasks.</div>
+</li></ul></div>
+<div class="para">The following table shows the mouse interactions available
+on tasks. </div>
+<div class="caption">Mouse interactions on tasks</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="table1216740008282"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Interaction</div></th>
+<th rowspan="1" colspan="1"><div class="para">Action</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Hover</div></td>
+<td rowspan="1" colspan="1"><div class="para">Highlights the task.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Click</div></td>
+<td rowspan="1" colspan="1"><div class="para">Selects the task.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Drag the task horizontally</div></td>
+<td rowspan="1" colspan="1"><div class="para">Moves the tasks along the time axis. The start
+and end time are adjusted.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Drag the start or end of the task bar</div></td>
+<td rowspan="1" colspan="1"><div class="para">Changes the start or end time of the task.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Hold down the CTRL key and click</div></td>
+<td rowspan="1" colspan="1"><div class="para">Extends or reduces the selection by toggling
+the selection state of the task that has been clicked. You must set
+the <code class="code">allowMultipleSelection</code> property to <code class="code">true</code> to allow multiple selection.</div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="section" id="section1220945516476">
+<h2 class="heading">Interaction with constraints</h2>
+<div class="sectionContent">
+<div class="para">The <span class="apiname">GanttSheet</span> control
+broadcasts <span class="apiname">change</span> events when the
+selection is modified by a user interaction.</div>
+<div class="para">The following table shows the mouse interactions available
+on constraints.</div>
+<table border="1" cellpadding="4" cellspacing="0" class="ShadedHead"><colgroup align="left" span="1">
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr bgcolor="#BFD6E7">
+<th valign="top" rowspan="1" colspan="1">Interaction</th>
+<th valign="top" rowspan="1" colspan="1">Action</th>
+</tr>
+</thead><tbody valign="top">
+<tr>
+<td rowspan="1" colspan="1">Hover</td>
+<td rowspan="1" colspan="1">Highlights the constraint.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Click</td>
+<td rowspan="1" colspan="1">Selects the constraint.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Hold down the CTRL key and click</td>
+<td rowspan="1" colspan="1">Extends or reduces the selection by toggling the selection
+state of the constraint that has been clicked. You must set the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#allowMultipleSelection" class="bluelink">allowMultipleSelection</a></span> property to <code class="code">true</code> to allow
+multiple selection.</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex586.html" class="bluelink">User interaction with task charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex588.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex590.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

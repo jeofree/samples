@@ -1,0 +1,57 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>User interaction with calendars</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise39.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise67.html" class="breadcrumb">User interaction with calendars</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise66.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise68.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">User interaction with calendars</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e10005">
+
+<div class="section">
+<h2 class="heading">Item selection</h2>
+<div class="sectionContent" id="d0e10024">
+
+
+<div class="para">When an item is clicked, it is selected and an <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#event:itemClick" class="bluelink">itemClick</a></span> event is fired. To enable multiple selection, set
+the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#allowMultipleSelection" class="bluelink">allowMultipleSelection</a></span> property to <code class="code">true</code>.</div>
+<div class="para">The current selection is available in the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#selectedItems" class="bluelink">selectedItems</a></span> property of the calendar. You can disable selection
+by setting the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#allowSelection" class="bluelink">allowSelection</a></span> property to <code class="code">false</code>. The
+selection actions are shown in the following table.</div>
+<table border="1" cellpadding="4" cellspacing="0" class="ShadedHead"><colgroup align="left" span="1">
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr bgcolor="#BFD6E7">
+<th valign="top" rowspan="1" colspan="1">Action  </th>
+<th valign="top" rowspan="1" colspan="1"> Mouse</th>
+</tr>
+</thead><tbody valign="top">
+<tr>
+<td rowspan="1" colspan="1">Select </td>
+<td rowspan="1" colspan="1">Click an item in the calendar.   </td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Extend a selection</td>
+<td rowspan="1" colspan="1">Hold down the CTRL key and click the items.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Clear a selection </td>
+<td rowspan="1" colspan="1">Click anywhere in the calendar background.</td>
+</tr>
+</tbody></table>
+<div class="para">To cycle around the items using the keyboard, use the <span class="command">CTRL + Left</span> or <span class="command">CTRL + Right</span> keys.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Time range selection</h2>
+<div class="sectionContent" id="d0e10173">
+
+
+<div class="para">Time range selection involves clicking the calendar grid
+and then dragging the selection. You can disable time range selection
+by setting the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#allowTimeRangeSelection" class="bluelink">allowTimeRangeSelection</a></span> property to <code class="code">false</code>.</div>
+<div class="para">To select a time range using the keyboard, use the arrow
+keys to move a minimum time selection and Shift + an arrow key to
+extend the selection.</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise39.html" class="bluelink">Calendar</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise66.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise68.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

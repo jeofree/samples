@@ -1,0 +1,129 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Styles for task charts</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex550.html" class="breadcrumb">Gantt task charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex571.html" class="breadcrumb">Styling a task chart</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex572.html" class="breadcrumb">Styles for task charts</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex571.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex573.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Styles for task charts</h1></div></div><div class="content">
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">In addition to the styles provided by its base types,
+the task chart provides a set of styles that can be used to customize
+the rendering of its inner components and items:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskChart.html#style:constraintItemStyleName" class="bluelink">constraintItemStyleName</a></span> – the name of the style
+used by the constraint item renderers</div></li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttChartBase.html#style:dataGridStyleName" class="bluelink">dataGridStyleName</a></span> – the name of the style
+used by the Gantt data grid</div></li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskChart.html#style:ganttSheetStyleName" class="bluelink">ganttSheetStyleName</a></span> – the name of the style
+used by the Gantt sheet</div></li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttChartBase.html#style:milestoneItemStyleName" class="bluelink">milestoneItemStyleName</a></span> – the name of the style used by the task
+item renderers for milestone tasks</div></li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskChart.html#style:summaryItemStyleName" class="bluelink">summaryItemStyleName</a></span> – the name of the style
+used by the task item renderers for summary tasks</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskChart.html#style:taskItemStyleName" class="bluelink">taskItemStyleName</a></span> – the name of the style
+used by the task item renderers for leaf tasks</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttChartBase.html#style:timeScaleStyleName" class="bluelink">timeScaleStyleName</a></span> – the name of the style
+used by the time scale</div></li></ul></div>
+<div class="para">By default the style name for tasks item renderers depends
+on whether the task item is a milestone, a summary task or a leaf
+task. You can override this behavior by providing a custom function
+in the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#itemStyleNameFunction" class="bluelink">itemStyleNameFunction</a></span> property of the Gantt sheet. </div>
+<div class="para">The following example in MXML shows how you can customize
+these styles.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Style&gt;
+    .myGanttSheetStyle {
+      nonWorkingColor: #EEEECC;
+      workingColor: #FFFFCC;
+    }
+    .myDataGridStyle {
+      rollOverColor: red;
+    }
+    .myTimeScaleStyle {
+      rollOverColor: red;
+    }
+    .myConstraintItemStyle {
+      linkColor: #00AA00;
+      arrowColor: #00AA00;
+    }
+    .myTaskItemStyle {
+      backgroundColor: #70FF70; 
+      textPosition: right;
+      rollOverColor: red;      
+    }
+    .mySummaryItemStyle {
+      backgroundColor: #00AA00; 
+      rollOverColor: red;
+      startSymbolColor: #00AA00;
+      startSymbolShape: down-pentagon;
+      endSymbolColor: #00AA00;
+      endSymbolShape: down-pentagon;
+      barTopMargin: 0;
+      barBottomMargin: 0.5;
+      textPosition: right;
+    }
+    .myMilestoneItemStyle {
+      backgroundColor: #00AA00; 
+      rollOverColor: red;
+      startSymbolColor: #00AA00;
+      startSymbolShape: diamond;
+      barTopMargin: 1;
+      barBottomMargin: 1;
+      textPosition: right;
+    }
+  &lt;/mx:Style&gt;
+
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+      import mx.collections.HierarchicalData;
+  
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0"},
+        { id: "T3", name: "Summary Task #1",
+          startTime: "2/5/2008 8:0:0", endTime: "2/17/2008 17:0:0",
+          children: [
+            { id: "T4", name: "Task #3",
+              startTime: "2/5/2008 8:0:0", endTime: "2/12/2008 17:0:0" },
+            { id: "T5", name: "Task #4",
+              startTime: "2/13/2008 8:0:0", endTime: "2/17/2008 17:0:0" }
+          ]},
+        { id: "T6", name: "Milestone #1", milestone: "true",
+          startTime: "2/17/2008 17:0:0", endTime: "2/17/2008 17:0:0" }
+      ]);
+
+      [Bindable]
+      public var constraints:ArrayCollection = new ArrayCollection([
+        { fromId:"T1", toId:"T2", kind:"endToStart" },
+        { fromId:"T2", toId:"T4", kind:"endToStart" },
+        { fromId:"T4", toId:"T5", kind:"endToStart" },
+        { fromId:"T5", toId:"T6", kind:"endToStart" }
+      ]);
+    ]]&gt;
+  &lt;/mx:Script&gt;
+
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%"
+                  taskDataProvider="{tasks}"
+                  constraintDataProvider="{constraints}"
+                  ganttSheetStyleName="myGanttSheetStyle"
+                  dataGridStyleName="myDataGridStyle"
+                  timeScaleStyleName="myTimeScaleStyle"
+                  constraintItemStyleName="myConstraintItemStyle"
+                  taskItemStyleName="myTaskItemStyle"
+                  summaryItemStyleName="mySummaryItemStyle"
+                  milestoneItemStyleName="myMilestoneItemStyle"
+                  /&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example specifies the names of the CSS classes to
+be used to style the renderers of milestones, leaf and summary tasks,
+constraints, and the inner components of the task chart. The CSS classes <code class="code">myTaskItemStyle</code>, <code class="code">mySummaryItemStyle</code> and <code class="code">myMilestoneItemStyle</code> reproduce the
+default layout of tasks and customize the default and rollover colors.
+The other CSS classes customize the rollover color of the data  grid
+and time scale, the color of the work grid in the Gantt sheet, and
+the color of constraints.</div>
+<div class="para">See the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskChart.html" class="bluelink">TaskChart</a></span> class for more information on these styles.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex571.html" class="bluelink">Styling a task chart</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex571.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex573.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

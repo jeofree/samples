@@ -1,0 +1,80 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Specifying task icons in the data grid</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex550.html" class="breadcrumb">Gantt task charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex555.html" class="breadcrumb">Configuring a task chart control</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex557.html" class="breadcrumb">Specifying task icons in the data grid</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex556.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex558.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Specifying task icons in the data grid</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">You can change the icons used by the Gantt data grid
+in different ways, since it leverages the icon-customization support
+provided by the <span class="apiname">AdvancedDataGrid</span> class.</div>
+<div class="para">The following example shows how to change the icons used
+for summary tasks and the icons used for leaf tasks. </div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.HierarchicalCollectionView;
+      import mx.collections.IHierarchicalCollectionView;
+      import mx.collections.ArrayCollection;
+      import mx.collections.HierarchicalData;
+      import ilog.gantt.TaskItem;
+    
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0"},
+        { id: "T3", name: "Summary Task #1",
+          startTime: "2/5/2008 8:0:0", endTime: "2/17/2008 17:0:0",
+          children: [
+            { id: "T4", name: "Task #3",
+              startTime: "2/5/2008 8:0:0", endTime: "2/12/2008 17:0:0" },
+            { id: "T5", name: "Task #4",
+              startTime: "2/13/2008 8:0:0", endTime: "2/17/2008 17:0:0" }
+          ]},
+        { id: "T6", name: "Milestone #1", milestone: "true",
+          startTime: "2/17/2008 17:0:0", endTime: "2/17/2008 17:0:0" }
+      ]);
+
+      [Embed(source="summary.png")]
+      public var SummaryIcon:Class; 
+    
+      [Embed(source="leaf.png")]
+      public var LeafIcon:Class; 
+    
+      public function customIconFunction(item:Object):Class
+      {
+        var taskItem:TaskItem = taskChart.ganttSheet.itemToTaskItem(item);
+        return taskItem.isSummary ? SummaryIcon : LeafIcon;        
+      }
+    
+    ]]&gt;  
+  &lt;/mx:Script&gt;
+
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%" 
+                  taskDataProvider="{tasks}"
+                  &gt;
+    &lt;ilog:dataGrid&gt;
+      &lt;ilog:GanttDataGrid iconFunction="customIconFunction"&gt;
+      &lt;/ilog:GanttDataGrid&gt;
+    &lt;/ilog:dataGrid&gt;
+  &lt;/ilog:TaskChart&gt;                      
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example shows how the <span class="apiname">iconFunction</span> property of the <span class="apiname">AdvancedDataGrid</span> object is used to set a custom function, <code class="code">customIconFunction</code>, which checks the <span class="apiname">isSummary</span> property
+of the processed item.</div>
+<div class="para">See <span class="italics">Hierarchical and
+grouped data display</span> for the <span class="apiname">AdvancedDataGrid</span> control in <span class="italics">Adobe Flex 4 Developer's
+Guide</span> for more information on the various options
+for customizing the icons in an <span class="apiname">AdvancedDataGrid</span> component.</div>
+
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex555.html" class="bluelink">Configuring a task chart control</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex556.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex558.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

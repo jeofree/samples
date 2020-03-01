@@ -1,0 +1,41 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>For experts: constraint validation (HL)</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex414.html" class="breadcrumb">Hierarchical Layout (HL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex434.html" class="breadcrumb">For experts: constraint validation (HL)</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex433.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex435.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">For experts: constraint validation (HL)</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">Constraints that you specify in <span class="trademark">Java™
+            </span> may become invalid. For instance, if you add a constraint that node <code class="code">A</code> must be to the left side of node <code class="code">B</code>, but you remove <code class="code">A</code> from the graph, then
+this constraint becomes invalid. It simply does not make sense any
+more, even though it does not conflict with any other constraint.
+The layout instance automatically removes invalid constraints from
+time to time because they are a waste of memory. The validation check
+is done during layout. Forcing a validation check is normally not
+necessary but if you want to do this, call: </div>
+<pre class="programlisting">
+layout.validateConstraints();
+</pre>
+<div class="para">This removes all invalid constraints from the Hierarchical
+Layout and cleans up the memory. The constraint validation does not
+check which constraints have conflicts. The main effect of the validation
+is that the constraint system uses less memory afterwards.  </div>
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para"> A constraint is valid if it is meaningful. Two valid
+constraints are conflicting if the system cannot satisfy them both
+at the same time. Invalid constraints cannot be conflicting because
+they are meaningless.  </div>
+<div class="para">Hence, constraint validation and constraint resolution
+are different phases. Constraint validation performs a quick local
+test. It removes invalid constraints from the layout instance completely.
+It does not affect conflicting constraints.  </div>
+<div class="para">Constraint resolution checks whether a set of valid constraints
+are in conflict with each other. Thus, constraint resolution is a
+complex process on a network of multiple related constraints. Constraint
+resolution decides which constraints can be solved and which cannot.
+But the constraint resolution does not remove conflicting constraints
+from the layout instance, it just delivers a solution that may ignore
+some constraints.  </div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex414.html" class="bluelink">Hierarchical Layout (HL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex433.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex435.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

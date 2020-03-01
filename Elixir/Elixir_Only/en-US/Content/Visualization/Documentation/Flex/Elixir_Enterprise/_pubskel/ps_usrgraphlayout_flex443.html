@@ -1,0 +1,132 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Spacing parameters in short link mode</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex437.html" class="breadcrumb">Link layout (LL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex443.html" class="breadcrumb">Spacing parameters in short link mode</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex442.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex444.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Spacing parameters in short link mode</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">Since the short link mode places the links freely in
+the space, only two parameters are necessary to control the spacing:
+the minimum distance between links and the minimum length of the final
+segment. </div>
+<div class="para"><a href="ps_usrgraphlayout_flex443.html#usrgraphlayout.uss_graphlay_layouts.1043427" class="bluelink">Spacing parameters for the short link mode</a> shows the
+spacing parameters used in the short link mode.  </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1043427"><div class="mediaobject"><img src="../../../GraphLayout/_media/longlinkoffsetparam99_default.gif" alt="Graph&#xA;showing the use of spacing parameters in the short link mode" class="imagedata"/></div><div class="caption">Spacing parameters for the short link mode</div></div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043430">
+<h2 class="heading">Link offset</h2>
+
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm computes the final connecting segments
+of the links (that is, the segments near the origin and destination
+nodes) to obtain parallel lines spaced at a user-defined distance.
+In short link mode, the algorithm takes into account the width of
+the links when computing the offset. </div>
+<div class="example">
+<div class="title">Example of specifying link offset (Link Layout algorithm)</div>
+<div class="exampleContent">
+<div class="para">To specify the offset:</div>
+</div>
+
+
+</div>
+<div class="para">The offset is measured from the border of one link to
+the nearest border of the other link. Therefore, if the specified
+offset is zero, the border of a link touches the border of its neighbor
+link. </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043443">
+<h2 class="heading">Minimum final segment length</h2>
+
+
+
+<div class="sectionContent">
+<div class="para">You can specify a minimum value for the length of the
+final connecting segments of the links (that is, the segments near
+the origin and destination nodes). </div>
+
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1201638">
+<h2 class="heading">Connector style</h2>
+
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm positions the end points of links
+(the connector pins) at the nodes automatically. The connector style
+parameter specifies how these end points are calculated. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1201643"><div class="mediaobject"><img src="../../../GraphLayout/_media/Layout-ShortLink-ConnectorStyle100_default.gif" alt="Two interconnected&#xA;nodes showing automatic connections and then the connector styles:&#xA;fixed-offset and evenly spaced" class="imagedata"/></div><div class="caption">Connector styles </div></div>
+<div class="para">The layout algorithm provides two connector styles. You
+can set the connector style globally, in which case all the nodes
+(hence, all the links) have the same kind of connector style, or locally
+on each node (that is, for all the links connected to the node), in
+which case different connector styles occur in the same drawing. </div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1201647">
+<h3 class="heading">Global connector style</h3>
+
+
+
+
+<div class="sectionContent">
+<div class="example">
+<div class="title">Example of specifying the global connector style (Link
+Layout algorithm)</div>
+<div class="exampleContent">
+<div class="para">To specify the global connector style: </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for <code class="code">style</code> are:  </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvShortLinkLayout.FIXED_OFFSET_PINS</code> </div><div class="para">The connection pins are spaced along
+the node border at a distance equal to the link offset parameter.
+See <a href="ps_usrgraphlayout_flex443.html#usrgraphlayout.uss_graphlay_layouts.1043427" class="bluelink">Spacing parameters for the short link mode</a> as an example. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvShortLinkLayout.EVENLY_SPACED_PINS</code> </div><div class="para">The connector pins are evenly spaced
+along the node border, preserving a margin which is determined by
+the <code class="code">evenlySpacedPinsMarginRatio</code> parameter
+(see the accessor  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/link/shortlink/IlvShortLinkLayout.html#getEvenlySpacedPinsMarginRatio()" class="bluelink">getEvenlySpacedPinsMarginRatio</a></span>). See <a href="ps_usrgraphlayout_flex443.html#usrgraphlayout.uss_graphlay_layouts.1043427" class="bluelink">Spacing parameters for the short link mode</a> as an example. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvShortLinkLayout.AUTOMATIC_PINS</code> (the default) </div><div class="para">Uses the connector style <code class="code">FIXED_OFFSET_PINS</code> except if this pushes a connection
+point outside the border the link is attached to, in which case it
+uses the connector style <code class="code">EVENLY_SPACED_PINS</code>. See <a href="ps_usrgraphlayout_flex443.html#usrgraphlayout.uss_graphlay_layouts.1043427" class="bluelink">Spacing parameters for the short link mode</a> as an example.
+ </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvShortLinkLayout.MIXED_STYLE</code>   </div><div class="para">Each node can have a different connector
+style. The style of each individual node can be set to have different
+connector styles occurring on the same graph. </div>
+</li></ul></div>
+
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1201682">
+<h3 class="heading">Individual connector style</h3>
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">All nodes have the same connector style unless the global
+connector style is <code class="code">IlvShortLinkLayout.MIXED_STYLE</code>. Only when the global connector style is set to <code class="code">MIXED_STYLE</code> can each node have an individual connector style.</div>
+<div class="example">
+<div class="title">Example of specifying individual node connector style
+(Link Layout algorithm)</div>
+<div class="exampleContent">
+<div class="para">To specify the connector style of an individual node:</div>
+</div>
+
+
+</div>
+<div class="para">The valid values for <code class="code">style</code> are: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvShortLinkLayout.FIXED_OFFSET_PINS</code> </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvShortLinkLayout.EVENLY_SPACED_PINS</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvShortLinkLayout.AUTOMATIC_PINS</code> (the default). </div></li></ul></div>
+<div class="para">The default value is 10.  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex437.html" class="bluelink">Link layout (LL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex442.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex444.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

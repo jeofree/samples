@@ -1,0 +1,73 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Entry points to the user documentation</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f289.html" class="breadcrumb">Introduction</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f294.html" class="breadcrumb">Entry points to the user documentation</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f293.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f295.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Entry points to the user documentation</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para"> With the Diagram for Adobe Flex product, you can create
+diagrams to show the relationships between entities in a system. The
+entities are called nodes and the relationships are called links.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">These diagrams can be created using different levels
+of abstractions, as listed below:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Using the Diagram component</div>
+</li><li class="itemizedlistItem"><div class="para">Using the Graph components</div>
+</li><li class="itemizedlistItem"><div class="para">Using Graph Layout algorithms </div>
+</li></ul></div>
+<div class="section">
+<h2 class="heading">Using the Diagram component</h2>
+<div class="sectionContent">
+<div class="para">The Diagram component is a data-driven component able
+to display diagrams composed of nodes and links. In <span class="classificationVariable">Diagram</span>, a diagram is an instance of the
+Diagram class that is able to display nodes and links, creating their
+graphical representation based on business data. Nodes are specified
+via the nodeDataProvider property, whereas links are specified via
+the linkDataProvider property. Using Diagram, objects can be laid
+out using graph layout algorithms or can have their position specified
+according to properties in the business data objects. Diagrams also
+provide support for the select, move, zoom, pan, and scroll operations
+as well as for customized interactions such as editing and drill-down.</div>
+<div class="para">ADD EXAMPLE   For details, [LINKTO Creating a graph display
+from data providers using the Diagram class]</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Using the Graph components </h2>
+<div class="sectionContent">
+<div class="para">The <span class="classificationVariable">Diagram</span> product also allows you to create
+your own logic to manipulate the graphic objects that represent entities
+and relationships in your diagram. Instead of using the Diagram component,
+you can use the graphic objects directly, such as Graph, Node, Link
+and Subgraph.   While Diagram focuses on displaying nodes and links
+based on information that is present in data providers, the Graph
+component shows the relationships between entities at a pure graphic
+level. A Graph is a group that contains and lays out nodes and links.
+A subgraph is a special kind of node that is able itself to display
+nodes and links, and which can be represented, collapsed, or expanded.
+Subgraphs allow the representation of hierarchical data.</div>
+<div class="para">ADD EXAMPLE   For details, [LINKTO Creating a graph display
+by specifying node and links]</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Using Graph Layout algorithms</h2>
+<div class="sectionContent">
+<div class="para">Graph layout algorithms can be used directly by the Graph
+and Diagram components. However, you can also use the existing Graph
+Layout algorithms when you are displaying objects in your own custom
+component. The Graph Layout algorithms provide specific methods that
+are used only when they are performed in a component that is neither
+a Diagram nor a Graph.  In order to perform a graph layout algorithm
+on your own graphic objects, you need to implement a graph layout
+model that matches your needs. The graph layout model must be a concrete
+implementation of the IGraphLayoutModel interface. When the graph
+layout model is implemented, then you can attach the graph layout
+model to the layout algorithm and perform the layout when needed. 
+ </div>
+<div class="para">ADD EXAMPLE   For details, see [LINKTO Using Graph Layout
+algorithms documentation].  </div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f289.html" class="bluelink">Introduction</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f293.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f295.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,136 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>The concept of graph layout</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Concept"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex354.html" class="breadcrumb">Introducing graph layout</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex356.html" class="breadcrumb">The concept of graph layout</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex355.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex357.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">The concept of graph layout</h1></div></div><div class="content">
+
+
+<div class="conceptTopicContent">
+<div class="shortDescription">
+<div class="para">Simply speaking, a graph is a data structure that represents
+a set of entities, called nodes,  connected by a set of links. A node
+can also be referred to as a vertex. A link can also be  referred
+to as an edge or a connection. In practical applications, graphs are
+frequently used to  model a very wide range of things: computer networks,
+software program structures, project  management diagrams, and so
+on. Graphs are powerful models because they permit  applications to
+benefit from the results of graph theory research. For instance, efficient 
+methods are available for finding the shortest path between two nodes,
+the minimum cost  path, and so on.  </div>
+</div>
+<div class="elaboration">
+<div class="section" id="usrgraphlayout.uss_graphlay_basics.1003578">
+<h2 class="heading">Layout of a graph</h2>
+<div class="sectionContent">
+<div class="para">Graph layout is used in graphical user interfaces of
+applications that need to display graph models. To lay out a graph
+means to draw the graph so that an appropriate, readable representation
+is produced. Essentially, this involves determining the location of
+the nodes and the shape of the links. For some applications, the location
+of the nodes may already be known (for example, based on the geographical
+positions of the nodes). However, for other applications, the location
+is not known (a pure “logical” graph) or the known location,
+if used, would produce an unreadable drawing of the graph. In these
+cases, the location of the nodes must be computed.  </div>
+<div class="para">What is meant by an “appropriate” drawing
+of a graph? In practical applications, it is often necessary for the
+graph drawing to observe certain quality criteria. These criteria
+may vary depending on the application field or on a given standard
+of representation. It is often difficult to tell what a good layout
+consists of. Each end user may have different, subjective criteria
+for qualifying a layout as “good”. However, one common
+goal exists behind all the criteria and standards: the drawing must
+be easy to understand and provide easy navigation through the complex
+structure of the graph.  </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_basics.1007954">
+<h2 class="heading">What is a good layout?</h2>
+
+
+
+
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">To deal with the various needs of different applications,
+many classes of graph layout algorithms have been developed. A layout
+algorithm addresses one or more quality criteria, depending on the
+type of graph and the features of the algorithm, when laying out a
+graph. </div>
+<div class="para"> The most common criteria are: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Minimizing the number of link crossings </div></li><li class="itemizedlistItem"><div class="para">Minimizing the total <span class="bold">area</span> of the drawing </div>
+</li><li class="itemizedlistItem"><div class="para">Minimizing the number of <span class="bold">bends</span> (in orthogonal drawings) </div>
+</li><li class="itemizedlistItem"><div class="para">Maximizing the smallest <span class="bold">angle</span> formed by consecutive incident
+links </div></li><li class="itemizedlistItem"><div class="para">Maximizing the display of <span class="bold">symmetries</span> </div>
+</li></ul></div>
+<div class="para">How can a layout algorithm meet each of these quality
+criteria and standards of representation? If you look at each individual
+criteria, some can be met quite easily, at least for some classes
+of graphs. For other classes, it may be quite difficult to produce
+a drawing that meets the criteria. For example, minimizing the number
+of link crossings is relatively simple for trees (that is, graphs
+without cycles). However, for general graphs, minimizing the number
+of link crossings is a mathematical NP-complete problem (that is, with all known algorithms,
+the time required to perform the layout grows very fast with the size
+of the graph). </div>
+<div class="para">Moreover, if you want to meet several criteria at the
+same time, an optimal solution may not exist with respect to each
+individual criteria because many of the criteria are mutually contradictory.
+Time-consuming trade-offs may be necessary. In addition, it is not
+a trivial task to assign weights to each criteria. Multicriteria optimization
+is, in most cases, too complex to implement and much too time-consuming.
+For these reasons, layout algorithms are often based on heuristics
+and may provide less than optimal solutions with respect to one or
+more of the criteria. Fortunately, in practical terms, the layout
+algorithms will still often provide reasonably readable drawings. </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_basics.1007969">
+<h2 class="heading">Methods for using layout algorithms</h2>
+
+
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">Layout algorithms can be employed in a variety of ways
+in the various applications in which they are used. The most common
+ways of using an algorithm are the following:  </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><a href="ps_usrgraphlayout_flex364.html#usrgraphlayout.uss_graphlay_layouts.1014518" class="bluelink">Automatic layout</a>  </div>
+<div class="para">The layout algorithm does everything without any user
+intervention, except for perhaps the choice of the layout algorithm
+to be used. Sometimes, a set or rules can be coded to choose automatically
+(and dynamically) the most appropriate layout algorithm for the particular
+type of graph being laid out. </div>
+</li><li class="itemizedlistItem"><div class="para"><a href="ps_usrgraphlayout_flex364.html#usrgraphlayout.uss_graphlay_layouts.1242849" class="bluelink">Semiautomatic layout</a>  </div>
+<div class="para">The end user is free to improve the result of the automatic
+layout procedure by hand. In some cases, the end user can move and
+“pin” nodes at desired locations and perform the layout
+again. In other cases, a part of the graph is automatically set as
+“read-only” and the end user can modify the rest of
+the layout. </div>
+</li><li class="itemizedlistItem"><div class="para"><span class="bold">Static
+layout</span>  </div><div class="para">The layout algorithm
+is completely redone (“from scratch”) each time the
+graph is changed. </div>
+</li><li class="itemizedlistItem"><div class="para"><span class="bold">Incremental
+layout</span>  </div><div class="para">When the layout
+algorithm is performed a second time on a modified graph, it tries
+to preserve the stability of the layout as much as possible. The layout
+is not performed again from scratch. The layout algorithm also tries
+to save CPU time by using the previous layout as an initial solution.
+Some layout algorithms and layout styles are incremental by nature.
+For others, incremental layout may be impossible. </div>
+</li></ul></div>
+</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex354.html" class="bluelink">Introducing graph layout</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex355.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex357.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

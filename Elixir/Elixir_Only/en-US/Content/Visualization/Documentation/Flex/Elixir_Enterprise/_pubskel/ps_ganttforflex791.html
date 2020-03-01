@@ -1,0 +1,118 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Radar chart data renderers</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex779.html" class="breadcrumb">Radar Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex791.html" class="breadcrumb">Radar chart data renderers</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex790.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex792.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Radar chart data renderers</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="section" id="usrflprg.uss_flexprg_radarcharts.1020767">
+<h2 class="heading">Standard chart renderers</h2>
+
+
+
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">The standard Adobe Flash Builder 4 renderers are: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apiname">CircleItemRenderer</span></div></li><li class="itemizedlistItem"><div class="para"><span class="apiname">CrossItemRenderer</span></div></li><li class="itemizedlistItem"><div class="para"><span class="apiname">DiamondItemRenderer</span></div></li><li class="itemizedlistItem"><div class="para"><span class="apiname">TriangleItemRenderer</span></div></li></ul></div>
+<div class="para">These renderers are used by radar charts to display an
+item at a point location. For more details of the standard Adobe Flash Builder 4 renderers, see the <span class="italics">Flex 4 Language Reference</span>.</div>
+</div>
+</div>
+<div class="section" id="usrflprg.uss_flexprg_radarcharts.1021341">
+<h2 class="heading">Specific radar chart renderers</h2>
+
+
+
+
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">There are two specific radar chart renderers:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts/renderers/RadarColumnRenderer.html" class="bluelink">RadarColumnRenderer</a></span>: A chart item renderer implementation that fills a triangular area.
+If no minimum value is defined, the triangle starts at the origin
+(center) of the radar chart, otherwise the triangle is cut at the
+point corresponding to the minimum value given.</div>
+</li><li class="itemizedlistItem"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts/renderers/RadarLineRenderer.html" class="bluelink">RadarLineRenderer</a></span>: A simple implementation of a line segment renderer that is used
+by  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts/series/RadarLineSeries.html" class="bluelink">RadarLineSeries</a></span> objects.
+This renderer is like a vertical cut through a polyline chart, which
+here corresponds to a polygon around the center. If the  <span class="apiname">areaFill</span> style property is set on the corresponding
+series, the polygon is filled accordingly.</div>
+</li></ul></div>
+<div class="para">You can use the per-item fill API with standard chart
+renderers and with  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts/renderers/RadarColumnRenderer.html" class="bluelink">RadarColumnRenderer</a></span>. In this way you can dynamically choose the colors for the individual
+chart items in a chart. This helps you to visually differentiate items
+and easily summarize the visual message that you need to receive.</div>
+</div>
+</div>
+<div class="section" id="usrflprg.uss_flexprg_radarcharts.1020779">
+<h2 class="heading">Series type/renderer compatibility</h2>
+
+<div class="sectionContent" id="d0e135195">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="para">All series except  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts/series/RadarColumnSeries.html" class="bluelink">RadarColumnSeries</a></span> are able to draw plot renderers. See <a href="ps_ganttforflex788.html" class="bluelink">Radar plot series</a> for more information.</div>
+<div class="para">The series type/renderer compatibility is shown in the
+following table: </div>
+<div class="caption">Series type/renderer compatibility</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_radarcharts.1020782"><colgroup span="1">
+<col span="1"/>
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Radar Series</div></th>
+<th rowspan="1" colspan="1"><div class="para">Renderers</div></th>
+<th rowspan="1" colspan="1"><div class="para">Renderer instances</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td colspan="1" rowspan="2"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts/series/RadarLineSeries.html" class="bluelink">RadarLineSeries</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">lineSegmentRenderer</div></td>
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts/renderers/RadarLineRenderer.html" class="bluelink">RadarLineRenderer</a></span> (can do both line and area rendering)</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">itemRenderer</div></td>
+<td rowspan="1" colspan="1"><div class="para">CircleItemRenderer, CrossItemRenderer, DiamondItemRenderer,
+TriangleItemRenderer</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts/series/RadarPlotSeries.html" class="bluelink">RadarPlotSeries</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">itemRenderer</div></td>
+<td rowspan="1" colspan="1"><div class="para">CircleItemRenderer, CrossItemRenderer, DiamondItemRenderer,
+TriangleItemRenderer</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts/series/RadarBubbleSeries.html" class="bluelink">RadarBubbleSeries</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">itemRenderer</div></td>
+<td rowspan="1" colspan="1"><div class="para">CircleItemRenderer, CrossItemRenderer, DiamondItemRenderer,
+TriangleItemRenderer</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts/series/RadarColumnSeries.html" class="bluelink">RadarColumnSeries</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">itemRenderer</div></td>
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts/renderers/RadarColumnRenderer.html" class="bluelink">RadarColumnRenderer</a></span>, CircleItemRenderer, CrossItemRenderer, DiamondItemRenderer, TriangleItemRenderer</div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex779.html" class="bluelink">Radar Charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex790.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex792.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

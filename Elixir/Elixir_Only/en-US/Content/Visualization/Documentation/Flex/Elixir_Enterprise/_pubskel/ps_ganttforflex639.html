@@ -1,0 +1,41 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Calendar data providers</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Principle"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex634.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex638.html" class="breadcrumb">Configuring calendar data</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex639.html" class="breadcrumb">Calendar data providers</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex638.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex640.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Calendar data providers</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e110809">
+
+
+
+<div class="para">A Calendar component gets its data from a data provider,
+which contains a list of data items.  Each data item represents an
+event.</div>
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">A calendar data provider can be one of the following
+types:</div>
+</div><dl class="descriptionlist"><dt class="term">XML</dt><dd class="descriptionlistItem"><div class="para">A string containing valid XML text or
+any of the following objects containing valid E4X  format XML data: <code class="code">&lt;mx:XML&gt;</code> or <code class="code">&lt;mx:XMLList&gt;</code> compile-time tag or an XML or XMLList object.</div>
+</dd><dt class="term">IList or ICollectionView</dt><dd class="descriptionlistItem"><div class="para">An object that implements the <span class="apiname">IList</span> or <span class="apiname">ICollectionView</span> interface, such as an instance of the <span class="apiname">ArrayCollection</span> class or the <span class="apiname">XMLListCollection</span>class,
+with a data provider that conforms to  the structure specified in
+either of these items.</div></dd><dt class="term">Other objects</dt><dd class="descriptionlistItem"><div class="para">An array of items or an object.</div>
+</dd></dl></div>
+<div class="para"/>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">When setting the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html#dataProvider" class="bluelink">dataProvider</a></span> property the <span class="apiname">Calendar</span> control modifies its internal representation
+ of the task data as follows: </div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">XML or XMLList are wrapped in an instance
+of <span class="apiname">XMLListCollection</span>.</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apiname">IList</span> or <span class="apiname">ICollectionView</span> are used directly.</div>
+</li><li class="itemizedlistItem"><div class="para">An <span class="apiname">Array</span> object is wrapped in an instance of <span class="apiname">ArrayCollection</span>.</div></li><li class="itemizedlistItem"><div class="para">An <span class="trademark">ActionScript®
+            </span> object of any other data type is
+wrapped in an <span class="apiname">ArrayCollection</span> using
+an <span class="apiname">Array</span> containing the object as
+its sole entry.</div></li></ul></div>
+<div class="para">For example, you pass an <span class="apiname">Array</span> to the <span class="apiname">dataProvider</span> property. If
+you read the data back from the <span class="apiname">dataProvider</span> property it is returned as an instance of <span class="apiname">ArrayCollection</span>.</div>
+<div class="para">The best practice when your event data can change dynamically
+is to use a collection, which provides the necessary notifications
+of changes.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex638.html" class="bluelink">Configuring calendar data</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex638.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex640.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

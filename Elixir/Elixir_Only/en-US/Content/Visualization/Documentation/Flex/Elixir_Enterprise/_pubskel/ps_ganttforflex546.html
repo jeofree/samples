@@ -1,0 +1,53 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Determining the kind of edit in an event listener</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex497.html" class="breadcrumb">Gantt resource charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex540.html" class="breadcrumb">Editing tasks in a resource chart</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex546.html" class="breadcrumb">Determining the kind of edit in an event listener</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex545.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex547.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Determining the kind of edit in an event listener</h1></div></div><div class="content">
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">When the user starts editing a task, the Gantt sheet
+component determines the kind of edit operation from the item area
+where the user clicked. In the body of the event listeners for the <span class="apiname">itemEditBegin</span>, <span class="apiname">itemEditMove</span>, <span class="apiname">itemEditReassign</span>, <span class="apiname">itemEditResize</span>, and <span class="apiname">itemEditEnd</span> events, you can determine the kind of edit and then handle it accordingly.</div>
+<div class="para">The <span class="apiname">GanttSheet</span> class
+defines the <span class="apiname">editKind</span> property, which
+contains a value that indicates the type of edit operation in progress.
+The <span class="apiname">editKind</span> property has the following
+values defined in the class <span class="apiname">TaskItemEditKind</span>.</div>
+<div class="caption">Values of the kind of edit</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_gantt.1029673"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Value</div></th>
+<th rowspan="1" colspan="1"><div class="para">Description</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">MOVE_REASSIGN</div></td>
+<td rowspan="1" colspan="1"><div class="para">Specifies that the user has clicked in the
+body of the task and is moving or reassigning the task. You may get
+this value for <span class="apiname">itemEditBegin</span>, <span class="apiname">itemEditMove</span>, <code class="code">itemEditReassign</code> and <span class="apiname">itemEditEnd</span> events.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">RESIZE_END</div></td>
+<td rowspan="1" colspan="1"><div class="para">Specifies that the user has clicked the end
+extremity of the task and is resizing it by changing the end time.
+You may get this value for <span class="apiname">itemEditBegin</span>, <span class="apiname">itemEditResize</span> and <span class="apiname">itemEditEnd</span> events.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">RESIZE_START</div></td>
+<td rowspan="1" colspan="1"><div class="para">Specifies that the user has clicked the start
+extremity of the task and is resizing it by changing the start time.
+You may get this value for <span class="apiname">itemEditBegin</span>, <span class="apiname">itemEditResize</span> and <span class="apiname">itemEditEnd</span> events.</div></td>
+</tr>
+</tbody></table>
+<div class="para">The following example shows how to retrieve the kind
+of edit within an event listener.</div>
+<pre class="programlisting">  private function onItemEditBegin(event:GanttSheetEvent):void {
+        var editKind:String = GanttSheet(event.target).editKind;
+        //...
+      }
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex540.html" class="bluelink">Editing tasks in a resource chart</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex545.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex547.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

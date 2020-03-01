@@ -1,0 +1,55 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Creating a pivot chart</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise132.html" class="breadcrumb">OLAP and pivot charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise139.html" class="breadcrumb">Pivot charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise140.html" class="breadcrumb">Creating a pivot chart</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise139.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise141.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Creating a pivot chart</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The major difference between an <span class="apiname">OLAPChart</span> and a <span class="apiname">PivotChart</span> is that the OLAP
+chart is configured from the result of an OLAP query whereas the pivot
+chart is configured from the OLAP cube itself. The end user will build
+the query using mouse gestures in the final application from the information
+introspected in the OLAP cube. This means that as for the OLAP chart,
+the first thing to do to create a pivot chart is to create a cube
+that fits your data. See <a href="ps_elixir_enterprise136.html" class="bluelink">Creating an OLAP chart</a>.</div>
+<div class="para">Once you have an OLAP cube, you bind it on the PivotChart
+cube property as shown in the following code.</div>
+<pre class="programlisting">&lt;mx:OLAPCube name="Sales" dataProvider="{flatData}" id=”olapcube”&gt;
+  [ ... ]
+&lt;/mx:OLAPCube&gt;
+&lt;ilog:PivotChart width=”100%” height=”100%” cube=”{olapcube}” /&gt;
+</pre>
+<div class="para">You do not have to create the query yourself, as the
+attributes in the OLAPCube will be accessible in the application for
+the end user to configure the display. See the following example.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/olap_attributes_default.png" alt="OLAPCube&#xA;attributes accessible for configuring the display" class="imagedata"/></div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The end user can drag the attributes from the list of
+attributes to one of the areas used to configure the pivot chart:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">At the bottom, the category area. All
+attributes dropped in that area will be used to configure the category
+axis of the <span class="apiname">PivotChart</span>. If several
+attributes are there, a cross-join will be made between them in the
+order in which they appear.</div></li><li class="itemizedlistItem"><div class="para">At the top, the chart area. All attributes
+dropped in that area will be used to configure how many charts will
+be created by the <span class="apiname">PivotChart</span>. If
+several attributes are there, a cross-join will be made between them
+in the order in which they appear.</div></li><li class="itemizedlistItem"><div class="para">On the right, the series area. All attributes
+dropped in that area will be used to configure how many series will
+be created per chart by the <span class="apiname">PivotChart</span>. If several attributes are dropped, a cross-join will be made between
+them in the order in which they appear.</div></li></ul></div>
+<div class="para">When an attribute is dragged to an area, it displays
+a dropdown list of the available choices for the given attribute.
+You can choose either to show all the possibilities for an attribute
+(for example <span class="quote">“Product 1”</span> and <span class="quote">“Product 2”</span> for the <span class="apiname">Product</span> attribute) using the <span class="literal">(Show All)</span> option or only some of them. When an attribute is dragged to the
+chart or series area, another option called <span class="literal">(All)</span> is available. In this case all the values of the given attribute
+are aggregated and displayed as a single value.</div>
+<div class="para">When you drag the <span class="apiname">Measures</span> attribute, you can choose which measures you want to be displayed
+in the pivot chart. These values come from the <span class="quote">“Measures”</span> dimension of the OLAP cube.</div>
+<div class="para">Another feature available for the pivot chart but not
+for the OLAP charts is navigation between pages when the number of
+charts exceeds the specified limit for one page. Navigation is implemented
+as arrow buttons which appear automatically above the chart area when
+needed.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise139.html" class="bluelink">Pivot charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise139.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise141.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

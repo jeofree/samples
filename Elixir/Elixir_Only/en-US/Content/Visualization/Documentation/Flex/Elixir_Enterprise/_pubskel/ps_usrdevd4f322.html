@@ -1,0 +1,122 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Configuring node, link, and subgraph renderers</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f312.html" class="breadcrumb">Creating a graph display from data providers using the Diagram
+class</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f316.html" class="breadcrumb">Customizing nodes, links and subgraphs in a diagram</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f322.html" class="breadcrumb">Configuring node, link, and subgraph renderers</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f321.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f323.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Configuring node, link, and subgraph renderers</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">When the diagram creates a node, link or subgraph renderer
+to represent an object from the data provider, events are fired by
+the component when these objects are effectively added to the diagram.
+ </div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The events are:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">GraphEvent.NODE_ADD: fired when a node
+is added to the diagram</div></li><li class="itemizedlistItem"><div class="para">GraphEvent.LINK_ADD: fired when a link
+is added to the diagram </div></li><li class="itemizedlistItem"><div class="para">GraphEvent.GRAPH_ADD: fired when a subgraph
+is added to the diagram</div></li></ul></div>
+<div class="para">You can use these events to fine tune the configuration
+of the renderers, for instance, specifying property values, specifying
+object layout parameters or applying different graph layout algorithms
+to subgraphs.   For details about diagram events and configuration
+to receive such events, see LINKTO [Managing Diagram Events].   The
+example below illustrates how you can use the NODE_ADD and LINK_ADD
+events to fine tune how these objects will be placed by a Tree Layout
+algorithm. </div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/halo" 
+               xmlns:ibm="http://www.ibm.com/xmlns/prod/ilog/flex/diagram/2010"
+               minWidth="1024" minHeight="768"&gt;
+  &lt;fx:Declarations&gt;
+    &lt;fx:XML id="data"&gt;
+      &lt;graph label="root"&gt;  
+        &lt;node label="Node 1" x="10" y="10" /&gt;
+        &lt;node label="Node 2" x="70" y="200"/&gt;
+        &lt;node label="Node 3" x="50" y="120"/&gt;
+        &lt;graph label="Graph 1" x="140" y="50"&gt;
+          &lt;node label="Node 11" x="0" y="0" /&gt;
+          &lt;node label="Node 12" x="10" y="40"/&gt;
+          &lt;graph label="Graph 2" x="150" y="60"/&gt;
+            &lt;node label="Node 21" x="0" y="0" /&gt;
+            &lt;node label="Node 22" x="60" y="60"/&gt;
+          &lt;/graph&gt;
+        &lt;/graph&gt;
+      &lt;/graph&gt;
+    &lt;/fx:XML&gt;
+    &lt;mx:HierarchicalCollectionView showRoot="true" source="{new HierarchicalData(data)}" id="hcv"/&gt;
+    &lt;ibm:TreeLayout id="treeLayout" 
+                    globalLinkStyle="mixed"
+                    globalAlignment="mixed"
+                    flowDirection="right"/&gt;
+  &lt;/fx:Declarations&gt;
+
+  &lt;fx:Script&gt;
+    &lt;![CDATA[
+      import com.ibm.ilog.diagram.GraphEvent;
+      import com.ibm.ilog.diagram.Link;
+      import com.ibm.ilog.diagram.Node;
+      
+      import mx.collections.HierarchicalCollectionView;
+      import mx.collections.HierarchicalData;
+           
+      /**
+       * Listener function to GraphEvent.NODE_ADD events.
+       * This function illustrates the configuration of per node
+       * layout parameters by applying a different Tree Layout
+       * alignment to a specific node in the diagram.
+       */
+      public function nodeAdded(event:GraphEvent):void 
+      {
+        var node:Node = event.element as Node;
+        if (node.label == "Graph 2") {
+          treeLayout.setAlignment(node, TreeLayout.TIP_OVER_BOTH_SIDES);
+        }
+      }
+      
+      /**
+       * Listener function to GraphEvent.LINK_ADD events.
+       * This function illustrates the configuration of per link
+       * layout parameters by applying a different Tree Layout
+       * link style to specific links in the diagram.
+       */
+      public function linkAdded(event:GraphEvent):void
+      {
+        var link:Link = event.element as Link;
+        if (link.startNode.label == "root") {
+          treeLayout.setLinkStyle(link, TreeLayout.ORTHOGONAL_STYLE);
+        }
+      }
+      public function initializeDataProvider():void 
+      {
+        diagram.nodeDataProvider = hcv;
+      }
+    ]]&gt;
+  &lt;/fx:Script&gt;
+
+  &lt;ibm:Diagram id="diagram" left="0" top="0" width="100%" height="100%" 
+               xLocationField="@x" yLocationField="@y" labelField="@label" 
+               automaticGraphLayout="true"              
+               createLinksForHierarchy="true" 
+               nodeLayout="{treeLayout}" 
+               nodeAdd="{nodeAdded(event)}"
+               linkAdd="{linkAdded(event)}"
+               creationComplete="{initializeDataProvider()}" /&gt;
+  
+&lt;/s:Application&gt;
+</pre>
+<div class="para">Although not displayed in the sample, the same principle
+holds to configure subgraphs by listening to GRAPH_ADD events. </div>
+<div class="figure"><div class="mediaobject"><img src="../../Diagram4Flex/_media/PerObjectLayoutParameter_default.png" alt="Placement&#xA;of objects by a Tree Layout algorithm using the NODE_ADD and LINK_ADD&#xA;events." class="imagedata"/></div></div>
+<div class="para">The Tree Layout algorithm requires that the layout is
+already attached to the component in order to be able to configure
+object parameters. Therefore, in this example, the tree layout is
+configured inline while the data provider is set to the diagram component
+at a later stage. Also note that in order to be able to specify the
+link style and node alignment for specific objects, the global configuration
+has been set to "mixed", indicating that per object parameters are
+specified. </div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f316.html" class="bluelink">Customizing nodes, links and subgraphs in a diagram</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f321.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f323.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

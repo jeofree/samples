@@ -1,0 +1,89 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Configuring a pivot chart</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex727.html" class="breadcrumb">OLAP and pivot charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex734.html" class="breadcrumb">Pivot charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex736.html" class="breadcrumb">Configuring a pivot chart</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex735.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex737.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Configuring a pivot chart</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="section">
+<h2 class="heading">Changing chart and series types</h2>
+<div class="sectionContent">
+<div class="para">The <span class="apiname">PivotChart</span> class
+inherits from the <span class="apiname">OLAPChart</span> class.
+This means that you can use the exact same methodology to change chart
+and series types, see <a href="ps_ganttforflex732.html#section1216387432793" class="bluelink">Changing chart and series types</a>.</div>
+
+<div class="para">Other configurations described below are more specific
+to the <span class="apiname">PivotChart</span> object.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Pivot chart query configuration</h2>
+<div class="sectionContent">
+<div class="para">The <span class="apiname">PivotChart</span> query
+is meant to be configured by the end user using mouse gestures. However
+in some cases you might want to present the <span class="apiname">PivotChart</span> with a default query at launch time. This is possible using the
+APIs of the <span class="apiname">PivotChart</span>.</div>
+<div class="para">Suppose you want to display the data by default in exactly
+the same manner as in the OLAP “Changing Clustering”
+section: a chart per product and a series per country, with the year,
+quarter, and month displayed on the category axis. The following exmple
+shows how to set the <span class="apiname">charts</span>, <span class="apiname">series</span>, and <span class="apiname">categoryAttributes</span> properties to the right set of <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts/PivotAttribute.html" class="bluelink">PivotAttribute</a></span> objects.</div>
+<pre class="programlisting">&lt;mx:Script&gt;
+  &lt;![CDATA[
+    import mx.collections.IList;
+    import ilog.charts.PivotAttribute;
+    public function getAttributes(elements:IList, attributes:Array):Array
+    {
+      var result:Array = []
+      for each (var attribute:PivotAttribute in attributes) {
+        if (elements.getItemIndex(attribute.element) != -1)
+          result.push(attribute);
+      } 
+      return result;
+    }        
+  ]]&gt;
+&lt;/mx:Script&gt;
+&lt;ilog:PivotChart id="pivotchart" width="100%" height="100%" cube="{cube}"
+  chartsAttributes="{getAttributes(cube.findDimension('CountryDim').attributes,
+                                   pivotchart.attributes)}"
+  seriesAttributes="{getAttributes(cube.findDimension('ProductDim').attributes,
+                                   pivotchart.attributes)}"
+  categoryAttributes="{getAttributes(cube.findDimension('TimeDim').attributes,
+                                   pivotchart.attributes)}"&gt;
+  &lt;ilog:dataAxis&gt;
+    &lt;mx:LinearAxis/&gt;
+  &lt;/ilog:dataAxis&gt;
+&lt;/ilog:PivotChart&gt;
+</pre>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Other properties</h2>
+<div class="sectionContent">
+<div class="para">Several properties are available in addition to the <span class="apiname">PivotChart</span> query configuration. You can get a full
+list by looking at the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts/PivotChart.html" class="bluelink">PivotChart</a></span> class.</div>
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">The most useful other properties are:</div>
+</div><dl class="descriptionlist"><dt class="term">enable</dt><dd class="descriptionlistItem"><div class="para">You can disable interaction on the <span class="apiname">PivotChart</span> by setting the <span class="apiname">enable</span> attribute to <span class="literal">false</span>.</div>
+<pre class="programlisting">&lt;ilog:PivotChart id="pivotchart" width="100%" height="100%"
+  cube="{cube}" enable="false"/&gt;</pre>
+</dd><dt class="term">showLegend</dt><dd class="descriptionlistItem"><div class="para"><span class="apiname">PivotChart</span> has an embedded <span class="apiname">OLAPChartLegend</span> visible by default on the right side of the component. If you want
+to switch it off you can set the <span class="apiname">showLegend</span> style property to <span class="literal">false</span>.</div>
+<pre class="programlisting">&lt;ilog:PivotChart width="100%" height="100%" cube="{olapcube}"
+  showLegend="false"/&gt;
+</pre>
+</dd><dt class="term">queryFactory and setFactory</dt><dd class="descriptionlistItem"><div class="para"><span class="apiname">PivotChart</span> uses theAdobe® Flash® Builder™ 4 OLAP
+in-memory implementation by default. You may want to replace it by
+your own implementation. To do so, you can use the <span class="apiname">queryFactory</span> and <span class="apiname">setFactory</span> properties to set your own implementation classes as shown in the
+following example.</div>
+<pre class="programlisting">&lt;ilog:PivotChart width=”100%” height=”100%”
+  cube=”{olapcube}” 
+  setFactory="{new ClassFactory(mx.olap.OLAPSet)}"
+  queryFactory="{new ClassFactory(mx.olap.OLAPQuery)}"
+</pre>
+</dd></dl></div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex734.html" class="bluelink">Pivot charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex735.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex737.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,328 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Base class parameters and features</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex367.html" class="breadcrumb">Generic parameters and features</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex369.html" class="breadcrumb">Base class parameters and features</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex368.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex370.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Base class parameters and features</h1></div></div><div class="content">
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The   <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html" class="bluelink">IlvGraphLayout</a></span> class defines a number of generic features and parameters.
+These features and parameters can be used to customize the layout
+algorithms. </div>
+<div class="para">Although the <code class="code">IlvGraphLayout</code> class defines the generic parameters, it does not control how they
+are used by its subclasses. Each layout algorithm (that is, each subclass
+of <code class="code">IlvGraphLayout</code>) supports a subset of
+the generic features and determines the way in which it uses the generic
+parameters. When you create your own layout algorithm by subclassing <code class="code">IlvGraphLayout</code>, you decide whether you want to use
+the features and the way in which you are going to use them.  </div>
+<div class="para">The <code class="code">IlvGraphLayout</code> class defines
+the following generic features: </div>
+
+
+<div class="para"><a href="ps_usrgraphlayout_flex368.html" class="bluelink">Support by algorithms of generic features and parameters</a> provides
+a summary of the generic parameters supported by each layout algorithm.
+If you are using one of the subclasses provided with IBM® JViews, check
+the documentation for that subclass to know whether it supports a
+specific parameter and how it interprets the parameter. </div>
+<div class="section" id="usrgraphlayout.uss_graphlay_basics.1017208">
+<h2 class="heading">Allowed time</h2>
+<div class="sectionContent">
+<div class="para">Several layout algorithms can be designed to stop computation
+when a user-defined time specification is exceeded. This may be done
+for different reasons: as a security measure to avoid a long computation
+time on very large graphs or as an upper limit for algorithms that
+iteratively improve a current solution and have no other criteria
+to stop the computation. </div>
+<div class="example">
+<div class="title">Example of specifying allowed time </div>
+<div class="exampleContent">
+<div class="para">To specify that the layout is allowed to run for 60 seconds: </div>
+</div>
+
+
+</div>
+</div>
+</div>
+
+<div class="section" id="usrgraphlayout.uss_graphlay_basics.1020626">
+<h2 class="heading">Automatic layout</h2>
+<div class="sectionContent">
+
+
+</div>
+</div>
+
+<div class="section" id="usrgraphlayout.uss_graphlay_basics.1017460">
+<h2 class="heading">Layout of connected components</h2>
+<div class="sectionContent">
+<div class="para">The base class   <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html" class="bluelink">IlvGraphLayout</a></span> provides generic support for the layout of a disconnected
+graph (composed of connected components). For details, see <a href="ps_usrgraphlayout_flex477.html" class="bluelink">Laying out connected components of a disconnected graph</a>. </div>
+<div class="example">
+<div class="title">Example of layout</div>
+<div class="exampleContent">
+<div class="para">To enable the placement of disconnected graphs: </div>
+</div>
+
+
+</div>
+</div>
+
+
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_basics.1000924">
+<h2 class="heading">Layout region</h2>
+<div class="sectionContent">
+
+
+<div class="para">The layout algorithms call a different method: </div>
+<pre class="programlisting">
+IlvRect getCalcLayoutRegion()  
+</pre>
+<div class="para">This method first tries to use the layout region specification
+by calling the method  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html#getSpecLayoutRegion()" class="bluelink">getSpecLayoutRegion</a></span>. If this method returns a non-null rectangle, this
+rectangle is returned. Otherwise, the method tries to estimate an
+appropriate layout region according to the number and size of the
+nodes in the attached graph. If no graph is attached, or the attached
+graph is empty, it returns a default rectangle (<code class="code">0</code>, <code class="code">0</code>, <code class="code">1000</code>, <code class="code">1000</code>). </div>
+<div class="para">To indicate whether a subclass of <code class="code">IlvGraphLayout</code> supports the layout region mechanism, use the method:  </div>
+<pre class="programlisting">
+boolean supportsLayoutRegion()  
+</pre>
+<div class="para">The default implementation returns <code class="code">false</code>. A subclass can override this method in order to return <code class="code">true</code> to indicate that this mechanism is supported. </div>
+</div>
+
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_basics.1017682">
+<h2 class="heading">Link clipping</h2>
+<div class="sectionContent">
+
+
+<div class="para">If a layout algorithm calculates specific connection
+points, then it places the connection points of links by default at
+the border of the bounding box of the nodes. If the node has a nonrectangular
+shape such as a triangle, rhombus, or circle, you may want to place
+the connection points exactly on the border of the shape. This can
+be achieved by code by specifying a link clip interface. The link
+clip interface allows you to correct the calculated connection point
+so that it lies on the border of the shape. Some examples are shown
+in the following figure. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_basics.1017693"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig2-1online2_default.gif" alt="A sample&#xA;graph without link clipping and then with link clipping to show how&#xA;to improve connection to irregular shapes" class="imagedata"/></div><div class="caption">Effect of link clipping interface</div></div>
+<div class="example">
+<div class="title">Example of link clipping</div>
+<div class="exampleContent">
+<div class="para">To specify the link clip interface:</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_basics.1017739">
+<h2 class="heading">Link connection box</h2>
+<div class="sectionContent">
+<div class="para">If a layout algorithm calculates specific connection
+points, it places the connection points of links by default at the
+border of the bounding box of the nodes, symmetrically with respect
+to the middle of each side. Sometimes it may be necessary to place
+the connection points on a rectangle smaller or larger than the bounding
+box, eventually in a nonsymmetric way. For instance, this can happen
+when labels are displayed below or above nodes (see Effect of link connection box interface ). This can be achieved by specifying
+a link connection box interface. The link connection box interface
+allows you to specify, for each node, a node box different from the
+bounding box that is used to connect the links to the node. </div>
+
+</div>
+
+
+</div>
+
+<div class="section" id="usrgraphlayout.uss_graphlay_basics.1000979">
+<h2 class="heading">Memory savings</h2>
+<div class="sectionContent">
+<div class="para">The computation of a layout on a large graph may require
+a large amount of memory. Some layout algorithms optionally use two
+ways to store data: one which gives the priority to speed (this is
+the default case), the other which consumes less memory and is usually
+slower. The amount of memory savings depends, of course, on the implementation
+of the subclass of   <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html" class="bluelink">IlvGraphLayout</a></span>. No matter which option you choose for memory savings,
+the resulting layout should be the same. </div>
+<div class="example">
+<div class="title">Example of memory savings</div>
+<div class="exampleContent">
+<div class="para">To enable memory savings: </div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_basics.1014202">
+<h2 class="heading">Percentage of completion calculation</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">Some layout algorithms can provide an estimation of how
+much of the layout has been completed. This estimation is made available
+as a percentage value that is stored in the graph layout report. When
+the algorithm starts, the percentage value is set to 0. The layout
+algorithm calls the following method from time to time to increase
+the percentage value by steps until it reaches 100: </div>
+<pre class="programlisting">
+void increasePercentageComplete(int newPercentage);  
+</pre>
+<div class="para">The percentage value can be accessed from the layout
+report using the following: </div>
+<pre class="programlisting">
+int percentage = layoutReport.getPercentageComplete(); 
+</pre>
+<div class="para">To see an example of how to read the percentage value
+during the running of a layout, see <a href="ps_usrgraphlayout_flex476.html#usrgraphlayout.uss_graphlay_advanced.1026354" class="bluelink">Graph layout event listeners</a>. </div>
+<div class="para">To indicate whether a subclass of   <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html" class="bluelink">IlvGraphLayout</a></span> supports this mechanism, use the method:  </div>
+<pre class="programlisting">
+boolean supportsPercentageComplete() 
+</pre>
+<div class="para">The default implementation returns <code class="code">false</code>. A subclass can override this method to return <code class="code">true</code> to indicate that this mechanism is supported. </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_basics.1022705">
+<h2 class="heading">Preserve fixed links</h2>
+<div class="sectionContent">
+<div class="para">At times, you may want some links of the graph to be
+“pinned” (that is, to stay in their current shape when
+the layout is performed). You need a way to indicate the links that
+the layout algorithm cannot reshape. This makes sense especially when
+using a semi-automatic layout (the method where the end user fine-tunes
+the layout by hand after the layout is completed) or when using an
+incremental layout (the method where the graph and/or the shape of
+the links is modified after the layout has been performed, and then
+the layout is performed again). </div>
+<div class="example">
+<div class="title">Example of fixing links</div>
+<div class="exampleContent">
+<div class="para">To specify that a link is fixed: </div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_basics.1022740">
+<h2 class="heading">Preserve fixed nodes</h2>
+<div class="sectionContent">
+<div class="para">At times, you may want some nodes of the graph to be
+“pinned” (that is, to stay in their current position
+when the layout is performed). You need a way to indicate the nodes
+that the layout algorithm cannot move. This makes sense especially
+when using a semi-automatic layout (the method where the end user
+fine-tunes the layout by hand after the layout is completed) or when
+using an incremental layout (the method where the graph and/or the
+position of the nodes is modified after the layout has been performed,
+and then the layout is performed again). </div>
+<div class="example">
+<div class="title">Example of fixing nodes</div>
+<div class="exampleContent">
+<div class="para">To specify that a node is fixed: </div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_basics.1022774">
+<h2 class="heading">Random generator seed value</h2>
+<div class="sectionContent">
+<div class="para">Some layout algorithms use random numbers (or randomly
+chosen parameters) for which they accept a user-defined seed value. For example, the Random Layout uses the
+random generator to compute the coordinates of the nodes. The Uniform
+Length Edges Layout uses the random generator to compute some internal
+variables. </div>
+<div class="para">Subclasses of  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html" class="bluelink">IlvGraphLayout</a></span> that are designed to support this mechanism allow
+the user to choose one of three ways of initializing the random generator:
+ </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">With a default value that is always
+the same.  </div></li><li class="itemizedlistItem"><div class="para">With a user-defined seed value that
+can be changed when re-performing the layout.  </div>
+</li><li class="itemizedlistItem"><div class="para">With an arbitrary seed value, which
+is different each time. In this case, the random generator is initialized
+based on the system time.  </div></li></ul></div>
+<div class="para">The user chooses the initialization option depending
+on what happens when the layout algorithm is performed again on the
+same graph. If the same seed value is used, the same layout is produced,
+which may be the desired result. In other situations, the user may
+want to produce different layouts in order to select the best one.
+This can be achieved by performing the layout several times using
+different seed values. </div>
+
+
+</div>
+</div>
+
+<div class="section" id="usrgraphlayout.uss_graphlay_basics.1022821">
+<h2 class="heading">Stop immediately</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">Several layout algorithms can stop computation when an
+external event occurs, for instance when the user hits a “Stop”
+button. In Java, to stop the layout, you can call:  </div>
+<pre class="programlisting">
+boolean stopImmediately();  
+</pre>
+<div class="para">This method is typically called in a multithreaded application
+from a separate thread that is not the layout thread. The method returns <code class="code">true</code> if the stop was initiated and <code class="code">false</code> if the algorithm cannot stop. The method returns immediately, but
+the layout thread usually needs some additional time after initiating
+the stop to clean up data structures. </div>
+
+
+<div class="para">The consequences of stopping a layout process depend
+on the specific layout algorithm. Some layout algorithms have an iterative
+nature. Stopping the iteration process results in a slight loss of
+quality in the drawing, but the layout can still be considered valid.
+Other layout algorithms have a sequential nature. Interrupting the
+sequence of the layout steps may not result in a valid layout. Usually,
+these algorithms return to the situation before the start of the layout
+process. </div>
+<div class="para">To indicate whether a subclass of <code class="code">IlvGraphLayout</code> supports this mechanism, use the method:  </div>
+<pre class="programlisting">
+boolean supportsStopImmediately() 
+</pre>
+<div class="para">The default implementation returns <code class="code">false</code>. You can write a subclass to override this method in order to return <code class="code">true</code> to indicate that this mechanism is supported. </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_basics.1022874">
+<h2 class="heading">Use default parameters</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">All the generic parameters have a default value. After
+modifying parameters, you may want the layout algorithm to use the
+default values. Later, you may want to return to your customized values. IBM  JViews keeps
+the previous settings when you select the default values mode. In
+Java, you can switch between the default values mode and the mode
+for your own settings using the method:  </div>
+<pre class="programlisting">
+void setUseDefaultParameters(boolean option) 
+</pre>
+<div class="para">To obtain the current value: </div>
+<pre class="programlisting">
+boolean isUseDefaultParameters() 
+</pre>
+<div class="para">The default value is <code class="code">false</code>. This means that any setting you make will be taken into consideration
+and the parameters that have not been specified will have their default
+values.</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex367.html" class="bluelink">Generic parameters and features</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex368.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex370.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

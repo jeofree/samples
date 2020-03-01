@@ -1,0 +1,150 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>User interaction with organization charts</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex739.html" class="breadcrumb">Organization Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex768.html" class="breadcrumb">User interaction with organization charts</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex767.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex769.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">User interaction with organization charts</h1></div></div><div class="content">
+
+
+
+<div class="descriptiveTopicContent" id="d0e128471">
+
+
+<div class="para">Since IBM® <span class="classificationVariable">ILOG Elixir</span> 3.0, the <span class="apiname">OrgChart</span> component has new keyboard navigation functions that improve accessibility
+by allowing navigation and selection based on <span class="apiname">Tree</span> component navigation. You can set the new accessibility mode using
+the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#accessibilityKeyboardNavigation" class="bluelink">accessibilityKeyboardNavigation</a></span> property.</div>
+<div class="para">For more information, see <span class="italics">Handling user interactions with charts</span> and <span class="italics">Selecting chart items</span> in the Adobe
+documentation.</div>
+
+<div class="section" id="usrflprg.uss_flexprg_orgcharts.1024416">
+<h2 class="heading">Selection</h2>
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">When an item is clicked, it is selected and an  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:itemClick" class="bluelink">itemClick</a></span> event is fired. To enable multiple selection, set
+the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#allowMultipleSelection" class="bluelink">allowMultipleSelection</a></span> property to <code class="code">true</code>.</div>
+<div class="para">The current selection is available in the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#selectedItems" class="bluelink">selectedItems</a></span> property of the <code class="code">OrgChart</code>. You can disable
+selection by setting the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#allowSelection" class="bluelink">allowSelection</a></span> property to <code class="code">false</code>.</div>
+<div class="para">The selection actions are shown in the following table. </div>
+<div class="caption">Selection actions</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_orgcharts.1027219"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Action</div></th>
+<th rowspan="1" colspan="1"><div class="para">Mouse</div></th>
+<th rowspan="1" colspan="1"><div class="para">Keyboard</div></th>
+<th rowspan="1" colspan="1"><div class="para">Keyboard (accessibility mode)</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Select</div></td>
+<td rowspan="1" colspan="1"><div class="para">Click an item in the organization chart.</div></td>
+<td rowspan="1" colspan="1"><div class="para">Highlight an item and press Space.</div></td>
+<td rowspan="1" colspan="1"><div class="para">Same as Keyboard.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Extend a selection</div></td>
+<td rowspan="1" colspan="1"><div class="para">Hold down the CTRL key and click the items.</div></td>
+<td rowspan="1" colspan="1"><div class="para">Highlight an item and press CTRL + Space.</div></td>
+<td rowspan="1" colspan="1"><div class="para">Same as Keyboard.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Clear a selection</div></td>
+<td rowspan="1" colspan="1"><div class="para">Click anywhere on the chart background.</div></td>
+<td rowspan="1" colspan="1"><div class="para">--</div></td>
+<td rowspan="1" colspan="1"><div class="para">--</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Highlight</div></td>
+<td rowspan="1" colspan="1"><div class="para">Move the pointer over an item.</div></td>
+<td rowspan="1" colspan="1"><div class="para">--</div></td>
+<td rowspan="1" colspan="1"><div class="para">--</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Select a neighboring item.</div></td>
+<td rowspan="1" colspan="1"><div class="para">--</div></td>
+<td rowspan="1" colspan="1"><div class="para">CTRL + Arrow keys.</div></td>
+<td rowspan="1" colspan="1">Up and Down arrow keys.</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="section" id="usrflprg.uss_flexprg_orgcharts.1027266">
+<h2 class="heading">Navigation</h2>
+
+<div class="sectionContent" id="d0e128836">
+
+
+
+
+
+
+<div class="para">An  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html" class="bluelink">OrgChart</a></span> view can be
+zoomed and panned to display a specific part of the chart. The available
+actions are described in the following table: </div>
+<div class="caption">Navigation actions</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_orgcharts.1027274"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Action</div></th>
+<th rowspan="1" colspan="1"><div class="para">Mouse</div></th>
+<th rowspan="1" colspan="1"><div class="para">Keyboard</div></th>
+<th rowspan="1" colspan="1"><div class="para">Keyboard (accessibility mode)</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Zoom in</div></td>
+<td rowspan="1" colspan="1"><div class="para">Rotate the mouse wheel forward.</div></td>
+<td rowspan="1" colspan="1"><div class="para">+</div></td>
+<td rowspan="1" colspan="1"><div class="para">+</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Zoom out</div></td>
+<td rowspan="1" colspan="1"><div class="para">Rotate the mouse wheel backward.</div></td>
+<td rowspan="1" colspan="1"><div class="para">-</div></td>
+<td rowspan="1" colspan="1"><div class="para">-</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Pan</div></td>
+<td rowspan="1" colspan="1"><div class="para">Click and drag.</div></td>
+<td rowspan="1" colspan="1"><div class="para">Arrow keys</div></td>
+<td rowspan="1" colspan="1"><div class="para">Ctrl + Arrow keys</div></td>
+</tr>
+<tr>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Open a node</div><div class="para">(Local view mode only)</div></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Click the open icon of the item
+renderer.</div></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Ctrl + space bar</div></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Right arrow</div></td>
+</tr>
+<tr>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Close a node</div><div class="para">(Local view mode only)</div></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Click the close icon of the item
+renderer.</div></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Ctrl + space bar</div></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Left arrow</div></td>
+</tr>
+<tr>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Set the local item</div><div class="para">(Global view mode only)</div></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Click the local item icon of
+the item renderer.</div></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Enter</div></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Enter</div></td>
+</tr>
+</tbody></table>
+<div class="para">Navigation can be disabled by setting the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#allowNavigation" class="bluelink">allowNavigation</a></span> property to <code class="code">false</code>.</div>
+<div class="para">In addition to these actions, an  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html" class="bluelink">OrgChart</a></span> control provides
+an API for navigation purposes. See <a href="ps_ganttforflex769.html" class="bluelink">View manipulation API</a>.</div>
+<div class="para">An <code class="code">OrgChart</code> control has the
+following zoom constraints:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The minimum zoom level displays the
+entire chart. The minimum zoom level can be specified by setting the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#minZoomLevel" class="bluelink">minZoomLevel</a></span> property</div></li><li class="itemizedlistItem"><div class="para">The maximum zoom level displays an item.
+The maximum can be specified by setting the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#maxZoomLevel" class="bluelink">maxZoomLevel</a></span> property.</div></li></ul></div>
+<div class="para">The initial view position is determined by the <span class="apiname">initialPosition</span> style property.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">Valid values of  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#style:initialPosition" class="bluelink">initialPosition</a></span> are:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">centeredOnRoot</code>: This is the default value. The view is centered on the root of
+the organization chart and not scaled.</div></li><li class="itemizedlistItem"><div class="para"><code class="code">fitToContents</code>: The view is scaled to display the entire organization chart.</div>
+</li></ul></div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex739.html" class="bluelink">Organization Charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex767.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex769.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

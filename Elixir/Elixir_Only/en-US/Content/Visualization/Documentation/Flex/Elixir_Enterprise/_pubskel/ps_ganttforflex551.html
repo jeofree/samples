@@ -1,0 +1,82 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Introduction to task charts</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex550.html" class="breadcrumb">Gantt task charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex551.html" class="breadcrumb">Introduction to task charts</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex550.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex552.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Introduction to task charts</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">A task chart is a Gantt chart used to display tasks and
+their dependencies. It is typically found in project planning applications.</div>
+<div class="para">The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskChart.html" class="bluelink">TaskChart</a></span> control
+is a list of tasks that display their properties in columns and their
+duration over a time line. Tasks may be organized as a hierarchy,
+either to match a hierarchy of tasks or to arrange them into groups
+or categories.</div>
+<div class="para">The task chart control is a composite control composed
+of:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">A data grid that displays the hierarchy
+of tasks and their properties. It uses the <span class="trademark">Adobe®
+            </span> <span class="trademark">Flex®
+            </span> <code class="code">AdvancedDataGrid</code> control.</div><div class="para">You are assumed to be familiar
+with using the <code class="code">AdvancedDataGrid</code> control
+and working with data providers. For more information on the <code class="code">AdvancedDataGrid</code> control, see <span class="italics">Using the AdvancedDataGrid control</span> in <span class="italics">Adobe Flex 4 Developer’s
+Guide</span>.</div>
+
+</li><li class="itemizedlistItem"><div class="para">A Gantt sheet that displays the tasks
+arranged in time. The Gantt sheet header displays a time scale that
+supports navigatiing and zooming on the time axis.</div>
+</li></ul></div>
+<div class="para">The Gantt sheet displays from back to front:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">A row grid to help visualize the rows</div>
+</li><li class="itemizedlistItem"><div class="para">A work grid that renders the working
+and nonworking times</div></li><li class="itemizedlistItem"><div class="para">A time grid to help visualize the time
+units</div></li><li class="itemizedlistItem"><div class="para">The tasks, and the dependencies or constraints
+between the tasks.</div></li><li class="itemizedlistItem"><div class="para">A time indicator to show the current
+time</div></li></ul></div>
+<div class="para">The following is an example of a task chart.</div>
+<div class="mediaobject"><img src="../../Gantt4Flex/_media/sampletaskchart_default.png" alt="Example&#xA;of a task chart" class="imagedata"/></div>
+<div class="para">The task chart is characterized by the ability to:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Display tasks as a hierarchy in a data
+grid by leveraging the features of the Adobe Flex <code class="code">AdvancedDataGrid</code>.</div></li><li class="itemizedlistItem"><div class="para">Display tasks over a time line inside
+a Gantt sheet.</div></li><li class="itemizedlistItem"><div class="para">Edit task duration, start, and end times
+in response to direct manipulation with the mouse.</div>
+</li><li class="itemizedlistItem"><div class="para">Dispatch events related to hovering
+over, clicking, double-clicking, and editing tasks.</div>
+</li><li class="itemizedlistItem"><div class="para">Display constraints between tasks.</div>
+</li><li class="itemizedlistItem"><div class="para">Navigate along the time axis and focus
+on time periods.</div></li><li class="itemizedlistItem"><div class="para">Skin and style tasks and constraints.</div>
+</li></ul></div>
+
+
+
+<div class="para">A <span class="italics">task</span> corresponds to some work to be completed. Tasks are often broken
+down into <span class="italics">subtasks</span>, thus forming a hierarchy. In this hierarchy, tasks that have no
+children are called <span class="italics">leaf task</span>s, while tasks that have children are called <span class="italics">summary tasks</span>.</div>
+<div class="para">A <span class="italics">milestone</span> is a special kind of task of zero duration that corresponds to an
+event.</div>
+<div class="para">A <span class="italics">constraint</span> is a condition set between two tasks. A constraint can be one of
+the following kinds: start to start, start to end, end to start, or
+end to end. In a constraint, the <span class="italics">source
+task</span> is the task whose start or end controls the
+start or end of another task. Conversely, the <span class="italics">destination task</span> is the task whose
+start or end depends on the start or end of another task. In the Gantt
+sheet, a constraint is represented by a polyline terminated by an
+arrow, linking the source task to the destination task.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex550.html" class="bluelink">Gantt task charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex550.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex552.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,139 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Styling an OLAP chart</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex727.html" class="breadcrumb">OLAP and pivot charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex730.html" class="breadcrumb">OLAP charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex733.html" class="breadcrumb">Styling an OLAP chart</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex732.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex734.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Styling an OLAP chart</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">Once an <span class="apiname">OLAPChart</span> has
+been configured, you might want to change its style. There are properties
+that let you modify the appearance of the chart itself and of the
+series.</div>
+<div class="section">
+<h2 class="heading">OLAP chart styling</h2>
+<div class="sectionContent">
+<div class="para">When you use clustering, the OLAP chart lays out the
+different charts using a <span class="apiname">Tile</span> object.
+You can change the style properties of the <span class="apiname">Tile</span> using the <span class="apiname">tileStyleName</span> style property
+on the <span class="apiname">OLAPChart</span>.</div>
+<div class="para">The following code shows how to set larger gaps between
+the charts than the default ones.</div>
+<pre class="programlisting">&lt;mx:Style&gt;
+  .tileStyle {
+    horizontalGap : 10,
+    verticalGap : 10
+  }
+&lt;/mx:Style&gt;
+&lt;ilog:OLAPChart width="100%" height="100%" 
+  id="olapachart" clusteringDepth="1"
+  tileStyleName="titleStyle"/&gt; 
+</pre>
+<div class="para">You can also replace the <span class="apiname">Container</span> in charge of holding each chart. By default a <span class="apiname">Panel</span> is used and the display name of the OLAP elements rendered in the
+chart is set to the <span class="apiname">Panel</span> title.
+You can replace the panel by something else. If you want the title
+to be available, the replacement container must implement the <span class="apiname">IDataRenderer</span> interface. In this case, the title
+will be available in the <span class="apiname">data</span> property
+of the holder.</div>
+<div class="para">If you do not want any intermediate holder between the
+tile and the chart you can just set the <span class="apiname">holder</span> property to null.</div>
+<pre class="programlisting">&lt;ilog:OLAPChart width="100%" height="100%" 
+  id="olapachart" clusteringDepth="1"&gt;
+  &lt;ilog:holder&gt;{null}&lt;/ilog:holder&gt;
+&lt;/ilog:OLAPChart&gt;
+</pre>
+<div class="para">If you want the OLAP chart to display 3D charts instead
+of 2D charts, use the 3D version of the chart.</div>
+<pre class="programlisting">&lt;ilog:OLAPChart3D width="100%" height="100%" id="olapachart"/&gt;</pre>
+<div class="para">When you use the 3D version of the OLAP chart, you must
+use 3D OLAP series in series providers instead of the 2D versions.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">OLAP axis styling</h2>
+<div class="sectionContent">
+<div class="para">By default, the <span class="apiname">OLAPChart</span> uses instances of <span class="apiname">OLAPAxisRenderer</span> to render the category axis of the charts. This specific renderer
+can display a hierarchy of data sets provided by the OLAP result columns
+on a single axis.</div>
+<div class="para">The <span class="apiname">OLAPAxisRenderer</span> can rotate labels to display them fully. If you want to enable this
+possibility, you will have to provide an embedded font to the axis
+renderer as shown in the following code.</div>
+<pre class="programlisting">&lt;mx:Style&gt;
+  @font-face {
+    src: local("sansserif");
+    fontFamily: "myFont";
+  }
+&lt;/mx:Style&gt;
+&lt;ilog:OLAPChart width=”100%” height=”100%” 
+  id=”olapachart” font-family=”myFont”/&gt; 
+</pre>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">To go further, the following example shows how to:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Flip the vertical labels on the axis
+(bottom-to-top instead of top-to-bottom)</div></li><li class="itemizedlistItem"><div class="para">Have a different tick stroke instead
+of the default one</div></li><li class="itemizedlistItem"><div class="para">Display a title on the axis</div>
+</li></ul></div>
+<pre class="programlisting">&lt;ilog:OLAPChart id="olapchart" width="100%" height="100%"
+  fontFamily="MyFont"&gt;
+  &lt;ilog:categoryAxis&gt;
+    &lt;ilog:OLAPAxis title="Axis Title"/&gt;
+  &lt;/ilog:categoryAxis&gt;
+  &lt;ilog:chart&gt;
+    &lt;mx:Component&gt;
+      &lt;mx:ColumnChart width="100%" height="100%" showDataTips="true"&gt;
+         &lt;mx:horizontalAxisRenderer&gt;
+           &lt;ilog:OLAPAxisRenderer flipVertical="true"&gt;
+             &lt;ilog:tickStroke&gt;
+               &lt;mx:Stroke color="gray" weight="3"/&gt;
+             &lt;/ilog:tickStroke&gt;
+           &lt;/ilog:OLAPAxisRenderer&gt;
+         &lt;/mx:horizontalAxisRenderer&gt;
+      &lt;/mx:ColumnChart&gt;   
+    &lt;/mx:Component&gt;
+  &lt;/ilog:chart&gt;
+&lt;/ilog:OLAPChart&gt;
+</pre>
+<div class="para">See <span class="apiname">OLAPAxis</span> and <span class="apiname">OLAPAxisRenderer</span> in the reference manual for more
+details.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">OLAP series styling</h2>
+<div class="sectionContent">
+<div class="para">As with regular charts, OLAP chart series can be styled
+to adapt the rendering to the data.</div>
+<div class="para">The following example shows how to color the monthly
+sum of sales red if the value is less than four.</div>
+<pre class="programlisting">&lt;mx:Script&gt;
+  &lt;![CDATA[
+    import mx.graphics.SolidColor;
+    import mx.olap.IOLAPAxisPosition;
+    import mx.olap.IOLAPCell;
+    import mx.graphics.IFill;
+
+    public function fillFunction(cell:IOLAPCell, 
+                                 column:IOLAPAxisPosition, 
+                                 row:IOLAPAxisPosition):IFill {
+      if (cell.value &lt; 4)
+        return new SolidColor(0xff00000);
+      else
+        // when null is returned it falls back to the default fill
+        return null;
+   }
+  ]]&gt;
+&lt;/mx:Script&gt;
+&lt;ilog:OLAPChart id="olapchart" width="100%" height="100%"&gt;
+  &lt;ilog:seriesProviders&gt;
+    &lt;ilog:OLAPSeriesProvider&gt;
+      &lt;ilog:series&gt;
+        &lt;mx:Component&gt;
+          &lt;ilog:OLAPColumnSeries 
+                olapFillFunction="{outerDocument.fillFunction}"/&gt;
+        &lt;/mx:Component&gt;
+      &lt;/ilog:series&gt;
+    &lt;/ilog:OLAPSeriesProvider&gt;
+  &lt;/ilog:seriesProviders&gt;
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex730.html" class="bluelink">OLAP charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex732.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex734.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,158 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Defining the tooltips for tasks</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex497.html" class="breadcrumb">Gantt resource charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex502.html" class="breadcrumb">Configuring a resource chart control</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex508.html" class="breadcrumb">Defining the tooltips for tasks</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex507.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex509.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Defining the tooltips for tasks</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The Gantt sheet component uses two tooltips for tasks:
+a data tip displayed when the mouse pointer hovers over the task and
+an editing tip displayed while tasks are being moved or resized to
+provide feedback on the ongoing operation.</div>
+<div class="para">The following image shows the default tooltip for a task.</div>
+<div class="mediaobject"><img src="../../Gantt4Flex/_media/flexprg_gantt_taskItemRendererTooltip_default.png" alt="An example&#xA;of the default tooltip for a task" class="imagedata"/></div>
+<div class="para">By default both tooltips show the same information: the
+name of the task, its start and end time and its duration. You can
+customize the contents of the data tip by setting the <span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#dataTipField" class="bluelink">dataTipField</a></span> or the <span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#dataTipFunction" class="bluelink">dataTipFunction</a></span> properties of the <span class="apiname">GanttSheet</span> object. You can customize the editing
+tips by setting the <span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#editingTipFunction" class="bluelink">editingTipFunction</a></span> property of the <span class="apiname">GanttSheet</span> object.</div>
+<div class="para">The following example shows how to use the <span class="apiname">dataTipFunction</span> and <span class="apiname">editingTipFunction</span> properties to specify custom tooltip texts.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                creationComplete="initApp()"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.HierarchicalData;
+      import ilog.gantt.ConstraintKind;
+      import ilog.core.DataItem;
+      import ilog.gantt.ConstraintItem;
+      import ilog.gantt.GanttSheet;
+      import ilog.gantt.TaskItem;
+
+      import mx.collections.ArrayCollection;
+      import mx.formatters.DateFormatter;
+      import mx.utils.StringUtil;
+  
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Project",
+          startTime: "1/14/2008 8:0:0", endTime: "2/5/2008 17:0:0",
+          children: [
+            { id: "T2", name: "Inception",
+              startTime: "1/14/2008 8:0:0", endTime: "1/17/2008 17:0:0" },
+            { id: "T3", name: "Elaboration",
+              startTime: "1/18/2008 8:0:0", endTime: "1/21/2008 17:0:0" },
+            { id: "T4", name: "Construction",
+              startTime: "1/22/2008 8:0:0", endTime: "2/1/2008 17:0:0",
+              children: [
+                { id: "T5", name: "Iteration 1",
+                  startTime: "1/22/2008 8:0:0", endTime: "1/25/2008 17:0:0" },
+                { id: "T6", name: "Iteration 2",
+                  startTime: "1/26/2008 8:0:0", endTime: "1/29/2008 17:0:0" },
+                { id: "T7", name: "Iteration 3",
+                  startTime: "1/30/2008 8:0:0", endTime: "2/1/2008 17:0:0" },
+              ]},
+            { id: "T8", name: "Transition",
+              startTime: "2/2/2008 8:0:0", endTime: "2/5/2008 17:0:0" },
+          ]}
+      ]);
+
+      [Bindable]
+      public var constraints:ArrayCollection = new ArrayCollection([
+        { fromId:"T2", toId:"T3", kind:"endToStart" },
+        { fromId:"T3", toId:"T4", kind:"endToStart" },
+        { fromId:"T4", toId:"T8", kind:"endToStart" },
+        { fromId:"T5", toId:"T6", kind:"endToStart" },
+        { fromId:"T6", toId:"T7", kind:"endToStart" }
+      ]);
+
+      private var dateFormatter:DateFormatter = new DateFormatter();
+
+      private function initApp():void {
+        dateFormatter.formatString = "YYYY/MM/DD JJ:NN";
+      }
+
+      public function formatTip(item:DataItem):String {
+        if (item is TaskItem)
+          return formatTaskTip(TaskItem(item));
+        else if (item is ConstraintItem)
+          return formatConstraintTip(ConstraintItem(item));
+        
+        // Should not happen
+        return null;
+      }
+
+      private function formatTaskTip(item:TaskItem):String {
+        return StringUtil.substitute("{0}\n{1} - {2}",
+                         item.label,
+                         dateFormatter.format(item.startTime),
+                         dateFormatter.format(item.endTime));
+      }
+      
+      private function formatConstraintTip(item:ConstraintItem):String {
+        var fromExtremity:String;
+        var toExtremity:String;
+        
+        switch (item.kind) {
+          case ConstraintKind.END_TO_END:
+            fromExtremity = "end";
+            toExtremity = "end";
+            break;
+          case ConstraintKind.END_TO_START:
+            fromExtremity = "end";
+            toExtremity = "start";
+            break;
+          case ConstraintKind.START_TO_END:
+            fromExtremity = "start";
+            toExtremity = "end";
+            break;
+          case ConstraintKind.START_TO_START:
+            fromExtremity = "start";
+            toExtremity = "start";
+            break;
+        }
+        
+        var fromTaskItem:TaskItem = taskChart.ganttSheet.itemToTaskItem(item.fromTask);
+        var toTaskItem:TaskItem = taskChart.ganttSheet.itemToTaskItem(item.toTask);
+  
+        return StringUtil.substitute("From {0} of: {1}\nTo {2} of: {3}",
+                         fromExtremity,
+                         fromTaskItem.label,
+                         toExtremity,
+                         toTaskItem.label);
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt;
+
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%" 
+                  taskDataProvider="{tasks}"
+                  constraintDataProvider="{constraints}"
+                  creationComplete="taskChart.dataGrid.expandAll();"    
+                  &gt;
+    &lt;ilog:dataGrid&gt;
+      &lt;ilog:GanttDataGrid&gt;
+        &lt;ilog:columns&gt;
+          &lt;mx:AdvancedDataGridColumn dataField="name" 
+                                     headerText="Name"/&gt;
+        &lt;/ilog:columns&gt;
+      &lt;/ilog:GanttDataGrid&gt;
+    &lt;/ilog:dataGrid&gt;
+    &lt;ilog:ganttSheet&gt;
+      &lt;ilog:GanttSheet dataTipFunction="formatTip" 
+                       editingTipFunction="formatTip"/&gt;
+    &lt;/ilog:ganttSheet&gt;
+  &lt;/ilog:TaskChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">In this example, the texts for the data tip and the editing
+tip are created using the same function; this function returns a text
+which provides the name of the task, the name of its resource, and
+the start and end time of the task in a custom format.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex502.html" class="bluelink">Configuring a resource chart control</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex507.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex509.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

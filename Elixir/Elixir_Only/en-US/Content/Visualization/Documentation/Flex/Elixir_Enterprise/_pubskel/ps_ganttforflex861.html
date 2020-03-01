@@ -1,0 +1,127 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Managing map events</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex809.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex849.html" class="breadcrumb">MX Maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex861.html" class="breadcrumb">Managing map events</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex860.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex862.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Managing map events</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent" id="d0e148291">
+
+
+
+
+
+
+
+
+
+
+<div class="para">Map controls accept several kinds of user interaction,
+from moving the pointer over a data point to clicking or double-clicking
+a map item as a country or a state. You can create an event handler
+for each of these interactions and use the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/maps/MapEvent.html" class="bluelink">MapEvent</a></span> class in this handler to access the data related
+to this interaction.</div>
+<div class="para">Map data events that you can listen for are shown in
+the following table.</div>
+<div class="caption">Map data events</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_maps.1017889"><colgroup span="1">
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Map data event</div></th>
+<th rowspan="1" colspan="1"><div class="para">Description</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/maps/MapBase.html#event:mapChange" class="bluelink">mapChange</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the selection changed as a
+result of user interaction.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/maps/MapBase.html#event:mapItemClick" class="bluelink">mapItemClick</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the user clicked the pointer
+over a visual item in the control.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/maps/MapBase.html#event:mapItemDoubleClick" class="bluelink">mapItemDoubleClick</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the user double-clicked the
+pointer over a visual item in the control.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/maps/MapBase.html#event:mapItemRollOut" class="bluelink">mapItemRollOut</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the user rolled the pointer
+out of a visual item in the control.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/maps/MapBase.html#event:mapItemRollOver" class="bluelink">mapItemRollOver</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the user rolled the pointer
+over a visual item in the control.</div></td>
+</tr>
+</tbody></table>
+<div class="para">The map data events are of the type  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/maps/MapEvent.html" class="bluelink">MapEvent</a></span>. In the following example, the map features are
+selected when the pointer enters a country area. Rotate the mouse
+wheel forward or backward to fit the selected country or the entire
+map onto the control.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                layout="absolute" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex" &gt; 
+&lt;mx:Script&gt;
+  &lt;![CDATA[
+    import ilog.maps.MapFeature;  
+    import ilog.maps.MapEvent;
+
+    public function onDoubleClick(event:MapEvent):void {     
+      europe.fit(event.mapFeature);
+    }
+
+    public function onClick(event:MapEvent):void {
+      var mf:MapFeature = event.mapFeature;
+    }
+    
+    public function rollOut(event:MapEvent):void {
+      europe.selectedFeatures = [];
+    }
+    
+    public function rollOver(event:MapEvent):void {
+      var f:MapFeature = event.mapFeature;
+      europe.selectedFeatures = [f];
+    }
+    
+    public function mouseWheel(event:MouseEvent):void {
+      if(europe.allowNavigation)
+        return;
+      var mf:MapFeature = europe.selectedFeatures[0];
+      if (event.delta &gt; 0) {
+        if(mf != null) {
+          europe.fit(mf);
+        }
+      } else {
+        europe.fit();
+      }
+    }
+    
+  ]]&gt;
+&lt;/mx:Script&gt;
+
+&lt;ilog:ContinentalEuropeMap 
+  id="europe" 
+  width="100%" 
+  height="100%" 
+  toolTip="Europe" 
+  doubleClickEnabled = "true" 
+  mapItemDoubleClick = "onDoubleClick(event)" 
+  mapItemClick="onClick(event)" 
+  mapItemRollOver="rollOver(event)"
+  mapItemRollOut="rollOut(event)"
+  mouseWheel="mouseWheel(event)"
+  allowNavigation="false"
+  filterEvents="true"
+  zoomableSymbols="true"  &gt;
+  
+&lt;/ilog:ContinentalEuropeMap&gt;
+
+&lt;/mx:Application&gt;
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex849.html" class="bluelink">MX Maps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex860.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex862.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

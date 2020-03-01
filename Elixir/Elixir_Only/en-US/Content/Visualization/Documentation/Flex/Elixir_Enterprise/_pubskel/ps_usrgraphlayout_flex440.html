@@ -1,0 +1,80 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>The LL algorithms</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex437.html" class="breadcrumb">Link layout (LL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex440.html" class="breadcrumb">The LL algorithms </a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex439.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex441.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">The LL algorithms </h1></div></div><div class="content">
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The Link Layout algorithm utilizes two sublayout classes: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/link/shortlink/IlvShortLinkLayout.html" class="bluelink">IlvShortLinkLayout</a></span> in short link mode. </div></li><li class="itemizedlistItem"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/link/longlink/IlvLongLinkLayout.html" class="bluelink">IlvLongLinkLayout</a></span> in long link mode. </div></li></ul></div>
+<div class="para">They implement different strategies to find the link
+shapes. </div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043050">
+<h2 class="heading">Short Link Layout algorithm</h2>
+
+
+<div class="sectionContent">
+<div class="para">The Short Link Layout algorithm is based on a combinatorial
+optimization that chooses the “optimal” shape of the
+links to minimize a cost function. This cost function is proportional
+to the number of link-to-link and link-to-node crossings. </div>
+<div class="para">For efficiency reasons, the basic shape of each link
+is chosen from a set of predefined shapes. These shapes are different
+for each link style option. For the orthogonal link style, the links
+are reshaped to a polygonal line of up to five alternating horizontal
+and vertical segments (see <a href="ps_usrgraphlayout_flex438.html#usrgraphlayout.uss_graphlay_layouts.1021328" class="bluelink">Link layout in short link mode with orthogonal links</a>). For the
+direct link style, the links are reshaped to a polygonal line composed
+of three segments: a straight-line segment that starts and ends with small horizontal
+or vertical segments (see <a href="ps_usrgraphlayout_flex438.html#usrgraphlayout.uss_graphlay_layouts.1021332" class="bluelink">The same graph in short link mode with direct links</a>). </div>
+<div class="para">The shape of a link also depends on the relative position
+of the origin and destination nodes. For instance, when two nodes
+are very close or they overlap, the shape of the link is chosen to
+provide the best visibility of the link.  </div>
+<div class="para">The exact shape of a link is computed taking into account
+additional constraints. The layout algorithm tries to do the following: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Minimize the number of crossings between
+the links incident to a specific side of a node. </div>
+</li><li class="itemizedlistItem"><div class="para">Space the final segments of the links
+incident to a specific side of a node equally on the node border. </div>
+</li></ul></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043067">
+<h2 class="heading">Long Link Layout algorithm</h2>
+
+
+<div class="sectionContent">
+<div class="para">The Long Link Layout algorithm first treats each link
+individually. For each link, it first calculates the connection points
+at the end nodes that are on the grid and orders them according to
+a penalty value. Connection points on used grid points have a very
+high penalty and, therefore, are very unlikely to be used. </div>
+<div class="para">For the orthogonal links (see <a href="ps_usrgraphlayout_flex438.html#usrgraphlayout.uss_graphlay_layouts.1042993" class="bluelink">Link layout in long link mode with orthogonal links</a>), the Long
+Link Layout algorithm then uses a grid traversal to search a route
+over free grid points from the start connection point to the end connection
+point. Therefore, in contrast to the short link mode, orthogonal links
+can have any shape with a large number of bends if this is necessary
+to bypass obstacle nodes to avoid overlapping. For the direct links
+(see <a href="ps_usrgraphlayout_flex438.html#usrgraphlayout.uss_graphlay_layouts.1021332" class="bluelink">The same graph in short link mode with direct links</a>), it shortens
+the search by using a direct segment between the connection points. </div>
+<div class="para">After all links are placed, a crossing reduction phase
+examines pairs of links and eliminates link crossings by exchanging
+parts of the routes between both links. </div>
+<div class="para">The Long Link Layout algorithm relies on the fact that
+links fit to the grid spacing and parts of the routes between different
+links can be exchanged. Therefore, the Long Link Layout algorithm
+does not take the link width into account because it would be too
+difficult to find the parts of two links that can be exchanged. It
+is recommended to set the grid spacing larger than the largest link
+width. </div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Example of Link Layout</h2>
+<div class="sectionContent">
+
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex437.html" class="bluelink">Link layout (LL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex439.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex441.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

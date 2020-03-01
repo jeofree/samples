@@ -1,0 +1,59 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Accessibility in 3D chart components</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Overview"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise19.html" class="breadcrumb">3D Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise38.html" class="breadcrumb">Accessibility in 3D chart components</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise37.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise39.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Accessibility in 3D chart components</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The 3D chart components in the following table have built-in
+support for accessibility: they automate  the common accessibility
+practices of providing text equivalents and promoting keyboard access.</div>
+<table border="1" cellpadding="4" cellspacing="0" class="ShadedHead"><colgroup align="left" span="1">
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr bgcolor="#BFD6E7">
+<th valign="top" rowspan="1" colspan="1">Component</th>
+<th valign="top" rowspan="1" colspan="1">Accessibility implementation class</th>
+</tr>
+</thead><tbody valign="top">
+<tr>
+<td rowspan="1" colspan="1">AreaChart3D</td>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts3dClasses/CartesianChart3DAccImpl.html" class="bluelink">CartesianChart3DAccImpl</a></span></td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">BarChart3D</td>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts3dClasses/CartesianChart3DAccImpl.html" class="bluelink">CartesianChart3DAccImpl</a></span></td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">ColumnChart3D</td>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts3dClasses/CartesianChart3DAccImpl.html" class="bluelink">CartesianChart3DAccImpl</a></span></td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">LineChart3D</td>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts3dClasses/CartesianChart3DAccImpl.html" class="bluelink">CartesianChart3DAccImpl</a></span></td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">PieChart3D</td>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts3d/PIEChart3DAccImpl.html" class="bluelink">PIEChart3DAccImpl</a></span></td>
+</tr>
+</tbody></table>
+<div class="para">The <span class="literal">chart</span> role of MSAA
+(Microsoft Active Accessibility) does not allow data points to be
+ exposed, so these 3D chart components are exposed through a <span class="literal">list</span> role instead. The label of a data point exposed
+to a screen reader comes from its data tip. And you can  customize
+this tip using custom data tip functions at the chart level or at
+the series level.</div>
+<div class="para">To make navigation through the data points in the chart
+possible, set the <span class="apiname">selectionMode</span> property
+of  the chart to <span class="apiname">single</span> or <span class="apiname">multiple</span>. The user of the chart can then use the
+arrow keys to navigate as described in <a href="ps_elixir_enterprise36.html" class="bluelink">User interaction with 3D charts</a>. </div>
+<div class="para">For performance reasons, the data points in the chart
+are cached by the accessibility implementation. If a change is made
+to the chart that requires the updating of the cache, call the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/chartClasses/ChartBaseAccImpl.html#invalidateDataPoints()" class="bluelink">invalidateDataPoints</a></span> method on the accessibility
+implementation of the chart instance as shown in the following ActionScript
+code.</div>
+<pre class="programlisting">var accImpl:ChartBaseAccImpl = chart.accessibilityImplementation as ChartBaseAccImpl;
+accImpl.invalidateDataPoints();</pre>
+<div class="para">For more information on accessibility see the section <span class="quote">“Advanced Flex Programming&gt;Creating Accessible Applications”</span> in the Flex documentation.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise19.html" class="bluelink">3D Charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise37.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise39.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

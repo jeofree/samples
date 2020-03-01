@@ -1,0 +1,69 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Using map control skins</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Overview"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex717.html" class="breadcrumb">Maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex722.html" class="breadcrumb">Using map control skins</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex721.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex723.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Using map control skins</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">Defining a skin is the best way to fully control the
+appearance and functionality of a Map component. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">You define a skin to be used by the Map component by
+setting the <code class="code">skinClass</code> property to the appropriate
+skin class:</div>
+<pre class="programlisting">&lt;ContinentalEuropeMap skinClass=”MySkin”/&gt;</pre>
+</div>
+</div>
+<div class="para">The skin class called <code class="code">MySkin</code> contains all the groups that the Map component will display. This
+skin must define the mandatory skin part as defined in the <code class="code">MapBase</code> class. These mandatory parts are the <code class="code">MapGroup</code>, <code class="code">MapFeatureGroup</code> and the <code class="code">Scroller</code>. The <code class="code">MapGroup</code> is a Group holding all the groups or layers that the Map component
+will display. This <code class="code">MapGroup</code> is also used
+by the <code class="code">Scroller</code> as the viewport to zoom
+and pan the map.  The <code class="code">Scroller</code> allows map
+navigation such as zooming and panning. The <code class="code">Scroller</code> also manages the scrollbars around the map.</div>
+<div class="para">The <code class="code">MapFeatureGroup</code> is the
+Group that holds the <code class="code">MapFeatures</code>, which
+are the geographic entities that the map component will display. These
+geographic entities are rendered as polygons to display the shapes
+of a country or a state.</div>
+<div class="para"><span class="bold">Defining the MapGroup and
+MapFeatureGroup</span></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">You define the MapGroup and MapFeatureGroup inside an
+mxml file describing the skin:</div>
+<pre class="programlisting">&lt;!-- The layer container --&gt;
+  &lt;ibm:MapGroup id="mapGroup"&gt;
+    &lt;!-- the layer holding map features --&gt;
+    &lt;ibm:MapFeatureGroup id="featureGroup"/&gt;
+  &lt;/ibm:MapGroup&gt;
+</pre>
+<div class="para">The id of the <code class="code">MapGroup</code> must
+be <code class="code">mapGroup</code> and the id the <code class="code">MapFeatureGroup</code> must be <code class="code">mapFeatureGroup</code>, in order to match the declarations made into the Maps component.</div>
+</div>
+</div>
+<div class="para"><span class="bold">Using the Scroller control</span></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">Adding a Scroller control in the skin will allow the
+navigation through the map. To define the scroller in the skin class
+you declare it as follows:</div>
+<pre class="programlisting">&lt;!--- The Scroller component to navigate into 
+the map and add scroll bars to the map. --&gt;
+  &lt;ibm:Scroller panModifierKey="ctrl" 
+                wheelZoomModifierKey="ctrl"
+                id="scroller" &gt;
+    &lt;!-- The layer container --&gt;
+    &lt;ibm:MapGroup id="mapGroup"&gt;
+      &lt;!-- the layer holding map features --&gt;
+      &lt;ibm:MapFeatureGroup id="featureGroup"/&gt;
+    &lt;/ibm:MapGroup&gt;
+  &lt;/ibm:Scroller&gt;
+
+</pre>
+<div class="para">The id of the scroller must be ‘scroller’
+in order to match the declarations made in the Maps component.</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex717.html" class="bluelink">Maps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex721.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex723.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

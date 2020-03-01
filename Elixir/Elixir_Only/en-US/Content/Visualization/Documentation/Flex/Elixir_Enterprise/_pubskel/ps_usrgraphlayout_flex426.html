@@ -1,0 +1,35 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Group spread constraints (HL)</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex414.html" class="breadcrumb">Hierarchical Layout (HL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex426.html" class="breadcrumb">Group spread constraints (HL)</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex425.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex427.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Group spread constraints (HL)</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">An alternative way to force a group of nodes to be at
+the same level is by specifying a group spread constraint with a spread
+size of zero (0). In general, the group spread constraint forces a
+group of nodes to <span class="italics">k+1</span> subsequent levels. The number <span class="italics">k</span> is the spread size. It does not select the lowest or highest level
+index of the group, but only requires that the nodes be placed no
+more than <span class="italics">k</span> levels
+apart. Hence, if <span class="italics">k=0</span>, all nodes of the group are placed at the same level. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To illustrate the general group spread constraint on
+nodes with ID “nodeA’, “nodeB” and “nodeC”:</div>
+</div>
+
+
+
+</div>
+<div class="para">The constraint is satisfied if the highest level index
+for <code class="code">nodeA</code>, <code class="code">nodeB</code>, and <code class="code">nodeC</code> is no more than two levels
+apart from the smallest level index of the nodes. For instance, the
+constraint is satisfied if the level indices for <code class="code">nodeA</code>, <code class="code">nodeB</code>, and <code class="code">nodeC</code> are 1, 2, 3; or if they are 7, 8, 9; or if they are 16, 14, 15.
+The constraint is also satisfied if all three nodes are placed at
+level 5, or if two of the nodes are placed at level 15 and the third
+node at level 13. The constraint is not satisfied if the level indices
+for <code class="code">nodeA</code>, <code class="code">nodeB</code>, and <code class="code">nodeC</code> are 3, 5, 6, because in this
+case the highest index (6) is more than two levels away from the lowest
+index (3). </div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex414.html" class="bluelink">Hierarchical Layout (HL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex425.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex427.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

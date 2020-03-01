@@ -1,0 +1,133 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Alignment parameter</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex379.html" class="breadcrumb">Tree Layout (TL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex385.html" class="breadcrumb">Layout modes of the TL algorithm</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex386.html" class="breadcrumb">Free layout mode</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex389.html" class="breadcrumb">Alignment parameter</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex388.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex390.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Alignment parameter</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The alignment option controls how a parent is placed
+relative to its child nodes. The alignment can be set globally, in
+which case all nodes are aligned in the same way, or locally on each
+node, with the result that different alignments occur in the same
+drawing. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1199050"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-32online35_default.gif" alt="A sample&#xA;graph showing each of the alignment options: center, west, center&#xA;border, and eastf" class="imagedata"/></div><div class="caption">Alignment options</div></div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1199078">
+<h2 class="heading">Global alignment</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="example">
+<div class="exampleContent">
+<div class="para">To set the global alignment: </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for the global alignment are: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.CENTER</code> (the default) </div><div class="para">The parent is centered
+over its child nodes, taking the center of the child nodes into account. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.BORDER_CENTER</code>  </div><div class="para">The parent is centered over its child
+nodes, taking the border of the child nodes into account. If the size
+of the first and the last child varies, the border center alignment
+places the parent closer to the larger child than to the default center
+alignment. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.EAST</code>  </div><div class="para">The parent is aligned with the border
+of its easternmost child. For instance, if the flow direction is to
+the bottom, east is the direction to the right. If the flow direction
+is to the top, east is the direction to the left. See <a href="ps_usrgraphlayout_flex384.html#usrgraphlayout.uss_graphlay_layouts.1198918" class="bluelink">Using compass directions for positional layout parameters
+ (TL)</a> for details. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.WEST</code>  </div><div class="para">The parent is aligned with the border
+of its westernmost child. For instance, if the flow direction is to
+the bottom, west is the direction to the left. If the flow direction
+is to the right, west is the direction to the bottom. See <a href="ps_usrgraphlayout_flex384.html#usrgraphlayout.uss_graphlay_layouts.1198918" class="bluelink">Using compass directions for positional layout parameters
+ (TL)</a> for details. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.TIP_OVER</code>  </div><div class="para">The child nodes are arranged sequentially
+instead of in parallel, and the parent node is placed with an offset
+to the child nodes. For details see <a href="ps_usrgraphlayout_flex389.html#usrgraphlayout.uss_graphlay_layouts.1199146" class="bluelink">Tip-over alignment</a>. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.TIP_OVER_BOTH_SIDES</code>  </div><div class="para">The child nodes are arranged sequentially
+instead of in parallel. Whereas the alignment <code class="code">TIP_OVER</code> arranges all child nodes at the same side of the parent, this alignment
+arranges the child nodes on both sides of the parent. For details
+see <a href="ps_usrgraphlayout_flex389.html#usrgraphlayout.uss_graphlay_layouts.1199146" class="bluelink">Tip-over alignment</a>. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.MIXED</code>  </div><div class="para">Each parent node can have a different
+alignment. The alignment of each individual node can be set with the
+result that different alignments can occur in the same graph. </div>
+</li></ul></div>
+
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1199115">
+<h2 class="heading">Alignment of individual nodes</h2>
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">All nodes have the same alignment unless the global alignment
+is set to <code class="code">MIXED</code>. Only when the global alignment
+is set to <code class="code">MIXED</code> can each node have an individual
+alignment style. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1199121"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Tree-mixedal36_default.gif" alt="A sample&#xA;graph with different alignments in each subtree" class="imagedata"/></div><div class="caption">Different alignments mixed in the same drawing</div></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To specify the alignment of an individual node: </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for <code class="code">alignment</code> are: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.CENTER</code> (the default) </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.BORDER_CENTER</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.EAST</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.WEST</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.TIP_OVER</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.TIP_OVER_BOTH_SIDES</code> </div></li></ul></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1199146">
+<h2 class="heading">Tip-over alignment</h2>
+
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">Normally, the child nodes of a node are placed in a <span class="italics">parallel</span> arrangement with siblings
+as direct neighbors of each other. Tip-over alignment means a <span class="italics">sequential</span> arrangement of the child
+nodes instead. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1199157"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Tree-tipover-sketch56_default.gif" alt="A sample&#xA;graph shown first with normal alignment and then with tip-over alignment" class="imagedata"/></div><div class="caption">Normal alignment and tip-over alignment</div></div>
+<div class="para">Tip-over alignment is useful when the tree has many leaves.
+With normal alignment, a tree with many leaves would result in the
+layout being very wide. If the global alignment style is set to tip-over,
+the drawing is very tall rather than wide. To balance the width and
+height of the drawing, you can set the global alignment to mixed,
+for example, in Java:  </div>
+<pre class="programlisting">
+layout.setGlobalAlignment(IlvTreeLayout.MIXED); 
+</pre>
+<div class="para">Also, you can set the individual alignment to tip-over
+for some parents with a high number of child nodes as follows: </div>
+<pre class="programlisting">
+layout.setAlignment(parent, IlvTreeLayout.TIP_OVER); 
+</pre>
+<div class="para">Tip-over alignment can be specified explicitly for some
+or all of the nodes. The Tree Layout offers layout modes that automatically
+determine when to tip over, giving a drawing that fits into a specified
+aspect ratio. These layout modes are described in <a href="ps_usrgraphlayout_flex411.html" class="bluelink">Tip-over layout modes</a>.</div>
+<div class="para">Besides the normal tip-over alignment, there is also
+a variant that distributes the subtrees on both sides of the center
+line that starts at the parent. You can specify this variant at a
+parent node with a high number of child nodes by the following code: </div>
+<pre class="programlisting">
+layout.setAlignment(parent, IlvTreeLayout.TIP_OVER_BOTH_SIDES);  
+</pre>
+<div class="para">The following figure illustrates the difference between
+normal tip-over alignment and tip-over on both sides. Tip-over alignment
+works very well with the orthogonal link style (see <a href="ps_usrgraphlayout_flex390.html" class="bluelink">Link style (TL)</a>). </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1199178"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-35online38_default.gif" alt="A sample&#xA;graph showing normal tip-over alignment at some nodes and then tip-over&#xA;alignment on both sides at the same nodes" class="imagedata"/></div><div class="caption">Tip-over alignment</div></div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex386.html" class="bluelink">Free layout mode</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex388.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex390.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

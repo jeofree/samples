@@ -1,0 +1,36 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Accessing event data in an event listener</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise39.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise68.html" class="breadcrumb">Event editing</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise73.html" class="breadcrumb">Accessing event data in an event listener</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise72.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise74.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Accessing event data in an event listener</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">From within an event listener you have access to the
+data provider item and the current <span class="apiname">startTime</span> and <span class="apiname">endTime</span>  of the event. To access
+the data provider item you use the <span class="apiname">item</span> property of the event. To access the current <span class="apiname">startTime</span> and <span class="apiname">endTime</span> associated with the
+event, you use the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#itemToCalendarItem()" class="bluelink">itemToCalendarItem</a></span> method using the data provider
+item as parameter. The resulting object is an instance of <span class="apiname">CalendarItem</span> that wraps the data provider item and
+exposes the start and end times as <span class="apiname">Date</span> instances.</div>
+<div class="para">The following example shows an event listener for the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#event:itemEditEnd" class="bluelink">itemEditEnd</a></span> event that accesses the data provider item and the
+calendar item to update the data provider item with the modified start
+and end times.</div>
+<pre class="programlisting">  private function onItemEditEnd(event:CalendarEvent):void
+  {
+    if (event.reason == CalendarEventReason.CANCELLED) {
+      return;
+    }
+
+    event.preventDefault();
+      
+    var item:Object = event.item;
+    var calendarItem:CalendarItem = Calendar(event.target).itemToCalendarItem(item);
+        
+    item.startTime = calendarItem.startTime.toDateString();
+    item.endTime = calendarItem.endTime.toDateString();
+        
+  }</pre>
+<div class="para">In this example the listener for the <span class="apiname">itemEditEnd</span> event updates the data provider item,
+setting the start and end times with the <code class="code">String</code> representation containing only the date part (the time of day is
+not stored).</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise68.html" class="bluelink">Event editing</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise72.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise74.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

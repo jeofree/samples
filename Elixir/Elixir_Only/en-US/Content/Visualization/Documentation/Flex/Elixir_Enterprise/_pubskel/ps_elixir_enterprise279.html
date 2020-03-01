@@ -1,0 +1,70 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Creating a custom map</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="HowTo"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise214.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise254.html" class="breadcrumb">MX Maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise276.html" class="breadcrumb">Generating custom maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise277.html" class="breadcrumb">Getting started</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise279.html" class="breadcrumb">Creating a custom map</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise278.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise280.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Creating a custom map</h1></div></div><div class="content">
+
+
+
+
+<div class="proceduralTopicContent">
+<div class="summary">
+<div class="para">A custom map is created from an input Shapefile.</div>
+</div>
+<div class="prerequisites">
+<div class="para">The Custom Map Converter must
+be running.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The input Shapefile must consist of the following files:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="filename">.shp</span> containing geometries (used to draw the map)</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="filename">.dbf</span> containing metadata (shown as tooltips on map features)</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="filename">.shx</span> containing indexing information</div></li></ul></div>
+</div>
+<div class="procedure">
+<div class="procedureContent"><div class="procedureIntro">
+<div class="para">To create a custom map of US states:</div>
+</div><ol class="steps"><li class="step">
+<div class="stepContent">
+<div class="para">In the <span class="literal">Main Parameters</span> tab, set the <span class="literal">Input Shapefile</span> parameter
+by browsing to select the <span class="filename">US_States.shp</span> file or drag the <span class="filename">US_States.shp</span> file into the View pane. The tool loads the map data and displays
+the map in the View pane. You can see the map features and the calculated
+barycenters of the features. In the map of US states, the features
+are states. The attribute list reflects the contents of the associated <span class="filename">.dbf</span> file. </div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Use the <span class="literal">Simplification Threshold</span> slider to set a mid-level threshold for simplifying the outline
+of the features (provinces) in the map.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/custommapsimplified_default.png" alt="A custom&#xA;map of US states with a mid-level threshold for simplification of&#xA;state outlines" class="imagedata"/></div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Click the <span class="guicommand">Export to ActionScript</span> button to generate the map component in <span class="trademark">ActionScript®
+            </span> in the default
+output directory. There are two class files: <span class="filename">US_States.as</span>, which contains the geometries of the map features, and <span class="filename">US_StatesMap.as</span> which contains the main class.
+The default output directory is your user directory. For example,
+on <span class="trademark">Microsoft®
+            </span> <span class="trademark">Windows®
+            </span> platforms,
+this is <span class="filename">C:\Documents and Settings\</span><span class="replaceable">
+      &lt;username&gt;
+    </span>.</div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Click <span class="guicommand">File&gt;Save Project</span> and specify a project file name. A project file is an XML file that
+associates all files and parameter settings related to the custom
+map. Once you have created a project file, you can reload it later
+to see your custom map again with the same data, parameter settings,
+and barycenter positions.</div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Once you have created your ActionScript classes, copy
+the files to your <span class="trademark">Flex®
+            </span> project and add the classes to the classes to be compiled. The new
+map is now ready to use.</div>
+</div>
+</li></ol></div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise277.html" class="bluelink">Getting started</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise278.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise280.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

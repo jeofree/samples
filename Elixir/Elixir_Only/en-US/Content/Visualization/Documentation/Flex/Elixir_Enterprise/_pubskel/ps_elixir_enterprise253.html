@@ -1,0 +1,187 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Building a rectangular gauge step by step</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Tutorial"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise214.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise215.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise226.html" class="breadcrumb">Building custom gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise241.html" class="breadcrumb">Custom rectangular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise253.html" class="breadcrumb">Building a rectangular gauge step by step</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise252.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise254.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Building a rectangular gauge step by step</h1></div></div><div class="content">
+
+
+<div class="proceduralTopicContent" id="d0e43067">
+
+<div class="summary">
+<div class="para">This section shows how to build a new rectangular gauge
+step by step.</div>
+</div>
+<div class="procedure">
+<div class="procedureContent"><div class="procedureIntro">
+<div class="para">To build a rectangular gauge step by step:</div>
+</div><ol class="steps"><li class="step">
+<div class="stepContent">
+<div class="para">Create the gauge and size it. </div>
+<div class="para">Usually you want horizontal gauges to have a fixed height
+and a proportional width and vertical gauges to have a fixed width
+and a proportional height. If width or height are not set, the gauge
+is displayed with its measured width or height.</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                backgroundColor="0xFFFFFF"&gt;
+  &lt;ilog:RectangularGauge height="100%" direction="vertical"&gt;
+  &lt;/ilog:RectangularGauge&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Decide on the type of scale(s) and add it (them) to the
+gauge.</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                backgroundColor="0xFFFFFF"&gt;
+  &lt;ilog:RectangularGauge height="100%" direction="vertical"&gt;       
+    &lt;ilog:scales&gt;
+      &lt;ilog:RectangularCategoryScale&gt;
+        &lt;ilog:categories&gt;
+          &lt;mx:String&gt;Low&lt;/mx:String&gt;
+          &lt;mx:String&gt;Medium&lt;/mx:String&gt;
+          &lt;mx:String&gt;High&lt;/mx:String&gt;
+        &lt;/ilog:categories&gt;
+      &lt;/ilog:RectangularCategoryScale&gt;
+    &lt;/ilog:scales&gt;
+  &lt;/ilog:RectangularGauge&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Create a renderer for the scale and customize it.</div>
+<div class="para">In this particular case, each tick is drawn with a color
+according to the corresponding value.</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                backgroundColor="0xFFFFFF"&gt;
+  &lt;ilog:RectangularGauge height="100%" direction="vertical"&gt;
+    &lt;ilog:scales&gt;
+      &lt;ilog:RectangularCategoryScale&gt;
+        &lt;ilog:categories&gt;
+          &lt;mx:String&gt;Low&lt;/mx:String&gt;
+          &lt;mx:String&gt;Medium&lt;/mx:String&gt;
+          &lt;mx:String&gt;High&lt;/mx:String&gt;
+        &lt;/ilog:categories&gt;
+      &lt;/ilog:RectangularCategoryScale&gt;
+    &lt;/ilog:scales&gt;
+    &lt;ilog:elements&gt;
+      &lt;ilog:RectangularScaleRenderer id="sr" majorTickWidth="2"&gt;
+        &lt;ilog:majorTickRenderer&gt;
+          &lt;mx:Component&gt;
+            &lt;ilog:RectangleTickRenderer&gt;
+              &lt;ilog:fill&gt;
+                &lt;mx:SolidColor color="{colorFromData(data)}"/&gt;
+              &lt;/ilog:fill&gt;
+              &lt;mx:Script&gt;
+                &lt;![CDATA[
+                  private function colorFromData(data:Object):uint {
+                    switch (data.value) {
+                      case "Low":
+                        return 0x00ff00;
+                      case "Medium":
+                        return 0x0000ff;
+                      case "High":
+                        return 0xff0000;
+                    } 
+                    return 0x000000;
+                  }                  
+                ]]&gt;
+              &lt;/mx:Script&gt;
+            &lt;/ilog:RectangleTickRenderer&gt;
+          &lt;/mx:Component&gt;
+        &lt;/ilog:majorTickRenderer&gt;                        
+      &lt;/ilog:RectangularScaleRenderer&gt;
+    &lt;/ilog:elements&gt;
+  &lt;/ilog:RectangularGauge&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">If no scale renderer is used, you must set another visual
+element as the logical scale master.</div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Create the renderer in charge of representing the gauge
+value and position it</div>
+<ol class="substeps"><li class="step">
+<div class="stepContent">
+<div class="para">Make sure that the bar renderer covers only the tick
+area of the scale, not the whole scale area, by binding its coordinates
+to the coordinates of the tick area.</div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Bind the value of the renderer to an external data source,
+a combo box in this case.</div>
+</div>
+</li></ol>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                backgroundColor="0xFFFFFF"&gt;
+  &lt;ilog:RectangularGauge height="100%" direction="vertical"&gt;
+    &lt;!-- ... --&gt;
+    &lt;ilog:elements&gt;
+      &lt;!-- ... --&gt;
+      &lt;ilog:RectangularBarRenderer id="vr" value="{combo.selectedItem}"
+        x="{sr.tickAreaBounds.x}" y="{sr.tickAreaBounds.y}" 
+        width="{sr.tickAreaBounds.width}" 
+        height="{sr.tickAreaBounds.height}"&gt;
+        &lt;ilog:fill&gt;
+          &lt;mx:LinearGradient angle="90"&gt;
+            &lt;mx:GradientEntry ratio="0" color="red"/&gt;
+            &lt;mx:GradientEntry ratio="0.5" color="blue"/&gt;
+            &lt;mx:GradientEntry ratio="1" color="green"/&gt;
+          &lt;/mx:LinearGradient&gt;
+        &lt;/ilog:fill&gt;
+      &lt;/ilog:RectangularBarRenderer&gt;
+    &lt;/ilog:elements&gt;
+  &lt;/ilog:RectangularGauge&gt;
+  &lt;mx:ComboBox id="combo" selectedIndex="1"&gt;
+    &lt;mx:String&gt;Low&lt;/mx:String&gt;
+    &lt;mx:String&gt;Medium&lt;/mx:String&gt;
+    &lt;mx:String&gt;High&lt;/mx:String&gt;
+  &lt;/mx:ComboBox&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Add elements that will not be in the center area, for
+example a label indicating the current value of the gauge.</div>
+<pre class="programlisting">   &lt;ilog:elements&gt;
+      &lt;ilog:RectangularLabelRenderer text="{vr.value}" 
+          area="top" fontSize="36" width="150" /&gt;
+    &lt;/ilog:elements&gt;
+</pre>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Add decoration elements, a background element under the
+label in this case.</div>
+<pre class="programlisting">   &lt;ilog:elements&gt;
+      &lt;ilog:RectangleRenderer area="top"&gt;
+        &lt;ilog:fill&gt;
+          &lt;mx:RadialGradient&gt;
+            &lt;mx:GradientEntry ratio="0" color="white" alpha="0.5"/&gt;
+            &lt;mx:GradientEntry ratio="1" color="black" alpha="0.2"/&gt;
+          &lt;/mx:RadialGradient&gt;
+        &lt;/ilog:fill&gt;
+      &lt;/ilog:RectangleRenderer&gt;
+      &lt;ilog:RectangularLabelRenderer .../&gt;
+    &lt;/ilog:elements&gt;
+</pre>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Add other properties from the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularGaugeAsset.html" class="bluelink">RectangularGaugeAsset</a></span> <span class="apiname">RectangularGauge</span> class, for example a title or background and foreground skins.</div>
+</div>
+</li></ol></div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise241.html" class="bluelink">Custom rectangular gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise252.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise254.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

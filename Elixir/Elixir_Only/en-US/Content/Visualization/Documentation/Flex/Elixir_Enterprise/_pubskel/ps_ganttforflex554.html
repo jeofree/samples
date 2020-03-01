@@ -1,0 +1,360 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Configuring task chart data</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex550.html" class="breadcrumb">Gantt task charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex554.html" class="breadcrumb">Configuring task chart data</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex553.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex555.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Configuring task chart data</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">A task chart control gets its data from two data providers:
+a task data provider containing the task data items, and a constraint
+data provider containing the constraint data items.</div>
+<div class="para">The task data provider can be a flat list or can contain
+hierarchical or grouped task data. It is set using the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskChart.html#taskDataProvider" class="bluelink">taskDataProvider</a></span> property of the <span class="apiname">TaskChart</span> object. The data grid of the task chart leverages all features of
+the <span class="apiname">AdvancedDataGrid</span> it is built
+on, and most considerations regarding the definition of data for an <span class="apiname">AdvancedDataGrid</span> object apply to the task data provider.
+For more information see <span class="italics">Hierarchical
+and grouped data display</span> in <span class="italics">Using the AdvancedDataGrid control</span> in <span class="italics">Adobe Flex 4 Developer's Guide</span>.</div>
+
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">You must set the task data provider using the <span class="apiname">taskDataProvider</span> property on the <span class="apiname">TaskChart</span> instance. Setting a data provider on the
+data grid will have no effect.</div>
+</div>
+<div class="para">The constraint data provider is a flat list of constraints.
+It is set using the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskChart.html#constraintDataProvider" class="bluelink">constraintDataProvider</a></span> property of the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskChart.html" class="bluelink">TaskChart</a></span> object. For more information
+see <a href="ps_ganttforflex554.html#section1216740254474" class="bluelink">The constraint data provider</a>.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">In addition to specifying the task data provider and
+the constraint data provider of the task chart control, you must also: </div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Specify the fields of the task items
+that are used as the columns in the data grid. For more details see <a href="ps_ganttforflex554.html#section1216726683906" class="bluelink">Specifying task columns</a>.</div></li><li class="itemizedlistItem"><div class="para">Specify the fields of the task items
+that are used to represent the tasks in the Gantt sheet. For more
+details see <a href="ps_ganttforflex501.html#usrflprg.uss_flexprg_gantt.1015024" class="bluelink">Specifying task data items with field mappings</a>.</div></li><li class="itemizedlistItem"><div class="para">Specify the fields of the constraint
+items that are used to represent the constraint in the Gantt sheet.
+For more details see <a href="ps_ganttforflex554.html#section1221487717075" class="bluelink"> Specifying constraint data items with field mappings </a>.</div></li></ul></div>
+<div class="section" id="section1216740254474">
+<h2 class="heading">The constraint data provider</h2>
+
+
+<div class="sectionContent">
+<div class="para">The constraint data provider is a list-based data provider.
+For more information on list-based data providers see <span class="italics">Using Data Providers and Collections</span> in the <span class="italics">Adobe Flex 4 Developer's
+Guide</span>.</div>
+
+<div class="para">You specify the constraint data for the <span class="apiname">TaskChart</span> control by using the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskChart.html#constraintDataProvider" class="bluelink">constraintDataProvider</a></span> property.</div>
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">The constraint data provider supports the following types
+of data:</div>
+</div><dl class="descriptionlist"><dt class="term">XML</dt><dd class="descriptionlistItem"><div class="para">A string containing valid XML text or
+any of the following objects containing valid E4X format XML data: <code class="code">&lt;mx:XML&gt;</code> or <code class="code">&lt;mx:XMLList&gt;</code> compile-time tag, or an <span class="apiname">XML</span> or <span class="apiname">XMLList</span> object.</div></dd><dt class="term">IList or ICollectionView</dt><dd class="descriptionlistItem"><div class="para">An object that implements the <span class="apiname">IList</span> or <span class="apiname">ICollectionView</span> interface (such as an instance of the <span class="apiname">ArrayCollection</span> or <span class="apiname">XMLListCollection</span> class), whose
+data provider conforms to the structure specified in either of these
+items.</div></dd><dt class="term">Other objects</dt><dd class="descriptionlistItem"><div class="para">An array of items or an object.</div>
+</dd></dl></div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">When setting the <span class="apiname">constraintDataProvider</span> property the <span class="apiname">TaskChart</span> control
+modifies its internal representation of the constraint data as follows:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">XML or XMLList are wrapped in an instance
+of <span class="apiname">XMLListCollection</span>.</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apiname">IList</span> or <span class="apiname">ICollectionView</span> are used directly.</div>
+</li><li class="itemizedlistItem"><div class="para">An <span class="apiname">Array</span> object is wrapped in an instance of <span class="apiname">ArrayCollection</span>.</div></li><li class="itemizedlistItem"><div class="para">An <span class="trademark">ActionScript®
+            </span> object of any other data type is
+wrapped in an <span class="apiname">ArrayCollection</span> using
+an <span class="apiname">Array</span> containing the object as
+its sole entry.</div></li></ul></div>
+<div class="para">For example, you pass an <span class="apiname">Array</span> to the <span class="apiname">constraintDataProvider</span> property.
+If you read the data back from the <span class="apiname">constraintDataProvider</span> property it is returned as an instance of <span class="apiname">ArrayCollection</span>.</div>
+<div class="para">The best practice when your constraint data can change
+dynamically is to use a collection, which provides the necessary notifications
+of changes.</div>
+</div>
+</div>
+<div class="section" id="section1216726683906">
+<h2 class="heading">Specifying task columns</h2>
+<div class="sectionContent">
+<div class="para">To specify the task properties that are shown on the
+Gantt data grid, map the properties of a task to columns. This mapping
+follows the scheme defined by <code class="code">AdvancedDataGrid</code>.</div>
+<div class="para">The following example shows how to do this: </div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+      import mx.collections.HierarchicalData;
+      
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0"},
+        { id: "T3", name: "Summary Task #1",
+          startTime: "2/5/2008 8:0:0", endTime: "2/17/2008 17:0:0",
+          children: [
+            { id: "T4", name: "Task #3",
+              startTime: "2/5/2008 8:0:0", endTime: "2/12/2008 17:0:0" },
+            { id: "T5", name: "Task #4",
+              startTime: "2/13/2008 8:0:0", endTime: "2/17/2008 17:0:0" }
+          ]},
+        { id: "T6", name: "Milestone #1", milestone: "true",
+          startTime: "2/17/2008 17:0:0", endTime: "2/17/2008 17:0:0" }
+      ]);
+
+      [Bindable]
+      public var constraints:ArrayCollection = new ArrayCollection([
+        { fromId:"T1", toId:"T2", kind:"endToStart" },
+        { fromId:"T2", toId:"T4", kind:"endToStart" },
+        { fromId:"T4", toId:"T5", kind:"endToStart" },
+        { fromId:"T5", toId:"T6", kind:"endToStart" }
+      ]);
+    ]]&gt;  
+  &lt;/mx:Script&gt;
+  
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%" 
+                  taskDataProvider="{tasks}"
+                  constraintDataProvider="{constraints}"&gt;
+    &lt;ilog:dataGrid&gt;
+      &lt;ilog:GanttDataGrid&gt;
+        &lt;ilog:columns&gt;
+          &lt;mx:AdvancedDataGridColumn dataField="name" 
+                                     headerText="Name"/&gt;
+          &lt;mx:AdvancedDataGridColumn dataField="id" 
+                                     headerText="ID"/&gt;
+          &lt;mx:AdvancedDataGridColumn dataField="startTime"
+                                     headerText="Start"/&gt;
+          &lt;mx:AdvancedDataGridColumn dataField="endTime"
+                                     headerText="End"/&gt;
+        &lt;/ilog:columns&gt;
+      &lt;/ilog:GanttDataGrid&gt;
+    &lt;/ilog:dataGrid&gt;
+  &lt;/ilog:TaskChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example displays the Name, ID, Start, and End columns
+in the Gantt data grid, mapped from the <span class="apiname">name</span>, <span class="apiname">id</span>, <span class="apiname">startTime</span> and <span class="apiname">endTime</span> properties of task
+items.</div>
+<div class="para">See <span class="italics">Specifying columns</span> in <span class="italics">Creating a DataGrid control</span> in <span class="italics">Adobe Flex 4 Developer’s
+Guide</span> for more information.</div>
+
+</div>
+</div>
+<div class="section" id="section1216727254839">
+<h2 class="heading">Specifying task data items with field mappings</h2>
+<div class="sectionContent">
+<div class="para">In addition to specifying the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskChart.html#taskDataProvider" class="bluelink">taskDataProvider</a></span> of the <span class="apiname">TaskChart</span> control, to display (or render) the tasks you must map the fields
+of task data items (start time, end time, and label) to fields that
+exist in the <span class="apiname">taskDataProvider</span> by
+setting field properties in the control. In the task data provider,
+a field is either a property (if the task data provider items are
+ActionScript objects) or an attribute (if the task data provider items
+are XML objects).</div>
+<div class="para">The following table shows the field properties in a <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskChart.html" class="bluelink">TaskChart</a></span> control that contain the field
+names used to map task data. In each case, the first default value
+of the field name is for an ActionScript object and the second (with <code class="code">@</code> prefix) is for an XML object.</div>
+<div class="caption">Field properties for the tasks in the TaskChart control</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="table1216739572118"><colgroup span="1">
+<col span="1"/>
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Property</div></th>
+<th rowspan="1" colspan="1"><div class="para">Default value</div></th>
+<th rowspan="1" colspan="1"><div class="para">Purpose</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttChartBase.html#taskEndTimeField" class="bluelink">taskEndTimeField</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para"><code class="code">endTime</code> or <code class="code">@endTime</code></div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property is used as the end time of each task data item.</div></td>
+</tr>
+<tr>
+<td valign="top" rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttChartBase.html#taskIsMilestoneField" class="bluelink">taskIsMilestoneField</a></span></div></td>
+<td valign="top" rowspan="1" colspan="1"><code class="code">milestone</code> or <code class="code">@milestone</code></td>
+<td valign="top" rowspan="1" colspan="1">The value of the field whose name is stored
+in this property is used to determine whether a task is a milestone.</td>
+</tr>
+<tr>
+<td valign="top" rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskChart.html#taskIsSummaryField" class="bluelink">taskIsSummaryField</a></span></div></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para"><code class="code">summary</code> or <code class="code">@summary</code></div></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">The value of the field whose
+name is stored in this property is used to determine whether a task
+is a summary task.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttChartBase.html#taskLabelField" class="bluelink">taskLabelField</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para"><code class="code">name</code> or <code class="code">@name</code></div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property is used to display the label of each task data item.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttChartBase.html#taskStartTimeField" class="bluelink">taskStartTimeField</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para"><code class="code">startTime</code> or <code class="code">@startTime</code></div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property is used as the start time of each task data item.</div></td>
+</tr>
+</tbody></table>
+<div class="para">The value of fields <span class="apiname">taskEndTimeField</span> and <span class="apiname">taskStartTimeField</span> must be
+either a <span class="apiname">Date</span> object or any <span class="apiname">String</span> representation of a date that is supported
+by the constructor of <span class="apiname">Date</span> objects.</div>
+<div class="para">The value of the fields <span class="apiname">taskIsMilestoneField</span> and <span class="apiname">taskIsSummaryField</span> must be
+either a Boolean object or a String with the possible values: <code class="code">true</code> or <code class="code">false</code>. By default
+tasks that have children in the task data provider are considered
+to be summary tasks.</div>
+</div>
+</div>
+<div class="section" id="section1216740280459">
+<h2 class="heading">Specifying task data items with custom functions</h2>
+<div class="sectionContent">
+<div class="para">If you need an alternative way of retrieving the values
+of task data items, you can use the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttChartBase.html#taskEndTimeFunction" class="bluelink">taskEndTimeFunction</a></span>, <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttChartBase.html#taskLabelFunction" class="bluelink">taskLabelFunction</a></span>, <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttChartBase.html#taskStartTimeFunction" class="bluelink">taskStartTimeFunction</a></span>, <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttChartBase.html#taskIsMilestoneFunction" class="bluelink">taskIsMilestoneFunction</a></span> and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskChart.html#taskIsSummaryFunction" class="bluelink">taskIsSummaryFunction</a></span> properties of the control to specify custom functions
+that will be used to obtain the end time, label, start time, milestone
+flag, and summary flag respectively of each task data item from the <span class="apiname">taskDataProvider</span>.</div>
+<div class="para">The following example shows how you can use your own
+date-parsing function to read the start and end time in XML.</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+    &lt;mx:Script&gt;
+      &lt;![CDATA[
+        import mx.collections.HierarchicalData;
+    
+        [Bindable]
+        public var tasks:HierarchicalData = new HierarchicalData([
+          { id: "T1", name: "Task #1",
+            startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+          { id: "T2", name: "Milestone #1", milestone: "true", 
+            startTime: "1/29/2008 8:0:0", endTime: "1/29/2008 08:0:0"}
+        ]);
+  
+        public function parseDate(value:String):Date {
+          return new Date(value);
+        }
+        public function startTimeFunction(item:Object):Date {
+          return parseDate(item.startTime);
+        }
+        public function endTimeFunction(item:Object):Date {
+          return parseDate(item.endTime);
+        }
+        public function isMilestoneFunction(item:Object):Boolean {
+          return new Boolean(item["milestone"]);
+        }
+      ]]&gt;
+    &lt;/mx:Script&gt;
+
+    &lt;ilog:TaskChart width="100%" height="100%"
+                        taskDataProvider="{tasks}"
+                        taskStartTimeFunction="{startTimeFunction}"
+                        taskEndTimeFunction="{endTimeFunction}"
+                        taskIsMilestoneFunction="{isMilestoneFunction}"&gt;
+    &lt;/ilog:TaskChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">In this example the <code class="code">parseDate</code> function mimics the default behavior when parsing dates. The  <code class="code">isMilestoneFunction</code> mimics the default behavior used
+to determine whether a task is a milestone. You can use  the <span class="apiname">taskLabelFunction</span> property to specify a function
+that returns a label depending on the item in a similar  way. Likewise
+you can use the <span class="apiname">taskIsSummaryFunction</span> property to specify a function that returns a Boolean indicating
+whether the task is a summary task.</div>
+</div>
+</div>
+<div class="section" id="section1221487717075">
+<h2 class="heading"> Specifying constraint data items with field mappings </h2>
+<div class="sectionContent">
+<div class="para">In addition to specifying the constraint data provider
+for the <span class="apiname">TaskChart</span> control in the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskChart.html#constraintDataProvider" class="bluelink">constraintDataProvider</a></span> property, to display the constraints you must map
+the fields of the constraint data items to fields that exist in the
+constraint data provider by setting field properties in the control.
+In the constraint data provider, a field is either a property (if
+the constraint data provider items are ActionScript objects) or an
+attribute (if the constraint data provider items are XML objects). </div>
+<div class="para">The following table shows the field property in a <span class="apiname">TaskChart</span> control that contains the field name used
+to map constraint data. The first default value of the field name
+is for an ActionScript object and the second one (with @ prefix) is
+for an XML object.</div>
+<table border="1" cellpadding="4" cellspacing="0" class="ShadedHead"><colgroup align="left" span="1">
+<col span="1"/>
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr bgcolor="#BFD6E7">
+<th valign="top" rowspan="1" colspan="1">Property</th>
+<th valign="top" rowspan="1" colspan="1">Default value</th>
+<th valign="top" rowspan="1" colspan="1">Purpose</th>
+</tr>
+</thead><tbody valign="top">
+<tr>
+<td rowspan="1" colspan="1"><code class="code">constraintKindField</code></td>
+<td rowspan="1" colspan="1"><code class="code">kind</code> or <code class="code">@kind</code></td>
+<td rowspan="1" colspan="1">The value of the field whose name is stored in this property
+is used as the kind of each constraint data item.</td>
+</tr>
+</tbody></table>
+<div class="para">The value of the field <span class="apiname">constraintKindField</span> must be a String with one of the following possible values: <code class="code">startToStart</code>, <code class="code">startToEnd</code>, <code class="code">endToStart</code>, <code class="code">endToEnd</code>.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Specifying constraint data items with custom functions</h2>
+<div class="sectionContent">
+<div class="para">If you need an alternative way of retrieving the values
+of constraint data items, you can use the <span class="apiname">constraintKindFunction</span> property of the control to specify a custom function that will be
+used to obtain the kind of constraint for each constraint data item
+from the constraint data provider.</div>
+</div>
+</div>
+<div class="section" id="section1216740289959">
+<h2 class="heading">Specifying the relationship between tasks and constraints</h2>
+<div class="sectionContent">
+<div class="para">The task chart control associates tasks and constraints
+as follows: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">One task can be the source or destination
+of zero or more constraints</div></li><li class="itemizedlistItem"><div class="para">One constraint has one source task and
+one destination task</div></li></ul></div>
+<div class="para">This association is built using fields of the data provider
+items which are specified with properties of the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskChart.html" class="bluelink">TaskChart</a></span> class as shown in the following
+table. </div>
+<div class="caption">Field properties in the task—constraint association</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="table1216739592180"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Property</div></th>
+<th rowspan="1" colspan="1"><div class="para">Default value</div></th>
+<th rowspan="1" colspan="1"><div class="para">Description</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><code class="code">taskIdField</code></div></td>
+<td rowspan="1" colspan="1"><div class="para"><code class="code">id</code> or <code class="code">@id</code></div></td>
+<td rowspan="1" colspan="1"><div class="para">A uniquer identifier of the task within the
+task data provider. This is a field of the task data provider items.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><code class="code">constraintFromIdField</code></div></td>
+<td rowspan="1" colspan="1"><div class="para"><code class="code">taskId</code> or <code class="code">@taskId</code></div></td>
+<td rowspan="1" colspan="1"><div class="para">The identifier of the task that is the source
+of the constraint. This is a field of the constraint data provider
+items.</div></td>
+</tr>
+<tr>
+<td valign="top" rowspan="1" colspan="1"><div class="para"><code class="code">constraintToIdField</code></div></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para"><code class="code">taskId</code> or <code class="code">@taskId</code></div></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">The identifier of the task that
+is the destination of the constraint. This is a field of the constraint
+data provider items.</div></td>
+</tr>
+</tbody></table>
+<div class="para">If changes are made to the relationship outside the task
+chart control, you must notify the task data provider for the tasks
+concerned by calling its <code class="code">ICollectionView.itemUpdated()</code> method.</div>
+<div class="para">The <code class="code">TaskChart</code> class provides
+the following methods to access the association:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apiname">getFromTask(constraint:Object):Object</span> — returns the task that is the source of the constraint.</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apiname">getToTask(constraint:Object):Object</span> — returns the task that is the destination of the constraint.</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apiname">getFromConstraints(task:Object):Array</span> — returns the constraints that have the task as their source.</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apiname">getToConstraints(task:Object):Array</span> — returns the constraints that have the task as their destination.</div>
+</li></ul></div>
+<div class="para">For complete information on the properties and the associated
+methods see the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskChart.html" class="bluelink">TaskChart</a></span> class.</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex550.html" class="bluelink">Gantt task charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex553.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex555.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

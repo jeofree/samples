@@ -1,0 +1,74 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Using effects in a map</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex809.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex849.html" class="breadcrumb">MX Maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex863.html" class="breadcrumb">Using effects in a map</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex862.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex864.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Using effects in a map</h1></div></div><div class="content">
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">You can use IBM® <span class="classificationVariable">ILOG Elixir</span> to make interesting and engaging
+maps. Important factors to consider are how user interactions with
+the applications trigger effects and events. Map features are <span class="apiname">UIComponent</span>s and any standard effects can be used
+with them. </div>
+<div class="para">The following example shows a zoom effect when the pointer
+enters a country.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                layout="absolute" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt; 
+&lt;mx:Script&gt;
+  &lt;![CDATA[
+    import mx.effects.Effect;
+    import mx.effects.Zoom;
+    import ilog.maps.MapFeature;
+    import ilog.maps.MapEvent;
+
+    private var _effects:Array = new Array();
+ 
+    private function createEffect(f:MapFeature):Effect {
+      var z:Zoom = new Zoom();
+      z.zoomWidthFrom = 1;
+      z.zoomWidthTo = 1.5; 
+      z.zoomHeightFrom = 1;
+      z.zoomHeightTo = 1.5; 
+      z.duration = 1000;
+      return z;
+    } 
+    
+    private function play(s:MapFeature, io:Boolean):void {      
+      var z:Effect = _effects[s];
+      if(z == null) {
+        z = createEffect(s);         
+        _effects[s] = z;
+      }
+      if(z.isPlaying) {
+        z.reverse();
+      } else {
+        z.play([s], io);
+      }
+    }
+        
+    public function rollOver(event:MapEvent):void {
+      var m:MapFeature = event.mapFeature;
+      m.parent.setChildIndex(m, m.parent.numChildren - 1);
+      play(m, false);
+    }
+   
+    private function rollOut(e:MapEvent):void {
+      var m:MapFeature = e.mapFeature;
+      play(m, true);
+    }
+    
+  ]]&gt;
+&lt;/mx:Script&gt;
+&lt;ilog:ContinentalEuropeMap 
+  id="europe" 
+  width="100%" 
+  height="100%" 
+  toolTip="Europe" 
+  mapItemRollOver="rollOver(event)"
+  mapItemRollOut="rollOut(event)" /&gt;
+
+&lt;/mx:Application&gt;</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex849.html" class="bluelink">MX Maps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex862.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex864.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

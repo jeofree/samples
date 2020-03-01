@@ -1,0 +1,121 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Creating a map control</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="HowTo"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise214.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise254.html" class="breadcrumb">MX Maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise258.html" class="breadcrumb">Creating a map control</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise257.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise259.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Creating a map control</h1></div></div><div class="content">
+
+
+
+<div class="proceduralTopicContent">
+<div class="summary">
+<div class="para">You can create a map control in two ways: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">You can create, destroy, and manipulate
+map displays using <span class="trademark">ActionScript®
+            </span> as for any other IBM® <span class="classificationVariable">ILOG Elixir</span> component.</div>
+</li><li class="itemizedlistItem"><div class="para">You can create a map in MXML using the
+tag corresponding to the map you want to create.</div>
+</li></ul></div>
+</div>
+<div class="task">
+<div class="taskContent">
+<div class="procedure">
+<div class="procedureContent"><div class="procedureIntro">
+<div class="para">To create a map of Europe in ActionScript:</div>
+</div><ol class="steps"><li class="step">
+<div class="stepContent">
+<div class="para">Use the <code class="code">new</code> keyword. </div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Set properties for the map object in the same way as
+you can in MXML. </div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Color a map item as a country by retrieving its map feature
+and then setting the appropriate style property. </div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Make a map react to user actions by using an event listener.</div>
+</div>
+</li></ol></div>
+</div>
+<div class="expectedResult">
+<div class="para">The following example displays a map of Europe. France
+is colored in green and the country code is displayed when the user
+clicks on the country.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+    layout="absolute"
+    creationComplete="creationComplete()"&gt;
+    
+&lt;mx:Script&gt;
+  &lt;![CDATA[
+    import mx.graphics.SolidColor;
+    import ilog.maps.MapBase;
+    import ilog.maps.MapEvent;
+    import ilog.maps.MapFeature;
+    import ilog.maps.ContinentalEuropeMap;
+    
+    internal function creationComplete():void {
+    
+      // Create a map of Continental Europe.
+      var map:ContinentalEuropeMap = new ContinentalEuropeMap();
+      map.width = 200;
+      map.height = 200;
+      panel.addChild(map);
+    
+      // Color France in green.
+      var mf:MapFeature = map.getFeature("FRA");
+      mf.setStyle(MapBase.FILL, new SolidColor(0x00ff00));
+    
+      // Add an event listener to display the country code of the country.
+      // Clicked.
+      map.addEventListener(MapEvent.ITEM_CLICK, itemClicked);
+    }
+
+    private function itemClicked(e:MapEvent):void {
+      var mf:MapFeature = e.mapFeature;
+      if(mf != null)
+        trace(mf.key + " clicked");
+    }
+]]&gt;
+
+&lt;/mx:Script&gt;
+&lt;mx:Panel id="panel" width="100%" height="100%"
+    title="Map created in ActionScript" /&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+</div>
+</div>
+<div class="task">
+<div class="taskContent">
+<div class="procedure">
+<div class="procedureContent"><div class="procedureIntro">
+<div class="para">To create a map of the countries of the world using MXML:</div>
+</div><ol class="steps"><li class="step">
+<div class="stepContent">
+<div class="para">Use the <code class="code">&lt;ilog:WorldCountriesMap&gt;</code> tag.</div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Insert this tag in an Application element as follows:</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;ilog:WorldCountriesMap width="300" height="150" /&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+</li></ol></div>
+</div>
+<div class="expectedResult">
+<div class="para">The following figure shows the map displayed by the code
+above.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/maps_world_default.png" alt="Example&#xA;of world map" class="imagedata"/></div>
+</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise254.html" class="bluelink">MX Maps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise257.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise259.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

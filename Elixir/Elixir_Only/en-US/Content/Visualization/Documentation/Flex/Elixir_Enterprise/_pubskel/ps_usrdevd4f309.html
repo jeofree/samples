@@ -1,0 +1,89 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Creating a diagram with nodes and links</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Sample"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f302.html" class="breadcrumb">Getting started</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f304.html" class="breadcrumb">Understanding core concepts and classes</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f309.html" class="breadcrumb">Creating a diagram with nodes and links</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f308.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f310.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Creating a diagram with nodes and links</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The <span class="apiname">Diagram</span> class is
+a <span class="trademark">Flex®
+            </span> <span class="apiname">UIComponent</span> that automatically creates a graphic
+representation of a graph composed of nodes and links in a business
+data model. Like many other Flex graphic components, it relies on
+the Flex <span class="quote">“data provider”</span> paradigm. In the
+case of the <span class="apiname">Diagram</span> class, two properties
+act as data providers: <span class="apiname">nodeDataProvider</span> for nodes and <span class="apiname">linkDataProvider</span> for
+links. The <span class="apiname">Diagram</span> class takes care
+of rendering the nodes and links found in the <span class="apiname">nodeDataProvider</span> and <span class="apiname">linkDataProvider</span> properties,
+and listens for changes in these data sources to reflect them in the
+graphical nodes and links of the diagram.</div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">The following figure shows how to display a basic graph
+using a <span class="apiname">Diagram</span> component.</div>
+<div class="figure"><div class="mediaobject"><img src="../../Diagram4Flex/_media/diagram_default.png" alt="Basic&#xA;graphical representation of three nodes with labels and three links." class="imagedata"/></div></div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark"
+               xmlns:ibm="http://www.ibm.com/xmlns/prod/ilog/flex/diagram/2010" 
+               xmlns:mx="library://ns.adobe.com/flex/halo"
+               creationComplete="fillDataProviders()"&gt;
+  &lt;fx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+      
+      [Bindable]
+      public var nodes:ArrayCollection;
+      [Bindable]
+      public var links:ArrayCollection;
+      
+      public function fillDataProviders():void {
+        nodes = new ArrayCollection();
+        var n:Object = new Object();
+        n.label="Node 1";
+        n.x = 10;
+        n.y = 10;
+        nodes.addItem(n);
+        n = new Object();
+        n.label = "Node 2";
+        n.x = 70;
+        n.y = 200;
+        nodes.addItem(n);
+        n = new Object();
+        n.label = "Node 3";
+        n.x = 150;
+        n.y = 50;
+        nodes.addItem(n);
+        
+        links = new ArrayCollection();
+        var link:Object = new Object();
+        link.start = nodes[0];
+        link.end = nodes[1];
+        links.addItem(link);
+        link = new Object();
+        link.start = nodes[0];
+        link.end = nodes[2];
+        links.addItem(link);
+        link = new Object();
+        link.start = nodes[1];
+        link.end = nodes[2];
+        links.addItem(link);
+      }
+    ]]&gt;
+  &lt;/fx:Script&gt;
+  
+  &lt;ibm:Diagram id="diagram" left="0" top="0" width="100%" height="100%" 
+               nodeDataProvider="{nodes}" linkDataProvider="{links}"
+               xLocationField="x" yLocationField="y"
+               startNodeField="start" endNodeField="end"
+               labelField="label"&gt;
+  &lt;/ibm:Diagram&gt;
+
+&lt;/s:Application&gt;
+</pre>
+
+</div>
+</div>
+</div>
+
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f304.html" class="bluelink">Understanding core concepts and classes</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f308.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f310.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

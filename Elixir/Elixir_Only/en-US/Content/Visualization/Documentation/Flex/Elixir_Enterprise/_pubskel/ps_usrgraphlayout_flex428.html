@@ -1,0 +1,46 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Position index parameter (HL)</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex414.html" class="breadcrumb">Hierarchical Layout (HL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex428.html" class="breadcrumb">Position index parameter (HL)</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex427.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex429.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Position index parameter (HL)</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">In Step 2 of the layout algorithm (the crossing reduction
+phase), the nodes are ordered within the levels. All nodes that belong
+to the same level get a position index starting from 0. For instance,
+when the flow direction is to the bottom, the node with the position
+index 0 is placed in the leftmost position within its level. The nodes
+with a larger position index are placed farther to the right than
+the nodes with a smaller position index in the same level. The nodes
+of different levels are independent. The node of the first level with
+the position index 0 is to the left of the node of the first level
+with the position index 1, but not necessarily to the left of a node
+of another level with position index 0. Note that long links crossing
+a level also obtain a position index (see <a href="ps_usrgraphlayout_flex417.html#usrgraphlayout.uss_graphlay_layouts.1080632" class="bluelink">Level and position indices</a>). The layout
+algorithm calculates these position indices automatically. </div>
+<div class="para">You can affect how the nodes are positioned within each
+level by specifying the position index of some nodes. The nodes are
+placed at the specified position within their level.  </div>
+<div class="para">To specify the position index of a node in <span class="trademark">Java™
+            </span>, use the method:  </div>
+<pre class="programlisting">
+void setSpecNodePositionIndex(Object node, int index)   
+</pre>
+<div class="para">The default value is <code class="code">-1</code>. If
+the default value is used, if a node is set to a negative position
+index, or if a node is set to a position index that is larger than
+the number of nodes of its level, the layout automatically calculates
+an appropriate position index during the crossing reduction step. </div>
+<div class="para">To obtain the current position index of a node, use the
+method: </div>
+<pre class="programlisting">
+int getSpecNodePositionIndex(Object node)   
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex414.html" class="bluelink">Hierarchical Layout (HL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex427.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex429.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

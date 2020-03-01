@@ -1,0 +1,226 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Examples of editing event handlers</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex634.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex663.html" class="breadcrumb">Event editing</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex671.html" class="breadcrumb">Examples of editing event handlers</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex670.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex672.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Examples of editing event handlers</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="section" id="section1216913714441">
+<h2 class="heading">Enforcing a minimum duration when resizing events</h2>
+<div class="sectionContent">
+<div class="para">In the following example, the listener for the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html#event:itemEditResize" class="bluelink">itemEditResize</a></span> event enforces the minimum duration of 1 hour for
+short events.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import ilog.calendar.CalendarItemEditKind;
+      import ilog.calendar.CalendarItem;
+      import ilog.calendar.CalendarEvent;
+    
+      private var isLongItemEdited:Boolean;
+      
+      private function onItemEditBegin(event:CalendarEvent):void {
+        //store if the item is a long or a short item before the editing.
+        isLongItemEdited = calendar.isLongEvent(event.item);
+      }
+          
+      private function onItemEditResize(event:CalendarEvent):void {
+        
+        //cancel the default handler
+        event.preventDefault();
+        
+        var calItem:CalendarItem = calendar.itemToCalendarItem(event.item);
+                  
+        //round the edited date like the calendar does.                 
+        if (calendar.editKind == CalendarItemEditKind.RESIZE_START) {
+          calItem.startTime = calendar.roundDate(calItem.startTime, isLongItemEdited);
+        } else { // Resize end
+          calItem.endTime = calendar.roundDate(calItem.endTime, isLongItemEdited);
+        }
+        
+        //ensure a minimum duration of 1 hour for a short event.
+        calendar.ensureCalendarItemMinimumDuration(calItem, isLongItemEdited, 60);
+        
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt;              
+  &lt;ilog:Calendar id="calendar"
+                 width="100%" height="100%" 
+                 itemEditBegin="onItemEditBegin(event)"
+                 itemEditResize="onItemEditResize(event)"
+                 date="{new Date(2008,0,15)}"&gt;
+    &lt;mx:XMLList&gt;
+      &lt;event summary="Event 1" startTime="2008/01/14 08:00:00" endTime="2008/01/14 17:00:00"/&gt;      
+    &lt;/mx:XMLList&gt;
+  &lt;/ilog:Calendar&gt;
+&lt;/mx:Application&gt;</pre>
+</div>
+</div>
+<div class="section" id="section1216913722379">
+<h2 class="heading">Custom snapping when moving short events</h2>
+<div class="sectionContent">
+<div class="para">The following example shows how to use the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html#event:itemEditMove" class="bluelink">itemEditMove</a></span> event to snap the start of a short event when moving
+it. In this example, the listener for the <span class="apiname">itemEditMove</span> event snaps the start time of short events to the nearest hour.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import ilog.utils.TimeUnit;
+      import ilog.calendar.CalendarItemEditKind;
+      import ilog.calendar.CalendarItem;
+      import ilog.calendar.CalendarEvent;
+    
+      private var isLongItemEdited:Boolean;
+      
+      private function onItemEditBegin(event:CalendarEvent):void {
+        //store if the item is a long or a short item before the editing.
+        isLongItemEdited = calendar.isLongEvent(event.item);
+      }
+          
+      private function onItemEditMove(event:CalendarEvent):void {
+        
+        //cancel the defauld handler
+        event.preventDefault();
+        
+        var calItem:CalendarItem = calendar.itemToCalendarItem(event.item);
+                                                                                                                     
+        var duration:Number = calItem.endTime.time - calItem.startTime.time;
+        
+        //round short event with a snap duration of 1 hour                                                       
+        var date:Date = calendar.roundDate(calItem.startTime, isLongItemEdited, 60);
+      
+        //don't go too far                
+        if (isLongItemEdited &amp;&amp; date &gt; calendar.endDisplayedDate) {
+          date = calendar.endDisplayedDate;      
+        }            
+      
+        //adjust end time to keep the duration
+        var date2:Date = new Date(date.time + duration);
+      
+        //don't go too far
+        if (isLongItemEdited) {
+          var date3:Date = calendar.calendar.addUnits(calendar.startDisplayedDate, TimeUnit.DAY, 1);
+          if (date2 &lt; date3) {
+            date2 = date3;
+            date = new Date(date2.time - duration);
+          }
+        }
+        
+        calItem.startTime = date;
+        calItem.endTime = date2;             
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt;              
+  &lt;ilog:Calendar id="calendar"
+                 width="100%" height="100%" 
+                 itemEditBegin="onItemEditBegin(event)"
+                 itemEditMove="onItemEditMove(event)"
+                 date="{new Date(2008,0,15)}"&gt;
+    &lt;mx:XMLList&gt;
+      &lt;event summary="Event 1" startTime="2008/01/14 08:30:00" endTime="2008/01/14 17:30:00"/&gt;      
+    &lt;/mx:XMLList&gt;
+  &lt;/ilog:Calendar&gt;
+&lt;/mx:Application&gt;</pre>
+</div>
+</div>
+<div class="section" id="section1216913730379">
+<h2 class="heading">Updating the data provider item using a custom date format</h2>
+<div class="sectionContent">
+<div class="para">The following example shows how to access dates stored
+with a custom date format. The start and end time are read from the
+data provider item using custom functions that parse the custom date
+format. A handler for the<span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html#event:itemEditEnd" class="bluelink">itemEditEnd</a></span> event updates the data provider
+item after editing is complete using the custom date format for the
+start time and end time.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                creationComplete="initApp()"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+    
+      import ilog.calendar.CalendarEvent;
+      import ilog.calendar.CalendarItem;
+      import ilog.calendar.CalendarEventReason;
+      import mx.formatters.DateFormatter;
+      
+      private var replaceDashes:RegExp = new RegExp("-","g");
+      private var replaceT:RegExp = new RegExp("T");
+      private var iso8601Formatter:DateFormatter = new DateFormatter();
+      
+      private function initApp():void {
+        iso8601Formatter.formatString = "YYYY-MM-DDTJJ:NN:SS";
+      }
+    
+      private function readStartDate(item:Object):Date {        
+        return readDate(item, "@startTime");
+      }
+    
+      private function readEndDate(item:Object):Date {
+        return readDate(item, "@endTime");
+      }
+    
+      private function readDate(item:Object, dateField:String):Date {
+        var dateString:String = item[dateField].toString();
+        
+        dateString = dateString.replace(replaceDashes, "/");
+        dateString = dateString.replace(replaceT, " ");
+                 
+        return new Date(dateString);
+      }
+      
+      // When setting startTimeFunction or endTimeFunction 
+      // you must provide a itemEditEnd handler to update the data 
+      // provider item. In this case we update the start and end 
+      // time in the data provider item using a ISO 8601 date 
+      // formatter.      
+      private function onItemEditEnd(event:CalendarEvent):void {
+        
+        //prevent the execution of the default handler
+        event.preventDefault();
+    
+        if (event.reason == CalendarEventReason.CANCELLED) {
+          return;
+        }
+    
+        var calendarItem:CalendarItem = calendar.itemToCalendarItem(event.item);
+    
+        event.item.@startTime = iso8601Formatter.format(calendarItem.startTime);
+        event.item.@endTime = iso8601Formatter.format(calendarItem.endTime);
+      }
+  
+      
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  
+  &lt;ilog:Calendar id="calendar"
+                 width="100%" height="100%" 
+                 startTimeFunction="readStartDate" 
+                 endTimeFunction="readEndDate"
+                 itemEditEnd="onItemEditEnd(event)"
+                 date="{new Date(2008,0,15)}"&gt;
+    &lt;mx:XMLList&gt;
+      &lt;event summary="Event 1" startTime="2008-01-14T08:00:00" endTime="2008-01-15T17:00:00"/&gt;
+      &lt;event summary="Event 2" startTime="2008-01-16T08:00:00" endTime="2008-01-17T17:00:00"/&gt;
+      &lt;event summary="Event 3" startTime="2008-01-18T18:00:00" endTime="2008-01-21T17:00:00"/&gt;
+    &lt;/mx:XMLList&gt;
+  &lt;/ilog:Calendar&gt;
+
+&lt;/mx:Application&gt;</pre>
+<div class="para">In this example, the start time and end time of tasks
+are stored in the task data provider using the ISO8601:2000 extended
+format. Custom functions are set on the <span class="apiname">startTimeFunction</span> and <span class="apiname">endTimeFunction</span> properties
+of the calendar control. These functions parse the ISO8601:2000 formatted <span class="apiname">String</span> and retrieve <span class="apiname">Date</span> objects, stored in the <span class="apiname">CalendarItem</span> object associated with the data provider item. The listener for
+the <span class="apiname">itemEditEnd</span> event prevents the
+default update of the data provider item and instead uses a custom
+date formatter to store the start and end times as Strings in the
+IS8601:2000 format.</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex663.html" class="bluelink">Event editing</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex670.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex672.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

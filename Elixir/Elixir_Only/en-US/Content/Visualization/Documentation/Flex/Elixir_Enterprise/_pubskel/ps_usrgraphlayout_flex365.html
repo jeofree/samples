@@ -1,0 +1,50 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Choosing the layout algorithm dynamically</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="HowTo"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex363.html" class="breadcrumb">Typical ways to choose a layout</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex365.html" class="breadcrumb">Choosing the layout algorithm dynamically</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex364.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex366.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Choosing the layout algorithm dynamically</h1></div></div><div class="content">
+
+
+<div class="proceduralTopicContent">
+<div class="summary">
+<div class="para">If nothing is known about the graphs that the application
+will need to lay out, the developer can write a routine that automatically
+chooses the layout algorithm at run time. The following simple rules
+could be applied: </div>
+</div>
+<div class="procedure">
+<div class="procedureContent"><ol class="steps"><li class="step">
+<div class="stepContent">
+<div class="para">If the nodes of the graph cannot be moved (they are geo-positioned),
+use the Link Layout.  </div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">If the graph is a tree, use the Tree Layout. </div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Otherwise, use one of the layout algorithms that are
+the less restricted to a specific category of graph, especially the
+Uniform Length Edges Layout. (The preferred length of the links could
+also be computed with respect to the size of the nodes.) </div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">If the graph is too large, apply a “divide-and-conquer”
+strategy. Cut the graph into several subgraphs and apply the layout
+separately to each subgraph. If the graph is disconnected, you can
+use the built-in support provided by the layout library to perform
+this task automatically. (See <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1017460" class="bluelink">Layout of connected components</a>.) </div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">If the graph is nested, use the Recursive Layout algorithm
+that controls which subgraph is laid out by which (flat) sublayout.
+Use steps 1 to 4 to determine the sublayouts for the subgraphs. The
+Hierarchical Layout and the Tree Layout also have special modes for
+nested graphs, see <a href="ps_usrgraphlayout_flex412.html" class="bluelink">Recursive mode</a> and <a href="ps_usrgraphlayout_flex436.html" class="bluelink">Recursive layout</a>.</div>
+</div>
+</li></ol></div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex363.html" class="bluelink">Typical ways to choose a layout</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex364.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex366.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

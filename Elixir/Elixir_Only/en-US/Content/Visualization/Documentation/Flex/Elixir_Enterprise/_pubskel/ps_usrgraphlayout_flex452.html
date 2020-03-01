@@ -1,0 +1,76 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Generic features and parameters of the RL</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex448.html" class="breadcrumb">Random layout (RL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex452.html" class="breadcrumb">Generic features and parameters of the RL</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex451.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex453.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Generic features and parameters of the RL</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/random/IlvRandomLayout.html" class="bluelink">IlvRandomLayout</a></span> class supports the following generic parameters
+defined in the <code class="code">IlvGraphLayout</code> class (see <a href="ps_usrgraphlayout_flex369.html" class="bluelink">Base class parameters and features</a>):  </div>
+
+
+<div class="para">The following sections describe the particular way in
+which these parameters are used by this subclass.  </div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1002393">
+<h2 class="heading">Layout region (RL)</h2>
+
+<div class="sectionContent">
+
+
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1044191">
+<h2 class="heading">Percentage of completion calculation (RL)</h2>
+
+<div class="sectionContent">
+<div class="para">The layout algorithm calculates the estimated percentage
+of completion. This value can be obtained from the layout report during
+the run of the layout. (For a detailed description of this features,
+see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1014202" class="bluelink">Percentage of completion calculation</a> and <a href="ps_usrgraphlayout_flex476.html#usrgraphlayout.uss_graphlay_advanced.1026354" class="bluelink">Graph layout event listeners</a>.) </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1019312">
+<h2 class="heading">Preserve fixed links (RL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm does not reshape the links that
+are specified as fixed. (See <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1022705" class="bluelink">Preserve fixed links</a>.) </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1002403">
+<h2 class="heading">Preserve fixed nodes (RL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm does not move the nodes that are
+specified as fixed. (See <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1022740" class="bluelink">Preserve fixed nodes</a>.)  </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1002408">
+<h2 class="heading">Random generator seed value (RL)</h2>
+
+<div class="sectionContent">
+<div class="para">The Random Layout uses a random number generator to compute
+the coordinates. You can specify a particular value to be used as
+a seed value. (See <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1022774" class="bluelink">Random generator seed value</a>) For the default
+behavior, the random generator is initialized using the current system
+clock. Therefore, different layouts are obtained if you perform the
+layout repeatedly on the same graph. </div>
+</div>
+</div>
+
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1044113">
+<h2 class="heading">Stop immediately (RL)</h2>
+
+<div class="sectionContent">
+<div class="para">The layout algorithm stops after cleanup if the method  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html#stopImmediately()" class="bluelink">stopImmediately</a></span> is called. (For a description of this method in
+the <code class="code">IlvGraphLayout</code> class, see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1022821" class="bluelink">Stop immediately</a>.) If the layout
+stops early because the allowed time has elapsed, the result code
+in the layout report is <code class="code">IlvGraphLayoutReport.STOPPED_AND_INVALID</code>.  </div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex448.html" class="bluelink">Random layout (RL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex451.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex453.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

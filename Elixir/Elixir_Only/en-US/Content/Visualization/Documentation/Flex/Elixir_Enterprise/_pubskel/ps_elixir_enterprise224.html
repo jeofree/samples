@@ -1,0 +1,32 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Predefined knobs</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise214.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise215.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise218.html" class="breadcrumb">Using and customizing predefined gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise224.html" class="breadcrumb">Predefined knobs</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise223.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise225.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Predefined knobs</h1></div></div><div class="content">
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">IBM® <span class="classificationVariable">ILOG Elixir</span> provides two predefined knobs:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/controls/black/BlackKnob.html" class="bluelink">BlackKnob</a></span>	(black-style skinned knob)</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/controls/simple/SimpleKnob.html" class="bluelink">SimpleKnob</a></span> (full programmatic knob)</div>
+</li></ul></div>
+<div class="para">The following code shows how to use some properties of
+predefined knobs.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application 
+  xmlns:mx="http://www.adobe.com/2006/mxml"
+  xmlns:ilog="http://www.ilog.com/2007/ilog/flex" 
+  layout="horizontal"
+  backgroundColor="0xFFFFFF"&gt;
+  &lt;ilog:BlackKnob width="100%" height="100%"
+    categories="['OFF', 'ON']"/&gt;
+  &lt;ilog:SimpleKnob width="100%" height="100%"
+    value="0" categories="['0', '1', '2', '3', '4', 'MAX']"/&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise218.html" class="bluelink">Using and customizing predefined gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise223.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise225.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

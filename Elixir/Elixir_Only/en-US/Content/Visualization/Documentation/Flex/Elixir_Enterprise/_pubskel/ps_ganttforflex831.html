@@ -1,0 +1,94 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>The CircularTrackRenderer class</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex809.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex810.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex821.html" class="breadcrumb">Building custom gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex823.html" class="breadcrumb">Custom circular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex826.html" class="breadcrumb">The visual elements of circular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex831.html" class="breadcrumb">The CircularTrackRenderer class</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex830.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex832.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">The CircularTrackRenderer class</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e143372">
+
+
+
+
+
+<div class="para">A track renderer is a class that draws an annulus with
+arbitrary start and end angles, and arbitrary start and end thicknesses.
+It can be filled with a conical gradient or with a solid color. It
+is used on a scale to indicate that a value enters a given value range.</div>
+<div class="paragroup">
+<div class="title">Customizing the geometry of a CircularTrackRenderer</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The geometry of a <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularTrackRenderer.html" class="bluelink">CircularTrackRenderer</a></span> is controlled by the following
+properties:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularTrackRenderer.html#minimum" class="bluelink">minimum</a></span> — Defines the value that
+corresponds to the start angle of the track.</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularTrackRenderer.html#maximum" class="bluelink">maximum</a></span> — Defines the value that
+corresponds to the end angle of the track.</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularTrackRenderer.html#startThickness" class="bluelink">startThickness</a></span> — The thickness of the
+track at the start angle of the track.</div></li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularTrackRenderer.html#endThickness" class="bluelink">endThickness</a></span><span class="apiname">endThickness</span> — The thickness of the track at the end angle of the track.</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularTrackRenderer.html#placement" class="bluelink">placement</a></span> — The position of the
+annulus relative to the radius. Possible values are: <code class="code">inside</code> (default), <code class="code">outside</code>, and <code class="code">cross</code>.</div></li></ul></div>
+<div class="para"><span class="apiname">startThickness</span> and <span class="apiname">endThickness</span> can be expressed in a percentage of
+the radius or in pixels.</div>
+</div>
+<div class="paragroup">
+<div class="title">Customizing the colors of a CircularTrackRenderer</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The <span class="apiname">CircularTrackRenderer</span> supports two fill modes:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Solid color — This is the default
+mode. The style properties <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularTrackRenderer.html#style:rendererColor" class="bluelink">rendererColor</a></span> and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularTrackRenderer.html#style:rendererAlpha" class="bluelink">rendererAlpha</a></span> are used to fill the track.</div>
+</li><li class="itemizedlistItem"><div class="para">Color gradients — Fill the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularTrackRenderer.html#gradientEntries" class="bluelink">gradientEntries</a></span> array with <span class="apiname">GradientEntry</span> instances to obtain a conical gradient.</div>
+</li></ul></div>
+<div class="para">The following code example shows different scenarios
+of track renderers:</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                backgroundColor="0xFFFFFF"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.graphics.*;
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:CircularGauge width="100%" height="100%"&gt;
+    &lt;ilog:scales&gt;
+      &lt;ilog:CircularLinearScale/&gt;
+    &lt;/ilog:scales&gt;
+    &lt;ilog:elements&gt;
+      &lt;ilog:CircularScaleRenderer/&gt;
+      &lt;ilog:CircularTrackRenderer
+        radius="25%"
+        minimum="0"
+        maximum="50"
+        placement="outside"
+        rendererColor="0x0000FF"
+        stroke="{new Stroke(0xAAAAAA, 5)}" /&gt;
+      &lt;ilog:CircularTrackRenderer
+        radius="25%"
+        minimum="50"
+        maximum="100"
+        placement="inside"
+        startThickness="0%"&gt;
+        &lt;ilog:gradientEntries&gt;
+          &lt;mx:GradientEntry color="0xFF0000" ratio="0"/&gt;
+          &lt;mx:GradientEntry color="0x00FF00" ratio="1"/&gt;          
+        &lt;/ilog:gradientEntries&gt;
+      &lt;/ilog:CircularTrackRenderer&gt;
+      &lt;ilog:CircularTrackRenderer
+        radius="15%"
+        minimum="10"
+        maximum="90"
+        startThickness="40%" endThickness="40%"
+        placement="inside"&gt;        
+        &lt;ilog:gradientEntries&gt;
+          &lt;mx:GradientEntry color="0x0FF000" ratio="0"/&gt;
+          &lt;mx:GradientEntry color="0xFF0000" ratio="1"/&gt;          
+        &lt;/ilog:gradientEntries&gt;
+       &lt;/ilog:CircularTrackRenderer&gt;
+    &lt;/ilog:elements&gt;
+  &lt;/ilog:CircularGauge&gt;
+&lt;/mx:Application&gt;
+
+</pre>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex826.html" class="bluelink">The visual elements of circular gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex830.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex832.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,286 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Creating swimlanes in a diagram</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f312.html" class="breadcrumb">Creating a graph display from data providers using the Diagram
+class</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f339.html" class="breadcrumb">Creating swimlanes in a diagram</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f338.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f340.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Creating swimlanes in a diagram</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">A swimlane is a way of grouping together activities performed
+by the same actor in an activity diagram, or activities in a single
+thread. Graphically, a swimlane is basically a subgraph and its nodes
+the activities. In IBM® <span class="classificationVariable">Diagram</span>, a swimlane is represented by a colored
+rectangle, either horizontal or vertical, with a header that contains
+a label and an expand/collapse button, and a graph that contains the
+nodes. When a diagram contains several swimlanes, they are generally
+arranged visually by means of a lane layout. In the remaining of the
+document, we'll specify the lanes for the horizontal case only. </div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The lane layout performs the following actions:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Resizes all lanes to the same size as
+the largest lane.</div></li><li class="itemizedlistItem"><div class="para">Distributes all lanes evenly and vertically.</div>
+</li><li class="itemizedlistItem"><div class="para">Aligns all lanes vertically below the
+top one.</div></li></ul></div>
+<div class="para">Lanes can be nested. A toplevel lane which contains other
+lanes is called a pool, and usually has a different graphical representation.
+Pools are often separated by an empty space although adjacent lanes
+are in contact.</div>
+<div class="figure"><div class="mediaobject"><img src="../../Diagram4Flex/_media/diagramwithlanes_default.png" alt="Example&#xA;of a diagram with lanes" class="imagedata"/></div></div>
+<div class="para">To use swimlanes in IBM <span class="classificationVariable">Diagram</span>, first
+create the swimlanes in the diagram and then proceed with the layout.</div>
+<div class="section">
+<h2 class="heading">Creating swimlanes</h2>
+<div class="sectionContent">
+<div class="para">Lanes are basically subgraphs. They are represented in
+a diagram by one of the following four Renderer classes: HLane, VLane,
+HPool, VPool. The first two are horizontal and vertical lanes respectively,
+the remaining two are horizontal and vertical pools respectively.
+If swimlanes are created directly in a Graph, they contain nodes and
+links as shown in the following example.</div>
+<pre class="programlisting">&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	   xmlns:s="library://ns.adobe.com/flex/spark" 
+	   xmlns:ibm=http://www.ibm.com/xmlns/prod/ilog/flex/diagram/2010
+             &gt;
+&lt;ibm:Graph name="graph1" id="graph"  left="5" top="27" right="5" height="100%"  width="100%"&gt;
+	&lt;ibm:VPool id="Lane1" left="100" top="0" collapsed="false" label="Pool #1" &gt;
+		&lt;ibm:Node label="node1_1" id="node1_1" left="0" top="0" /&gt;
+		&lt;ibm:Node label="node1_2" id="node1_2" left="20" top="65" /&gt;
+		&lt;ibm:Link startNode="{node1_1}" endNode="{node1_2}" /&gt;
+	&lt;/ibm:VPool&gt;
+	&lt;ibm:VPool id="Lane2" left="200" top="370" collapsed="false" label="Pool #2" &gt;
+		&lt;ibm:VLane label="lane #2.1"&gt;
+			&lt;ibm:Node label="node2_1_1" id="node2_1_1" left="0" top="0" /&gt;
+		&lt;/ibm:VLane&gt;
+	&lt;ibm:VLane label="lane #2.2"&gt;
+&lt;/ibm:Graph&gt;	
+</pre>
+<div class="para">If a swimlane is created from a data source, it is represented
+by a container just like a subgraph, and is identified by a tag to
+generate the lane. The following example creates two pools containing
+two nodes each.</div>
+<pre class="programlisting">&lt;fx:Declarations&gt;
+&lt;fx:Object name="node1-1" id="node1_1" x="100" y="50"/&gt;
+&lt;fx:Object name="node1-2" id="node1_2" x="200" y="100"/&gt;
+&lt;fx:Object name="node2-1" id="node2_1" x="300" y="50"/&gt;
+&lt;fx:Object name="node2-2" id="node2_2" x="125" y="100"/&gt;
+		
+&lt;fx:Array id="ANodes"&gt;
+	&lt;fx:Object lane="pool" name="lane1" x="20" y="80" children="{[node1_1, node1_2]}" /&gt;
+	&lt;fx:Object lane="pool" name="lane2" x="30" y="160" children="{[node2_1, node2_2]}" /&gt;
+&lt;/fx:Array&gt;
+&lt;/fx:Declarations&gt;
+&lt;fx:Script&gt;
+   &lt;![CDATA[
+	import com.ibm.ilog.diagram.*;
+	// factory to create lanes
+	public function laneRendererFunction(diagram:Diagram,item:Object):Subgraph {
+		if (item.hasOwnProperty("lane")) {
+			var result:LaneBase = item.lane == "pool" ? new HPool():new HLane();
+			result.left = item["x"];
+			result.top = item["y"];
+			result.label = item["name"];
+			return result;
+		} else {
+			return new Subgraph();
+		}	 
+	}
+    ]]&gt;
+&lt;/fx:Script&gt;
+
+&lt;ibm:Diagram  id="diagram2" top="25" left="0" width="100%" bottom="10"
+			   labelField="name"										graphRendererFunction="{laneRendererFunction}"
+		nodeDataProvider="{new HierarchicalCollectionView(new HierarchicalData(Anodes)) }"
+			   /&gt;
+</pre>
+<div class="section">
+<h3 class="heading">Laying out swimlanes</h3>
+<div class="sectionContent">
+<div class="para">Laying out swimlanes means aligning them, making them
+the same length, and distributing them evenly side by side. When you
+have created the swimlanes, there are three different ways that you
+can lay them out. </div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">Choose one of the following layout modes:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Set Hierarchical Graph Layout as the
+diagram node layout, and call performLayout() or set autoLayout=true
+on the Diagram instance. This layout applies to lane and lane content.
+This is the preferred way for Business Process diagrams.</div>
+</li><li class="itemizedlistItem"><div class="para">Set LaneGraphLayout, which is a Spark
+layout, in the parent of the lanes. The Flex environment will call
+the layout at the right time, just like any other Flex layout. For
+example, diagram.graph.layout = new LaneGraphLayout();</div>
+</li><li class="itemizedlistItem"><div class="para">Call LaneBase.layoutAllLanes(graph);.
+This function call lays out all lanes in the specified graph. Using
+your knowledge of these three layout modes, you can now create your
+own application using swimlanes.</div></li></ul></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Working with swimlanes</h2>
+<div class="sectionContent">
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">Swimlanes are divided into three different classes:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">LaneBase.as represents the root class
+for lanes and pools, a direct subclass of Subgraph.as</div>
+</li><li class="itemizedlistItem"><div class="para">HLane.as or VLane.as represents lanes
+with horizontal or vertical lane skins; these are subclasses of LaneBase.as</div>
+</li><li class="itemizedlistItem"><div class="para">HPool.as or VPool.as represents pools
+with horizontal or vertical pool skins; these are subclasses of LaneBase.as
+ </div></li></ul></div>
+<div class="para">The lane base (LaneBase.as) behaves similarly to a subgraph.
+For example, moving a lane moves the child lanes as well, and typical
+edit interactions such as dropping a node in a lane, moving a node
+across lanes, and so on, have the same semantics as subgraph. Lanes
+and pools behave in the same way, although they have a different skin.
+Pools are generally at top level and contain lanes. Lanes
+and pools can also implement expand/collapse. When collapsed, a horizontal
+lane or pool hides its content, keeps its width but receives a minimum
+height, just like an empty lane or pool. The header is rotated to
+save space. After all lane or pool contents has been sized and located,
+the lane or pool layout can arrange the lanes and pools according
+to their sizes and position. The lane or pool layout is managed by
+a  function in the LaneBase class. You must call the lane or pool
+layout manually (typically, after an action has modified a lane or
+pool bounding box), unless the graph layout is enabled and manages
+the lanes. There is a Flex layout version of this behavior to have
+automatic lane placement. To use it, set an instance of LaneLayout
+to the diagram.graph component.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Swimlane APIs</h2>
+<div class="sectionContent">
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The swimlane requires the following additional properties.</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">isLeaf:Boolean: true if child objects
+of the lane are not lanes. This is a read-only property.</div>
+</li><li class="itemizedlistItem"><div class="para">marginLeft:Number: the margin to the
+left of child objects. Default is 10. </div></li><li class="itemizedlistItem"><div class="para">marginTop:Number: the margin above child
+objects. Default is 10.</div></li><li class="itemizedlistItem"><div class="para">marginRight:Number: the margin to the
+right of child objects. Default is 10.</div></li><li class="itemizedlistItem"><div class="para">marginBottom:Number: the margin below
+child objects. Default is 10. </div></li><li class="itemizedlistItem"><div class="para">static function layoutLanes(graph:Graph,
+anim:Boolean=true):void : layout of the lanes inside the given graph,
+if any. The anim parameter controls animation during layout.</div>
+</li></ul></div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">Pools have the following property:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">interpoolOffset:Number: The offset from
+the previous lane or pool. Lanes and pools are laid out side by side,
+but if this property is not 0, then an empty space is inserted between
+the pool and the previous lane or pool.</div></li></ul></div>
+<div class="para">LaneBase defines a static function layoutAllLanes() to
+layout the lanes manually. </div>
+<div class="para">The lane API defines margins in four directions. These
+margins are only used by the layout to reserve space between the lane
+side and its nearest node. In simple terms, the margin names are meaningful
+for horizontal lanes and should be rotated for vertical lanes. For
+example, marginLeft refers to the margin between the header and content
+for both horizontal and vertical lanes.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Swimlane graph layout</h2>
+<div class="sectionContent">
+<div class="para">The Lane object uses a subclass of GraphSparkLayout for
+its graph component. For a leaf lane, the  behavior of GraphSparkLayout
+is applied. For a nonleaf lane, LaneGraphLayout behaves just like
+the standard VerticalLayout in mode horizontalAlign = "contentJustify"
+to manage the position and size of its sublanes. </div>
+<div class="para">The GraphSparkLayout class is used with autoShift mode
+“none”, to allow free placement of nodes inside a lane.
+  This layout is different from the lane layout described previously,
+which aligns, distributes and resizes the toplevel lanes.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Integration with data source</h2>
+<div class="sectionContent">
+<div class="para">The lanes are identified as subgraphs in the data source;
+a lane must be an object that can have child objects (see data source
+documentation).</div>
+<div class="para">In the Diagram component, the lane is a subclass of LaneBase.
+To create a LaneBase subclass, set one of the two Diagram properties:
+graphRenderer or graphRendererFunction so it creates a LaneBase instance.
+For example, the following graphRendererFunction creates a horizontal
+lane if the subgraph object in the model has a “lane”
+property:</div>
+<pre class="programlisting">function mySubgraphRendererFunction(d:Diagram, item:Object):Subgraph {
+    if (item.hasOwnProperty("lane")) {
+          return new HLane();
+    }
+    // not a lane: make a regular subgraph
+    return new Subgraph();
+}
+</pre>
+<div class="para">The expand or collapse feature is optional. It can be
+disabled through the subgraph API, and the lane skin can then ignore
+parts related to collapsing. However, this feature must be enabled
+or disabled at creation time and must not change afterwards.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Skin and skin states</h2>
+<div class="sectionContent">
+<div class="para">Four skins are provided according to whether the lane
+is a pool or not and whether the lane is horizontal or vertical. The
+names of the skins are HLaneSkin, VLaneSkin, HPoolSkin, and VPoolSkin.
+ The swimlane inherits all skin states from the subgraph.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Bidirectional output</h2>
+<div class="sectionContent">
+<div class="para">The right to left locales are not supported natively
+by Flex4. However, the product provides facilities to help implement
+right to left diagrams. </div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">At the lane and pool level, take the following into consideration:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Use right-to-left skins for pools and
+lanes. The library offers HLaneSkinRTL and HPoolSkinRTL as right-to-left
+version of the standard lane and pool skins.</div>
+</li><li class="itemizedlistItem"><div class="para">Increase lane right margin to include
+skin header (header for standard skins is 25 pixels wide).</div>
+</li><li class="itemizedlistItem"><div class="para">Set Hierarchical layout flow direction
+to left if this layout is used, and set the right-to-left direction
+for the graph as well.</div></li></ul></div>
+<div class="para">The following code example shows how to make the appropriate
+settings.</div>
+<pre class="programlisting">import com.ibm.ilog.diagram.*;
+import com.ibm.ilog.diagram.skins.spark.*;
+
+public function laneRendererFunction(diagram:Diagram,item:Object):Subgraph {
+	if (item.hasOwnProperty("lane")) {
+		var result:LaneBase;					
+		result = item.lane=="pool"? new HPool():new HLane();
+		// set Right-To-Left skins
+		result.setStyle("skinClass",
+ item.lane=="pool"?Class(HPoolSkinRTL):Class(HLaneSkinRTL));
+                    // increase margin on the right side, to include header
+		result.marginRight = 35;
+		result.left = item["x"];
+		result.top = item["y"];
+		result.label = item["name"];
+		return result;
+	} else {
+		return new Subgraph();
+	}	 
+}
+
+diagram.graphRendererFunction = laneRendererFunction;
+
+// example of how to set hierarchical flow direction:
+
+import com.ibm.ilog.diagram.graphlayout.hierarchical.HierarchicalLayout;
+import com.ibm.ilog.diagram.graphlayout.hierarchical.HierarchicalLayoutFlowDirection;
+
+var hl:HierarchicalLayout = new HierarchicalLayout();	
+hl.flowDirection = HierarchicalLayoutFlowDirection.LEFT;	
+diagram.nodeLayout = hl;
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f312.html" class="bluelink">Creating a graph display from data providers using the Diagram
+class</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f338.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f340.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

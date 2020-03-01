@@ -1,0 +1,286 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Examples of editing event handlers</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex497.html" class="breadcrumb">Gantt resource charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex540.html" class="breadcrumb">Editing tasks in a resource chart</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex548.html" class="breadcrumb">Examples of editing event handlers</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex547.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex549.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Examples of editing event handlers</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="section" id="usrflprg.uss_flexprg_gantt.1026282">
+<h2 class="heading">Enforcing a minimum duration when resizing tasks</h2>
+<div class="sectionContent">
+<div class="para">The following example in MXML shows how to use the <span class="apiname">itemEditResize</span> event to enforce a minimum duration
+when resizing tasks.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import ilog.gantt.GanttSheetEvent;
+      import ilog.gantt.TaskItem;
+      import ilog.gantt.TaskItemEditKind;
+      import ilog.gantt.TimeUtil;
+      import ilog.utils.GregorianCalendar;
+      import ilog.utils.TimeUnit;
+      
+      import mx.collections.ArrayCollection;
+      import mx.events.FlexEvent;
+  
+      [Bindable]
+      public var resources:ArrayCollection = new ArrayCollection([
+        { id: "R1", name: "Project Manager", location: "Geneva" }
+      ]);
+        
+      [Bindable]
+      public var tasks:ArrayCollection = new ArrayCollection([
+        { resourceId: "R1", name: "Define project vision",
+          startTime: "1/14/2008 8:0:0", endTime: "1/15/2008 17:0:0" },
+        { resourceId: "R1", name: "Refine project vision",
+          startTime: "1/16/2008 8:0:0", endTime: "1/17/2008 17:0:0" },
+        { resourceId: "R1", name: "Assess project vision",
+          startTime: "1/18/2008 8:0:0", endTime: "1/21/2008 17:0:0" }
+      ]);
+
+      private function onItemEditResize(event:GanttSheetEvent):void
+      {
+        // Prevent the default behavior.
+        event.preventDefault();
+
+        var ganttSheet:GanttSheet = event.target as GanttSheet;
+        var calendar:GregorianCalendar = ganttSheet.calendar;
+
+        var taskItem:TaskItem = event.itemRenderer.data as TaskItem;
+        var startTime:Date = taskItem.startTime;
+        var endTime:Date = taskItem.endTime;
+        var duration:Number;
+
+        if (ganttSheet.editKind == TaskItemEditKind.RESIZE_START) {
+          // Snaps the edited start time on the 
+          // snapping time precision.
+          startTime = calendar.round(startTime, 
+                                     ganttSheet.snappingTimePrecision.unit,
+                                     ganttSheet.snappingTimePrecision.steps);
+
+          // Ensure that the duration is at least 1 day.
+          duration = endTime.time - startTime.time;
+          if (duration &lt; TimeUnit.DAY.milliseconds) {
+            startTime.time = endTime.time - TimeUnit.DAY.milliseconds;
+          }
+          taskItem.startTime = startTime;
+        }
+
+        if (ganttSheet.editKind == TaskItemEditKind.RESIZE_END) {
+          // Snaps the edited end time on the 
+          // snapping time precision.
+          endTime = calendar.round(endTime, 
+                                   ganttSheet.snappingTimePrecision.unit,
+                                   ganttSheet.snappingTimePrecision.steps);
+
+          // Ensure that the duration is at least 1 day.
+          duration = endTime.time - startTime.time;
+          if (duration &lt; TimeUnit.DAY.milliseconds) {
+            endTime.time = startTime.time + TimeUnit.DAY.milliseconds;
+          }
+          taskItem.endTime = endTime;
+        }
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  
+  &lt;ilog:ResourceChart id="resourceChart" width="100%" height="100%"
+                      resourceDataProvider="{resources}"
+                      taskDataProvider="{tasks}"&gt;
+    &lt;ilog:ganttSheet&gt;
+      &lt;ilog:GanttSheet itemEditResize="onItemEditResize(event)" /&gt;
+    &lt;/ilog:ganttSheet&gt;
+  &lt;/ilog:ResourceChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">In this example the listener for the <span class="apiname">itemEditResize</span> event enforces the minimum duration
+of 1 day for tasks. It also mimics the behavior of the default listener
+by snapping the edited start time and end time using the <span class="apiname">snappingTimePrecision</span> property of the <span class="apiname">GanttSheet</span> object.</div>
+</div>
+</div>
+<div class="section" id="section1198158259153">
+<h2 class="heading">Custom snapping when moving tasks</h2>
+<div class="sectionContent">
+<div class="para">The following example shows how to use the <span class="apiname">itemEditMove</span> event to snap the start of  a task
+when moving it.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import ilog.gantt.GanttSheet;
+      import ilog.gantt.GanttSheetEvent;
+      import ilog.gantt.TaskItem;
+      import ilog.utils.TimeUnit;
+      import mx.collections.ArrayCollection;
+  
+      [Bindable]
+      public var resources:ArrayCollection = new ArrayCollection([
+        { id: "R1", name: "Project Manager", location: "Geneva" }
+      ]);
+        
+      [Bindable]
+      public var tasks:ArrayCollection = new ArrayCollection([
+        { resourceId: "R1", name: "Define project vision",
+          startTime: "1/14/2008 8:0:0", endTime: "1/15/2008 17:0:0" },
+        { resourceId: "R1", name: "Refine project vision",
+          startTime: "1/16/2008 8:0:0", endTime: "1/17/2008 17:0:0" },
+        { resourceId: "R1", name: "Assess project vision",
+          startTime: "1/18/2008 8:0:0", endTime: "1/21/2008 17:0:0" }
+      ]);
+
+      private function onItemEditMove(event:GanttSheetEvent):void
+      {
+        // Prevent the default behavior.
+        event.preventDefault();
+        
+        // Snaps the start time on days boundary, starting at 08:00
+        var taskItem:TaskItem = event.itemRenderer.data as TaskItem;
+        var ganttSheet:GanttSheet = event.target as GanttSheet;
+        var startTime:Date = ganttSheet.calendar.round(
+                                                  taskItem.startTime,
+                                                  TimeUnit.DAY, 1);
+        startTime.hours = 8;
+
+        // Move the item while preserving a constant duration.
+        if (startTime.time != taskItem.startTime.time)
+        {
+          var duration:Number = taskItem.endTime.time 
+                                - taskItem.startTime.time;
+          taskItem.startTime.time = startTime.time;
+          taskItem.endTime.time = startTime.time + duration;
+        }
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  
+  &lt;ilog:ResourceChart id="resourceChart" width="100%" height="100%"
+                      resourceDataProvider="{resources}"
+                      taskDataProvider="{tasks}"&gt;
+    &lt;ilog:ganttSheet&gt;
+      &lt;ilog:GanttSheet itemEditMove="onItemEditMove(event)" /&gt;
+    &lt;/ilog:ganttSheet&gt;
+  &lt;/ilog:ResourceChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">In this example the listener for the <span class="apiname">itemEditMove</span> event snaps the start time of tasks
+to 08:00 for each day.</div>
+</div>
+</div>
+<div class="section" id="section1216740457244">
+<h2 class="heading">Updating the data provider item using a custom date format</h2>
+<div class="sectionContent">
+<div class="para">The following example shows how to access dates stored
+with a custom date format. The start and end time are read from the
+data provider item using custom functions that parse the custom date
+format. A custom function is used to update the data provider item
+after editing is complete using the custom date format for the start
+time and end time.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                creationComplete="initApp()"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import ilog.core.DataItem;
+      import ilog.gantt.GanttSheetEventReason;
+      import ilog.gantt.GanttSheet;
+      import ilog.gantt.GanttSheetEvent;
+      import ilog.gantt.TaskItem;
+      import mx.formatters.DateFormatter;
+
+      private var replaceDashes:RegExp = new RegExp("-","g");
+      private var replaceT:RegExp = new RegExp("T");
+      private var iso8601Formatter:DateFormatter = new DateFormatter();
+
+      private function initApp():void {
+        iso8601Formatter.formatString = "YYYY-MM-DDTJJ:NN:SS";
+      }
+
+      private function readStartDate(item:Object):Date {
+        return readDate(item, "startTime");
+      }
+
+      private function readEndDate(item:Object):Date {
+        return readDate(item, "endTime");
+      }
+
+      private function readDate(item:Object, dateField:String):Date {
+        var dateString:String = item[dateField].replace(replaceDashes, "/");
+        dateString = dateString.replace(replaceT, " ");
+        return new Date(dateString);
+      }
+      
+      // When setting taskStartTimeFunction or taskEndTimeFunction 
+      // you must provide a commitItemFunction to update the data 
+      // provider item. In this case we update the start and end 
+      // time in the data provider item using a ISO 8601 date 
+      // formatter.      
+      private function commitItem(dataItem:DataItem):void {
+        if (dataItem is TaskItem)
+        {
+          var item:Object = dataItem.data;
+          var taskItem:TaskItem = dataItem as TaskItem;
+  
+          item["startTime"] = iso8601Formatter.format(taskItem.startTime);
+          item["endTime"] = iso8601Formatter.format(taskItem.endTime);
+          item["resourceId"] = taskItem.resourceId;
+        }
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt;
+
+  &lt;!-- The dates in the model are expressed using the ISO 8601 Extended 
+       Format for date and time of day representation. For more details 
+       on this format see:
+       "http://isotc.iso.org/livelink/livelink/4021199/ISO_8601_2004_E.zip?
+       func=doc.Fetch&amp;nodeid=4021199"
+   --&gt;
+  &lt;mx:Model id="model"&gt;
+    &lt;model&gt;
+      &lt;resource id="R1" name="Resource" /&gt;
+      &lt;task id="T1" resourceId="R1" name="Define project vision"
+            startTime="2008-01-14T08:00:00" endTime="2008-01-15T17:00:00"/&gt;
+      &lt;task id="T2" resourceId="R1" name="Refine project vision"
+            startTime="2008-01-16T08:00:00" endTime="2008-01-17T17:00:00"/&gt;
+      &lt;task id="T3" resourceId="R1" name="Assess project vision"
+            startTime="2008-01-18T18:00:00" endTime="2008-01-21T17:00:00"/&gt;
+    &lt;/model&gt;
+  &lt;/mx:Model&gt;
+  
+  &lt;ilog:ResourceChart id="resourceChart" width="100%" height="100%"
+                      resourceDataProvider="{model.resource}"
+                      taskDataProvider="{model.task}"
+                      taskStartTimeFunction="readStartDate"
+                      taskEndTimeFunction="readEndDate"&gt;
+    &lt;ilog:ganttSheet&gt;
+      &lt;ilog:GanttSheet commitItemFunction="commitItem" /&gt;
+    &lt;/ilog:ganttSheet&gt;
+  &lt;/ilog:ResourceChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">In this example the start and end time of tasks are stored
+in the task data provider using the ISO8601:2000 extended format.
+Custom functions are set on the <span class="apiname">taskStartTimeFunction</span> and <span class="apiname">taskEndTimeFunction</span> properties
+of the resource chart control. These functions parse the ISO8601:2000
+formatted String and retrieve Date objects, stored in the <span class="apiname">TaskItem</span> object associated with the task data provider
+item. The <span class="apiname">commitItemFunction</span> property
+of the Gantt sheet points to a custom function. This function uses
+a custom date formatter to store the start and end time as Strings
+in the IS8601:2000 format; it also updates the <span class="apiname">resourceId</span> for the task.</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex540.html" class="bluelink">Editing tasks in a resource chart</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex547.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex549.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

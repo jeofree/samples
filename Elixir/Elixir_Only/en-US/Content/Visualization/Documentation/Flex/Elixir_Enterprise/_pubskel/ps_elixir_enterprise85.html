@@ -1,0 +1,75 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Examples of recurring events</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise39.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise78.html" class="breadcrumb">Recurring events</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise82.html" class="breadcrumb">Recurrence rules</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise85.html" class="breadcrumb">Examples of recurring events</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise84.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise86.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Examples of recurring events</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e12940">
+
+
+
+<div class="para">The following XML excerpts represent recurring events
+according to the recurrence rule syntax presented.</div>
+<div class="para">The following example shows two ways to represent a birthday.</div>
+<pre class="programlisting"> &lt;event summary="Birthday"
+         startTime="2008/01/14"
+         endTime="2008/01/15"
+         rrules="FREQ=YEARLY"
+         recurring="true"/&gt;
+
+
+  &lt;event summary="Birthday"
+         startTime="2008/01/14"
+         endTime="2008/01/15"
+         rrules="FREQ=YEARLY;BYMONTH=1;BYMONTHDAY=14"
+         recurring="true"/&gt;</pre>
+<div class="para">The following example shows a meeting that takes place
+every Monday starting on the 7th January 2008 from 3:00 pm to 4:00
+pm.</div>
+<pre class="programlisting"> &lt;event summary="Meeting"
+         startTime="2008/01/07 15:00"
+         endTime="2008/01/07 16:00"
+         rrules="FREQ=WEEKLY;BYDAY=MO"
+         recurring="true"/&gt;</pre>
+<div class="para">The following example shows an event occurring the first
+Monday and last Monday of  every month starting on the 14th January
+2008.</div>
+<pre class="programlisting"> &lt;event summary="Event"
+         startTime="2008/01/14"
+         endTime="2008/01/15"
+         rrules="FREQ=MONTHLY;BYDAY=1MO,-1MO"
+         recurring="true"/&gt;</pre>
+<div class="para">The following example shows a daily event that has two
+exceptions on the 14th and 17th  of October.</div>
+<pre class="programlisting"> &lt;event startTime="Sun Oct 12 12:00:00 GMT+0200 2008" 
+         endTime="Sun Oct 12 13:30:00 GMT+0200 2008" 
+         summary="Recurring Event" 
+         rrules="FREQ=DAILY" 
+         recurring="true" 
+         exdates="Tue Oct 14 12:00:00 GMT+0200 2008,Fri Oct 17 12:00:00 GMT+0200 2008"/&gt;</pre>
+<div class="para">The following example shows an event that occurs every
+Wednesday and also Friday 17th  October at a different time.</div>
+<pre class="programlisting"> &lt;event startTime="Sun Oct 15 12:00:00 GMT+0200 2008" 
+         endTime="Sun Oct 15 13:30:00 GMT+0200 2008" 
+         summary="Recurring Event" 
+         rrules="FREQ=WEEKLY;BYDAY=WE" 
+         recurring="true" 
+         rdates="Tue Oct 17 17:00:00 GMT+0200 2008"/&gt;</pre>
+<div class="para">The following event shows a recurring event that has
+two recurrence rules. This event occurs every Wednesday and the last
+Friday of the month.</div>
+<pre class="programlisting"> &lt;event startTime="Sun Oct 12 12:00:00 GMT+0200 2008" 
+         endTime="Sun Oct 12 13:30:00 GMT+0200 2008" 
+         summary="Recurring Event" 
+         rrules="FREQ=WEEKLY;BYDAY=WE|FREQ=MONTHLY;BYDAY=-FR" 
+         recurring="true" /&gt;</pre>
+<div class="para">The following event shows a recurring event that occurs
+every Friday except any Friday 13th.</div>
+<pre class="programlisting"> &lt;event startTime="Sun Oct 12 12:00:00 GMT+0200 2008" 
+         endTime="Sun Oct 12 13:30:00 GMT+0200 2008" 
+         summary="Recurring Event" 
+         rrules="FREQ=WEEKLY;BYDAY=FR" 
+         exrules="FREQ=MONTHLY;BYMONTHDAY=13" 
+         recurring="true" &gt;/</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise82.html" class="bluelink">Recurrence rules</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise84.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise86.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

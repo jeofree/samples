@@ -1,0 +1,43 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Treemap legend control</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex796.html" class="breadcrumb">Treemaps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex807.html" class="breadcrumb">Treemap legend control</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex806.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex808.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Treemap legend control</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">You can add a treemap legend to your application to display
+which colors correspond to which values in the treemap. To do so,
+you define a <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMapLegend.html" class="bluelink">TreeMapLegend</a></span> control in MXML using the <code class="code">&lt;ilog:TreeMapLegend&gt;</code> tag as follows.</div>
+
+<pre class="programlisting">&lt;ilog:TreeMap width="200" height="400" id="myTreeMap"
+                         dataProvider="{myDataProvider}" /&gt;
+&lt;ilog:TreeMapLegend width="200" height="50"
+                         dataProvider="{myTreeMap}" /&gt;</pre>
+<div class="para">The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#dataProvider" class="bluelink">dataProvider</a></span> of
+the <span class="apiname">TreeMapLegend</span> references the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html" class="bluelink">TreeMap</a></span> control from which to display
+the legend data.</div>
+<div class="para">You can customize the following properties in a <span class="apiname">TreeMapLegend</span>: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The <span class="apiname">direction</span> property to change the direction of the legend (horizontal or vertical)</div>
+</li><li class="itemizedlistItem"><div class="para">The color style property to change the
+text color of the legend</div></li><li class="itemizedlistItem"><div class="para">The font style properties to change
+the text font of the legend</div></li><li class="itemizedlistItem"><div class="para">The <span class="apiname">labelFunction</span> property which provides a formatting function to compute the text
+of each legend based on the values in the treemap model</div>
+</li></ul></div>
+<div class="example">
+<div class="title">Example of treemap with legend</div>
+<div class="exampleContent">
+<div class="para">The following example shows a horizontal legend.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/treemapwithlegend_default.png" alt="Example&#xA;of tree map with horizontal legend" class="imagedata"/></div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex796.html" class="bluelink">Treemaps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex806.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex808.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

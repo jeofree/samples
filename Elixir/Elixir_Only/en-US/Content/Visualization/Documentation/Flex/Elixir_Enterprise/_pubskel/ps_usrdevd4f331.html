@@ -1,0 +1,143 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Exploring subgraphs</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f312.html" class="breadcrumb">Creating a graph display from data providers using the Diagram
+class</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f331.html" class="breadcrumb">Exploring subgraphs</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f330.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f332.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Exploring subgraphs</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">As explained in section LINKTO[Creating a graph display
+from data providers using the Diagram class], the Diagram component
+automatically creates a graphic representation of a graph composed
+of nodes and links in a business data model. Like many other Flex
+graphic components, it relies on the Flex "data provider" paradigm. </div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">Two properties act as data providers:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">nodeDataProvider for nodes</div>
+</li><li class="itemizedlistItem"><div class="para">linkDataProvider for links</div>
+</li></ul></div>
+<div class="para">The createLinksForHierarchy property controls how the
+hierarchical relationship between nodes contained in the IHierarchicalCollectionView
+should be interpreted when rendering a graph.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">Where the nodeDataProvider property is of type IHierarchicalCollectionView,
+the Diagram component will render the graph in two different ways
+depending on the value of the createLinksForHierarchy property.</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">If the createLinksForHierarchy property
+of the Diagram class is true, the graph is considered to be flat and
+the parent-child relationship between source nodes will be represented
+by graphic Link instances connecting to Node instances.</div>
+</li><li class="itemizedlistItem"><div class="para">If the createLinksForHierarchy property
+of the Diagram class is false, the parent-child relationship between
+source nodes will be used to maintain a hierarchy between their graphic
+representation in the diagram: data nodes that have child nodes will
+be rendered as Subgraph instances (they will contain the graphic representation
+of their child nodes) whereas nodes without child nodes will be rendered
+as Node instances. Should child nodes be added to one of those nodes,
+its graphic representation would be replaced by a Subgraph instance.</div>
+</li></ul></div>
+<div class="para"> </div>
+<div class="para">  When handling hierarchical data, you can specify whether
+the Diagram component should display the child objects of a parent
+subgraph or not. Set the default configuration using the displayNodesOpen
+property. When a node has child objects, the node is considered to
+be a subgraph. When a node is opened, the subgraph is displayed expanded.
+When a node is closed, the node is displayed collapsed. By default,
+this property is set to true, which means that all subgraphs are by
+default displayed expanded.  </div>
+<div class="figure"><div class="mediaobject"><img src="../../Diagram4Flex/_media/expandedsubgraph_default.png" alt="View&#xA;of expanded subgraph" class="imagedata"/></div></div>
+<div class="para">You can turn off this behavior by setting the value of
+the displayNodesOpen property to false. This is useful if you intend
+to create large diagrams with several hierarchical levels.</div>
+<pre class="programlisting">diagram.displayNodesOpen = false;
+</pre>
+<div class="figure"><div class="mediaobject"><img src="../../Diagram4Flex/_media/collapsedsubgraph_default.png" alt="View&#xA;of collapsed subgraph" class="imagedata"/></div></div>
+<div class="para">Besides this general configuration, it is possible to
+specify for each parent subgraph whether the children nodes should
+be displayed or not.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The Diagram component has the following methods that
+help to manage the objects in a hierarchical structure: </div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Public function openNode(node:Object,
+open:Boolean, dispatchOpenCloseEvent:Boolean = false, dispatchRefreshEvent:Boolean
+= true):void Opens or closes a branch node.</div>
+</li><li class="itemizedlistItem"><div class="para">Public function openAllNodes(dispatchEvents:Boolean
+= false):void If closed, open all the nodes of the nodeDataProvider.</div>
+</li><li class="itemizedlistItem"><div class="para">Public function closeAllNodes(dispatchEvents:Boolean
+= false):void If opened, close all the nodes of the nodeDataProvider.</div>
+</li><li class="itemizedlistItem"><div class="para">Public function openChildrenOf(node:Object,
+open:Boolean, dispatchEvents:Boolean = false):void Opens or closes
+all the nodes below and including the specified node.</div>
+</li><li class="itemizedlistItem"><div class="para">Public function isNodeOpen(node:Object):Boolean
+Returns whether a node is open or not.</div></li></ul></div>
+<div class="para">The Diagram component also provides the property closeOnCollapse,
+which configures the component to release the chidren nodes and close
+the parent subgraph when the user collapses the subgraph interactively.
+When you expand a subgraph interactively, the subgraph is automatically
+opened so that the children objects can be displayed.</div>
+<div class="para">By default, everything that is present in the data provider
+can be displayed in the view. In some situations, you may require
+to have a different behavior. For instance, to not display some nodes
+according to some of their properties or according to their position
+in the hierarchy. This can be achieved in two different ways. The
+former by using a filter that allows only objects that match the filter
+criteria to be displayed. The later by specifying a different graph
+renderer.</div>
+<div class="section">
+<h2 class="heading">Using filters</h2>
+<div class="sectionContent">
+<div class="para">The Flex HierarchicalCollectionView class provides support
+to filter objects in the view, so that only the objects that match
+the specified filter criteria are displayed in the diagram. To specify
+a filter to be applied in the data provider, set the value of the
+property filterFunction to your function implementation as illustrated
+below:</div>
+<pre class="programlisting">/**
+     * Returns true if the given node matches the filter criteria.
+     * @param node Node that is part of the node data provider  
+     */
+    public function myFilterFunction(node:Object):Boolean
+    {
+      return true;
+    }
+
+
+  &lt;fx:Declaration&gt;
+    &lt;mx:HierarchicalCollectionView showRoot="false"
+                                   source="{new MyHierarchicalData(data)}"
+                                   filterFunction="{myFilterFunction}"
+                                   id="hcv"/&gt;
+  &lt;/fx:Declarations&gt;
+</pre>
+<div class="para">Filters only prevent the renderers that are related to
+the objects that were filtered out, from being created. If you filter
+out all child objects from a subgraph, the subgraph will still be
+displayed using the Subgraph renderer, allowing it to be collapsed
+or expanded However, when the subgraph is expanded, the contents will
+be empty since all child objects have been filtered out.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Customizing the graph renderer</h2>
+<div class="sectionContent">
+<div class="para">Subgraphs, as well as nodes and links, can have their
+graphical representation configured according to the application needs.
+See LINKTO[Customizing the nodes , links and subgraphs in a Diagram]
+for details on how to perform this configuration.</div>
+<div class="para">Configuring a subgraph graphical representation can be
+useful when you are interested in displaying more information about
+your subgraph object, for instance, displaying status related to the
+subgraph such as a consolidated status of the objects.</div>
+<div class="para">You can also configure a subgraph graphical representation
+to prevent the subgraph from being expanded. For instance, if you
+choose to display the subgraph contents in a separate diagram view,
+instead of using the subgraph in place expansion. In this case, you
+have to follow the steps that have been presented in LINKTO[Customizing
+the nodes , links and subgraphs in a Diagram] to register your own
+subgraph renderer and subgraph skin that handles the different subgraph
+states according to your needs.  </div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f312.html" class="bluelink">Creating a graph display from data providers using the Diagram
+class</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f330.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f332.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

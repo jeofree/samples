@@ -1,0 +1,127 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Radar bubble series</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise184.html" class="breadcrumb">Radar Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise190.html" class="breadcrumb">Series in radar charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise192.html" class="breadcrumb">Radar bubble series</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise191.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise193.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Radar bubble series</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">You can use the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/series/RadarBubbleSeries.html" class="bluelink">RadarBubbleSeries</a></span> class to represent data with three values for each data point:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">A category that determines its position
+along the angular axis.</div></li><li class="itemizedlistItem"><div class="para">A value that determines its position
+along the radial axis.</div></li><li class="itemizedlistItem"><div class="para">A value that determines the size of
+the chart symbol relative to the other data points on the chart.</div>
+</li></ul></div>
+<div class="para">The  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/series/RadarBubbleSeries.html#radiusField" class="bluelink">radiusField</a></span> specifies the field of the data provider that determines
+the radius of each symbol relative to the other data points in the
+chart. This property is <span class="italics">mandatory</span>.</div>
+<div class="para">The <code class="code">&lt;ilog:RadarBubbleSeries&gt;</code> tag takes an additional attribute,  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/series/RadarBubbleSeries.html#maxRadius" class="bluelink">maxRadius</a></span>. This property specifies the maximum radius of the
+largest chart item, in pixels, as for Cartesian bubble charts. The
+data point with the largest value is assigned this radius and all
+other data points are assigned a smaller radius based on their value
+relative to the largest value. The default value is 30 pixels.</div>
+<div class="para">The following figure shows an example of a radar chart
+with a bubble series type. The chart shows the average temperatures
+for London, Sydney, and Moscow on the radial axis, and the months
+of the year on the angular axis. The corresponding rainfall is also
+displayed on the radial axis and is determined by the size of the
+bubble.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/radarbubble_default.png" alt="Example&#xA;of radar chart with bubble series showing temperatures and rainfall&#xA;for different cities in each month" class="imagedata"/></div>
+<div class="para">The following code displays the radar bubble series chart
+shown in the figure.</div>
+<pre class="programlisting">&lt;?xml version="1.0" ?&gt; 
+ &lt;!--  Simple example to demonstrate the RadarChart control with
+  RadarBubbleSeries.
+  --&gt; 
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+ xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+&lt;mx:Script&gt;
+&lt;![CDATA[ 
+import mx.collections.ArrayCollection;
+[Bindable]
+  public var london:ArrayCollection = new ArrayCollection([
+        {Month:"January", Temperature:39, Rainfall:3.1},
+        {Month:"February", Temperature:39.6, Rainfall:2.0},
+        {Month:"March", Temperature:42.3, Rainfall:2.4},
+        {Month:"April", Temperature:47.3, Rainfall:2.1},
+        {Month:"May", Temperature:53.4, Rainfall:2.2}, 
+        {Month:"June", Temperature:59.4, Rainfall:2.2},
+        {Month:"July", Temperature:62.6, Rainfall:1.8},
+        {Month:"August", Temperature:61.9, Rainfall:2.2},
+        {Month:"September", Temperature:57.6, Rainfall:2.2},
+        {Month:"October", Temperature:50.5, Rainfall:2.7},
+        {Month:"November", Temperature:43.9, Rainfall:2.9},
+        {Month:"December", Temperature:40.6, Rainfall:3.1}
+     ]);
+
+  [Bindable]
+  public var sydney:ArrayCollection = new ArrayCollection([
+        {Month:"January", Temperature:71.8, Rainfall:4.1},
+        {Month:"February", Temperature:71.8, Rainfall:4.4},
+        {Month:"March", Temperature:69.8, Rainfall:5.2},
+        {Month:"April", Temperature:65.1, Rainfall:5.1},
+        {Month:"May", Temperature:59.5, Rainfall:4.8}, 
+        {Month:"June", Temperature:55.2, Rainfall:5.1},
+        {Month:"July", Temperature:53.6, Rainfall:4.0},
+        {Month:"August", Temperature:55.8, Rainfall:3.2},
+        {Month:"September", Temperature:59.5, Rainfall:2.7},
+        {Month:"October", Temperature:63.9, Rainfall:3.3},
+        {Month:"November", Temperature:67.1, Rainfall:3.2},
+        {Month:"December", Temperature:70.2, Rainfall:3.1}
+     ]);
+     
+  [Bindable]
+  public var moscow:ArrayCollection = new ArrayCollection([
+        {Month:"January", Temperature:34.4, Rainfall:1.4},
+        {Month:"February", Temperature:29.0, Rainfall:1.1},
+        {Month:"March", Temperature:32.7, Rainfall:1.3},
+        {Month:"April", Temperature:38.2, Rainfall:1.5},
+        {Month:"May", Temperature:51, Rainfall:2.0}, 
+        {Month:"June", Temperature:65.6, Rainfall:2.6},
+        {Month:"July", Temperature:81.5, Rainfall:3.2},
+        {Month:"August", Temperature:71.8, Rainfall:2.8},
+        {Month:"September", Temperature:57.7, Rainfall:2.3},
+        {Month:"October", Temperature:50.4, Rainfall:2.0},
+        {Month:"November", Temperature:44.1, Rainfall:1.7},
+        {Month:"December", Temperature:42.4, Rainfall:1.7}
+     ]);     
+
+
+  ]]&gt; 
+  &lt;/mx:Script&gt;
+&lt;mx:Panel width="100%" height="100%" title="Radar Bubble Series Example" 
+layout="horizontal"&gt;
+  &lt;ilog:RadarChart id="radar" width="100%" height="100%" showDataTips="true"&gt;
+  &lt;ilog:angularAxis&gt;
+    &lt;ilog:AngularAxis dataProvider="{london}" categoryField="Month"
+     displayName="Month" /&gt; 
+  &lt;/ilog:angularAxis&gt;
+  &lt;ilog:radialAxis&gt;
+    &lt;mx:LinearAxis minimum="20" maximum="90" displayName="Temperature (Â˚F)" /&gt; 
+  &lt;/ilog:radialAxis&gt;
+  &lt;ilog:series&gt;
+  &lt;ilog:RadarBubbleSeries maxRadius="30" dataProvider="{london}"
+   dataField="Temperature" radiusField="Rainfall" displayName="London"&gt;
+  &lt;ilog:radiusAxis&gt;
+    &lt;mx:LogAxis id="rainfallAxis" displayName="Rainfall (inches)" /&gt; 
+  &lt;/ilog:radiusAxis&gt;
+  &lt;/ilog:RadarBubbleSeries&gt;
+  &lt;ilog:RadarBubbleSeries maxRadius="30" dataProvider="{sydney}"
+   dataField="Temperature" radiusField="Rainfall" displayName="Sydney"
+    radiusAxis="{rainfallAxis}" /&gt; 
+  &lt;ilog:RadarBubbleSeries maxRadius="30" dataProvider="{moscow}"
+   dataField="Temperature" radiusField="Rainfall" displayName="Moscow"
+    radiusAxis="{rainfallAxis}" /&gt; 
+  &lt;/ilog:series&gt;
+  &lt;/ilog:RadarChart&gt;
+  &lt;mx:Legend dataProvider="{radar}" /&gt; 
+  &lt;/mx:Panel&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise190.html" class="bluelink">Series in radar charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise191.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise193.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

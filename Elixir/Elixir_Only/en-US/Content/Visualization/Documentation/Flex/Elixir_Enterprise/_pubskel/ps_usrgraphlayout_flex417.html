@@ -1,0 +1,54 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>The HL algorithm</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex414.html" class="breadcrumb">Hierarchical Layout (HL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex417.html" class="breadcrumb">The HL algorithm</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex416.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex418.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">The HL algorithm</h1></div></div><div class="content">
+
+
+
+<div class="descriptiveTopicContent">
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1029218">
+<h2 class="heading">A brief description of the HL algorithm</h2>
+<div class="sectionContent">
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">This algorithm works in four steps: </div>
+</div><dl class="descriptionlist"><dt class="term">Step 1: Leveling</dt><dd class="descriptionlistItem"><div class="para">The nodes are partitioned into groups.
+Each group of nodes forms a level. The objective is to group the nodes
+in such a way that the links always point from a level with smaller
+index to a level with larger index. </div></dd><dt class="term">Step 2: Crossing reduction</dt><dd class="descriptionlistItem"><div class="para">The nodes are sorted within each level.
+The algorithm tries to keep the number of link crossings small when,
+for each level, the nodes are placed in this order on a line (see <a href="ps_usrgraphlayout_flex417.html#usrgraphlayout.uss_graphlay_layouts.1080632" class="bluelink">Level and position indices</a>). This ordering
+results in the relative position index of each node within its level. </div>
+</dd><dt class="term">Step 3: Node positioning</dt><dd class="descriptionlistItem"><div class="para">From the level indices and position
+indices, balanced coordinates for the nodes are calculated. For instance,
+for a layout where the link flow is from top to bottom, the nodes
+are placed along horizontal lines such that all nodes belonging to
+the same level have (approximately) the same y-coordinate. The nodes
+of a level with a smaller index have a smaller y-coordinate than the
+nodes of a level with a higher index. Within a level, the nodes with
+a smaller position index have a smaller x-coordinate than the nodes
+with a higher position index. </div></dd><dt class="term">Step 4: Link routing</dt><dd class="descriptionlistItem"><div class="para">The shapes of the links are calculated
+such that the links bypass the nodes at the level lines. In many cases,
+this requires that a bend point be created whenever a link needs to
+cross a level line. In a top-to-bottom layout, these bend points have
+the same y-coordinate as the level line they cross. (Note that these
+bend points also obtain a position index). </div>
+</dd></dl></div>
+<div class="para"><a href="ps_usrgraphlayout_flex417.html#usrgraphlayout.uss_graphlay_layouts.1080632" class="bluelink">Level and position indices</a> shows how
+the Hierarchical Layout algorithm uses the level and position indices
+to draw the graph.  </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1080632"><div class="mediaobject"><img src="../../../GraphLayout/_media/hier-levelindex62_default.gif" alt="Level&#xA;and position indices in a hierarchical layout" class="imagedata"/></div><div class="caption">Level and position indices</div></div>
+<div class="para">You can set parameters for the steps of the layout algorithm
+in several ways. For instance, you can specify the level index that
+the algorithm should choose for a node in Step 1 or the relative node
+position within the level in Step 2. You can also specify the justification
+of the nodes within a level and the style of the link shapes.  </div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Example of HL</h2>
+<div class="sectionContent">
+
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex414.html" class="bluelink">Hierarchical Layout (HL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex416.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex418.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

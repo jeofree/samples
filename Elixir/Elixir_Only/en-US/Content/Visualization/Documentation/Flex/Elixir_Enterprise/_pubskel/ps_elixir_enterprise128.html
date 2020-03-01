@@ -1,0 +1,106 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Customizing the maps control</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Overview"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise122.html" class="breadcrumb">Maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise128.html" class="breadcrumb">Customizing the maps control</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise127.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise129.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Customizing the maps control</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para"><span class="bold">Using the dataProvider and
+the MapFeatureRenderer</span></div>
+<div class="para">The Map control can be customized by using a <code class="code">dataProvider</code>. The <code class="code">dataProvider</code> should contain information that can be used  to customize the rendering
+of the map features displayed by the component. This information will
+be used by the <code class="code">MapFeatureRenderer</code> defined
+in the <code class="code">MapFeatureGroup</code>.</div>
+<div class="example">
+<div class="exampleContent">
+<pre class="programlisting">&lt;fx:Declarations&gt;
+    &lt;!-- Place non-visual elements (e.g., services, value objects) here --&gt;
+    &lt;s:ArrayList id="locations"&gt;
+      &lt;fx:Array&gt;
+        &lt;fx:Object sales="20" country="FRA"/&gt;
+        &lt;fx:Object sales="30" country="GBR"/&gt;
+        &lt;fx:Object sales="10" country="ESP"/&gt;
+        &lt;fx:Object sales="40" country="DEU"/&gt;
+        &lt;fx:Object sales="15" country="ITA"/&gt;
+        &lt;fx:Object sales="10" country="BEL"/&gt;
+      &lt;/fx:Array&gt;
+    &lt;/s:ArrayList&gt;
+  &lt;/fx:Declarations&gt;
+
+  &lt;ibm:ContinentalEuropeMap left="10" top="10" right="10" bottom="10"
+                                 skinClass="EuropeSkin"
+                                 dataProvider="{locations}"/&gt;
+</pre>
+<div class="para">EuropeSkin defines a featureRenderer :</div>
+<pre class="programlisting">  &lt;ibm:Scroller panModifierKey="shift" wheelZoomModifierKey="shift" top="0"
+                left="0" width="100%" height="100%" id="scroller"
+                skinClass="com.ibm.ilog.elixir.skins.spark.ScrollerSkin"&gt;
+    &lt;ibm:MapGroup id="mapGroup"&gt;
+      &lt;ibm:MapFeatureGroup id="featureGroup" keyField="country"
+                           featureRenderer="EuropeFeatureRenderer"/&gt;
+    &lt;/ibm:MapGroup&gt;
+  &lt;/ibm:Scroller&gt;
+
+</pre>
+<div class="para">EuropeFeature renderer uses the ‘sales’
+field of the data item to customize the map feature:</div>
+<pre class="programlisting">&lt;ibm:MapFeatureRenderer xmlns="http://ns.adobe.com/mxml/2009"
+                            xmlns:s="library://ns.adobe.com/flex/spark"
+                            xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                            xmlns:ibm="http://www.ibm.com/xmlns/prod/ilog/elixir/2010"&gt;
+  &lt;Script&gt;
+    &lt;![CDATA[      
+      import com.ibm.ilog.elixir.maps.MapFeature;
+      
+       private function getColor(o:Object):int {
+        
+        var mf:MapFeature = o as MapFeature;
+        var ret:Number = NaN;
+        if(mf != null) {
+          var i:Object = mf.item;
+          if(i != null) {
+            var s:Number = i.sales;
+            ret = colorModel.getColor(s);
+          }
+        }
+        if(isNaN(ret))
+          ret = 0xddffff;
+        trace("getColor " + ret.toString(16));
+        return ret;
+      }
+      
+    ]]&gt;
+  &lt;/Script&gt;
+  &lt;Declarations&gt;
+    &lt;ilog:ColorModel id="colorModel"&gt;
+      &lt;ilog:ColorEntry color="0xff0000" limit="0"/&gt;
+      &lt;ilog:ColorEntry color="0x00ff00" limit="50"/&gt;
+    &lt;/ilog:ColorModel&gt;
+  &lt;/Declarations&gt;
+
+  &lt;ibm:MapPath commands="{mapFeature.graphicsPathCommands}" &gt;
+    &lt;ibm:stroke.normal&gt;
+      &lt;s:SolidColorStroke color="{contentStrokeColor}" weight="0"
+                          scaleMode="none"/&gt;
+    &lt;/ibm:stroke.normal&gt;
+
+    &lt;ibm:fill.normal&gt;
+      &lt;s:SolidColor color="{getColor(mapFeature)}"/&gt;
+    &lt;/ibm:fill.normal&gt;
+
+    &lt;ibm:stroke.hovered&gt;
+      &lt;s:SolidColorStroke color="{contentStrokeColor}" weight="0"
+                          scaleMode="none"/&gt;
+    &lt;/ibm:stroke.hovered&gt;
+
+    &lt;ibm:fill.hovered&gt;
+      &lt;s:SolidColor color="{rollOverColor}"/&gt;
+    &lt;/ibm:fill.hovered&gt;
+  &lt;/ibm:MapPath&gt;
+
+&lt;/ibm:MapFeatureRenderer&gt;
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise122.html" class="bluelink">Maps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise127.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise129.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,186 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Support by algorithms of generic features and parameters</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex367.html" class="breadcrumb">Generic parameters and features</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex368.html" class="breadcrumb">Support by algorithms of generic features and parameters</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex367.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex369.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Support by algorithms of generic features and parameters</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+
+<div class="para">The following table indicates the generic features and
+parameters that are supported by each layout algorithm. These parameters
+are defined in the base class for all layout algorithms, <code class="code">IlvGraphLayout</code>  </div>
+
+
+
+<div class="divBlock">
+<div class="divBlockContent">
+
+
+<table border="1" cellpadding="4" cellspacing="0" class="VertHorizShadedHead"><colgroup align="left" span="1">
+<col span="1"/>
+<col span="1"/>
+<col span="1"/>
+<col span="1"/>
+<col span="1"/>
+<col span="1"/>
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr bgcolor="#BFD6E7">
+<th valign="top" rowspan="1" colspan="1">Layout Algorithm →<div class="para">Parameters↓</div></th>
+<th valign="top" rowspan="1" colspan="1">Force-directed Layout</th>
+<th valign="top" rowspan="1" colspan="1">Tree Layout</th>
+<th valign="top" rowspan="1" colspan="1">Hierarchical Layout</th>
+<th valign="top" rowspan="1" colspan="1">Link Layout</th>
+<th valign="top" rowspan="1" colspan="1">Grid Layout</th>
+<th valign="top" rowspan="1" colspan="1">Recursive Layout</th>
+<th valign="top" rowspan="1" colspan="1">Multiple Layout</th>
+</tr>
+</thead><tbody valign="top">
+<tr>
+<th bgcolor="#BFD6E7" rowspan="1" colspan="1">Allowed Time</th>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+</tr>
+<tr>
+<th bgcolor="#BFD6E7" rowspan="1" colspan="1">Animation</th>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+</tr>
+<tr>
+<th bgcolor="#BFD6E7" rowspan="1" colspan="1">Fixed Links</th>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+</tr>
+<tr>
+<th bgcolor="#BFD6E7" rowspan="1" colspan="1">Fixed Nodes</th>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+</tr>
+<tr>
+<th bgcolor="#BFD6E7" rowspan="1" colspan="1">Layout of Connected Components</th>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+</tr>
+<tr>
+<th bgcolor="#BFD6E7" rowspan="1" colspan="1">Layout Region</th>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+</tr>
+<tr>
+<th bgcolor="#BFD6E7" rowspan="1" colspan="1">Link Clipping</th>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+</tr>
+<tr>
+<th bgcolor="#BFD6E7" rowspan="1" colspan="1">Link Connection Box</th>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+</tr>
+<tr>
+<th bgcolor="#BFD6E7" rowspan="1" colspan="1">Spline Routing</th>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+</tr>
+<tr>
+<th bgcolor="#BFD6E7" rowspan="1" colspan="1">Memory Savings</th>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+</tr>
+<tr>
+<th bgcolor="#BFD6E7" rowspan="1" colspan="1">Percentage Complete</th>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+</tr>
+<tr>
+<th bgcolor="#BFD6E7" rowspan="1" colspan="1">Random Generator Seed Value</th>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+<td align="center" rowspan="1" colspan="1"> </td>
+</tr>
+<tr>
+<th bgcolor="#BFD6E7" rowspan="1" colspan="1">Save Parameters to File</th>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+</tr>
+<tr>
+<th bgcolor="#BFD6E7" rowspan="1" colspan="1">Stop Immediately</th>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+<td align="center" rowspan="1" colspan="1">Yes</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex367.html" class="bluelink">Generic parameters and features</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex367.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex369.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

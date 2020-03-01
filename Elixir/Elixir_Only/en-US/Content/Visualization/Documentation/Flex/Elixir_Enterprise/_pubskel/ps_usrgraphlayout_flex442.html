@@ -1,0 +1,329 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Specific parameters for both LL modes</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex437.html" class="breadcrumb">Link layout (LL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex442.html" class="breadcrumb">Specific parameters for both LL modes</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex441.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex443.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Specific parameters for both LL modes</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043184">
+<h2 class="heading">Layout mode (LL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The Link Layout algorithm has two layout modes. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To select a layout mode: </div>
+</div>
+
+
+</div>
+<div class="para"><a href="ps_usrgraphlayout_flex442.html#usrgraphlayout.uss_graphlay_layouts.1055413" class="bluelink">Short and long link modes with orthogonal links</a> shows a small
+sample graph in short and long link mode. The short link mode bundles
+the links very well. However, due to the bundling, some red links
+appear to be unconnected to the green nodes. Furthermore, the algorithm
+cannot find a route for the long red links without overlapping some
+nodes or without overlapping the green link. The long link mode works
+on a grid. It is specialized for long links and avoids overlapping
+any nodes or link segments. It can connect to the green nodes by choosing
+connection points on different sides of the end nodes. This advantage,
+however, is paid for by a less regular structure that does not bundle
+the links and a larger number of link crossings. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1055413"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-87online93_default.gif" alt="A graph&#xA;with orthogonal links laid out first in short link mode and then in&#xA;long link mode" class="imagedata"/></div><div class="caption">Short and long link modes with orthogonal links</div></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043207">
+<h2 class="heading">Choosing the appropriate layout mode (LL)</h2>
+
+<div class="sectionContent">
+<div class="para">The short link mode should be used if any of the following
+conditions apply: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The majority of links is short and it
+is not fatal if long links overlap obstacles. </div>
+</li><li class="itemizedlistItem"><div class="para">The link routes must be placed freely
+and cannot be restricted to a grid. </div></li><li class="itemizedlistItem"><div class="para">It is important to limit the number
+of bends. </div></li></ul></div>
+<div class="para">The long link mode should be used if any of the following
+conditions apply: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Many links are long and it is important
+that long links do not overlap obstacles. </div>
+</li><li class="itemizedlistItem"><div class="para">There is a preferred routing because
+the nodes are already placed on the grid. </div>
+</li><li class="itemizedlistItem"><div class="para">It is important to have a guaranteed
+minimum distance between link segments. </div></li><li class="itemizedlistItem"><div class="para">An increasing number of bends is acceptable
+if it avoids any overlapping. </div></li></ul></div>
+<div class="para"><a href="ps_usrgraphlayout_flex442.html#usrgraphlayout.uss_graphlay_layouts.1043222" class="bluelink">Labyrinth routing with the long link mode</a> shows how
+the long link mode can be used to find an orthogonal route without
+any overlapping in a labyrinth of node obstacles. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1043222"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Link-labyrinth94_default.gif" alt="A graph&#xA;showing long link mode used to find an orthogonal route without any&#xA;overlapping in a labyrinth of node obstacles" class="imagedata"/></div><div class="caption">Labyrinth routing with the long link mode</div></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043257">
+<h2 class="heading">Link style (LL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm provides two link styles. You can
+set the link style globally, in which case all links have the same
+kind of shape, or locally on each link, in which case different link
+shapes occur in the same drawing. </div>
+
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043272">
+<h3 class="heading">Global link style</h3>
+
+
+
+
+<div class="sectionContent">
+<div class="example">
+<div class="title">Example of setting global link style (Link Layout algorithm)</div>
+<div class="exampleContent">
+<div class="para">To set the global link style: </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for <code class="code">style</code> are:  </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvLinkLayout.ORTHOGONAL_STYLE </code>(the default) </div><div class="para">The links are reshaped in
+an orthogonal form (alternating horizontal and vertical segments).
+See <a href="ps_usrgraphlayout_flex438.html#usrgraphlayout.uss_graphlay_layouts.1021328" class="bluelink">Link layout in short link mode with orthogonal links</a> and <a href="ps_usrgraphlayout_flex438.html#usrgraphlayout.uss_graphlay_layouts.1042993" class="bluelink">Link layout in long link mode with orthogonal links</a> as examples. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvLinkLayout.DIRECT_STYLE</code>   </div><div class="para">The links are reshaped to a polygonal
+line composed of three segments: a straight-line segment that starts and ends with a small
+horizontal or vertical segment. See <a href="ps_usrgraphlayout_flex438.html#usrgraphlayout.uss_graphlay_layouts.1021332" class="bluelink">The same graph in short link mode with direct links</a> as an example.
+ </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvLinkLayout.MIXED_STYLE</code>   </div><div class="para">Each link can have a different link
+style. The style of each individual link can be set to have different
+link shapes occurring on the same graph. </div>
+</li></ul></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1060563">
+<h3 class="heading">Individual link style</h3>
+
+
+<div class="sectionContent">
+<div class="para">All links have the same style of shape unless the global
+link style is <code class="code">IlvLinkLayout.MIXED_STYLE</code>. Only when the global link style is set to <code class="code">MIXED_STYLE</code> can each link have an individual link style. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1043310"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-ShortLink-MixedStyle95_default.gif" alt="A graph&#xA;laid out in short link mode with different link styles" class="imagedata"/></div><div class="caption">Different link styles mixed in the same drawing (short
+link mode)</div></div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1043315"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Link-longmixed96_default.gif" alt="A graph&#xA;laid out in long link mode with different link styles" class="imagedata"/></div><div class="caption">Different link styles mixed in the same drawing (long
+link mode)</div></div>
+<div class="example">
+<div class="title">Example of specifying individual link style (Link Layout
+algorithm)</div>
+<div class="exampleContent">
+<div class="para">To set and retrieve the style of an individual link: </div>
+</div>
+
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1276301">
+<h2 class="heading">End points mode (LL)</h2>
+
+
+<div class="sectionContent">
+
+
+<div class="para">The layout algorithm provides two end point modes. You
+can set the end point mode globally, in which case all end points
+have the same mode, or locally on each link, in which case different
+end point modes occur in the same drawing. </div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1165676">
+<h3 class="heading">Global end point mode</h3>
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="example">
+<div class="title">Example of specifying global end point mode (Link Layout
+algorithm)</div>
+<div class="exampleContent">
+<div class="para">To set the global end point mode: </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for <code class="code">mode</code> are:
+ </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvLinkLayout.FREE_MODE </code>(the default) </div><div class="para">The layout is free to choose
+the appropriate position of the connection point on the origin/destination
+node. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvLinkLayout.FIXED_MODE</code>   </div><div class="para">The layout must keep the current position
+of the connection point on the origin/destination node.  </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvLinkLayout.MIXED_MODE</code>   </div><div class="para">Each link can have a different end
+point mode. </div>
+</li></ul></div>
+
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1165750">
+<h3 class="heading">Individual end point mode</h3>
+
+
+
+
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">All links have the same end point mode unless the global
+end point mode is <code class="code">IlvLinkLayout.MIXED_MODE</code>. Only when the global end point mode is set to <code class="code">MIXED_MODE</code> can each link have an individual end point mode. </div>
+<div class="example">
+<div class="title">Example of specifying individual end point mode (Link
+Layout algorithm)</div>
+<div class="exampleContent">
+<div class="para">To set the mode of an individual link: </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for <code class="code">mode</code> are: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvLinkLayout.FREE_MODE</code> (the default)  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvLinkLayout.FIXED_MODE</code>  </div></li></ul></div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043329">
+<h2 class="heading">Incremental mode (LL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The Link Layout algorithm normally routes all links from
+scratch. If the graph changes incrementally because you add or remove
+links or nodes, the subsequent layout may differ considerably from
+the previous layout. To avoid this effect and to help the user to
+retain a mental map of the graph, the algorithm has an incremental
+mode. </div>
+<div class="example">
+<div class="title">Example of enabling incremental mode (Link Layout algorithm)</div>
+<div class="exampleContent">
+<div class="para">To enable the incremental mode: </div>
+</div>
+
+
+</div>
+<div class="para">In incremental mode, the layout tries to minimize the
+changes to the layout. A link is only rerouted if it is new, if a
+link bend moved, if its layout parameters have changed, or if a node
+was moved such that it overlaps the link. </div>
+<div class="para">In short link mode, if the next layout is incremental,
+the links preserve the connection side and the general shape calculated
+by a previous layout, except if one of their end nodes has been moved
+or resized. </div>
+<div class="para">In the long link mode, a new route is searched for the
+links that are no longer on the grid or that overlap with nodes. The
+shape and the connection side of the rerouted links can change completely.
+However, links that are already on the grid and do not overlap nodes
+or other links are not rerouted in incremental mode. It is also possible
+to specify which link must be rerouted by the next incremental layout
+even though the layout has not changed. </div>
+<div class="example">
+<div class="title">Example of specifying which link must be rerouted by
+the next incremental layout (Link Layout algorithm)</div>
+<div class="exampleContent">
+<div class="para">To select an individual link to be used for incremental
+rerouting:  </div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1127480">
+<h2 class="heading">Intergraph link routing (LL)</h2>
+
+
+<div class="sectionContent">
+
+
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1127488"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Link-intergraphlinks97_default.gif" alt="Nested&#xA;graph with normal links (blue) and intergraph links (red)" class="imagedata"/></div><div class="caption">Nested graph with normal links (blue) and intergraph
+links (red)</div></div>
+<div class="para">By default, the Link Layout routes both the normal links
+and the intergraph links. </div>
+<div class="example">
+<div class="title">Example of routing only normal links (Link Layout algorithm)</div>
+<div class="exampleContent">
+<div class="para">In order to route only normal links, disable intergraph
+link routing:  </div>
+</div>
+
+
+</div>
+<div class="example">
+<div class="title">Example of routing intergraph and/or normal links (Link
+Layout algorithm)</div>
+<div class="exampleContent">
+<div class="para">If the intergraph links mode is enabled, you can select
+whether only the intergraph links are routed, or whether the intergraph
+links and the normal links are routed at the same time. </div>
+</div>
+
+
+</div>
+
+
+<div class="para">Notice that the layout routes only those links that belong
+to the attached graph. In a nested graph, each subgraph is attached
+to a different layout instance. Therefore, when starting a normal
+(nonrecursive) layout for the top-level graph (see <a href="ps_usrgraphlayout_flex442.html#usrgraphlayout.uss_graphlay_layouts.1127488" class="bluelink">Nested graph with normal links (blue) and intergraph
+links (red)</a>) not all
+links are routed that are shown in this figure, but only those links
+that belong to the top-level graph. </div>
+<div class="para">In the following figure, the yellow shading indicates
+the subgraph to which the nonrecursive link layout is currently applied.
+In the left picture, it is the top-level graph, and in the right picture
+it is the subgraph that is shaded yellow. If the intergraph links
+mode is enabled, both the red (intergraph) and blue (normal) links
+are routed. If the intergraph links mode is disabled, only the blue
+(normal) links are routed. The grey links are not routed because they
+do not belong to the graph to which the link layout is applied. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1127516"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-92online98_default.gif" alt="Nonrecursive&#xA;layout of a nested graph: top level and then subgraph" class="imagedata"/></div><div class="caption">Links routed in a nested graph: top-level graph and
+then subgraph</div></div>
+<div class="divBlock">
+<div class="divBlockContent">
+<div class="para">To route <span class="italics">all links</span> of a nested graph, you need to apply the Link Layout recursively.
+Details of the recursive layout mechanism are explained in <a href="ps_usrgraphlayout_flex467.html" class="bluelink">Recursive layout</a>. For example: </div>
+<pre class="programlisting">
+layout.setInterGraphLinksMode(true);
+layout.performLayout(force, redraw, true);
+</pre>
+<div class="para">routes the intergraph links recursively in all subgraphs.
+If you use a layout provider (a class that implements the interface <code class="code">IlvLayoutProvider</code>), you need to set the intergraph
+links mode for all subgraphs explicitly:  </div>
+<pre class="programlisting">
+IlvLayoutProvider layoutProvider = ...
+// first, set the intergraph mode for all layouts
+Enumeration e = graphModel.getLayouts(layoutProvider, true);
+while (e.hasMoreElements()) {
+    IlvGraphLayout layout = (IlvGraphLayout) e.nextElement();
+    if (layout instanceof IlvLinkLayout)
+        ((IlvLinkLayout) layout).setInterGraphLinksMode(true);
+}
+// then perform layout recursively using the provider
+graphModel.performLayout(layoutProvider, force, redraw, true);
+</pre>
+<div class="para">To perform the intergraph link routing recursively in
+combination with a layout that places the nodes or that arranges labels,
+use an instance of the class  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/multiple/IlvMultipleLayout.html" class="bluelink">IlvMultipleLayout</a></span> to encapsulate the Link Layout and the other layouts,
+and then perform the Multiple Layout recursively all at once. For
+details, see <a href="ps_usrgraphlayout_flex467.html" class="bluelink">Recursive layout</a>. </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex437.html" class="bluelink">Link layout (LL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex441.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex443.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

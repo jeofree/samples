@@ -1,0 +1,89 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Creating node renderers</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f312.html" class="breadcrumb">Creating a graph display from data providers using the Diagram
+class</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f316.html" class="breadcrumb">Customizing nodes, links and subgraphs in a diagram</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f318.html" class="breadcrumb">Creating node renderers</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f317.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f319.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Creating node renderers</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">As you create applications, you will need to create your
+own graphical representation and indicate to the Diagram component
+to create your renderer instances instead of the default ones.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">This configuration can be achieved with the following
+properties:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">nodeRenderer <span class="apiname"/></div></li><li class="itemizedlistItem"><div class="para">nodeRendererFunction<span class="apiname"/> </div></li></ul></div>
+<div class="para">The nodeRenderer property contains a factory for node
+renderers. The factory must create instances of the Node class or
+a subclass. The example bellow tells the diagram component to create
+instances of the class EllipseNode to represent nodes from the data
+provider.</div>
+<pre class="programlisting">  &lt;ibm:Diagram themeColor="#0D0E0E" id="diagView"
+                   startNodeField="startNode"
+                   endNodeField="endNode"
+                   allowSelection="false"
+                   updateComplete="onUpdateComplete(event)" 
+                   nodeRenderer="EllipseNode"
+                   left="10" right="10" top="10" bottom="10"/&gt;
+
+</pre>
+<div class="para">The following example shows a node renderer set in Action
+Script code.</div>
+<pre class="programlisting">diagram.nodeRenderer = new ClassFactory(EllipseNode);</pre>
+<div class="figure"><div class="mediaobject"><img src="../../Diagram4Flex/_media/forcedirected_default.png" alt="Force-directed&#xA;diagram created using a node renderer function" class="imagedata"/></div></div>
+<div class="para">The nodeRendererFunction property contains a function
+that must return an instance of Node class or a subclass. The nodeRendererFunction
+should be declared with the following signature: </div>
+<pre class="programlisting">function rendererFunction(diagram:Diagram,item:Object):Node</pre>
+<div class="para">The first argument is the Diagram object where the node
+will be created. This information is provided as a convenience. The
+second argument is the object in the data provider, which will be
+represented by the node. The nodeRendererFunction provides an extra
+level of flexibility by allowing you to return any instance of Node
+according to your application needs.  The following code extract illustrates
+a diagram configuration using a node renderer function: </div>
+<pre class="programlisting"> /**
+     * Creates a node renderer depending on the item data given as
+     * parameter.
+     *  
+     * @param diagram Diagram where the renderer is displayed
+     * @param ite Business data
+     */
+    public function createRenderer(diagram:Diagram, item:Object):Renderer {
+      if (item.type == "gateway")
+        return new Gateway();
+      if (item.type == "start")
+        return new StartEvent();
+      if (item.type == "end")
+        return new EndEvent();
+      return new FlowObject();
+    }
+    
+    public function configureDiagram(diagram:Diagram):void
+    {
+      ...
+      diagram.nodeRendererFunction = createRenderer;
+      ...
+    }
+</pre>
+<div class="para">In MXML, the configuration would be:</div>
+<pre class="programlisting">&lt;ibm:Diagram themeColor="#0D0E0E" id="diagView"
+                   startNodeField="startNode"
+                   endNodeField="endNode"
+                   allowSelection="false"
+                   updateComplete="onUpdateComplete(event)" 
+                   nodeRendererFunction="{createRenderer}"
+                   left="10" right="10" top="10" bottom="10"/&gt;
+</pre>
+<div class="figure"><div class="mediaobject"><img src="../../Diagram4Flex/_media/hierarchical_default.png" alt="Hierarchical&#xA;diagram created using a node renderer function" class="imagedata"/></div></div>
+<div class="para">The Diagram component will first verify whether or not
+it is possible to create a renderer instance using the renderer function
+if one is declared, and later, look for the renderer factory.  The
+linkRenderer property and the linkRendererFunction property work in
+the same way when creating links.   Once a renderer has been created
+to represent an object from the data provider, it can be retrieved
+from the Diagram using the getRenderer function, as below: </div>
+<pre class="programlisting">var r:Renderer = diagram.getRenderer(item);
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f316.html" class="bluelink">Customizing nodes, links and subgraphs in a diagram</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f317.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f319.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

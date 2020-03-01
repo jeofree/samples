@@ -1,0 +1,57 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>A sample custom layout algorithm</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex470.html" class="breadcrumb">Using advanced features</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex478.html" class="breadcrumb">Defining your own type of layout</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex479.html" class="breadcrumb">A sample custom layout algorithm</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex478.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex480.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">A sample custom layout algorithm</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+
+
+<div class="section" id="usrgraphlayout.uss_graphlay_advanced.1025550">
+<h2 class="heading">Example</h2>
+
+
+<div class="sectionContent">
+<div class="para">To illustrate the basic ideas for defining a new layout,
+the following simple example shows a possible implementation of the
+simplest layout algorithm, the Random Layout. The new layout class
+is called <code class="code">MyRandomLayout</code>.  </div>
+<div class="para">The following shows the skeleton of the class: </div>
+<pre class="programlisting">
+public class MyRandomLayout
+  extends IlvGraphLayout
+{
+  public MyRandomLayout()
+  {
+  }
+
+  public MyRandomLayout(MyRandomLayout source)
+  {
+    super.source(source);
+  }
+
+  public IlvGraphLayout copy()
+  {
+    return new MyRandomLayout(this);
+  }
+
+  protected void layout(boolean redraw)
+  {
+    ...
+  }
+}
+</pre>
+<div class="para">The constructor with no arguments is empty. The <code class="code">copy</code> constructor and the <code class="code">copy</code> method are implemented; they are used when laying out a nested graph
+(see <a href="ps_usrgraphlayout_flex460.html" class="bluelink">Nested layouts</a>).  </div>
+<div class="para">Then, the abstract method <code class="code">layout(boolean)</code> of the base class is implemented as follows: </div>
+
+
+<div class="para"> Note that the <code class="code">layout</code> method
+is <code class="code">protected</code>, which is the access type
+of the method in the base class. This will not prevent a user outside
+the package containing the class from performing the layout because
+it is started using the public method <code class="code">performLayout</code>.  </div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex478.html" class="bluelink">Defining your own type of layout</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex478.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex480.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

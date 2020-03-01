@@ -1,0 +1,91 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Simple recursion: applying the same layout to all subgraphers</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex460.html" class="breadcrumb">Nested layouts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex462.html" class="breadcrumb">Layout of nested graphs in code</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex465.html" class="breadcrumb">Simple recursion: applying the same layout to all subgraphers</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex464.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex466.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Simple recursion: applying the same layout to all subgraphers</h1></div></div><div class="content">
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">You can apply the same layout where both the following
+conditions hold: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The same layout algorithm needs to be
+applied to the topmost graph and all its subgraphs. </div>
+</li><li class="itemizedlistItem"><div class="para">The settings of the layout algorithm
+(that is, the layout parameters) need to be the same for the topmost
+graph as for all the subgraphs. </div></li></ul></div>
+<div class="para">The following figure shows an example where a Tree Layout
+is applied to the topmost graph as well as to all its subgraphs. Moreover,
+the settings of the Tree Layout algorithm are the same for all the
+graphs: the application does not need, for instance, one flow direction
+in the topmost graph and a different one in the subgraphs. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_nested.1006302"><div class="mediaobject"><img src="../../../GraphLayout/_media/nestedGraphLarger3_default.gif" alt="Example&#xA;of a recursive layout of a nested graph" class="imagedata"/></div><div class="caption">Example of a recursive layout of a nested graph</div></div>
+<div class="para">Obtaining such recursive layouts is very easy. The class  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html" class="bluelink">IlvGraphLayout</a></span> provides a special version of the <code class="code">performLayout</code> method: </div>
+<pre class="programlisting">
+performLayout(boolean force, boolean redraw, boolean traverse)  
+</pre>
+<div class="para">When the last <code class="code">boolean</code> argument
+is set to <code class="code">true</code>, the layout is applied not
+only to the graph attached to the layout instance, but also, in a
+recursive way, to its subgraphs. </div>
+<div class="section" id="usrgraphlayout.uss_graphlay_nested.1006311">
+<h2 class="heading">Internal mechanism</h2>
+
+
+<div class="sectionContent">
+<div class="para">The internal mechanism is based on the principle that
+a layout instance is used for only one graph and is not reused for
+its subgraphs. Therefore, the Tree Layout instance is automatically
+“cloned” using the  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html#copy()" class="bluelink">copy</a></span> method of the class <code class="code">IlvGraphLayout</code>. </div>
+
+
+<div class="para">The graph models for the subgraphs are created by calls
+to the  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphModel.html#getGraphModel(java.lang.Object)" class="bluelink">getGraphModel</a></span> method of the class <code class="code">IlvGraphLayout</code>, which in turn creates the graph model using the method  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphModel.html#createGraphModel(java.lang.Object)" class="bluelink">createGraphModel</a></span> of the class <code class="code">IlvGraphModel</code>. </div>
+<div class="para">All these operations are done automatically, in a completely
+transparent way. All you have to do is to call the method <code class="code">performLayout</code> with the <code class="code">traverse</code> argument set to <code class="code">true</code>. </div>
+<div class="para">If needed, you can get the layout instances applied on
+the subgraphs by calling the following method on <code class="code">IlvGraphLayout</code>: </div>
+<pre class="programlisting">
+Enumeration getLayouts(boolean preOrder)  
+</pre>
+<div class="para">This method returns an enumeration of instances of <code class="code">IlvGraphLayout</code>. If the <code class="code">preOrder</code> flag is <code class="code">true</code>, the layout of the parent
+graph occurs before the layout of its child notes in the enumeration.
+If the <code class="code">preorder</code> flag is <code class="code">false</code>, the layout of the parent graph occurs after the layout of its child
+nodes. For example, in the graph of Nesting structure in a graph, the call <code class="code">getLayouts(true)</code> returns the layouts for the subgraphs
+in this order: L1, L1.1, L1.1.1, L1.1.2, L1.2. The call <code class="code">getLayouts(false)</code> returns the layouts for the subgraphs
+in this order: L1.1.1, L1.1.2, L1.1, L1.2, L1.  </div>
+
+</div>
+</div>
+
+<div class="section" id="usrgraphlayout.uss_graphlay_nested.1006394">
+<h2 class="heading">Layout parameters</h2>
+
+<div class="sectionContent">
+<div class="para">Section <a href="ps_usrgraphlayout_flex465.html#usrgraphlayout.uss_graphlay_nested.1006311" class="bluelink">Internal mechanism</a> explains that,
+when applying the same layout algorithm in a recursive way, the layout
+instances for the subgraphs are obtained by “cloning”
+the layout instance attached to the topmost graph.  </div>
+<div class="para">The layout parameters of the “clone” are
+the same as the parameters of the topmost layout, except for the parameters
+that are specific to a node or a link. Such parameters are not copied
+when the layouts are cloned and need to be set separately for each
+layout instance. </div>
+
+
+
+
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">You should not try to change any global settings of the
+layouts applied to the subgraphs (that is, settings that are not specific
+to a node or a link). These settings are copied anyway from the layout
+instance of the topmost grapher, so your changes would be erased just
+before the recursive layout runs.  </div>
+</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex462.html" class="bluelink">Layout of nested graphs in code</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex464.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex466.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

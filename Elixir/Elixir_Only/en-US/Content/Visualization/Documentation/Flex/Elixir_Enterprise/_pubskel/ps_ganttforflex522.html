@@ -1,0 +1,54 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Common properties of Gantt sheet grids</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex497.html" class="breadcrumb">Gantt resource charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex517.html" class="breadcrumb">Styling a resource chart</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex520.html" class="breadcrumb">Gantt sheet styling</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex522.html" class="breadcrumb">Common properties of Gantt sheet grids</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex521.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex523.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Common properties of Gantt sheet grids</h1></div></div><div class="content">
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">A grid displayed by the Gantt sheet is called a Gantt
+sheet grid. Gantt sheet grids share properties through their common
+superclass, the GanttSheetGridBase class</div>
+<div class="section">
+<h2 class="heading">Display Mode of a grid</h2>
+<div class="sectionContent">
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">A Gantt sheet grid can be displayed in two ways:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">On the whole Gantt sheet</div>
+</li><li class="itemizedlistItem"><div class="para">On a per-row basis</div>
+</li></ul></div>
+<div class="para">To specify which mode to use, set the drawPerRow property
+in the <span class="apiname">GanttSheetGridBase</span> class.
+When the grid is drawn on the whole Gantt sheet (drawPerRow is set
+to false), the grid is displayed in one operation, on the whole Gantt
+sheet area. When the grid is drawn on a per-row basis, the grid is
+displayed independently in each row, making it possible to display
+different things in each row. For example, if you want to have the
+same background color for all the Gantt sheet rows, you can use a
+BackgroundGrid with the drawPerRow property set to false. If you want
+to have different background colors in each row, set the drawPerRow
+property to true. The default value for this property depends on each
+grid implementation.</div>
+<div class="para">When a grid is drawn on a per-row basis, the developer
+has to provide a way for the grid to retrieve the data that can be
+used to draw each row. For example, if you want to display a specific
+background color for each Gantt sheet row using a BackgroundGrid,
+you have to specify how to get the color from the data displayed in
+the row. For the RowGrid class, you can use the backgroundField property.
+Each Gantt sheet grid implementation provides its own set of properties
+that can be use to map data properties to grid drawing properties.
+For details, refer to the documentation of each Gantt sheet grid class.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Display Area of a Grid</h2>
+<div class="sectionContent">
+<div class="para">A Gantt sheet grid can be displayed on the whole Gantt
+sheet area, or only on the area where valid rows are displayed. You
+can control this behavior by using the <span class="apiname">GanttSheetGridBase.drawToBottom </span>property in the <span class="apiname">GanttSheetGridBase</span> class. The default value for this property is true</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex520.html" class="bluelink">Gantt sheet styling</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex521.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex523.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

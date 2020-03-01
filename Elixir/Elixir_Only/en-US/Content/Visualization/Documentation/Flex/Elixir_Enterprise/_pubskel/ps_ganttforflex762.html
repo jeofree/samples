@@ -1,0 +1,88 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Custom item renderers</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex739.html" class="breadcrumb">Organization Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex757.html" class="breadcrumb">Organization chart item renderers</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex762.html" class="breadcrumb">Custom item renderers</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex761.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex763.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Custom item renderers</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">An  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html" class="bluelink">OrgChart</a></span> control can
+use custom renderers to display the data items. A custom item renderer
+must:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Extend a <code class="code">UIComponent</code> subclass.</div></li><li class="itemizedlistItem"><div class="para">Implement the <code class="code">IListItemRenderer</code> interface.</div></li><li class="itemizedlistItem"><div class="para">Return the same height for every data
+provider item.</div></li></ul></div>
+<div class="para">Before you decide whether and how to develop a custom
+item renderer, make sure you read about <span class="italics">Custom Component Development</span> in the <span class="trademark">Adobe®
+            </span> <span class="trademark">Flex®
+            </span> documentation.</div>
+<div class="para">The contents of the <span class="apiname">data</span> property for an item renderer are of the type <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChartItem.html" class="bluelink">OrgChartItem</a></span>. This type
+gives access to the data fields to display in the item renderer.</div>
+<div class="para">The following example shows how to declare an inline
+custom item renderer that displays a label in a box and whose border
+color depends on the location of the person.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+ xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;ilog:OrgChart width="400" height="200"  dataProvider="{xml}"&gt;     
+    &lt;ilog:itemRenderer&gt;
+      &lt;mx:Component&gt;
+        &lt;mx:VBox height="30" backgroundColor="{getBorderColor(data)}"&gt;
+          &lt;mx:Script&gt;        
+            &lt;![CDATA[
+              private function getBorderColor(data:Object):uint {
+                var color:uint;
+                switch(data.location) {
+                  case "location 1":
+                    color = 0xeeeeee;
+                    break;
+                  case "location 2":
+                    color = 0xcccccc;
+                    break;
+                  default:
+                    color = 0x333333;
+                }
+                return color;
+              }            
+            ]]&gt;
+          &lt;/mx:Script&gt;
+          &lt;mx:Label text="{data.name}" /&gt;
+        &lt;/mx:VBox&gt;
+      &lt;/mx:Component&gt;
+    &lt;/ilog:itemRenderer&gt;
+  &lt;/ilog:OrgChart&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">The <span class="apiname">OrgChart</span> layout
+imposes constraints on the item renderers which affect how they are
+sized.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">These constraints are as follows:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">An <span class="apiname">OrgChart</span> item renderer is constrained to a fixed height for all the data
+it represents.</div></li><li class="itemizedlistItem"><div class="para">The <span class="apiname">OrgChart</span> measures the item renderer that represents the root data item and
+assigns its height to all the item renderers.</div>
+</li><li class="itemizedlistItem"><div class="para">The size of an item renderer is the
+same at every level of detail. When you zoom in on an <span class="apiname">OrgChart</span> control, the item renderers are not resized,
+they only show or hide subcomponents.</div></li><li class="itemizedlistItem"><div class="para">The size of each item renderer is computed
+according to the layout for the data item concerned and cannot be
+changed.</div></li><li class="itemizedlistItem"><div class="para">The resulting width of an item renderer
+is the width of the widest item renderer in the same branch.</div>
+</li></ul></div>
+<div class="para">If, in the following example of three nodes, the item
+renderers that represent p1, p2 and p3 are 100, 200, and 100 pixels
+wide respectively, the width of all the item renderers will be set
+to 200 pixels.</div>
+<pre class="programlisting">&lt;p name="root"&gt;
+    &lt;p name="p1"/&gt;
+    &lt;p name="p2"/&gt;
+    &lt;p name="p3"/&gt;
+&lt;/p&gt;</pre>
+<div class="para">To summarize, an item renderer must return a correct
+measured width and a constant height.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex757.html" class="bluelink">Organization chart item renderers</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex761.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex763.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

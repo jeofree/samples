@@ -1,0 +1,74 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Gauges architecture</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex809.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex810.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex812.html" class="breadcrumb">Gauges architecture</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex811.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex813.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Gauges architecture</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e140666">
+
+
+
+<div class="para">The architecture of the gauge components can be broken
+down into three categories of classes: the classes of the framework,
+the classes of the predefined circular gauges, and the classes of
+the predefined rectangular gauges. The following UML diagrams show
+the relationships between the classes within each category.</div>
+<div class="section">
+<h2 class="heading">Classes of the gauges framework</h2>
+<div class="sectionContent">
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">Gauges framework classes are composed of: base classes,
+gauge scales classes, and visual elements classes for circular and
+rectangular gauges.</div>
+</div><dl class="descriptionlist"><dt class="term">Base classes</dt><dd class="descriptionlistItem"><div class="para">The framework is designed so that a
+gauge is defined by a set of logical scales and a set of visual elements.
+These properties are defined on the <span class="apiname">GaugeBase</span> class.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/gauges_default.png" alt="Gauges&#xA;framework base classes" class="imagedata"/></div>
+<div class="para">The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/CircularGauge.html" class="bluelink">CircularGauge</a></span> and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/RectangularGauge.html" class="bluelink">RectangularGauge</a></span> subclasses manage the specificities
+of each type of gauge, including the layout of the various visual
+elements.</div>
+</dd><dt class="term">Gauge scale classes</dt><dd class="descriptionlistItem"><div class="para">The following diagram shows the logical
+scales hierarchy of the framework. There are base classes common to
+circular and rectangular gauges, as well as specific classes.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/gaugescales_default.png" alt="Gauges&#xA;framework gauge scales classes" class="imagedata"/></div>
+<div class="para">A scale defines the logical model of a gauge. It defines
+which values are acceptable for the scale: either from a minimum to
+a maximum for <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/gaugesClasses/NumericScale.html" class="bluelink">NumericScale</a></span> subclasses, or from a set of values for <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/gaugesClasses/CategoryScale.html" class="bluelink">CategoryScale</a></span> subclasses. Scales are used by some visual elements
+to make sure they render correctly according to their scale.</div>
+</dd><dt class="term">Visual elements classes for circular and rectangular
+gauges</dt><dd class="descriptionlistItem"><div class="para">The following diagram shows the hierarchy
+of the visual elements for circular gauges.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/gaugecircularelemts_default.png" alt="Gauges&#xA;framework visual elements classes for circular gauges" class="imagedata"/></div>
+<div class="para"/>
+<div class="para">The following diagram shows the hierarchy of the visual
+elements for rectangular gauges.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/gaugerectangularelemts_default.png" alt="Gauges&#xA;framework visual elements classes for rectangular gauges" class="imagedata"/></div>
+<div class="para"/>
+<div class="para">All elements inheriting from <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/gaugesClasses/circular/CircularScaleRelatedRenderer.html" class="bluelink">CircularScaleRelatedRenderer</a></span> or <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/gaugesClasses/rectangular/RectangularScaleRelatedRenderer.html" class="bluelink">RectangularScaleRelatedRenderer</a></span> need a scale to render correctly.
+If no scale is set on such a visual element, the first element of
+the scale array of the gauge is used. Elements that relate to the
+scale are elements that need to render a scale (for example, ticks)
+or something that represents the scale value. Other types of elements
+ do not rely on the scale because they do not need the scale (for
+example, decorations, labels).</div>
+</dd></dl></div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Classes of the predefined circular gauges</h2>
+<div class="sectionContent">
+<div class="para">The following diagram shows the predefined circular gauges
+classes.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/gaugecircularpredef_default.png" alt="Predefined&#xA;circular gauges classes" class="imagedata"/></div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Classes of the predefined rectangular gauges</h2>
+<div class="sectionContent">
+<div class="para">The following diagram shows the predefined circular gauges
+classes.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/gaugerectangularpredef_default.png" alt="Predefined&#xA;rectangular gauges classes" class="imagedata"/></div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex810.html" class="bluelink">MX Gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex811.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex813.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

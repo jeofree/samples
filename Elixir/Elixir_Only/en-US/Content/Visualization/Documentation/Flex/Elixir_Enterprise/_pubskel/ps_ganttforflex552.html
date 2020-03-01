@@ -1,0 +1,68 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Task chart architecture</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex550.html" class="breadcrumb">Gantt task charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex552.html" class="breadcrumb">Task chart architecture</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex551.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex553.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Task chart architecture</h1></div></div><div class="content">
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The task chart architecture is shown in the following
+figure.</div>
+<div class="mediaobject"><img src="../../Gantt4Flex/_media/Elixir-TaskChart-Architecture_default.png" alt="The TaskChart&#xA;classes" class="imagedata"/></div>
+<div class="para">The task chart classes shown in the UML diagram are described
+in the following table.</div>
+<div class="caption">Main task chart classes</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="table1216739556570"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Class</div></th>
+<th rowspan="1" colspan="1"><div class="para">Description</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskChart.html" class="bluelink">TaskChart</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">The task chart component. It extends the <span class="apiname">UIComponent</span> class. It is the top-level object to
+be used in MXML.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttDataGrid.html" class="bluelink">GanttDataGrid</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">The component that displays the data grid
+for the resources. The GanttDataGrid class extends the <code class="code">AdvancedDataGrid </code>class.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html" class="bluelink">GanttSheet</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">The component that displays the Gantt sheet.
+It extends the <code class="code">UIComponent</code> class.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheetEvent.html" class="bluelink">GanttSheetEvent</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Defines the type of events dispatched by the
+Gantt sheet.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TimeScale.html" class="bluelink">TimeScale</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">The component that displays the time scale.
+It extends the <code class="code">UIComponent</code> class.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskItemRenderer.html" class="bluelink">TaskItemRenderer</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">The default item renderer for tasks in the
+Gantt sheet.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskItem.html" class="bluelink">TaskItem</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">The data that is set on the task item renderers.</div></td>
+</tr>
+<tr>
+<td valign="top" rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/ConstraintItemRenderer.html" class="bluelink">ConstraintItemRenderer</a></span></div></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">The default item renderer for
+constraints in the Gantt sheet.</div></td>
+</tr>
+<tr>
+<td valign="top" rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/ConstraintItem.html" class="bluelink">ConstraintItem</a></span></div></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">The data that is set on the constraint
+item renderer.</div></td>
+</tr>
+</tbody></table>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex550.html" class="bluelink">Gantt task charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex551.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex553.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

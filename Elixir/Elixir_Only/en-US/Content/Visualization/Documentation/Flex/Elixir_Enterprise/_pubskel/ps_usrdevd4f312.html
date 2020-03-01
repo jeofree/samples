@@ -1,0 +1,56 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Creating a graph display from data providers using the Diagram class</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="usageStructuringSet"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f312.html" class="breadcrumb">Creating a graph display from data providers using the Diagram
+class</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f311.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f313.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Creating a graph display from data providers using the Diagram
+class</h1></div></div><div class="content"><div class="synopsis">
+<div class="para">Describes creating graphic representations of graphs
+using the Diagram class.</div>
+</div><div class="relatedLinks"><div class="relatedLinksLabel">In this section</div><ul class="subtoc"><li><a href="ps_usrdevd4f313.html" class="bluelink">A first example using the Diagram control</a><ul class="synopsis"><li>
+<div class="para">Describes the Diagram class.</div>
+</li></ul></li><li><a href="ps_usrdevd4f314.html" class="bluelink">Specifying the data providers in a diagram</a><ul class="synopsis"><li>
+<div class="para">Explains how node and link providers are interpreted
+to generate nodes, links, and subgraphs.</div>
+</li></ul></li><li><a href="ps_usrdevd4f315.html" class="bluelink">How to make the diagram reflect the changes in the data source</a><ul class="synopsis"><li>
+<div class="para">Describes how changes in data providers can affect the
+rendering of the diagram</div>
+</li></ul></li><li><a href="ps_usrdevd4f316.html" class="bluelink">Customizing nodes, links and subgraphs in a diagram</a><ul class="synopsis"><li>
+<div class="para">Describes the representation of nodes, links, and subgraphs
+by renderers and how to customize it.</div>
+</li></ul></li><li><a href="ps_usrdevd4f323.html" class="bluelink">Handling selection in a diagram</a><ul class="synopsis"><li>
+<div class="para">Describes the different aspects of handling selection
+in a diagram.</div>
+</li></ul></li><li><a href="ps_usrdevd4f328.html" class="bluelink">Positioning the nodes of a diagram from data</a><ul class="synopsis"><li>
+<div class="para">Describes how the nodes of a diagram can be positioned
+from data in the data source as opposed to being positioned by a graph
+layout algorithm.</div>
+</li></ul></li><li><a href="ps_usrdevd4f329.html" class="bluelink">Specifying Graph Layout algorithms in a Diagram component</a><ul class="synopsis"><li>
+<div class="para">Describes how the nodes and links of a Diagram component
+can be automatically arranged by a Graph Layout algorithm.</div>
+</li></ul></li><li><a href="ps_usrdevd4f330.html" class="bluelink">Zooming in a diagram</a><ul class="synopsis"><li>
+<div class="para">Explains zoom methods and the maximum and minimum zoom
+in a diagram.</div>
+</li></ul></li><li><a href="ps_usrdevd4f331.html" class="bluelink">Exploring subgraphs</a><ul class="synopsis"><li>
+<div class="para">Explains how to expand and collapse subgraphs using the
+Diagram class.</div>
+</li></ul></li><li><a href="ps_usrdevd4f332.html" class="bluelink">Using tooltips</a><ul class="synopsis"><li>
+<div class="para">Explains how to use <span class="trademark">Flex®
+            </span> tooltip management in a Diagram component.</div>
+</li></ul></li><li><a href="ps_usrdevd4f333.html" class="bluelink">Using Popup menus</a><ul class="synopsis"><li>
+<div class="para">Explains how to provide popup menus for the objects in
+a diagram.</div>
+</li></ul></li><li><a href="ps_usrdevd4f334.html" class="bluelink">Editing in a diagram</a><ul class="synopsis"><li>
+<div class="para">To be defined</div>
+</li></ul></li><li><a href="ps_usrdevd4f335.html" class="bluelink">Managing diagram events</a><ul class="synopsis"><li>
+<div class="para">Explains the events that can be listened for on the Diagram
+component.</div>
+</li></ul></li><li><a href="ps_usrdevd4f336.html" class="bluelink">Interacting with diagrams</a><ul class="synopsis"><li>
+<div class="para">Describes all possible user interactions.</div>
+</li></ul></li><li><a href="ps_usrdevd4f337.html" class="bluelink">Printing diagrams</a><ul class="synopsis"><li>
+<div class="para">Explains how to print a diagram.</div>
+</li></ul></li><li><a href="ps_usrdevd4f338.html" class="bluelink">Skinning the Diagram component</a><ul class="synopsis"><li>
+<div class="para">Describes the default Diagram skin and an example on
+how to change it.</div>
+</li></ul></li><li><a href="ps_usrdevd4f339.html" class="bluelink">Creating swimlanes in a diagram</a><ul class="synopsis"><li>
+<div class="para">Explains what a swimlane is and how to create it.</div>
+</li></ul></li></ul></div><div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f287.html" class="bluelink">Developing with the <span class="classificationVariable">Diagram</span> component</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f311.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f313.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

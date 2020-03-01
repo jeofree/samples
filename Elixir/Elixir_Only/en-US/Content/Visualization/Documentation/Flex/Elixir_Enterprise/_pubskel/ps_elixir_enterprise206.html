@@ -1,0 +1,89 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Specifying treemap data with field mappings</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise201.html" class="breadcrumb">Treemaps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise204.html" class="breadcrumb">Configuring treemap data</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise206.html" class="breadcrumb">Specifying treemap data with field mappings</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise205.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise207.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Specifying treemap data with field mappings</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent" id="d0e33627">
+
+
+
+
+
+
+<div class="para">The field properties used to display the <span class="apiname">TreeMap</span> control are described in the following table. </div>
+<div class="caption">Field properties for the TreeMap control</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_treemap.1020135"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Property</div></th>
+<th rowspan="1" colspan="1"><div class="para">Default value</div></th>
+<th rowspan="1" colspan="1"><div class="para">Purpose</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/treemap/TreeMap.html#areaField" class="bluelink">areaField</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">area</div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property is used to compute the area representing each treemap
+item.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/treemap/TreeMap.html#colorField" class="bluelink">colorField</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">color</div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property is used in conjunction with the coloring scheme to
+compute the color of each treemap item.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/treemap/TreeMap.html#labelField" class="bluelink">labelField</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">label</div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property is used to display the label of each treemap item.</div></td>
+</tr>
+</tbody></table>
+<div class="para">The following code contains a single  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/treemap/TreeMap.html" class="bluelink">TreeMap</a></span> control that shows the contents of a mailbox. It
+shows the field property <span class="apiname">areaField</span> mapping the <span class="apiname">area</span> field of the control
+to the   <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/treemap/TreeMap.html#dataProvider" class="bluelink">dataProvider</a></span> attribute <code class="code">total</code>.</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http//www.ilog.com/2007/ilog/flex"&gt;
+   &lt;ilog:TreeMap width="200" height="400"
+                 areaField="@total"
+                 algorithm="alternating"
+                 colorScheme="depth"&gt;
+      &lt;mx:XMLListCollection id="MailBox"&gt;
+        &lt;mx:XMLList&gt;
+        &lt;folder label="Mail"&gt;
+          &lt;folder label="Inbox"&gt;            
+            &lt;folder label="Marketing" total="100" read="70"/&gt;
+            &lt;folder label="Product Management" total="200" read="99"/&gt;
+            &lt;folder label="Personal" total="50" read="50"/&gt;
+          &lt;/folder&gt;
+          &lt;folder label="Outbox"&gt;
+            &lt;folder label="Professional" total="150" read="100"/&gt;
+            &lt;folder label="Personal" total="5" read="100"/&gt;
+          &lt;/folder&gt;
+          &lt;folder label="Spam" total="200" read="1"/&gt;
+          &lt;folder label="Sent" total="0" read="100"/&gt;
+        &lt;/folder&gt;    
+        &lt;/mx:XMLList&gt;
+      &lt;/mx:XMLListCollection&gt;
+   &lt;/ilog:TreeMap&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">The tags that represent treemap items in the XML data
+can have any names. The <span class="apiname">TreeMap</span> control
+reads the XML and builds the display hierarchy based on the nested
+relationship of the items. For information on valid XML structures,
+hierarchical objects, and data descriptors, including a detailed description
+of the formats supported by the <span class="apiname">DefaultDataDescriptor</span>, see <span class="italics">Data descriptors and hierarchical
+data provider structure</span> in the <span class="italics">Flex 4 Developer’s Guide</span>.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise204.html" class="bluelink">Configuring treemap data</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise205.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise207.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

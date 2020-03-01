@@ -1,0 +1,51 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Radar chart axes</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise184.html" class="breadcrumb">Radar Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise189.html" class="breadcrumb">Radar chart axes</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise188.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise190.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Radar chart axes</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">A radar chart has two axes: angular and radial:</div>
+</div><dl class="descriptionlist"><dt class="term">Angular axis</dt><dd class="descriptionlistItem"><div class="para">The angular axis corresponds to the
+perimeter of the chart and takes values that are categories rather
+than numerics. This axis maps a set of values such as stock ticker
+symbols, state names, or demographic categories to equal angles around
+the center of the chart. The <span class="apiname">angularAxis</span> property of the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/RadarChart.html" class="bluelink">RadarChart</a></span> class must be
+a subclass of the <code class="code">Category</code><code class="code">Axis</code> class. By default it is set to an instance of
+the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/AngularAxis.html" class="bluelink">AngularAxis</a></span> class.</div>
+</dd><dt class="term">Radial axis</dt><dd class="descriptionlistItem"><div class="para">The radial axis corresponds to the radius
+of the chart. This axis maps numeric data to a distance between the
+center and the perimeter of the chart. The <span class="apiname">radialAxis</span> property of the <span class="apiname">RadarChart</span> class
+must be a subclass of the <span class="apiname">NumericAxis</span> class. By default it is set to an instance of the <span class="apiname">LinearAxis</span> class. You can use the following default Adobe Flash Builder 4 classes that inherits from <span class="apiname">NumericAxis</span>:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apiname">DateTimeAxis</span>: This class maps time-based values, such as hours, days, weeks,
+or years, along a chart axis.</div></li><li class="itemizedlistItem"><div class="para"><span class="apiname">LogAxis</span>: This class maps numeric data to the axis logarithmically.</div>
+</li></ul></div>
+</dd></dl></div>
+<div class="para">By default, a series uses the default axes of a chart,
+but you can change the axes of a particular series by using the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/chartClasses/RadarSeries.html#angularAxis" class="bluelink">angularAxis</a></span> and  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/chartClasses/RadarSeries.html#radialAxis" class="bluelink">radialAxis</a></span> properties of the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/chartClasses/RadarSeries.html" class="bluelink">RadarSeries</a></span> class (the base class for all radar series). Typically, you can
+change the <span class="apiname">radialAxis</span> of a series
+to allow comparison of the series with a different range of data.</div>
+<div class="para">For more information on chart axes, see the <span class="italics">Flex 3 Developer’s Guide</span>.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise184.html" class="bluelink">Radar Charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise188.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise190.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

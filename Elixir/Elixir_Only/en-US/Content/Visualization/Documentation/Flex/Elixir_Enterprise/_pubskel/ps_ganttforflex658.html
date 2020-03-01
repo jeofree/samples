@@ -1,0 +1,40 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Navigation data events</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex634.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex656.html" class="breadcrumb">Managing calendar events</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex658.html" class="breadcrumb">Navigation data events</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex657.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex659.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Navigation data events</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e113090">
+
+<div class="para">The Calendar control fires an event of type <span class="apiname">visibleTimeRangeChange</span> when the visible time range
+is modified, typically as a result of a user interaction.</div>
+<div class="para">The event <span class="apiname">visibleTimeRangeChange</span> indicates that the visible time range has changed.</div>
+<div class="para">The calendar visible time range event is of type <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/CalendarEvent.html" class="bluelink">CalendarEvent</a></span>.</div>
+<div class="para">The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/CalendarEvent.html#startDate" class="bluelink">startDate</a></span> and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/CalendarEvent.html#endDate" class="bluelink">endDate</a></span> properties of the event are
+the visible start and end days. The end date is included in the range.</div>
+<div class="para">For example, if the range is from 10th May to 13th May,
+four days are displayed.</div>
+<div class="para">The following example shows how to display and update
+the visible time range using a label.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                layout="vertical"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import ilog.calendar.CalendarEvent;
+      private function visibleRangeChange(event:CalendarEvent):void {
+        visibleTimeRange.text = event.startDate.toDateString() + " to " + 
+                                event.endDate.toDateString() + " included";
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;mx:HBox&gt;
+    &lt;mx:Button label="prev" click="calendar.previousRange()" /&gt;
+    &lt;mx:Button label="next" click="calendar.nextRange()" /&gt;
+    &lt;mx:Label id="visibleTimeRange" /&gt;
+  &lt;/mx:HBox&gt;
+  &lt;ilog:Calendar id="calendar" width="100%" height="100%" visibleTimeRangeChange="visibleRangeChange(event)" /&gt;
+&lt;/mx:Application&gt;</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex656.html" class="bluelink">Managing calendar events</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex657.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex659.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

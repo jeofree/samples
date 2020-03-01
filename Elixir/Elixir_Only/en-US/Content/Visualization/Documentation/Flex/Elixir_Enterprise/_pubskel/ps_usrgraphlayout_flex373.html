@@ -1,0 +1,47 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Features and limitations of the FL</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex371.html" class="breadcrumb">Force-directed (FL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex373.html" class="breadcrumb">Features and limitations of the FL</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex372.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex374.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Features and limitations of the FL</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1036511">
+<h2 class="heading">Features</h2>
+
+
+<div class="sectionContent">
+<div class="para">Often provides a drawing without any or with only a few link crossings and with approximately equal length links
+for small- and medium-size graphs having a small number of cycles.
+The maximum number of nodes for which you can use the algorithm depends
+on the connectivity of the graph and is difficult to predict. </div>
+<div class="para">On demand, the algorithm can take into account the size
+(width and height) of the nodes. Otherwise, they are more efficiently
+considered as points. </div>
+<div class="para">It is possible to specify the length for each link individually. </div>
+<div class="para">The algorithm provides three optional layout modes: incremental,
+non-incremental and fast multilevel. The non-incremental and fast
+multilevel modes are in general faster and are recommended for large
+graphs. For details, see <a href="ps_usrgraphlayout_flex376.html#section1221741030611" class="bluelink">Layout mode </a>.</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1001457">
+<h2 class="heading">Limitations</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The algorithm is not appropriate for
+all graphs. In particular, it will produce bad results on some highly
+connected cyclic graphs for which a planar drawing with equal-length
+links may simply not exist.  </div></li><li class="itemizedlistItem"><div class="para">The computation time required to obtain
+an appropriate drawing grows relatively quickly with the size of the
+graph (that is, the number of nodes and links) and the layout process
+may become time-consuming for large graphs.  </div>
+</li><li class="itemizedlistItem"><div class="para">Overlapping nodes cannot always be avoided.
+Nevertheless, the layout algorithm often produces a drawing with no
+overlapping nodes.  </div></li></ul></div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex371.html" class="bluelink">Force-directed (FL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex372.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex374.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

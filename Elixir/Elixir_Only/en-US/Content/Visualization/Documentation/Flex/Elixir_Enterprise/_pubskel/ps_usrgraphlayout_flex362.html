@@ -1,0 +1,110 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Determining the appropriate layout algorithm</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex362.html" class="breadcrumb">Determining the appropriate layout algorithm</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex361.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex363.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Determining the appropriate layout algorithm</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">When using the graph layout package, you need to determine
+which of the ready-to-use layout algorithms is appropriate for your
+particular needs. Some layout algorithms can handle a wide range of
+graphs. Others are designed for particular classes of graphs and will
+give poor results or will reject graphs that do not belong to these
+classes. For example, a Tree Layout algorithm is designed for tree graphs, but not cyclic graphs. Therefore, it is important to lay out a
+graph using the appropriate layout algorithm.  </div>
+<div class="para">The following tables can help you determine which of
+the layout algorithms is best suited for a particular type of graph. </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Across the top of the table are various
+classifications of different types of graphs.</div>
+</li><li class="itemizedlistItem"><div class="para">The layout algorithms appear on the
+left side of the tables.</div></li><li class="itemizedlistItem"><div class="para">Table cells containing illustrations
+indicate when a layout algorithm is applicable for a particular type
+of graph. </div></li></ul></div>
+<div class="para">By identifying the general characteristics of the graph
+you want to lay out, you can see from the tables whether a layout
+algorithm is suited for that particular type of graph. </div>
+<div class="para">For example, if you know that the structure of the graph
+is a tree, you can look at the Domain-Independent Graphs/Trees column
+to see which layout algorithms are appropriate. The Uniform Length
+Edges Layout, Tree Layout, and Hierarchical Layout could all be used.
+Use the illustrations in the table cells to help you further narrow
+your choice.</div>
+
+
+<div class="para">You can use the Multiple layout to combine
+several different layouts into one instance. In this case, they become <span class="italics">sublayouts</span> of the Multiple Layout
+instance. </div>
+
+<div class="divBlock">
+<div class="divBlockContent">
+
+
+<div class="caption">Layout algorithms and common types of graphs</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="table1221567808748"><colgroup span="1">
+<col span="1"/>
+<col span="1"/>
+<col span="1"/>
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr>
+<th align="left" bgcolor="#BFD6E7" rowspan="2" valign="top" colspan="1"><div class="para">Layout </div></th>
+<th align="left" bgcolor="#BFD6E7" colspan="4" valign="top" rowspan="1">Domain-Independent Graphs</th>
+</tr>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Trees </div></th>
+<th rowspan="1" colspan="1"><div class="para">Cyclic Graphs </div></th>
+<th colspan="2" rowspan="1"><div class="para">Any Graph </div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Uniform Length Edges Layout </div></td>
+<td rowspan="1" colspan="1"><div class="figure"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Uniform-tree-small_default.jpg" alt="Example&#xA;of uniform tree" class="imagedata"/></div></div> </td>
+<td rowspan="1" colspan="1"><div class="figure"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Uniform-3cyc-after1145_default.png" alt="Example&#xA;of uniform cyclic graph" class="imagedata"/></div></div> <div class="para">Preferable to avoid heavily interconnected
+graphs (large number of links) </div></td>
+<td colspan="2" rowspan="1"><div class="figure"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Uniform-cycles-tree2146_default.png" alt="Example&#xA;of uniform graph" class="imagedata"/></div></div> </td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Tree Layout </div></td>
+<td rowspan="1" colspan="1"><div class="figure"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Tree-Ortho-vert1147_default.png" alt="Example&#xA;of tree with orthogonal links" class="imagedata"/></div></div> <div class="figure"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Tree-sample3-small148_default.png" alt="Example&#xA;of tree" class="imagedata"/></div></div> </td>
+<td rowspan="1" colspan="1"> </td>
+<td colspan="2" rowspan="1"><div class="figure"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Tree-With-Cycles1149_default.png" alt="Example&#xA;of tree with cycles" class="imagedata"/></div></div> </td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Hierarchical Layout </div></td>
+<td rowspan="1" colspan="1"><div class="figure"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Hierarchical-tree1150_default.png" alt="Example&#xA;of hierarchical tree" class="imagedata"/></div></div> </td>
+<td rowspan="1" colspan="1"><div class="figure"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Hierarchical-cycle1151_default.png" alt="Example&#xA;of horizontal hierarchical tree" class="imagedata"/></div></div> </td>
+<td colspan="2" rowspan="1"><div class="figure"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Hierarchical-treecycl1152_default.png" alt="Example&#xA;of hierarchical tree with cycles" class="imagedata"/></div></div> </td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Link Layout </div></td>
+<td rowspan="1" colspan="1"> </td>
+<td rowspan="1" colspan="1"> </td>
+<td colspan="2" rowspan="1"><div class="figure"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Ortho-Ortho-small1154_default.png" alt="Example&#xA;of orthogonal links" class="imagedata"/></div></div> </td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Grid Layout </div></td>
+<td rowspan="1" colspan="1"> </td>
+<td rowspan="1" colspan="1"> </td>
+<td colspan="2" rowspan="1"><div class="figure"><div class="mediaobject"><img src="../../../GraphLayout/_media/Grid24nodesSmall-small157_default.png" alt="Example&#xA;of grid" class="imagedata"/></div></div> <div class="para">Note that the algorithm does not take
+into account the links between the nodes. </div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Recursive Layout </div></td>
+<td rowspan="1" colspan="1"> </td>
+<td rowspan="1" colspan="1"> </td>
+<td colspan="2" rowspan="1"><div class="para">Nested graphs. </div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Multiple Layout </div></td>
+<td rowspan="1" colspan="1"> </td>
+<td rowspan="1" colspan="1"> </td>
+<td colspan="2" rowspan="1"><div class="para">Combination of multiple different
+layout algorithms on the same graph (in particular for nested graphs). </div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex360.html" class="bluelink">Layout algorithms</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex361.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex363.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

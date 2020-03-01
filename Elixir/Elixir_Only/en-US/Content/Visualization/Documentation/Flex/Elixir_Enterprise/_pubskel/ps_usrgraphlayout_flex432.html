@@ -1,0 +1,77 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Swim lane constraints (HL)</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex414.html" class="breadcrumb">Hierarchical Layout (HL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex432.html" class="breadcrumb">Swim lane constraints (HL)</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex431.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex433.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Swim lane constraints (HL)</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">Swim lanes are rectangular areas orthogonal to the levels.</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">If the link flow direction is towards
+the bottom or top, the levels are horizontal rows and the swim lanes
+are vertical columns.</div></li><li class="itemizedlistItem"><div class="para">If the flow direction is towards the
+left or right, the levels are vertical columns and the swim lanes
+are horizontal rows.</div></li></ul></div>
+<div class="para">You can use swim lanes if the nodes are partitioned into
+groups, to indicate which nodes belong to a certain group. The nodes
+in the same swim lane are placed so that it is possible to draw a
+surrounding rectangle around them. Swim lanes allow you to organize
+the graph in a table-like manner. For example, you may have a workflow
+diagram where nodes represent actions; the swim lanes could then represent
+the departments that perform these actions. Each node can belong to
+only one swim lane.</div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To assign a group of nodes to a swim lane: </div>
+</div>
+
+
+</div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1167641"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Hierarchical-swimlanesonline89_default.gif" alt="Example&#xA;showing three vertical swim lanes" class="imagedata"/></div><div class="caption">Swim Lanes </div></div>
+<div class="para">The relative size indicates how large this swim lane
+is compared to the other swim lanes. Assume that the flow direction
+is towards the bottom. In this case, the relative size indicates the
+width of the swim lane. All swim lanes with the same relative size
+will have the same width. A swim lane with a relative size that is
+twice the value of another swim lane will have twice the width of
+the other swim lane. The actual number of this parameter does not
+matter, only how large the value is compared to the other swim lanes.
+If you do not want to restrict the size of the swim lane, set the
+value to 0. In this case, the width of the swim lane will be independent
+of the other swim lanes. </div>
+<div class="para">The minimum margin is the margin of the swim lane in
+absolute coordinates. If the flow direction is towards the bottom,
+then the west minimum margin is the minimum horizontal distance between
+the leftmost node of the swimlane and the left swim lane border, and
+the east minimum margin is the minimum horizontal distance between
+the rightmost node of the swimlane and the right swim lane border.</div>
+<div class="para">The position index indicates the order of the swim lanes.
+Just as nodes have position indices, the swim lanes are placed sequentially
+at relative positions numbered from 0 to n. In a top-down layout,
+the swim lane with position 0 is the leftmost swim lane, and the swim
+lanes with higher position indices are placed farther to the right.
+If the swim lanes have the position index -1, the layout algorithm
+determines the appropriate position automatically. </div>
+<div class="para">A swim lane constraint is always evaluated, even if the
+incremental mode is enabled. The constraint has a higher priority
+than the relative position constraint and the side-by-side constraint.
+You can specify side-by-side constraints for a group of nodes that
+belong to the same swim lane, but side-by-side constraints of nodes
+of different swim lanes are ignored. You can specify relative position
+constraints between nodes of the same swim lane. You can also specify
+relative position constraints between one entire swim lane group and
+another swim lane group, which effectively orders the swim lanes.
+But relative position constraints are ignored if they would require
+breaking the swim lanes apart. The swim lane constraint dominates
+the specified position indices and the extremity constraints, that
+is, if a swim lane constraint is used, you cannot specify position
+indices or east/west extremity constraints for any node. </div>
+<div class="tip"><div class="tipLabel">Tip</div>
+<div class="para">The automatic conflict resolution can handle conflicting
+constraints. However, to speed up the layout, it is recommended that
+you specify constraints in such a way that there are no conflicts.
+ </div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex414.html" class="bluelink">Hierarchical Layout (HL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex431.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex433.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

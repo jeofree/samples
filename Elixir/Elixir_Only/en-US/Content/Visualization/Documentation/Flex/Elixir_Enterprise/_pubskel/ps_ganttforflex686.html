@@ -1,0 +1,50 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Managing exceptions</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex634.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex673.html" class="breadcrumb">Recurring events</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex684.html" class="breadcrumb">Editing recurring events</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex686.html" class="breadcrumb">Managing exceptions</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex685.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex687.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Managing exceptions</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e116995">
+
+
+
+
+<div class="para">After the editing of a recurring event, the exception
+dates defined on this recurring event and the associated exception
+events must be updated accordingly.</div>
+<div class="section">
+<h2 class="heading">Recurrence exception dates</h2>
+<div class="sectionContent">
+<div class="para">The exception dates listed by default in the <span class="apiname">exdates</span> field (See <a href="ps_ganttforflex676.html" class="bluelink">Data fields and custom functions</a>) are updated after an editing
+gesture by the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/recurrence/RecurrenceDescriptor.html#updateExceptionDates()" class="bluelink">updateExceptionDates</a></span> method.</div>
+<div class="para">This method is called by the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html#applyItemEditEnd()" class="bluelink">applyItemEditEnd</a></span> method, itself called by the default <span class="apiname">ITEM_EDIT_END</span> handler of the Calendar component.</div>
+<div class="para">This operation can be customized by specifying a custom
+function in the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/recurrence/RecurrenceDescriptor.html#updateExceptionDatesFunction" class="bluelink">updateExceptionDatesFunction</a></span> property. This is mandatory,
+for example, if you specify a custom function in <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/recurrence/RecurrenceDescriptor.html#exceptionRecurrenceDatesFunction" class="bluelink">exceptionRecurrenceDatesFunction</a></span> to get the exception dates by
+a function instead of using a field.</div>
+<div class="para">If you are preventing the default <span class="apiname">ITEM_EDIT_END</span> handler and are not using the <span class="apiname">applyItemEditEnd</span>  method, do not forget  to call the <span class="apiname">updateExceptionDates</span> method to manage the exception dates update.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Exception events</h2>
+<div class="sectionContent">
+<div class="para">After the editing of a recurring event, the exception
+events must also be updated. In fact, an exception event defines the
+start time of the occurrence to be replaced. As the recurring event
+has changed, this occurrence start time is no longer valid.</div>
+<div class="para">Each exception event of an edited recurring event is
+updated by the <span class="apiname">updateExceptionEventDate</span> method.</div>
+<div class="para">This method is called by the <span class="apiname">applyItemEditEnd</span> method of the Calendar component, itself called by the default <span class="apiname">ITEM_EDIT_END</span> handler of the Calendar.</div>
+<div class="para">This operation can be customized by specifying a custom
+function in the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/recurrence/RecurrenceDescriptor.html#updateExceptionEventDateFunction" class="bluelink">updateExceptionEventDateFunction</a></span> property of the <span class="apiname">RecurrenceDescriptor</span> instance. This is mandatory,
+for example, if you specify a custom function in the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/recurrence/RecurrenceDescriptor.html#exceptionDateFunction" class="bluelink">exceptionDateFunction</a></span> property of the <span class="apiname">RecurrenceDescriptor</span> instance to get the exception
+dates by function instead of using a field.</div>
+<div class="para">If you are preventing the default <span class="apiname">ITEM_EDIT_END</span> handler and are not using the <span class="apiname">applyItemEditEnd</span> method, do not forget to call the <span class="apiname">updateExceptionEventDate</span> method to manage the exception events update.</div>
+<div class="para">For more information on event editing in general see <a href="ps_ganttforflex663.html" class="bluelink">Event editing</a>.</div>
+<div class="para">If the association between a recurring event and its
+exception events changes (add, remove) the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/recurrence/RecurrenceDescriptor.html#invalidateExceptionEvents()" class="bluelink">invalidateExceptionEvents</a></span> method must be called to recompute
+the association between the recurring events and its exceptions.</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex684.html" class="bluelink">Editing recurring events</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex685.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex687.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

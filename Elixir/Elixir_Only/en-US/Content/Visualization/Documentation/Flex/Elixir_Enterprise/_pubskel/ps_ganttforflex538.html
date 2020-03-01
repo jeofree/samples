@@ -1,0 +1,98 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>User interaction in the time scale</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex497.html" class="breadcrumb">Gantt resource charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex536.html" class="breadcrumb">User interaction with resource charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex538.html" class="breadcrumb">User interaction in the time scale</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex537.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex539.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">User interaction in the time scale</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The time scale allows users to navigate in time and to
+control the time range displayed by the resource chart by using standard
+user interactions such as mouse clicks and dragging objects with the
+mouse.</div>
+<div class="para">The <code class="code">GanttSheet</code> control broadcasts <code class="code">visibleTimeRangeChange</code> events whenever the visible
+time range is modified.</div>
+<div class="section" id="usrflprg.uss_flexprg_gantt.1020452">
+<h2 class="heading">Mouse navigation</h2>
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">The time scale has the mouse navigation features shown
+in the following table. </div>
+<div class="caption">Mouse Navigation features in the time scale</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_gantt.1020528"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Action</div></th>
+<th rowspan="1" colspan="1"><div class="para">Description of action</div></th>
+<th rowspan="1" colspan="1"><div class="para">Mouse or key and mouse action</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Highlight</div></td>
+<td rowspan="1" colspan="1"><div class="para">Highlights the hovered time interval.</div></td>
+<td rowspan="1" colspan="1"><div class="para">Move.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Focus</div></td>
+<td rowspan="1" colspan="1"><div class="para">Focuses on the selected time interval and
+makes it entirely visible.</div></td>
+<td rowspan="1" colspan="1"><div class="para">Click.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Scroll</div></td>
+<td rowspan="1" colspan="1"><div class="para">Scrolls the visible time range forward or
+backward in time.</div></td>
+<td rowspan="1" colspan="1"><div class="para">Drag.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Focus interval</div></td>
+<td rowspan="1" colspan="1"><div class="para">Focuses on an arbitrary time interval and
+makes it entirely visible.</div></td>
+<td rowspan="1" colspan="1"><div class="para">Hold down the CTRL key and drag.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Zoom</div></td>
+<td rowspan="1" colspan="1"><div class="para">Zooms the visible time in or out. The time
+under the mouse pointer is the same before and after zooming.</div></td>
+<td rowspan="1" colspan="1"><div class="para">Hold down the CTRL key and rotate the mouse
+wheel forward or backward.</div></td>
+</tr>
+</tbody></table>
+<div class="note"><div class="noteLabel">Note</div>
+<div class="orderedlist"><ol class="orderedlist"><li class="orderedlistItem"><div class="para">Navigation is limited by the <code class="code">minVisibleTime</code> or <code class="code">maxVisibleTime</code> value. </div></li><li class="orderedlistItem"><div class="para">Zooming is limited by the <code class="code">minZoomFactor</code> or <code class="code">maxZoomFactor</code> value and the <code class="code">minVisibleTime</code> or <code class="code">maxVisibleTime</code> value, depending on which is the most
+constraining.</div></li></ol></div>
+<div class="para">Attempting to zoom or navigate beyond these limits has
+no effect on the resource chart. </div>
+</div>
+<div class="para">The time scale has the keyboard navigation features shown
+in the following table. </div>
+<div class="caption">Keyboard navigation features in the time scale</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead"><colgroup align="left" span="1">
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr bgcolor="#BFD6E7">
+<th valign="top" rowspan="1" colspan="1">Interaction</th>
+<th valign="top" rowspan="1" colspan="1">Description</th>
+</tr>
+</thead><tbody valign="top">
+<tr>
+<td rowspan="1" colspan="1">+</td>
+<td rowspan="1" colspan="1">Zooms the visible time in.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">-</td>
+<td rowspan="1" colspan="1">Zooms the visible time out.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Keyboard arrows</td>
+<td rowspan="1" colspan="1">Lets the user move up, down, or from side to side in the
+Gantt sheet</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex536.html" class="bluelink">User interaction with resource charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex537.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex539.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,58 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Event editing process</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise39.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise68.html" class="breadcrumb">Event editing</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise71.html" class="breadcrumb">Event editing process</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise70.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise72.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Event editing process</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="orderedlist"><div class="orderedlistIntro">
+<div class="para">The following sequence of steps occurs when an event
+is edited:</div>
+</div><ol class="orderedlist"><li class="orderedlistItem"><div class="para">The user holds down the mouse button
+on an event and starts dragging.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">With the focus on an event in day mode, work week mode,
+or week mode, the user  holds down the control key and then does one
+of the following:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Presses the Up or Down arrow key to
+resize the event by modifying its end time.</div>
+</li><li class="itemizedlistItem"><div class="para">Holds down the <span class="guicommand">Shift</span> key and the <span class="guicommand">Control</span> key and
+presses an arrow key to move the event.</div></li></ul></div>
+<div class="para">The kind of editing operation performed depends on which
+area of the event is being dragged:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The start extremity – when dragged,
+resizes the event by modifying its start time. </div>
+</li><li class="itemizedlistItem"><div class="para">The end extremity – when dragged,
+resizes the event by modifying its end time.</div>
+</li><li class="itemizedlistItem"><div class="para">The body of the event – when
+dragged, moves the event.</div></li></ul></div>
+</li><li class="orderedlistItem"><div class="para">The Calendar dispatches the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#event:itemEditBegin" class="bluelink">itemEditBegin</a></span> calendar event and shows the editing tool tip. You
+can use this calendar event to prepare data for editing.</div>
+<div class="para">The next two steps can be repeated any number of times
+while the user is dragging with the mouse; only once if the keyboard
+is used..</div>
+<div class="para">For details of the editing tool tip, see <a href="ps_elixir_enterprise70.html" class="bluelink">Defining tool tips</a></div>
+</li><li class="orderedlistItem"><div class="para">The user moves or resizes the event.</div>
+</li><li class="orderedlistItem"><div class="para">The Calendar dispatches the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#event:itemEditMove" class="bluelink">itemEditMove</a></span> or <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#event:itemEditResize" class="bluelink">itemEditResize</a></span> calendar event. You can use
+these calendar events to modify the event that is being edited.</div>
+<div class="para">For more information, see <a href="ps_elixir_enterprise76.html#section1216913714441" class="bluelink">Enforcing a minimum duration when resizing events</a>.</div>
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">In month mode, a long event cannot be resized into a
+short event.</div>
+</div>
+</li><li class="orderedlistItem"><div class="para">The user ends the editing session. Typically
+the event editing session ends when the user releases the mouse button.</div>
+</li><li class="orderedlistItem"><div class="para">The Calendar dispatches the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#event:itemEditEnd" class="bluelink">itemEditEnd</a></span> calendar event to update the data item and Calendar.
+You can use  this calendar event to modify the event item or update
+the data item in a custom way.</div><div class="para">For more
+information, see <a href="ps_elixir_enterprise76.html#section1216913730379" class="bluelink">Updating the data provider item using a custom date format</a>.</div>
+</li><li class="orderedlistItem"><div class="para">The event that was being edited is updated
+in the Calendar.</div></li></ol></div>
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">When the keyboard is used, the editing process is similar
+to event editing mode except that only one ITEM _EDIT_MOVE or ITEM_EDIT_RESIZE
+event is dispatched. With keyboard editing, the granularity is given
+by the time slot duration.</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise68.html" class="bluelink">Event editing</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise70.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise72.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

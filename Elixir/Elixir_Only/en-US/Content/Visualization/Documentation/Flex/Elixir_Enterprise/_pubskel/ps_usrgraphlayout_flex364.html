@@ -1,0 +1,54 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Choosing a layout algorithm</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex363.html" class="breadcrumb">Typical ways to choose a layout</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex364.html" class="breadcrumb">Choosing a layout algorithm</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex363.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex365.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Choosing a layout algorithm</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The choice of the appropriate algorithm for a graph can
+be done either by the end user at run time or by the programmer when
+he develops the application. This process can be <span class="italics">semiautomatic</span>, when the user is involved<span class="italics">, </span>or <span class="italics">automatic</span>, when the application does everything
+with no user intervention.  </div>
+<div class="para">As a programmer of applications, you can choose <a href="ps_usrgraphlayout_flex364.html#usrgraphlayout.uss_graphlay_layouts.1242849" class="bluelink">Semiautomatic layout</a> to involve
+the end user in the choice of the layout, or <a href="ps_usrgraphlayout_flex364.html#usrgraphlayout.uss_graphlay_layouts.1014518" class="bluelink">Automatic layout</a>, in which
+case the application does everything with no end user action. </div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1242849">
+<h2 class="heading">Semiautomatic layout</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">For applications using a semiautomatic layout, the choice
+of the layout algorithm is done by the end user. The application can
+provide a menu or some other way to select the layout algorithm.  </div>
+<div class="para">In some cases, this may be an iterative process. The
+user may try different layout algorithms with different values for
+the parameters and/or may apply manual refinements to find the best
+layout. The application may possibly provide some help using textual
+explanations or by automatically checking the graph to find out to
+which class it belongs. For example, to detect whether the graph that
+has been attached to a layout instance is a tree, the <code class="code">IlvGraphLayoutUtil</code> class provides the method:    </div>
+<pre class="programlisting">
+static boolean IsTree(IlvGraphLayout layout, Object startNode) 
+</pre>
+<div class="para">For details on this method, see  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayoutUtil.html#IsTree(ilog.views.graphlayout.IlvGraphLayout, java.lang.Object)" class="bluelink">IsTree</a></span>. See also Attaching/detaching a grapher.  </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1014518">
+<h2 class="heading">Automatic layout</h2>
+
+
+<div class="sectionContent">
+<div class="para">If an automatic layout is needed, the choice of the layout
+algorithm can be: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Chosen dynamically at run time by means
+of heuristics or rules to determine the appropriate layout algorithm
+depending on the structure and/or size of the graph </div>
+</li><li class="itemizedlistItem"><div class="para">Hard-coded if the developer knows what
+types of graphs will be used and can determine the appropriate layout
+algorithm.</div></li></ul></div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex363.html" class="bluelink">Typical ways to choose a layout</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex363.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex365.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

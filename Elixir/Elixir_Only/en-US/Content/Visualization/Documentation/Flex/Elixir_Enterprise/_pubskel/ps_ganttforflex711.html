@@ -1,0 +1,188 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Configuring heat map data</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex703.html" class="breadcrumb">Heat maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex710.html" class="breadcrumb">Configuring heat maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex711.html" class="breadcrumb">Configuring heat map data</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex710.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex712.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Configuring heat map data</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e120027">
+
+
+
+
+
+<div class="section">
+<h2 class="heading">Heat map data provider</h2>
+<div class="sectionContent">
+<div class="para">A heat map component gets its data from a data provider,
+which contains a list of points to be displayed.</div>
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">A heat map data provider can be one of the following
+types:</div>
+</div><dl class="descriptionlist"><dt class="term">XML</dt><dd class="descriptionlistItem"><div class="para">A string containing valid XML text or
+any of the following objects containing valid E4X format XML data: <code class="code">&lt;mx:XML&gt;</code> or <code class="code">&lt;mx:XMLList&gt;</code> compile-time tag or an <code class="code">XML</code> or <code class="code">XMLList</code> object.</div></dd><dt class="term">IList or ICollectionView </dt><dd class="descriptionlistItem"><div class="para">An object that implements the <span class="apiname">IList</span> or <span class="apiname">ICollectionView</span> interface, such as an instance of the <span class="apiname">ArrayCollection</span> class or the <span class="apiname">XMLListCollection</span> class,
+with a data provider that conforms to the structure specified in either
+of these items.</div></dd><dt class="term">Other objects </dt><dd class="descriptionlistItem"><div class="para">An array of items or an object.</div>
+</dd></dl></div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">When setting the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/heatmap/HeatMapBase.html#dataProvider" class="bluelink">dataProvider</a></span> property the heat map control
+modifies its internal representation of the task data as follows:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apiname">XML</span> or <span class="apiname">XMLList</span> are wrapped in an instance
+of <span class="apiname">XMLListCollection</span></div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apiname">IList</span> or <span class="apiname">ICollectionView</span> are used directly.</div>
+</li><li class="itemizedlistItem"><div class="para">An <span class="apiname">Array</span> object is wrapped in an instance of <span class="apiname">ArrayCollection</span></div></li><li class="itemizedlistItem"><div class="para">An <span class="trademark">ActionScript®
+            </span> object of any other data type is
+wrapped in an <span class="apiname">ArrayCollection</span> using
+an <span class="apiname">Array</span> containing the object as
+its sole entry.</div></li></ul></div>
+<div class="para">For example, you pass an <span class="apiname">Array</span> to the data provider specified in the <span class="apiname">dataProvider</span> property. If you read the data back from the data provider it is
+returned as an instance of <span class="apiname">ArrayCollection</span>. The best practice when your event data can change dynamically is
+to use a collection, which provides the necessary notifications of
+changes.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Configuring the field mappings </h2>
+<div class="sectionContent">
+<div class="para">By default, the heat map component looks for the <code class="code">x</code>, <span class="apiname">y</span>, and <span class="apiname">value</span> fields of the objects provided by the data
+provider to get the coordinates and values of the point. You can change
+the fields to look for by setting the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/heatmap/HeatMapBase.html#xField" class="bluelink">xField</a></span>, <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/heatmap/HeatMapBase.html#yField" class="bluelink">yField</a></span>, and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/heatmap/HeatMapBase.html#valueField" class="bluelink">valueField</a></span> properties. These properties determine the name
+of the field in the data provider object that matches the  <code class="code">x</code>, <span class="apiname">y</span>, or <span class="apiname">value</span> field respectively.</div>
+<div class="para">In the following example, the fields of the data provider
+elements used for <code class="code">x</code>, <span class="apiname">y</span>, and <span class="apiname">value</span> are <code class="code">a</code>, <code class="code">b</code>and <code class="code">v</code> respectively.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"  
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                layout="absolute"&gt;
+&lt;mx:Script&gt;
+  &lt;![CDATA[
+    [Bindable]
+    private var dp:Array = [
+      {a:15.6, b:227.8, v:25.9}, {a:30.1, b:153.9, v:43.8},
+      {a:82.4,  b:272.0, v:44.0},{a:165.3, b:299.1, v:52.5},
+      {a:192.8, b:104.3, v:86.6}, {a:131.2, b:137.3, v:82.2},
+      {a:190.4, b:270.6, v:66.6},{a:253.9, b:17.1, v:57.1},
+      {a:9.8,   b:79.3, v:24.1}, {a:330.9, b:290.9, v:30.8},
+      {a:94.5,  b:174.7, v:71.2}, {a:193.7, b:242.3, v:76.3},
+      {a:157.7, b:196.5, v:83.7}, {a:376.5, b:130.8, v:39.6},
+      {a:333.7, b:184.0, v:59.6}, {a:277.7, b:76.0, v:71.6}, 
+      {a:351.1, b:29.1, v:30.0},  {a:188.4, b:174.2, v:88.8},
+      {a:379.5, b:208.9, v:32.9}, {a:70.4,  b:40.9, v:44.1}
+    ];
+  ]]&gt;
+&lt;/mx:Script&gt;
+
+  &lt;ilog:ValuedHeatMap width="100%" 
+                      height="100%" 
+                      xField="a" 
+                      yField="b" 
+                      valueField="v"
+                      dataProvider="{dp}"&gt;    
+    &lt;ilog:colorModel &gt;
+     &lt;ilog:ColorModel&gt;
+      &lt;ilog:ColorEntry color="0x0000ff" limit="0" /&gt;
+      &lt;ilog:ColorEntry color="0x00ff00" limit="50" /&gt;
+      &lt;ilog:ColorEntry color="0xff0000" limit="100" alpha="1"/&gt;
+     &lt;/ilog:ColorModel&gt;
+    &lt;/ilog:colorModel&gt;
+  &lt;/ilog:ValuedHeatMap&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Using a reference rectangle</h2>
+<div class="sectionContent">
+<div class="para">If you want the heat map component to center your data
+points in the component automatically, set the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/heatmap/HeatMapBase.html#referenceRectangle" class="bluelink">referenceRectangle</a></span> property. The component uses the position and size
+of the reference rectangle to determine which data points are included
+in the heat map. It translates and scales the coordinates of the data
+points in the reference rectangle to fit into the component. If a
+null rectangle is specified, the raw data points are displayed.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                 xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                 layout="absolute" xmlns:geom="flash.geom.*"&gt;
+   &lt;ilog:DensityHeatMap width="100%" height="100%" id="heatMap"&gt;
+   &lt;ilog:referenceRectangle&gt;
+     &lt;geom:Rectangle x="120" y="110" width="130" height="120" /&gt;
+   &lt;/ilog:referenceRectangle&gt;
+     &lt;ilog:dataProvider&gt;
+       &lt;mx:XMLList&gt;
+         &lt;point x="179.8" y="148.5" /&gt;&lt;point x="108.0" y="144.1" /&gt;
+         &lt;point x="221.2" y="184.2" /&gt;&lt;point x="235.8" y="141.5" /&gt;
+         &lt;point x="198.0" y="145.4" /&gt;&lt;point x="99.5" y="177.6" /&gt;
+         &lt;point x="225.3" y="134.1" /&gt;&lt;point x="160.1" y="158.7" /&gt;
+         &lt;point x="118.3" y="142.3" /&gt;&lt;point x="262.6" y="152.9" /&gt;
+         &lt;point x="173.4" y="68.2" /&gt; &lt;point x="235.3" y="159.1" /&gt;
+         &lt;point x="169.6" y="158.8" /&gt;&lt;point x="159.7" y="140.9" /&gt;
+         &lt;point x="222.7" y="215.1" /&gt;&lt;point x="154.2" y="150.5" /&gt;
+         &lt;point x="203.9" y="148.0" /&gt;&lt;point x="140.0" y="163.6" /&gt;
+         &lt;point x="216.0" y="141.2" /&gt;&lt;point x="199.2" y="102.3" /&gt;
+       &lt;/mx:XMLList&gt;
+     &lt;/ilog:dataProvider&gt;
+     &lt;ilog:colorModel &gt;
+      &lt;ilog:ColorModel&gt;
+       &lt;ilog:ColorEntry color="0x0000ff" limit="0" alpha="0"/&gt;
+       &lt;ilog:ColorEntry color="0x00ff00" limit="50" /&gt;
+       &lt;ilog:ColorEntry color="0xff0000" limit="120" /&gt;
+      &lt;/ilog:ColorModel&gt;
+     &lt;/ilog:colorModel&gt;
+   &lt;/ilog:DensityHeatMap&gt;
+&lt;/mx:Application&gt;</pre>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Using a data function </h2>
+<div class="sectionContent">
+<div class="para">You can set a data function to transform the coordinates
+and values found in the data provider yourself by setting the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/heatmap/HeatMapBase.html#dataFunction" class="bluelink">dataFunction</a></span> property. The data function must have the following
+signature: <code class="code">dataFunction(o:Object):Object</code>. An original object is passed to the data function and the caller
+of the data function expects a new object to be returned.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                 xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                 layout="absolute"&gt;
+
+   &lt;mx:Script&gt;
+     &lt;![CDATA[
+       private function dataF(o:XML):Object {
+         var x:Number = o["@x"];
+         var y:Number = o["@y"];
+         var ret:XML = o.copy();
+         ret["@x"] = 50 + x * width / 500;
+         ret["@y"] = 50 + y * height / 500;
+         return ret;
+       }
+     ]]&gt;
+   &lt;/mx:Script&gt;
+
+   &lt;ilog:DensityHeatMap width="100%" height="100%" id="heatMap"
+     dataFunction="dataF" &gt;
+     &lt;ilog:dataProvider&gt;
+       &lt;mx:XMLList&gt;
+         &lt;point x="179.8" y="148.5" /&gt;&lt;point x="108.0" y="144.1" /&gt;
+         &lt;point x="221.2" y="184.2" /&gt;&lt;point x="235.8" y="141.5" /&gt;
+         &lt;point x="198.0" y="145.4" /&gt;&lt;point x="99.5" y="177.6" /&gt;
+         &lt;point x="225.3" y="134.1" /&gt;&lt;point x="160.1" y="158.7" /&gt;
+         &lt;point x="118.3" y="142.3" /&gt;&lt;point x="262.6" y="152.9" /&gt;
+         &lt;point x="173.4" y="68.2" /&gt; &lt;point x="235.3" y="159.1" /&gt;
+         &lt;point x="169.6" y="158.8" /&gt;&lt;point x="159.7" y="140.9" /&gt;
+         &lt;point x="222.7" y="215.1" /&gt;&lt;point x="154.2" y="150.5" /&gt;
+         &lt;point x="203.9" y="148.0" /&gt;&lt;point x="140.0" y="163.6" /&gt;
+         &lt;point x="216.0" y="141.2" /&gt;&lt;point x="199.2" y="102.3" /&gt;
+       &lt;/mx:XMLList&gt;
+     &lt;/ilog:dataProvider&gt;
+     &lt;ilog:colorModel &gt;
+      &lt;ilog:ColorModel&gt;
+       &lt;ilog:ColorEntry color="0x0000ff" limit="0" alpha="0"/&gt;
+       &lt;ilog:ColorEntry color="0x00ff00" limit="50" /&gt;
+       &lt;ilog:ColorEntry color="0xff0000" limit="120" /&gt;
+      &lt;/ilog:ColorModel&gt;
+     &lt;/ilog:colorModel&gt;
+   &lt;/ilog:DensityHeatMap&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex710.html" class="bluelink">Configuring heat maps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex710.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex712.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

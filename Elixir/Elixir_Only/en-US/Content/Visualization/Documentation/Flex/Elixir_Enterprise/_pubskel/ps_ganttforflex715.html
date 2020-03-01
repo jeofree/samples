@@ -1,0 +1,133 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Configuring a MapHeatMap component</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex703.html" class="breadcrumb">Heat maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex710.html" class="breadcrumb">Configuring heat maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex715.html" class="breadcrumb">Configuring a MapHeatMap component</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex714.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex716.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Configuring a MapHeatMap component</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e120961">
+
+
+
+
+<div class="para">To configure the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/heatmap/MapHeatMap.html" class="bluelink">MapHeatMap</a></span> component, you have to configure the embedded map
+and heat map components.</div>
+<div class="section">
+<h2 class="heading">MapHeatMap parameters</h2>
+<div class="sectionContent">
+<div class="para">The parameters available depend on the type of heat map.
+See <a href="ps_ganttforflex713.html#section1221134057384" class="bluelink">ValuedHeatMap parameters</a> or <a href="ps_ganttforflex714.html#section1221134070337" class="bluelink">DensityHeatMap parameters</a>.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">MapHeatMap rendering options</h2>
+<div class="sectionContent">
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">A map heat map allows you to vary the following extra
+rendering options:</div>
+</div><dl class="descriptionlist"><dt class="term">clipToMap</dt><dd class="descriptionlistItem"><div class="para">To clip the heat map, set the <span class="apiname">clipToMap</span> property. When using a <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/heatmap/MapHeatMap.html" class="bluelink">MapHeatMap</a></span> component, you can clip the
+drawing of the heat map precisely to the map using the <span class="apiname">clipToMap</span> property. When this property is set to <code class="code">true</code>, the heat map is clipped to the map contour.</div>
+</dd><dt class="term">resample</dt><dd class="descriptionlistItem"><div class="para">To get more precise rendering when using
+a <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/heatmap/DensityHeatMap.html" class="bluelink">DensityHeatMap</a></span> component with the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/heatmap/MapHeatMap.html" class="bluelink">MapHeatMap</a></span> component, set the <span class="apiname">resample</span> property. This property recomputes the  bitmap instead of just resizing
+it after a zoom operation. As recomputing the bitmap is more time-consuming
+than resizing it, setting this property to <code class="code">true</code> will slow down the display of the component.</div>
+</dd></dl></div>
+<div class="para">The following code sample shows a <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/heatmap/MapHeatMap.html" class="bluelink">MapHeatMap</a></span> component containing a <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/maps/WorldCountriesMap.html" class="bluelink">WorldCountriesMap</a></span> component with a randomly filled <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/heatmap/DensityHeatMap.html" class="bluelink">DensityHeatMap</a></span> component. The <span class="apiname">clipToMap</span> and <span class="apiname">resample</span> properties are controlled by two check boxes.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                 layout="absolute"
+                 xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                 xmlns:local="*" &gt;
+&lt;mx:Script&gt;
+   &lt;![CDATA[
+     import mx.graphics.SolidColor;
+     import mx.collections.ArrayCollection;
+     import ilog.maps.MapBase;
+
+     private var _numPoints:int = 300;
+     private var _points:ArrayCollection = null;
+
+     private function randRange(min:Number, max:Number):Number {
+       var r:Number = Math.random();
+       return r * (max - min) + min;
+     }
+
+     private function randomLongLat():ArrayCollection {
+       if(_points == null) {
+         var ret:Array = [];
+         for(var i:int = 0; i &lt; _numPoints; i++) {
+           var o:Object = new Object();
+           o.x = randRange(-180, 180);
+           o.y = randRange(-90, 90);
+           ret.push(o);
+         }
+         _points = new ArrayCollection(ret);
+       }
+       return _points;
+     }
+
+     private function convert(o:Object):Object {
+       var lon:Number = o.x;
+       var lat:Number = o.y;
+       var p:Point = new Point(o.x, o.y);
+       p = map.latLongToCanvas(p);
+       p = map.drawingCanvas.localToGlobal(p);
+       p = heat.globalToLocal(p);
+       o.x = p.x;
+       o.y = p.y;
+       return o;
+     }
+
+     private function click(e:Event):void {
+       heat.dataProvider = randomLongLat();
+     }
+
+   ]]&gt;
+&lt;/mx:Script&gt;
+&lt;mx:Canvas width="100%" height="100%"&gt;
+
+   &lt;ilog:MapHeatMap width="100%" height="100%"
+                    clipToMap="{clip.selected}"
+                    id="mapheatmap"
+                    resample="{resample.selected}"&gt;
+     &lt;ilog:map&gt;
+       &lt;local:World_countriesMap id="map"
+                                 allowNavigation="true"
+                                 fill="0x21177D"
+                                 stroke="0x008E8E"
+                                 backgroundFill="{new 
+SolidColor(0xCFCCED, 0)}" &gt;
+         &lt;local:filters&gt;
+           &lt;mx:DropShadowFilter distance="10" color="0"/&gt;
+         &lt;/local:filters&gt;
+       &lt;/local:World_countriesMap&gt;
+     &lt;/ilog:map&gt;
+     &lt;ilog:heatMap&gt;
+       &lt;ilog:DensityHeatMap pointValue="200"
+                            id="heat"
+                            mouseEnabled="false"
+                            dataProvider="{randomLongLat()}"
+                            pointSize="25"&gt;
+         &lt;ilog:colorModel&gt;
+           &lt;ilog:ColorModel&gt;
+             &lt;ilog:entries&gt;
+               &lt;ilog:ColorEntry color="0x000fff" limit="0" alpha="0"/&gt;
+               &lt;ilog:ColorEntry color="0x00fff0" limit="{255 / 3}" 
+alpha="0.3"/&gt;
+               &lt;ilog:ColorEntry color="0x0fff00" limit="{2 * 255 / 3}" 
+alpha="0.6" /&gt;
+               &lt;ilog:ColorEntry color="0xfff000" limit="255" alpha="1"/&gt;
+             &lt;/ilog:entries&gt;
+           &lt;/ilog:ColorModel&gt;
+         &lt;/ilog:colorModel&gt;
+       &lt;/ilog:DensityHeatMap&gt;
+
+     &lt;/ilog:heatMap&gt;
+   &lt;/ilog:MapHeatMap&gt;
+   &lt;mx:CheckBox id="clip" label="Clip" left="20" bottom="5" /&gt;
+   &lt;mx:CheckBox id="resample" label="Resample" left="100" bottom="5" /&gt;
+&lt;/mx:Canvas&gt;
+&lt;/mx:Application&gt;</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex710.html" class="bluelink">Configuring heat maps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex714.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex716.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

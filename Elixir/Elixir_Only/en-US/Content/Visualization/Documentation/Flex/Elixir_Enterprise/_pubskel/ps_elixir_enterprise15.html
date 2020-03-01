@@ -1,0 +1,34 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Deploying an IBM ILOG ElixirDiagram application</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise6.html" class="breadcrumb">Introduction</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise15.html" class="breadcrumb">Deploying an IBM <span class="classificationVariable">ILOG Elixir</span><span class="classificationVariable">Diagram</span> application</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise14.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise16.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Deploying an IBM <span class="classificationVariable">ILOG Elixir</span><span class="classificationVariable">Diagram</span> application</h1></div></div><div class="content">
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">You can deploy your IBM® <span class="classificationVariable">ILOG Elixir</span><span class="classificationVariable">Diagram</span> application just like any other <span class="trademark">Adobe®
+            </span> <span class="trademark">Flex®
+            </span> application, see <span class="italics">Deploying Flex Applications</span> in the <span class="italics">Application Deployment</span> <span class="trademark">Adobe®
+            </span> documentation for more
+information.</div>
+<div class="para">If your application makes use of many IBM <span class="classificationVariable">ILOG Elixir</span><span class="classificationVariable">Diagram</span> features, use a Runtime
+Shared Library (RSL) to cache the entire library on the client browser
+instead of linking with the subset you are using.</div>
+<div class="para">For example, enter the following command line:</div>
+<pre class="programlisting">
+mxmlc -library-path+=&lt;installation-dir&gt;/frameworks/libs/ilog-
+elixir.swc,&lt;installation-dir&gt;/frameworks/locale/en-US/ilog-elixir_rb.swc -
+runtime-shared-libraries=ilog-elixir.swf myElixirApplication.mxml
+</pre>
+<div class="para">Use the RSL Shock Wave File (SWF) located in the directory: <code class="code">&lt;installation-dir&gt;/frameworks/rsls/ilog-elixir.swf</code>.</div>
+<div class="para">Alternatively, compile your application with an RSL by
+using Adobe Flash Builder 4 and choosing
+the RSL option when you add the library to your project. For more
+information on RSL see <span class="italics">Using Runtime
+Shared Libraries</span> in the <span class="italics">Application Development</span>  <span class="trademark">Adobe®
+            </span> documentation.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise6.html" class="bluelink">Introduction</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise14.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise16.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

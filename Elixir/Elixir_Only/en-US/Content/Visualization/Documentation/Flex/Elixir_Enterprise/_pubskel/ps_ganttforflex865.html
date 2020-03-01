@@ -1,0 +1,45 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Color transition effect</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex809.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex849.html" class="breadcrumb">MX Maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex864.html" class="breadcrumb">Using built-in effects in a map</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex865.html" class="breadcrumb">Color transition effect</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex864.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex866.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Color transition effect</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The color transition effect allows a smooth color transition
+when the color of a state or a country is changed. This effect only
+works for property values that are of type <code class="code">SolidColor</code>.</div>
+<div class="para">You can activate this effect by setting the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/maps/MapBase.html#style:animationDuration" class="bluelink">animationDuration</a></span> style property to a positive value. This property
+is the duration of the effect, in milliseconds. When the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/maps/MapBase.html#style:animationDuration" class="bluelink">animationDuration</a></span> style property is set, the <code class="code">setStyle()</code> method of the map or of the <code class="code">mapFeature</code> triggers the transition effect, provided that the old and new values
+are of the type <code class="code">SolidColor</code>.</div>
+<div class="para">Using this effect you can provide a smooth transition
+between the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/maps/MapBase.html#style:fill" class="bluelink">fill</a></span>,  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/maps/MapBase.html#style:highlightFill" class="bluelink">highlightFill</a></span>,  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/maps/MapBase.html#style:stroke" class="bluelink">stroke</a></span>, and  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/maps/MapBase.html#style:highlightStroke" class="bluelink">highlightStroke</a></span> style properties.</div>
+<div class="para">The following code shows how to trigger a color transition
+effect for the entire map.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+  xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.graphics.SolidColor;
+      import ilog.maps.MapBase;
+      import ilog.maps.MapEvent;
+      private function click(e:MapEvent):void {
+        var sc:SolidColor = new SolidColor(0xff0000);          
+        map.setStyle(MapBase.FILL, sc);
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:WorldCountriesMap mapItemClick="click(event)" id="map"
+    animationDuration="1000" width="100%" height="100%" /&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex864.html" class="bluelink">Using built-in effects in a map</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex864.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex866.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

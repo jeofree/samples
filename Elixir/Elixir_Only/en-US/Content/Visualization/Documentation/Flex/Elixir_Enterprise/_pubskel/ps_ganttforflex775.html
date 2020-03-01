@@ -1,0 +1,193 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Example of printing with multipage controls</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex739.html" class="breadcrumb">Organization Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex771.html" class="breadcrumb">Printing organization charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex775.html" class="breadcrumb">Example of printing with multipage controls</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex774.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex776.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Example of printing with multipage controls</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e130259">
+
+
+
+
+
+
+
+<div class="para">The following example prints an organization chart on
+multiple pages. It also shows how you can put information on top pages
+and left pages.</div>
+<div class="para">This example uses the technique of selectively showing
+and hiding the top and left labels, depending on the page being printed.</div>
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">The application consists of the following files:</div>
+</div><dl class="descriptionlist"><dt class="term">The application file </dt><dd class="descriptionlistItem"><div class="para">This file displays the chart to the
+user with a <span class="guicommand">Print</span> button. The
+file includes the code to initialize the view, to get the data, and
+to handle the print request. It uses the <span class="apiname">FormPrintView</span> MXML component as a template for the printed output. </div>
+</dd><dt class="term">The print output component file </dt><dd class="descriptionlistItem"><div class="para">The print output component file, <span class="filename">FormPrintView.mxml</span>, formats the printed output.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para"><span class="filename">FormPrintView.mxml</span> has two major elements: </div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The print output template, which includes
+the <span class="apiname">PrintOrgChart</span> control and uses
+two labels for left and top pages.</div></li><li class="itemizedlistItem"><div class="para">The <span class="apiname">showLabel()</span> function, which determines which sections of the template to include
+in a particular page of the output, based on the page type: top or
+left.</div></li></ul></div>
+</dd></dl></div>
+<div class="para">This example also adds a watermark on pages to print
+the relative position of each page. For example, the first page shows: <span class="literal">Row: 1 – Column: 1</span>.</div>
+<div class="para">The following code shows the application file for the
+multipage printing example.</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:ilog="http://www.ilog.com/2007/ilog/flex" xmlns:printing="ilog.printing.*"
+  backgroundColor="0xFFFFFF" backgroundGradientAlphas="[]"&gt;
+
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+  import mx.containers.VBox;
+  import mx.controls.Label;
+  import mx.containers.Canvas;
+  import mx.printing.FlexPrintJobScaleType;
+  import mx.printing.FlexPrintJob;
+
+  // The function to print the output.
+  public function doPrint():void
+  {
+    // Create a FlexPrintJob instance.
+    var printJob:FlexPrintJob = new FlexPrintJob();
+    printJob.printAsBitmap = false;
+    // Start the print job.
+    if (printJob.start() == false)
+      return; 
+    // Create a FormPrintView control 
+    // as a child of the application.
+    var thePrintView:FormPrintView = new FormPrintView();
+    addChild(thePrintView);
+  
+    // Set the data provider of the FormPrintView 
+    // component's DataGrid to be the data provider of 
+    // the displayed DataGrid.
+    thePrintView.chart.dataProvider = chart.dataProvider;
+          
+    // Set the print view properties.
+    thePrintView.width=printJob.pageWidth;
+    thePrintView.height=printJob.pageHeight;
+    thePrintView.validateNow();
+      
+    // Queue first page  
+    printJob.addObject(thePrintView);
+          
+    while (thePrintView.chart.validNextPage)
+    {
+      thePrintView.chart.nextPage();
+      thePrintView.row = thePrintView.chart.currentRow + 1;
+      thePrintView.column = thePrintView.chart.currentColumn + 1;
+      
+      // Relayout the print view
+      if (thePrintView.chart.currentRow == 0)
+        thePrintView.showLabel(thePrintView.topLabel, true)
+      else
+        thePrintView.showLabel(thePrintView.topLabel, false)
+  
+      if (thePrintView.chart.currentColumn == 0)
+        thePrintView.showLabel(thePrintView.leftLabel, true)
+      else
+        thePrintView.showLabel(thePrintView.leftLabel, false)
+  
+      // Queue the additional page.
+      printJob.addObject(thePrintView);
+    }
+    
+    // All pages are queued; remove the FormPrintView 
+    // control to free memory.
+    removeChild(thePrintView);    
+    // Send the job to the printer.
+    printJob.send();
+  }
+      
+  [Bindable]      
+  private var xml:XML = 
+      &lt;person layout="standard" name="Marion Daignan" email="mdaignan@mycompany.com" phone="4155550012" mobilePhone="4155550013" fax="4155550014" instantMessager="mdaignan" position="PrincipalArchitect" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="sick"&gt;
+        &lt;person layout="standard" name="Pierre Brenkle" email="pbrenkle@mycompany.com" phone="4155550015" mobilePhone="4155550016" fax="4155550017" instantMessager="pbrenkle" position="Architect" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="vacation"&gt;
+          &lt;person layout="bothHanging" name="Marianne Beach" email="mbeach@mycompany.com" phone="4155550018" mobilePhone="4155550019" fax="4155550020" instantMessager="mbeach" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="present"&gt;
+            &lt;person layout="standard" name="Anne Caretta" email="acaretta@mycompany.com" phone="4155550021" mobilePhone="4155550022" fax="4155550023" instantMessager="acaretta" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="unknown"/&gt;
+            &lt;person layout="standard" name="Jacob Boute" email="jboute@mycompany.com" phone="4155550024" mobilePhone="4155550025" fax="4155550026" instantMessager="jboute" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="present"/&gt;
+            &lt;person layout="standard" name="Robert Cassard" email="rcassard@mycompany.com" phone="4155550027" mobilePhone="4155550028" fax="4155550029" instantMessager="rcassard" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="present"/&gt;
+            &lt;person layout="standard" name="Amelia Barcelo" email="abarcelo@mycompany.com" phone="4155550030" mobilePhone="4155550031" fax="4155550032" instantMessager="abarcelo" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="present"/&gt;
+            &lt;person layout="standard" name="Martin Baader" email="mbaader@mycompany.com" phone="4155550033" mobilePhone="4155550034" fax="4155550035" instantMessager="mbaader" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="travel"&gt;
+              &lt;person layout="standard" name="Sarah Dumull" email="sdumull@mycompany.com" phone="4155550081" mobilePhone="4155550082" fax="4155550083" instantMessager="sdumull" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="present"&gt;
+                &lt;person layout="standard" name="Eugenie Baspie" email="ebaspie@mycompany.com" phone="4155550084" mobilePhone="4155550085" fax="4155550086" instantMessager="ebaspie" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="present"/&gt;
+              &lt;/person&gt;
+            
+            &lt;/person&gt;
+          &lt;/person&gt;
+          &lt;person layout="rightHanging" name="Francis Avila" email="favila@mycompany.com" phone="4155550036" mobilePhone="4155550037" fax="4155550038" instantMessager="favila" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="present"&gt;
+                        &lt;person layout="standard" name="Vitta Dowling" email="vdowling@mycompany.com" phone="4155550072" mobilePhone="4155550073" fax="4155550074" instantMessager="vdowling" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="present"/&gt;
+            &lt;person layout="standard" name="John Fleury" email="jfleury@mycompany.com" phone="4155550075" mobilePhone="4155550076" fax="4155550077" instantMessager="jfleury" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="travel"/&gt;
+            &lt;person layout="standard" name="Lina Bouny" email="lbouny@mycompany.com" phone="4155550078" mobilePhone="4155550079" fax="4155550080" instantMessager="lbouny" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="present"/&gt;
+
+            &lt;person layout="standard" name="Vitta Bonche" email="vbonche@mycompany.com" phone="4155550039" mobilePhone="4155550040" fax="4155550041" instantMessager="vbonche" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="travel"/&gt;
+          &lt;/person&gt;
+        &lt;/person&gt;
+        &lt;person layout="standard" name="Bartholomew Dutrey" email="bdutrey@mycompany.com" phone="4155550042" mobilePhone="4155550043" fax="4155550044" instantMessager="bdutrey" position="Architect" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="present"&gt;
+          &lt;person layout="rightHanging" name="Basile Bronpard" email="bbronpard@mycompany.com" phone="4155550045" mobilePhone="4155550046" fax="4155550047" instantMessager="bbronpard" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="present"&gt;
+            &lt;person layout="standard" name="Michel Cabs" email="mcabs@mycompany.com" phone="4155550048" mobilePhone="4155550049" fax="4155550050" instantMessager="mcabs" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="present"/&gt;
+            &lt;person layout="standard" name="Elicia Christmann" email="echristmann@mycompany.com" phone="4155550051" mobilePhone="4155550052" fax="4155550053" instantMessager="echristmann" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="present"/&gt;
+            &lt;person layout="standard" name="Patrick Brill" email="pbrill@mycompany.com" phone="4155550054" mobilePhone="4155550055" fax="4155550056" instantMessager="pbrill" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="present"/&gt;
+            &lt;person layout="standard" name="Philo Canning" email="pcanning@mycompany.com" phone="4155550057" mobilePhone="4155550058" fax="4155550059" instantMessager="pcanning" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="present"/&gt;
+            &lt;person layout="standard" name="Allan Smith Arnault" email="aarnault@mycompany.com" phone="4155550060" mobilePhone="4155550061" fax="4155550062" instantMessager="aarnault" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="present"/&gt;
+          &lt;/person&gt;
+          &lt;person layout="rightHanging" name="Rene Bichler" email="rbichler@mycompany.com" phone="4155550063" mobilePhone="4155550064" fax="4155550065" instantMessager="rbichler" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="travel"&gt;
+            &lt;person layout="rightHanging" name="Sarah Dumull" email="sdumull@mycompany.com" phone="4155550081" mobilePhone="4155550082" fax="4155550083" instantMessager="sdumull" position="Developer" location="San Francisco" businessUnit="rnd" timeZone="GMT-8" presenceIndicator="present"&gt;
+            &lt;/person&gt;
+          &lt;/person&gt;
+        &lt;/person&gt;
+      &lt;/person&gt;;
+    ]]&gt;
+    
+  &lt;/mx:Script&gt;
+    &lt;ilog:OrgChart id="chart" width="100%" height="100%" dataProvider="{xml}"
+      initialPosition="fitToContents"/&gt;     
+   &lt;mx:Button click="doPrint()" label="Print"/&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">The following code shows the custom print component file
+for the multipage printing example.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" 
+  xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+  visible="false" includeInLayout="false" horizontalAlign="center"
+  creationComplete="showLabel(leftLabel); showLabel(topLabel)"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      [Bindable]
+      public var row:Number = 1;
+      [Bindable]
+      public var column:Number = 1;
+      
+      public function showLabel(label:Label, value:Boolean = false):void
+      {
+        label.visible = label.includeInLayout = false;
+        validateNow();
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  
+  &lt;mx:Label text="TOP" id="topLabel"/&gt;
+  &lt;mx:HBox width="100%" height="100%" verticalAlign="middle"&gt;
+    &lt;mx:Label text="LEFT" id="leftLabel"/&gt;
+    &lt;mx:Canvas width="100%" height="100%"&gt;
+      &lt;ilog:PrintOrgChart width="100%" height="100%" id="chart" 
+        printingScalingFactor="1.0" allowBoxCut="false" scale="2"&gt;
+            &lt;ilog:itemRenderer&gt;
+              &lt;mx:Component&gt;
+                &lt;ilog:OrgChartItemRenderer highlightDuration="500" fontAntiAliasType="advanced" fontGridFitType="none"
+                  borderColor="0"/&gt;
+              &lt;/mx:Component&gt;
+            &lt;/ilog:itemRenderer&gt;        
+      &lt;/ilog:PrintOrgChart&gt;      
+      &lt;mx:Label color="0xCCCCCC" text="{'Row: ' + row + ' Column: ' + column}"/&gt;
+    &lt;/mx:Canvas&gt;    
+  &lt;/mx:HBox&gt;
+&lt;/mx:VBox&gt;
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex771.html" class="bluelink">Printing organization charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex774.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex776.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

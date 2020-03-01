@@ -1,0 +1,34 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Implementing the layout method</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="HowTo"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex470.html" class="breadcrumb">Using advanced features</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex478.html" class="breadcrumb">Defining your own type of layout</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex480.html" class="breadcrumb">Implementing the layout method</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex479.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex481.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Implementing the layout method</h1></div></div><div class="content">
+
+
+
+
+
+
+<div class="proceduralTopicContent">
+<div class="summary">
+
+<div class="para">Depending on the characteristics of the layout algorithm,
+some of the steps required may be different or unnecessary, or other
+steps may be needed. </div>
+<div class="para">Depending on the particular implementation of your layout
+algorithm, other methods of the <code class="code">IlvGraphLayout</code> class may need to be overridden. For instance, if your subclass
+supports some of the generic parameters of the base class, you must
+override the <code class="code">supports[ParameterName]</code> method
+(see <a href="ps_usrgraphlayout_flex369.html" class="bluelink">Base class parameters and features</a>). For further
+information about the class  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html" class="bluelink">IlvGraphLayout</a></span>, refer to the API reference documentation. </div>
+
+<div class="para">To implement the <code class="code">layout</code> method
+in the sample custom layout algorithm:  </div>
+</div>
+
+<div class="expectedResult">
+<div class="para">Once you have implemented your own layout algorithm <code class="code">MyRandomLayout</code>, you can use it  directly in <span class="trademark">Java™
+            </span>.</div>
+
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex478.html" class="bluelink">Defining your own type of layout</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex479.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex481.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

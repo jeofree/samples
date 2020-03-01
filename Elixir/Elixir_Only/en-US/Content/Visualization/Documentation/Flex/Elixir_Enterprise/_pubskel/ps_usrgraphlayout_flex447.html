@@ -1,0 +1,174 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>For experts: special options of the Long LL</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex437.html" class="breadcrumb">Link layout (LL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex447.html" class="breadcrumb">For experts: special options of the Long LL</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex446.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex448.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">For experts: special options of the Long LL</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The Link Layout algorithm utilizes the class <code class="code">IlvLongLinkLayout</code> as subalgorithm.  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/link/longlink/IlvLongLinkLayout.html" class="bluelink">IlvLongLinkLayout</a></span> is a subclass of <code class="code">IlvGraphLayout</code> and can be used a stand-alone as well. To access the instance of <code class="code">IlvLongLinkLayout</code> that is used by the Link Layout algorithm,
+use the method:  </div>
+<pre class="programlisting">
+IlvLongLinkLayout getLongLinkLayout();  
+</pre>
+<div class="para">Using this accessor, you can control many special features
+of the Long Link Layout that are not made available by the <code class="code">IlvLinkLayout</code> class because these features are for
+experts only.  </div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043876">
+<h2 class="heading">Specifying additional obstacles</h2>
+
+
+
+<div class="sectionContent">
+<div class="para">The Long Link Layout algorithm considers nodes to be
+obstacles that cannot be overlapped and links to be obstacles that
+can be crossed at an angle of 90 degree (approximately, if the link
+style is direct), but that cannot be overlapped. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1043898"><div class="mediaobject"><img src="../../../GraphLayout/_media/link-linknodeoverlap107_default.gif" alt="A link&#xA;first overlapping a node, then crossing another link, then overlapping&#xA;another link" class="imagedata"/></div><div class="caption">Crossing and overlapping</div></div>
+<div class="example">
+<div class="title">Example of specifying additional obstacles (Link Layout
+algorithm)</div>
+<div class="exampleContent">
+<div class="para">If an application requires additional obstacles that
+are not links or nodes, these can be specified as follows: </div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043911">
+<h2 class="heading">Penalties for variable end points</h2>
+
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">If the termination points of the links are not fixed,
+the algorithm uses a heuristic to calculate the termination points
+of each link. It examines all free grid points that are close to the
+border of the start and end node and assigns a penalty to each grid
+point. If a node-side filter is installed, the penalty depends on
+whether the node side is allowed or rejected.</div>
+<div class="para"> A more precise way to affect how the termination points
+are chosen is the termination point filter. This enables the user
+to specify the penalty for each grid point.</div>
+
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043924">
+<h2 class="heading">Manipulating the routing phases</h2>
+
+
+
+<div class="sectionContent">
+<div class="para">As mentioned in <a href="ps_usrgraphlayout_flex440.html#usrgraphlayout.uss_graphlay_layouts.1043067" class="bluelink">Long Link Layout algorithm</a>, the algorithm
+first treats each link individually and then applies a crossing reduction
+phase to all links. To find a route for an individual link, the algorithm
+first checks whether a routing (such as a straight line or with only
+one bend) is possible. If this kind of routing is not possible, it
+uses a sophisticated, but more time consuming, grid search algorithm
+with backtracking to find a route with many bends. </div>
+<div class="example">
+<div class="title">Example of manipulating the routing phases (Link Layout
+algorithm)</div>
+<div class="exampleContent">
+<div class="para">To switch off the phase that finds a straight-line or one-bend routing: </div>
+</div>
+
+
+</div>
+<div class="para">The backtrack search for a route with many bends can
+be affected in the several ways. </div>
+<div class="para">A more convenient way is to specify the maximum time
+available to search for the route for each link. </div>
+<div class="example">
+<div class="title">Example of specifying backtrack steps (Link Layout algorithm)</div>
+<div class="exampleContent">
+<div class="para">You can specify the maximum number of backtrack steps
+by using the following: </div>
+</div>
+
+
+</div>
+<div class="example">
+<div class="title">Example of specifying maximum time for route search
+(Link Layout algorithm)</div>
+<div class="exampleContent">
+<div class="para">To specify the maximum time available to search for the
+route for each link.</div>
+</div>
+
+
+</div>
+<div class="para">Finally, you can specify how many steps should be done
+during the crossing reduction phase. </div>
+<div class="example">
+<div class="title">Example of specifying number of steps in crossin reduction
+phase (Link Layout algorithm)</div>
+<div class="exampleContent">
+<div class="para">To specify how many steps should be done during the crossing
+reduction phase: </div>
+</div>
+
+
+</div>
+<div class="example">
+<div class="title">Example of disabling crossing reduction (Link Layout
+algorithm)</div>
+<div class="exampleContent">
+<div class="para">You can disable the crossing reduction completely by
+using the following: </div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1247741">
+<h2 class="heading">Fallback mechanism</h2>
+
+
+
+<div class="sectionContent">
+<div class="para">The Long Link Layout algorithm may not be able to find
+a routing for a link, if one of the end nodes is inside an enclave.
+In <a href="ps_usrgraphlayout_flex447.html#usrgraphlayout.uss_graphlay_layouts.1043956" class="bluelink">A node inside an enclave</a>, the red
+node is inside an enclave. In this case, the backtrack search algorithm
+fails to find a routing without overlapping nodes. The backtrack search
+algorithm may also fail if the situation is so complex that the search
+exceeds the allowed time per link. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1043956"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Link-enclave127_default.gif" alt="A link&#xA;that overlaps a node to connect to a node inside an enclave" class="imagedata"/></div><div class="caption">A node inside an enclave</div></div>
+<div class="para">When the backtrack search algorithm fails to find a routing,
+a simple fallback mechanism is applied that creates a routing with
+a node overlap.</div>
+<div class="example">
+<div class="title">Example of disabling fallback mechanism (Link Layout
+algorithm)</div>
+<div class="exampleContent">
+<div class="para">To disable the fallback mechanism: </div>
+</div>
+
+
+</div>
+<div class="para">If the fallback mechanism is disabled, these links are
+not routed at all and remain in the same shape as before the layout.
+In Java code, you can retrieve the links that could not be routed
+in the usual way without the fallback mechanism.</div>
+<div class="example">
+<div class="title">Example of retrieving links without the fallback mechanism
+(Link Layout algorithm)</div>
+<div class="exampleContent">
+<div class="para">To retrieve the links that, without the fallback mechanism,
+could not be routed in the usual way : </div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex437.html" class="bluelink">Link layout (LL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex446.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex448.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

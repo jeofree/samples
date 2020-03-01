@@ -1,0 +1,78 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>The RectangularTrackRenderer class</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex809.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex810.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex821.html" class="breadcrumb">Building custom gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex836.html" class="breadcrumb">Custom rectangular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex839.html" class="breadcrumb">The visual elements of rectangular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex844.html" class="breadcrumb">The RectangularTrackRenderer class</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex843.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex845.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">The RectangularTrackRenderer class</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e146048">
+
+
+
+
+
+<div class="para">A track renderer is a class that draws a range of arbitrary
+values with arbitrary start and end thicknesses. It can be filled
+with a gradient or with a solid color. It is used on a scale to indicate
+that a value enters a given value range.</div>
+<div class="paragroup">
+<div class="title">Customizing the geometry of a RectangularTrackRenderer</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The geometry of a <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularTrackRenderer.html" class="bluelink">RectangularTrackRenderer</a></span> is controlled by the following
+properties:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularTrackRenderer.html#minimum" class="bluelink">minimum</a></span> — Defines the value that
+corresponds to the start position of the track.</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularTrackRenderer.html#maximum" class="bluelink">maximum</a></span> — Defines the value that
+corresponds to the end position of the track.</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularTrackRenderer.html#startThickness" class="bluelink">startThickness</a></span> — The thickness of the
+track at the start position.</div></li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularTrackRenderer.html#endThickness" class="bluelink">endThickness</a></span> — The thickness of the
+track at the end position.</div></li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularTrackRenderer.html#placement" class="bluelink">placement</a></span> — The position of the
+track relative to its bounds.</div></li></ul></div>
+<div class="para"><span class="apiname">startThickness</span> and <span class="apiname">endThickness</span> can be expressed in pixels or as a
+percentage of the renderer's height (horizontal gauges) or renderer's
+width (vertical gauges).</div>
+</div>
+<div class="paragroup">
+<div class="title">Customizing the colors of a RectangularTrackRenderer</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The <span class="apiname">RectangularTrackRenderer</span> supports two fill modes:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Solid color — This is the default
+mode. The style properties <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularTrackRenderer.html#style:rendererColor" class="bluelink">rendererColor</a></span> and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularTrackRenderer.html#style:rendererAlpha" class="bluelink">rendererAlpha</a></span> are used to fill the track.</div>
+</li><li class="itemizedlistItem"><div class="para">Color gradients — Fill the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularTrackRenderer.html#gradientEntries" class="bluelink">gradientEntries</a></span> array with <span class="apiname">GradientEntry</span> instances to obtain a linear gradient extending from the start position
+to the end position.</div></li></ul></div>
+<div class="para">The following code example shows different scenarios
+of track renderers:</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                backgroundColor="0xFFFFFF"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.graphics.*;
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:RectangularGauge width="100%" height="150"&gt;
+    &lt;ilog:scales&gt;
+      &lt;ilog:RectangularLinearScale/&gt;
+    &lt;/ilog:scales&gt;
+    &lt;ilog:elements&gt;
+      &lt;ilog:RectangularScaleRenderer y="33%" height="33%"         
+         showLabels="false"/&gt;
+      &lt;ilog:RectangularTrackRenderer y="0%" height="30%"
+        minimum="0" maximum="50"
+        placement="trailing"
+        rendererColor="0x0000FF" stroke="{new Stroke(0xAAAAAA, 2)}"/&gt;
+      &lt;ilog:RectangularTrackRenderer y="69%" height="30%"
+        minimum="50" maximum="100"
+        placement="leading" startThickness="33%"&gt;
+        &lt;ilog:gradientEntries&gt;
+          &lt;mx:GradientEntry color="0xFF0000" ratio="0"/&gt;
+          &lt;mx:GradientEntry color="0x00FF00" ratio="1"/&gt;          
+        &lt;/ilog:gradientEntries&gt;
+      &lt;/ilog:RectangularTrackRenderer&gt;     
+    &lt;/ilog:elements&gt;
+  &lt;/ilog:RectangularGauge&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex839.html" class="bluelink">The visual elements of rectangular gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex843.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex845.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

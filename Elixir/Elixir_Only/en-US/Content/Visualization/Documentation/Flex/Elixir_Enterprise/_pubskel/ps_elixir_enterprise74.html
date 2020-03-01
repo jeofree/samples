@@ -1,0 +1,48 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Determining the kind of edit in an event listener</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise39.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise68.html" class="breadcrumb">Event editing</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise74.html" class="breadcrumb">Determining the kind of edit in an event listener</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise73.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise75.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Determining the kind of edit in an event listener</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">When the user starts editing an event, the <span class="apiname">Calendar</span> component determines the kind of edit operation
+from the item area where the user clicked. In the body of the event
+listeners for the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#event:itemEditBegin" class="bluelink">itemEditBegin</a></span>, <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#event:itemEditMove" class="bluelink">itemEditMove</a></span>, <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#event:itemEditResize" class="bluelink">itemEditResize</a></span>, and <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#event:itemEditEnd" class="bluelink">itemEditEnd</a></span> events, you can determine the
+kind of edit and then handle it accordingly.</div>
+<div class="para">The <span class="apiname">Calendar</span> class defines
+the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#editKind" class="bluelink">editKind</a></span> property, which contains a value that indicates
+the type of edit operation in progress. The <span class="apiname">editKind</span> property has the values defined in the class <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/CalendarItemEditKind.html" class="bluelink">CalendarItemEditKind</a></span>.</div>
+<div class="caption">Values of the editKind property</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead"><colgroup align="left" span="1">
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr bgcolor="#BFD6E7">
+<th valign="top" rowspan="1" colspan="1">Value</th>
+<th valign="top" rowspan="1" colspan="1">Description</th>
+</tr>
+</thead><tbody valign="top">
+<tr>
+<td rowspan="1" colspan="1">MOVE</td>
+<td rowspan="1" colspan="1">Specifies that the user has clicked in the body of the
+event and is moving the event. You may get this value for <span class="apiname">itemEditBegin</span>, <span class="apiname">itemEditMove</span> and <span class="apiname">itemEditEnd</span> events.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">RESIZE_END</td>
+<td rowspan="1" colspan="1">Specifies that the user has clicked the end extremity of
+the event and is resizing it by changing the end time. You may get
+this value for <span class="apiname">itemEditBegin</span>, <span class="apiname">itemEditResize</span> and <span class="apiname">itemEditEnd</span> events.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">RESIZE_START</td>
+<td rowspan="1" colspan="1">Specifies that the user has clicked the start extremity
+of the event and is resizing it by changing the start time. You may
+get this value for <span class="apiname">itemEditBegin</span>, <span class="apiname">itemEditResize</span> and <span class="apiname">itemEditEnd</span> events.</td>
+</tr>
+</tbody></table>
+<div class="para">The following example shows how to retrieve the kind
+of edit within an event listener.</div>
+<pre class="programlisting">  private function onItemEditBegin(event:CalendarEvent):void {
+    var editKind:String = Calendar(event.target).editKind;
+        //...
+  }</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise68.html" class="bluelink">Event editing</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise73.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise75.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

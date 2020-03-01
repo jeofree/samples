@@ -1,0 +1,41 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Using a link connection box interface (TL)</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex379.html" class="breadcrumb">Tree Layout (TL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex385.html" class="breadcrumb">Layout modes of the TL algorithm</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex386.html" class="breadcrumb">Free layout mode</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex392.html" class="breadcrumb">Using a link connection box interface (TL)</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex391.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex393.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Using a link connection box interface (TL)</h1></div></div><div class="content">
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">Sometimes it may be necessary to place the connection
+points on a rectangle smaller or larger than the bounding box, possibly
+in a nonsymmetric way. For instance, this can happen when labels are
+displayed below or above nodes.  </div>
+<div class="para">You can modify the position of the connection points
+of the links by providing a class that implements the  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvLinkConnectionBoxInterface.html" class="bluelink">IlvLinkConnectionBoxInterface</a></span>. An example for the implementation of a link connection
+box interface is in <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1017739" class="bluelink">Link connection box</a>. To set a
+link connection box interface in <span class="trademark">Java™
+            </span>, call:  </div>
+<pre class="programlisting">
+void setLinkConnectionBoxInterface(IlvLinkConnectionBoxInterface interface) 
+</pre>
+<div class="para">The link connection box interface provides each node
+with a link connection box and a tangential shift offset that defines
+how much the connection points are “shifted” tangentially
+depending on which side the links connect.  </div>
+<div class="para">The following figure illustrates the effects of customizing
+the connection box when the connector style is evenly spaced. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1199389"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-38online42_default.gif" alt="Three&#xA;pictures of the same graph to show the customizing of the connection&#xA;box when the connector style is evenly spaced" class="imagedata"/></div><div class="caption">Effect of connection box interface</div></div>
+<div class="para">On the left is the result without any connection box
+interface. The middle picture shows the effect if the connection box
+interface returns the dashed rectangle for the blue node but the tangential
+offset at all sides of the node is 0. Notice that the outgoing links
+are spaced according to the dashed rectangle, which appears too wide
+for the blue node in this situation. The picture on the right shows
+the effect of the connection box interface if, in addition, a positive
+tangential offset was specified for the bottom side and a negative
+offset was specified for the left side of the blue node.  </div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex386.html" class="bluelink">Free layout mode</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex391.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex393.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,40 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Sizing a printed organization chart</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="HowTo"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex739.html" class="breadcrumb">Organization Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex771.html" class="breadcrumb">Printing organization charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex774.html" class="breadcrumb">Sizing a printed organization chart</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex773.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex775.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Sizing a printed organization chart</h1></div></div><div class="content">
+
+
+<div class="proceduralTopicContent" id="d0e130116">
+
+
+
+<div class="summary">
+<div class="para">The <span class="apiname">printingScalingFactor</span> property allows you to change the size of the printed chart. By
+default this property is set to <code class="code">1.0</code>, which
+means the printing area will have a size of <span class="apiname">modelWidth</span> by <span class="apiname">modelHeight</span>. The example settings
+are as follows: size 500x300, to be printed on pages of size 300x500,
+with <span class="apiname">allowBoxCut</span> set to <code class="code">true</code>.</div>
+</div>
+<div class="procedure">
+<div class="procedureContent"><div class="procedureIntro">
+<div class="para">To print an organization chart with the example property
+settings :</div>
+</div><ol class="steps"><li class="step">
+<div class="stepContent">
+<div class="para">Set <span class="apiname">printingScalingMode</span> to <code class="code">1.0</code>.</div>
+<div class="para">You will need 2 pages (1 row of 2 pages) to print your
+chart.</div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Set <span class="apiname">printingScalingFactor</span> to <code class="code">2.0</code>.</div>
+<div class="para">Your chart will have a size of (2*<span class="apiname">modelWidth</span> x 2*<span class="apiname">modelHeight</span>) = (1000 x 600).</div>
+</div>
+</li></ol></div>
+</div>
+<div class="expectedResult">
+<div class="para">You will need 4 rows and 2 columns of pages for a total
+of 8 pages to print your chart.</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex771.html" class="bluelink">Printing organization charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex773.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex775.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

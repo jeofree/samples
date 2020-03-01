@@ -1,0 +1,93 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>For experts: more indices (HL)</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex414.html" class="breadcrumb">Hierarchical Layout (HL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex435.html" class="breadcrumb">For experts: more indices (HL)</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex434.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex436.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">For experts: more indices (HL)</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The Hierarchical Layout allows you to specify the level
+index and the position index of a node. </div>
+
+<div class="para">How these indices are used depends on the graph topology
+and the additional constraints. For example, the specified level index
+can be in conflict with some  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/hierarchical/IlvLevelRangeConstraint.html" class="bluelink">IlvLevelRangeConstraint</a></span> or  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/hierarchical/IlvSameLevelConstraint.html" class="bluelink">IlvSameLevelConstraint</a></span>.  In this case, the constraint priorities determine
+how the conflict is resolved (see <a href="ps_usrgraphlayout_flex433.html" class="bluelink">Constraint priorities (HL)</a>). If the
+incremental mode is switched on, the specified node level and position
+index are ignored, since the incremental mode tries to preserve old
+node positions. It is also possible to obtain the indices of nodes
+that were calculated during layout.   </div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1029714">
+<h2 class="heading">Calculated level index</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm allows you to access the level index
+that was calculated for a node by a previous layout. To do this, use
+the method: </div>
+<pre class="programlisting">
+int getCalcNodeLevelIndex(Object node)    
+</pre>
+<div class="para">If the node was never laid out, this method returns <code class="code">-1</code>. Otherwise, it returns the previous level index
+of the node.  </div>
+
+
+<pre class="programlisting">
+int index = layout.getCalcNodeLevelIndex(node); 
+layout.setSpecNodeLevelIndex(node, index);
+</pre>
+<div class="para">When this is done, it ensures that the node is placed
+at the same level as in the previous layout. </div>
+<div class="para">If the graph is detached from the layout algorithm, the
+calculated level index of a node is set back to <code class="code">-1</code>.  </div>
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para"> You should be aware of the difference between the methods  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/hierarchical/IlvHierarchicalLayout.html#getCalcNodeLevelIndex(java.lang.Object)" class="bluelink">getCalcNodeLevelIndex</a></span> and  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/hierarchical/IlvHierarchicalLayout.html#getSpecNodeLevelIndex(java.lang.Object)" class="bluelink">getSpecNodeLevelIndex</a></span>. The first one returns the level index calculated
+by the previous layout. The second one returns the specified level
+index, even if there was no previous layout.   </div>
+<div class="para">For instance, consider two nodes A and B. Node A has
+no specified level index and node B has a specified level index 5.
+Before the first layout, the method <code class="code">getCalcNodeLevelIndex</code> returns -1 for both nodes because the levels have not been calculated
+yet. However, <code class="code">getSpecNodeLevelIndex</code> returns
+-1 for A and 5 for B. After the first layout, node A may be placed
+at level 4. Now, <code class="code">getCalcNodeLevelIndex</code> returns
+4 for node A and 5 for node B and <code class="code">getSpecNodeLevelIndex</code> still returns -1 for A and 5 for B.  </div>
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1029723">
+<h2 class="heading">Calculated position index</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm allows you to access the position
+index within a level that was calculated for a node by a previous
+layout. To do this, use the method: </div>
+<div class="para"> <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/hierarchical/IlvHierarchicalLayout.html#getCalcNodePositionIndex(java.lang.Object)" class="bluelink">getCalcNodePositionIndex</a></span></div>
+<div class="para">If the node was never laid out, this method returns -1.
+Otherwise, it returns the previous position index of the node within
+its level.  </div>
+
+
+<pre class="programlisting">
+layout.setSpecNodeLevelIndex(node,
+    layout.getCalcNodeLevelIndex(node));
+</pre>
+<div class="para">This example code works only if the generic connected
+component layout is disabled and the port sides <code class="code">EAST</code> or <code class="code">WEST</code> are not used in the layout. </div>
+<div class="para">If the graph is detached from the layout algorithm, the
+calculated position index of a node is set back to -1. </div>
+
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">You should be aware of the difference between the methods <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/hierarchical/IlvHierarchicalLayout.html#getCalcNodePositionIndex(java.lang.Object)" class="bluelink">getCalcNodePositionIndex</a></span> and <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/hierarchical/IlvHierarchicalLayout.html#setSpecNodePositionIndex(java.lang.Object,int)" class="bluelink">setSpecNodePositionIndex</a></span>.The first one returns the position
+index calculated by the previous layout and -1 if there was no previous
+layout. The second one returns the specified position index even if
+there was no previous layout. This behavior is similar to the behavior
+of the specified and calculated level index (see <a href="ps_usrgraphlayout_flex435.html#usrgraphlayout.uss_graphlay_layouts.1029714" class="bluelink">Calculated level index</a>). </div>
+</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex414.html" class="bluelink">Hierarchical Layout (HL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex434.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex436.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

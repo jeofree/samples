@@ -1,0 +1,61 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Hiding resource columns</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex497.html" class="breadcrumb">Gantt resource charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex502.html" class="breadcrumb">Configuring a resource chart control</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex503.html" class="breadcrumb">Hiding resource columns</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex502.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex504.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Hiding resource columns</h1></div></div><div class="content">
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">To hide a column you can set its <span class="apiname">visible</span> property to <code class="code">false</code> as shown in the following
+example.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+  
+      [Bindable]
+      public var resources:ArrayCollection = new ArrayCollection([
+        { id: "R1", name: "Project Manager", location: "Geneva" }
+      ]);
+        
+      [Bindable]
+      public var tasks:ArrayCollection = new ArrayCollection([
+        { resourceId: "R1", name: "Define project vision",
+          startTime: "1/14/2008 8:0:0", endTime: "1/15/2008 17:0:0" },
+        { resourceId: "R1", name: "Refine project vision",
+          startTime: "1/16/2008 8:0:0", endTime: "1/17/2008 17:0:0" },
+        { resourceId: "R1", name: "Assess project vision",
+          startTime: "1/18/2008 8:0:0", endTime: "1/21/2008 17:0:0" }
+      ]);
+    ]]&gt;  
+  &lt;/mx:Script&gt;
+
+  &lt;ilog:ResourceChart id="resourceChart" width="100%" height="100%" 
+                      resourceDataProvider="{resources}"
+                      taskDataProvider="{tasks}"&gt;
+    &lt;ilog:dataGrid&gt;
+      &lt;ilog:GanttDataGrid&gt;
+        &lt;ilog:columns&gt;
+          &lt;mx:AdvancedDataGridColumn dataField="name" 
+                                     headerText="Name"/&gt;
+          &lt;mx:AdvancedDataGridColumn dataField="location" 
+                                     headerText="Location"
+                                     visible="false"/&gt;
+        &lt;/ilog:columns&gt;
+      &lt;/ilog:GanttDataGrid&gt;
+    &lt;/ilog:dataGrid&gt;
+  &lt;/ilog:ResourceChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">In this example, you display only the <span class="literal">Name</span> column in the Gantt data grid, which is mapped
+from the <code class="code">name</code> property of a resource. The <span class="literal">Location</span> column is no longer displayed.</div>
+<div class="para">See <span class="italics">Hiding and displaying
+columns</span> in <span class="italics">Creating
+a DataGrid control</span> in <span class="italics">Adobe Flex 4 Developer’s Guide</span> for more
+information.</div>
+
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex502.html" class="bluelink">Configuring a resource chart control</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex502.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex504.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,72 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>The MarkerRenderer class</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex809.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex810.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex821.html" class="breadcrumb">Building custom gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex836.html" class="breadcrumb">Custom rectangular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex839.html" class="breadcrumb">The visual elements of rectangular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex842.html" class="breadcrumb">The MarkerRenderer class</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex841.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex843.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">The MarkerRenderer class</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e145652">
+
+
+
+
+<div class="para">The marker renderer is a visual element responsible for
+rendering the marker of the gauge. It references a logical scale to
+point to the position defined by its <span class="apiname">value</span> property using a specific shape. A marker can also be represented
+by an external asset, see <a href="ps_ganttforflex847.html" class="bluelink">The RectangularGaugeAsset class</a>.</div>
+<div class="paragroup">
+<div class="title">Customizing the geometry of a MarkerRenderer</div>
+<div class="para">The thickness of the marker shape is determined by the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/MarkerRenderer.html#thickness" class="bluelink">thickness</a></span> property, expressed in pixels
+or in a percentage of the renderer width, if the gauge is horizontal,
+or height, if the gauge is vertical. </div>
+<div class="para">The length of the marker shape is determined by the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/MarkerRenderer.html#length" class="bluelink">length</a></span>  property, expressed in pixels
+or in a percentage of the renderer height, if the gauge is horizontal,
+or width, if the gauge is vertical.  </div>
+<div class="para">The placement of the marker shape inside the marker bounds
+is determined by the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/MarkerRenderer.html#placement" class="bluelink">placement</a></span> property which can be set to <code class="code">leading</code>, <code class="code">trailing</code>, or <code class="code">middle</code>.  </div>
+<div class="para">A marker renderer can have a rectangular shape or an
+arrow shape. This is defined using the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/MarkerRenderer.html#style:form" class="bluelink">form</a></span> style property of the renderer. </div>
+<div class="para">When the marker renderer has an arrow shape, it is drawn
+as an arrow pointing to the direction which corresponds to its placement.
+If the placement is <code class="code">middle</code> then a dual
+arrow pointing in both directions is drawn. For example, if the gauge
+is horizontal and the <span class="apiname">MarkerRenderer</span> placement is <code class="code">trailing</code>, then the arrow
+is drawn at the bottom, pointing to the bottom  direction. If the
+gauge is horizontal and the <span class="apiname">MarkerRenderer</span> placement is <code class="code">leading</code>, then the arrow
+is drawn at the left side, pointing to the left direction. </div>
+<div class="para">You can subclass the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/MarkerRenderer.html" class="bluelink">MarkerRenderer</a></span> class to redefine its <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/MarkerRenderer.html#drawMarker()" class="bluelink">drawMarker</a></span> method and draw another kind
+of marker.</div>
+<div class="para">The following example shows two options to customize
+the marker geometry.</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                backgroundColor="0xFFFFFF"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.graphics.SolidColor;
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:RectangularGauge width="100%" height="100"&gt;
+    &lt;ilog:scales&gt;
+      &lt;ilog:RectangularLinearScale/&gt;
+    &lt;/ilog:scales&gt;
+    &lt;ilog:elements&gt;
+      &lt;ilog:RectangularScaleRenderer showLabels="false" height="50%"/&gt;
+      &lt;ilog:MarkerRenderer y="50%" height="50%" value="0"
+        thickness="2%"
+        placement="leading" form="arrow"
+        editable="true" mouseMode="shape"
+        fill="{new SolidColor(0xAA0000)}" /&gt; 
+      &lt;ilog:MarkerRenderer value="20" height="50%"
+        length="80%" thickness="10"
+        editable="true" mouseMode="shape"
+        fill="{new SolidColor(0xAAAA00)}" /&gt;
+    &lt;/ilog:elements&gt;
+  &lt;/ilog:RectangularGauge&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">The fill and stroke of a marker can also be changed with
+the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/MarkerRenderer.html#style:fill" class="bluelink">fill</a></span> and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/MarkerRenderer.html#style:stroke" class="bluelink">stroke</a></span> style properties.</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex839.html" class="bluelink">The visual elements of rectangular gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex841.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex843.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

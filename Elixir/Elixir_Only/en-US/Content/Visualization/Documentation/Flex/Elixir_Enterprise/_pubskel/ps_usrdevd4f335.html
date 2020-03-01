@@ -1,0 +1,224 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Managing diagram events</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f312.html" class="breadcrumb">Creating a graph display from data providers using the Diagram
+class</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f335.html" class="breadcrumb">Managing diagram events</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f334.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f336.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Managing diagram events</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">A Diagram control can fire several kinds of specific
+events in response to user interactions or data changes. You can create
+an event handler for each of these events.   For example, if you register
+a listener for an elementClick event on a Diagram class, this listener
+is called every time an element (node, link or subgraph) is clicked.
+The listener can then access the data for this element.   You can
+listen to the following Diagram data events:</div>
+<table border="1" cellpadding="4" cellspacing="0" class="ShadedHead"><colgroup align="left" span="1">
+<col span="1"/>
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr bgcolor="#BFD6E7">
+<th valign="top" rowspan="1" colspan="1">Diagram data event</th>
+<th valign="top" rowspan="1" colspan="1">Type</th>
+<th valign="top" rowspan="1" colspan="1">Description</th>
+</tr>
+</thead><tbody valign="top">
+<tr>
+<td rowspan="1" colspan="1">selectionChange</td>
+<td rowspan="1" colspan="1">DiagramEvent </td>
+<td rowspan="1" colspan="1">Indicates when selection in the diagram was changed. </td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">nodeRemove</td>
+<td rowspan="1" colspan="1">GraphEvent </td>
+<td rowspan="1" colspan="1">Indicates that a node was removed from the diagram.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">nodeOpening </td>
+<td rowspan="1" colspan="1">DiagramEvent </td>
+<td rowspan="1" colspan="1">Indicates when a branch open or close operation is initiated.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">nodeOpen</td>
+<td rowspan="1" colspan="1">DiagramEvent </td>
+<td rowspan="1" colspan="1">Indicates that a branch in the diagram was opened or expanded. </td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">nodeMove</td>
+<td rowspan="1" colspan="1">DiagramNodeMoveEvent </td>
+<td rowspan="1" colspan="1">Indicates that nodes are moved using the mouse pointer.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">nodeClose</td>
+<td rowspan="1" colspan="1">DiagramEvent </td>
+<td rowspan="1" colspan="1">Indicates that a branch in the diagram was closed or collapsed. </td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">nodeAdd</td>
+<td rowspan="1" colspan="1">GraphEvent </td>
+<td rowspan="1" colspan="1">Indicates that a node was added to the diagram. </td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">linkRemove</td>
+<td rowspan="1" colspan="1">GraphEvent </td>
+<td rowspan="1" colspan="1">Indicates that a link was removed from the diagram. </td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">linkAdd </td>
+<td rowspan="1" colspan="1">GraphEvent </td>
+<td rowspan="1" colspan="1">Indicates that a link was added to the diagram. </td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">graphRemove </td>
+<td rowspan="1" colspan="1">GraphEvent </td>
+<td rowspan="1" colspan="1">Indicates that a subgraph was removed from the diagram. </td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">graphAdd </td>
+<td rowspan="1" colspan="1">GraphEvent </td>
+<td rowspan="1" colspan="1">Indicates that a subgraph was added to the diagram. </td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">elementRollOver</td>
+<td rowspan="1" colspan="1">GraphEvent </td>
+<td rowspan="1" colspan="1">Indicates that the user rolled the pointer over an element
+in the control. </td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">elementRollOut </td>
+<td rowspan="1" colspan="1">GraphEvent </td>
+<td rowspan="1" colspan="1">Indicates that the user rolled the pointer out of an element
+in the control. </td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">elementGeometryChange</td>
+<td rowspan="1" colspan="1">GraphEvent </td>
+<td rowspan="1" colspan="1">Indicates that a node, link or subgraph was moved or resized. </td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">elementDoubleClick</td>
+<td rowspan="1" colspan="1">GraphEvent </td>
+<td rowspan="1" colspan="1">Indicates that the user double-clicked the pointer over
+an element in the control.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">elementClick</td>
+<td rowspan="1" colspan="1">GraphEvent </td>
+<td rowspan="1" colspan="1">Indicates that the user has clicked the pointer over an
+element in the control. </td>
+</tr>
+</tbody></table>
+<div class="para">The following code example shows an interaction when
+an element is clicked:</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+  xmlns:s="library://ns.adobe.com/flex/spark"
+  xmlns:mx="library://ns.adobe.com/flex/halo"
+  xmlns:ibm="http://www.ibm.com/xmlns/prod/ilog/flex/diagram/2010" &gt;
+
+&lt;fx:Script&gt;
+
+&lt;![CDATA[
+
+import mx.controls.Alert;
+
+import com.ibm.ilog.diagram.GraphEvent;
+
+public function displayElementInfo(event:GraphEvent):void
+{
+  Alert.show("You have clicked on " + event.element.data);
+}
+
+]]&gt;
+
+&lt;/fx:Script&gt;
+
+&lt;ibm:Diagram id="diagView"
+  labelField="name"
+  startNodeField="startNode"
+  endNodeField="endNode"
+  width="100%"
+  height="100%"
+  elementClick="displayElementInfo(event)" /&gt;
+
+</pre>
+<div class="para">You can also register an event listener in ActionScript
+as illustrated below:</div>
+<pre class="programlisting">diagram.addEventListener(GraphEvent.ELEMENT_CLICK, displayElementInfo);
+</pre>
+<div class="para">The following code example shows how to listen to node
+move events in order to prevent nodes from being placed outside an
+area. The DiagramNodeMoveEvent class allows you to modify the x and
+y coordinates of the node movement, as well as to veto a node movement:</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+  xmlns:s="library://ns.adobe.com/flex/spark"
+  xmlns:mx="library://ns.adobe.com/flex/halo"
+  xmlns:ibm="http://www.ibm.com/xmlns/prod/ilog/flex/diagram/2010" &gt;
+
+&lt;fx:Script&gt;
+
+&lt;![CDATA[
+
+import com.ibm.ilog.diagram.DiagramNodeMoveEvent;
+
+import com.ibm.ilog.diagram.Node;
+
+private var minX:Number = 0;
+private var minY:Number = 0;
+private var maxX:Number = 200;
+private var maxY:Number = 200;
+
+/**
+ * This listener function verifies if the node was moved outside
+ * an area. If this is the case, the node is not moved and the
+ * operation is vetoed.
+ */
+public function applyNodeMove(event:DiagramNodeMoveEvent):void
+{
+  if (event.x &lt; minX) {
+    event.x = minX;
+    event.veto = true;
+  }
+  if (event.x &gt; maxX) {
+    event.x = maxX;
+    event.veto = true;
+  }
+  
+  if (event.y &lt; minY) {
+    event.y = minY;
+    event.veto = true;
+  }
+
+  if (event.y &gt; maxY) {
+    event.y = maxY;
+    event.veto = true;
+  }
+
+  if (event.isInteractionEnd) {
+    // This is the last interaction, so save position now
+    var node:Node = event.node;
+    node.data.@x = event.x;
+    node.data.@y = event.y;
+  }
+
+}
+
+]]&gt;
+
+&lt;/fx:Script&gt;
+
+&lt;ibm:Diagram id="diagView"
+  labelField="name"
+  startNodeField="startNode"
+  endNodeField="endNode"
+  width="100%"
+  height="100%"
+  nodeMove="applyNodeMove(event)" /&gt;
+
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f312.html" class="bluelink">Creating a graph display from data providers using the Diagram
+class</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f334.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f336.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

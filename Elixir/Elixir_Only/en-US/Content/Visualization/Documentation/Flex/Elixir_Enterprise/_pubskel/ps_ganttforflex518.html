@@ -1,0 +1,78 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Styles for resource charts</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex497.html" class="breadcrumb">Gantt resource charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex517.html" class="breadcrumb">Styling a resource chart</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex518.html" class="breadcrumb">Styles for resource charts</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex517.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex519.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Styles for resource charts</h1></div></div><div class="content">
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">In addition to the styles provided by its base types,
+the resource chart provides a set of styles that can be used to customize
+the rendering of its inner components and tasks:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apiname">dataGridStyleName</span> – the name of the style used by the Gantt data grid</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apiname">ganttSheetStyleName</span> – the name of the style used by the Gantt sheet</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apiname">milestoneItemStyleName</span> – the name of the style used by the task item renderers for
+milestones</div></li><li class="itemizedlistItem"><div class="para"><span class="apiname">taskItemStyleName</span> – the name of the style used by the task item renderers for
+tasks</div></li><li class="itemizedlistItem"><div class="para"><span class="apiname">timeScaleStyleName</span> – the name of the style used by the time scale</div>
+</li></ul></div>
+<div class="para">By default the style names for task item renderers depends
+on whether the task item is a milestone or not. You can override this
+behavior by providing a custom function in the Gantt sheet property <span class="apiname">itemStyleNameFunction</span>.The following example in MXML
+shows how you can customize these styles.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Style&gt;
+    .myGanttSheetStyle {
+      workingColor : blue;
+    }
+    .myDataGridStyle {
+      rollOverColor : red;
+    }
+    .myTimeScaleStyle {
+      rollOverColor : red;      
+    }
+    .myTaskItemStyle {
+      rollOverColor : red;      
+    }
+  &lt;/mx:Style&gt;
+
+  &lt;mx:Script&gt;
+    &lt;![CDATA[ 
+      import mx.collections.ArrayCollection;
+  
+      [Bindable]
+      public var resources:ArrayCollection = new ArrayCollection([
+        { id: "R1", name: "Project Manager", location: "Geneva" }
+      ]);
+        
+      [Bindable]
+      public var tasks:ArrayCollection = new ArrayCollection([
+        { resourceId: "R1", name: "Define project vision",
+          startTime: "1/14/2008 8:0:0", endTime: "1/15/2008 17:0:0" },
+        { resourceId: "R1", name: "Refine project vision",
+          startTime: "1/16/2008 8:0:0", endTime: "1/17/2008 17:0:0" },
+        { resourceId: "R1", name: "Assess project vision",
+          startTime: "1/18/2008 8:0:0", endTime: "1/21/2008 17:0:0" }
+      ]);
+    ]]&gt;
+  &lt;/mx:Script&gt;
+
+  &lt;ilog:ResourceChart id="resourceChart" width="100%" height="100%"
+                      resourceDataProvider="{resources}"
+                      taskDataProvider="{tasks}"
+                      ganttSheetStyleName="myGanttSheetStyle"
+                      dataGridStyleName="myDataGridStyle"
+                      timeScaleStyleName="myTimeScaleStyle"
+                      taskItemStyleName="myTaskItemStyle"/&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example specifies the names of the CSS classes to
+be used to style the renderers of tasks and the inner components.
+The CSS classes customize the rollover color of the data grid, time
+scale and task item renderers; and the color of the work grid in the
+Gantt sheet.</div>
+<div class="para">See the <span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/ResourceChart.html" class="bluelink">ResourceChart</a></span> class for more information on these styles.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex517.html" class="bluelink">Styling a resource chart</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex517.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex519.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,43 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Level index parameter (HL)</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex414.html" class="breadcrumb">Hierarchical Layout (HL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex424.html" class="breadcrumb">Level index parameter (HL)</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex423.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex425.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Level index parameter (HL)</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The level index is a special case of a level range constraint
+(see <a href="ps_usrgraphlayout_flex423.html" class="bluelink">Level range constraints (HL)</a>). It forces
+the node to one particular level. For your convenience, you can specify
+the level index of a node directly by the method: </div>
+<pre class="programlisting">
+void setSpecNodeLevelIndex(Object node, int index)   
+</pre>
+<div class="para">You pass a single node as the first argument (not a node
+group). The default index value is <code class="code">-1</code>.
+If the default value is used, or if a node is set to a negative level
+index, the level index is considered to be unspecified. In this case
+the layout algorithm automatically calculates an appropriate level
+index during the leveling phase of the algorithm. </div>
+<div class="para">To obtain the specified level index for a node, use the
+method: </div>
+<pre class="programlisting">
+int getSpecNodeLevelIndex(Object node)   
+</pre>
+<div class="para">However, this method returns the value that was set by <code class="code">setSpecNodeLevelIndex</code>. If the level index was specified
+by allocating a corresponding level range constraint that has the
+same meaning, <code class="code">getSpecNodeLevelIndex</code> still
+returns <code class="code">-1</code>. </div>
+<div class="warning"><div class="warningLabel">Warning</div>
+<div class="para"> Using arbitrarily large level indices is not recommended.
+For instance, if you set the level index of a node to <code class="code">100000</code>, the layout algorithm creates 100,000 levels
+even if the graph has far fewer nodes. This causes the layout algorithm
+to become unnecessarily slow.  </div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex414.html" class="bluelink">Hierarchical Layout (HL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex423.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex425.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,41 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Recursive mode</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex379.html" class="breadcrumb">Tree Layout (TL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex385.html" class="breadcrumb">Layout modes of the TL algorithm</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex412.html" class="breadcrumb">Recursive mode</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex411.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex413.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Recursive mode</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para"><span class="classificationVariable">JViews Diagrammer</span> supports nested graphs, that is,
+it can render graphs containing nodes that are graphs. A graph that
+is a node in another graph is called a subgraph. Links that connect
+nodes of different subgraphs are called intergraph links. In <a href="ps_usrgraphlayout_flex412.html#figure1221670086146" class="bluelink">Leaf recursive tree</a>, all red links are intergraph links
+and all black links are normal links. This is explained in detail
+in <a href="ps_usrgraphlayout_flex460.html" class="bluelink">Nested layouts</a>. </div>
+<div class="para">The tree layout can treat a nested graph in specific
+situation at once and route the intergraph links as well as the normal
+links that belong to the tree. It can handle a leaf-recursive tree
+at once. A leaf recursive tree has the following properties: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">it is a tree </div>
+</li><li class="itemizedlistItem"><div class="para">only leaf nodes of the tree can contain
+nested graphs </div></li><li class="itemizedlistItem"><div class="para">the root node of the tree nested in
+a leaf node is connected by a link to the parent node of the leaf </div>
+</li></ul></div>
+<div class="figure" id="figure1221670086146"><div class="mediaobject"><img src="../../../GraphLayout/_media/leafrectree_default.png" alt="Leaf&#xA;recursive tree" class="imagedata"/></div><div class="caption">Leaf recursive tree</div></div>
+<div class="figure"><div class="mediaobject"><img src="../../../GraphLayout/_media/nonleafrectree_default.png" alt="Non leaf&#xA;recursive tree" class="imagedata"/></div><div class="caption">Non leaf recursive tree</div></div>
+<div class="para">This graph is not a leaf recursive tree: the subgraphs
+are not nested in the leafs of the tree. The graph cannot be handled
+by the tree layout in recursive mode, but it can be handled by the
+hierarchical layout in recursive mode. If the graph is a leaf recursive
+tree and the layout mode is not the radial layout mode, the tree layout
+can handle the nested graph at once. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To enable the recursive mode: </div>
+</div>
+
+
+</div>
+
+
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex385.html" class="bluelink">Layout modes of the TL algorithm</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex411.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex413.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

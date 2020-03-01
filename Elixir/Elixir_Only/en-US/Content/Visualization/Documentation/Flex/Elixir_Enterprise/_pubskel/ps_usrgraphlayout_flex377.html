@@ -1,0 +1,99 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>For experts: additional features of FL</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex371.html" class="breadcrumb">Force-directed (FL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex377.html" class="breadcrumb">For experts: additional features of FL</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex376.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex378.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">For experts: additional features of FL</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+
+<div class="para">Expert users can also try to use the following parameters. </div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1126197">
+<h2 class="heading">Maximum allowed move per iteration (FL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">At each iteration, the layout algorithm moves the nodes
+a relatively small amount. This amount should not be too large; otherwise,
+the algorithm may not converge. It should not be too small either
+or the number of necessary iterations increase, as does the running
+time. </div>
+<div class="para">The maximum amount of movement at each iteration is controlled
+by a parameter. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To set this parameter:</div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1126206">
+<h2 class="heading">Link length weight (FL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm is based on the computation of attraction
+and repulsion forces for each of the nodes and the iterative search
+of an equilibrium configuration. One of these forces is related to
+the objective of obtaining a link length close to the specified preferred
+length. The weight of this force, representing the total amount of
+force, is controlled by a parameter. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To set this parameter:</div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1126215">
+<h2 class="heading">Additional node repulsion weight (FL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">An additional repulsion force can be computed between
+nodes that are not connected by a link. The weight of this force,
+representing the total amount of force, is controlled by a parameter. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To set this parameter:</div>
+</div>
+
+
+</div>
+<div class="para"> The following figures enable you to compare the same
+graph laid out with additional repulsion disabled (<a href="ps_usrgraphlayout_flex377.html#usrgraphlayout.uss_graphlay_layouts.1126253" class="bluelink">Additional repulsion disabled, produced with Force-directed Layout</a>) and then
+enabled (<a href="ps_usrgraphlayout_flex377.html#usrgraphlayout.uss_graphlay_layouts.1126274" class="bluelink">Additional repulsion enabled, produced with Force-directed Layout</a>). You can
+see that the <span class="quote">“star”</span> configuration, where
+many nodes are connected to the same central node, is better displayed
+when additional repulsion is enabled. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1126253"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Uniform-WithoutAdditionalRepulsion26_default.gif" alt="A star&#xA;configuration with additional repulsion disabled" class="imagedata"/></div><div class="caption">Additional repulsion disabled, produced with Force-directed Layout</div></div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1126274"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Uniform-WithAdditionalRepulsion27_default.gif" alt="A star&#xA;configuration laid out more clearly with additional repulsion enabled" class="imagedata"/></div><div class="caption">Additional repulsion enabled, produced with Force-directed Layout</div></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1126229">
+<h2 class="heading">Node distance threshold (FL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The additional repulsion force between two nodes not
+connected by a link is computed only when their distance is smaller
+than a predefined distance. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To set this distance: </div>
+</div>
+
+
+</div>
+<div class="para">Note that this additional force is computed only if “additional
+node repulsion weight” is set to a value larger than the default
+value <code class="code">0</code>. </div>
+<div class="para">It is recommended that this threshold be set to a value
+smaller than the preferred length of the links. </div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex371.html" class="bluelink">Force-directed (FL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex376.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex378.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

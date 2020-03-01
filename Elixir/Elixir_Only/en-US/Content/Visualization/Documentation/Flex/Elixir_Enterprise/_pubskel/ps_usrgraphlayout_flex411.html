@@ -1,0 +1,136 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Tip-over layout modes</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex379.html" class="breadcrumb">Tree Layout (TL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex385.html" class="breadcrumb">Layout modes of the TL algorithm</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex411.html" class="breadcrumb">Tip-over layout modes</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex410.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex412.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Tip-over layout modes</h1></div></div><div class="content">
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">Drawing in radial layout mode and free layout mode can
+be adjusted according to the aspect ratio of the drawing area. To
+balance the height and depth of the drawing, free layout mode can
+also use tip-over alignment. </div>
+<div class="para">Tip-over alignment can be specified explicitly for individual
+nodes; the Tree Layout algorithm also has layout modes that automatically
+use tip-over alignment when needed. These are the tip-over layout
+modes. </div>
+<div class="para">The tip-over layout modes work as follows: Several trial
+layouts are performed in free layout mode. For each trial, tip-over
+alignment is set for certain individual nodes, while the specified
+alignment of all other nodes is preserved. The algorithm picks the
+trial layout that best fits the specified aspect ratio of the drawing
+area. </div>
+
+
+<pre class="programlisting">
+void setAspectRatio(IlvRect rect);  
+</pre>
+<pre class="programlisting">
+void setAspectRatio(float aspectRatio);  
+</pre>
+<div class="para">The tip-over modes are slightly more time-consuming than
+the other layout modes. For very large trees, it is recommended that
+you set the allowed layout time to a high value (for instance, 60 seconds)
+when using the tip-over modes. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To set this mode: </div>
+</div>
+
+
+</div>
+<div class="para">By using this call, you avoid running short of time for
+sufficient iterations of the layout algorithm. Because it would be
+too time-consuming to check all possibilities of tip-over alignment
+use, there are heuristics that check only certain trials according
+to the following different strategies, illustrated in the following
+figure. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1199933"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-51online54_default.gif" alt="Three&#xA;pictures of the same graph showing the following tip-over strategies:&#xA;leaves, roots, roots and leaves" class="imagedata"/></div><div class="caption">Tip-over strategies</div></div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><a href="ps_usrgraphlayout_flex411.html#usrgraphlayout.uss_graphlay_layouts.1199958" class="bluelink">Tip leaves over</a> </div>
+</li><li class="itemizedlistItem"><div class="para"><a href="ps_usrgraphlayout_flex411.html#usrgraphlayout.uss_graphlay_layouts.1199968" class="bluelink">Tip roots over</a> </div>
+</li><li class="itemizedlistItem"><div class="para"><a href="ps_usrgraphlayout_flex411.html#usrgraphlayout.uss_graphlay_layouts.1199978" class="bluelink">Tip roots and leaves over</a> </div>
+</li><li class="itemizedlistItem"><div class="para"><a href="ps_usrgraphlayout_flex411.html#usrgraphlayout.uss_graphlay_layouts.1199989" class="bluelink">Tip over fast</a> </div>
+</li></ul></div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1199958">
+<h2 class="heading">Tip leaves over</h2>
+
+<div class="sectionContent">
+<div class="example">
+<div class="exampleContent">
+<div class="para">To use this tip-over strategy, set the layout mode as
+follows: </div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1199968">
+<h2 class="heading">Tip roots over</h2>
+
+<div class="sectionContent">
+<div class="example">
+<div class="exampleContent">
+<div class="para">To use this tip-over strategy, set the layout mode as
+follows: </div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1199978">
+<h2 class="heading">Tip roots and leaves over</h2>
+
+<div class="sectionContent">
+<div class="example">
+<div class="exampleContent">
+<div class="para">To use this tip-over strategy, set the layout mode as
+follows: </div>
+</div>
+
+
+</div>
+<div class="para">The heuristic first tries the layout without any additional
+tip-over options. Then it tries to tip over the root node and the
+leaves simultaneously; then the root and its child nodes, and the
+leaves and its parent; then additionally the child nodes of these
+child nodes and the parents of these parents, and so on. As result,
+the nodes in the middle of the tree use normal alignment and the nodes
+closest to the root or leaves use the tip-over alignment.  </div>
+<div class="para">This is the slowest strategy because it includes all
+trials of the strategy “<span class="italics">tip
+leaves over”</span> as well as all tries of the
+strategy “<span class="italics">tip roots over.”</span> </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1199989">
+<h2 class="heading">Tip over fast</h2>
+
+<div class="sectionContent">
+<div class="para">The fast tip-over provides a compromise among all other
+strategies. The heuristic tries a small selection of the other strategies,
+not all possibilities. Therefore, it is the fastest strategy for large
+graphs. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To use this strategy, set the layout mode as follows: </div>
+</div>
+
+
+</div>
+<div class="para">It is possible that all four strategies yield the same
+result because the strategies are not disjoint; that is, certain trials
+are performed in all four strategies. In addition, the tip-over modes
+do not necessarily produce the optimal layout that gives the best
+possible fit to the aspect ratio. The reason is that some unusual
+configurations of tip-over alignment are never tried because doing
+so would cause the running time to be too high. </div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex385.html" class="bluelink">Layout modes of the TL algorithm</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex410.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex412.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

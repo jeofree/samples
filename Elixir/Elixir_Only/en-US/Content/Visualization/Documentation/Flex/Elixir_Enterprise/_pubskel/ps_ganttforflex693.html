@@ -1,0 +1,134 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Using Gauges framework</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Overview"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex690.html" class="breadcrumb">Gauges and indicators</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex691.html" class="breadcrumb">Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex693.html" class="breadcrumb">Using Gauges framework</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex692.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex694.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Using Gauges framework</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The Gauges Framework contains all classes that can be
+used to define a custom gauge. A gauge is always a <code class="code">GaugeBase</code> instance. </div>
+<div class="para"> To define a custom gauge, you fill the elements Vector
+with <code class="code">GaugeElementBase</code> instances. All scales,
+markers and tracks inherit attributes from <code class="code">GaugeElementBase</code>. Markers and Tracks require a scale to render themselves: these
+classes inherit attributes from <code class="code">GaugeScaleRelatedElement</code> This architecture allows defining custom gauges with an arbitrary
+number of scales. Each scale can manage one or more markers and, optionally,
+one ore more tracks.  The Gauges framework supports both rectangular
+(horizontal and vertical) and circular gauges.</div>
+<table border="1" cellpadding="4" cellspacing="0" class="ShadedHead"><colgroup align="left" span="1">
+<col span="1"/>
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr bgcolor="#BFD6E7">
+<th valign="top" rowspan="1" colspan="1">Element</th>
+<th valign="top" rowspan="1" colspan="1">Rectangular class</th>
+<th valign="top" rowspan="1" colspan="1">Circular class</th>
+</tr>
+</thead><tbody valign="top">
+<tr>
+<td rowspan="1" colspan="1">Linear Scale</td>
+<td rowspan="1" colspan="1">RectangularLinearScale</td>
+<td rowspan="1" colspan="1">CircularLinearScale</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Multi Linear Scale</td>
+<td rowspan="1" colspan="1">RectangularMultiLinearScale</td>
+<td rowspan="1" colspan="1">CircularMultiLinearScale</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Category Scale</td>
+<td rowspan="1" colspan="1">RectangularCategoryScale</td>
+<td rowspan="1" colspan="1">CircularCategoryScale</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Value</td>
+<td rowspan="1" colspan="1">RectangularGaugeValue</td>
+<td rowspan="1" colspan="1">CircularGaugeValue</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Track</td>
+<td rowspan="1" colspan="1">RectangularGaugeTrack</td>
+<td rowspan="1" colspan="1">CircularGaugeTrack</td>
+</tr>
+</tbody></table>
+<div class="section">
+<h2 class="heading">Gauges Framework architecture</h2>
+<div class="sectionContent">
+<div class="mediaobject"><img src="../../Elixir/_media/GaugesClasses_default.png" alt="" class="imagedata"/></div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Building custom gauges</h2>
+<div class="sectionContent">
+<div class="para"><span class="bold">Assigning skin parts to gauge elements</span></div>
+<div class="para">Each <code class="code">GaugeElementBase</code> has
+a <code class="code">partId</code> property which is used to define
+the <span class="bold">skinning contract</span> between the
+gauge and its skin class. At runtime, the <code class="code">GaugeBase</code> class will associate each element with its visual part in the skin.</div>
+<div class="para">For example, the predefined <code class="code">HLinearGauge</code> has a scale (<code class="code">RectangularLinearScale</code>)
+and a marker (<code class="code">RectangularGaugeMarker</code>) in
+the elements Vector. The scale <code class="code">partId</code> property
+is set to “<code class="code">scalePart</code>” and
+the marker <code class="code">partId</code> property is set to “<code class="code">markerPart</code>”. The skin class <code class="code">HorizontalGaugeSkin.mxml </code>(which is the default skin class for <code class="code">HLinearGauge</code>) includes an <code class="code">&lt;s:group&gt;</code> with an id
+set to <code class="code">markerPart</code>.</div>
+<div class="para">Gauge elements can have more than one skin part. For
+example, a scale has a <code class="code">majorTickPartId</code> property
+to define the appearance of the major ticks.</div>
+<div class="para"><span class="bold">About gauge skins</span></div>
+<div class="para">The following figure shows basic principles for defining
+skin parts of a horizontal scale and its marker.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/SkinDesign_default.png" alt="" class="imagedata"/></div>
+<div class="para">For horizontal gauges, the baseline for ticks is the
+upper side of the scale area. To change tick alignment of horizontal
+and circular scales, you can set the top or y property of the tick
+factory (left and x property for vertical gauges). Note that tick
+labels can be drawn outside of the scale area, adjust padding consequently.</div>
+<div class="para"><span class="bold">About circular gauges skins</span></div>
+<div class="para">Skins for circular gauges usually use <code class="code">resizeMode</code> set to “scale”. This allows writing the skin at a
+fixed size without managing how it will scale</div>
+<div class="para">Circular gauge skins contain visual objects that are
+specific to them. These specific visual elements are inherited from <code class="code">CircularGaugeSkinElement</code>, which defines common polar
+coordinates attributes: <code class="code">originX, originY, startAngle,
+endAngle</code>, <code class="code">radius</code> and <code class="code">orientation</code>.</div>
+<div class="para">Circular scales are defined by <code class="code">CircularScaleGroup</code> instances, Circular tracks are rendered by <code class="code">DonutSlice</code> instances.</div>
+<div class="para">The <code class="code">CircularGaugeMarker</code> is
+responsible for rendering a value, typically a needle</div>
+<div class="para">If the skin part for a marker is a <code class="code">DonutSlice</code>, you just have to synchronize the <code class="code">CircularScaleGroup</code> with the <code class="code">DonutSlice</code> by setting the same <code class="code">originX</code>, <code class="code">originY</code> and radius.</div>
+<div class="para">In other cases, you have to define the rotation origin
+of a needle by setting the <code class="code">transformX</code> and <code class="code">transformY</code> properties in its skin part. This allows
+the framework to place the needle by superimposing the rotation origin
+and the point defined by <code class="code">originX</code>, <code class="code">originY</code> on the scale part (a <code class="code">CircularScaleGroup</code>). Finally, the rotation of the needle skin part is set to reflect
+the actual value of the marker.</div>
+<div class="para"><span class="bold">Defining a custom gauge in MXML</span></div>
+<div class="para">The predefined gauges are defined in Action Script. However
+it’s also possible to define a custom gauge in MXML, directly
+in an application, or in an MXML component for reusability.</div>
+<div class="para">The following example shows a circular gauge compatible
+with the default predefined skin </div>
+<div class="example">
+<div class="exampleContent">
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/halo" minWidth="1024" minHeight="768" xmlns:ibm="http://www.ibm.com/xmlns/prod/ilog/elixir/2010"&gt;
+  &lt;fx:Script&gt;
+    &lt;![CDATA[
+      import com.ibm.ilog.elixir.gauges.skins.spark.CircularGaugeSkin;
+    ]]&gt;
+  &lt;/fx:Script&gt;
+  
+  &lt;ibm:GaugeBase width="100%" height="100%"
+    skinClass="com.ibm.ilog.elixir.gauges.skins.spark.CircularGaugeSkin"&gt;
+    &lt;ibm:CircularLinearScale minimum="-100" maximum="100" 
+                             majorTickInterval="50" 
+                             minorTickInterval="5" snapInterval="5"/&gt;
+    &lt;ibm:CircularGaugeMarker editable="true" animationDuration="1000"/&gt;
+    &lt;ibm:CircularGaugeTrack start="0" end="100"/&gt;
+  &lt;/ibm:GaugeBase&gt;
+&lt;/s:Application&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex691.html" class="bluelink">Gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex692.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex694.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

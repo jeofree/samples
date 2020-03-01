@@ -1,0 +1,68 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Structure of the graph layout API</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex354.html" class="breadcrumb">Introducing graph layout</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex358.html" class="breadcrumb">Structure of the graph layout API</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex357.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex359.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Structure of the graph layout API</h1></div></div><div class="content">
+
+
+
+<div class="descriptiveTopicContent">
+
+<div class="para">The IBM® graph layout
+API is composed of: </div>
+
+
+<div class="divBlock">
+<div class="divBlockContent">
+
+
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><a href="ps_usrgraphlayout_flex358.html#usrgraphlayout.uss_graphlay_intro.1006507" class="bluelink">The generic graph layout package</a> </div>
+</li><li class="itemizedlistItem"><div class="para"><a href="ps_usrgraphlayout_flex358.html#usrgraphlayout.uss_graphlay_intro.1003329" class="bluelink">The layout algorithm packages</a> </div>
+</li></ul></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_intro.1006507">
+<h2 class="heading">The generic graph layout package</h2>
+<div class="sectionContent">
+
+<div class="divBlock">
+<div class="divBlockContent">
+
+
+<div class="para">IBM® <span class="classificationVariable">ILOG Elixir</span> provides a high-level, generic framework
+for the graph layout services: <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/com/ibm/ilog/diagram/graphlayout/package-detail.html" class="bluelink">com.ibm.ilog.diagram.graphlayout</a></span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_intro.1003329">
+<h2 class="heading">The layout algorithm packages</h2>
+<div class="sectionContent">
+<div class="divBlock">
+<div class="divBlockContent">
+
+
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/com/ibm/ilog/diagram/graphlayout/grid/package-detail.html" class="bluelink">com.ibm.ilog.diagram.graphlayout.grid</a></span>: A layout algorithm that arranges
+the disconnected nodes of a graph in rows, in columns, or in the cells
+of a grid. </div></li><li class="itemizedlistItem"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/com/ibm/ilog/diagram/graphlayout/hierarchical/package-detail.html" class="bluelink">com.ibm.ilog.diagram.graphlayout.hierarchical</a></span>: A layout algorithm that arranges
+nodes in horizontal or vertical levels such that the links flow in
+a uniform direction. </div></li><li class="itemizedlistItem"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/com/ibm/ilog/diagram/graphlayout/longlink/package-detail.html" class="bluelink">com.ibm.ilog.diagram.graphlayout.longlink</a></span>: A layout algorithm that reshapes the long orthogonal
+links of a graph without moving the nodes. </div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/com/ibm/ilog/diagram/graphlayout/shortlink/package-detail.html" class="bluelink">com.ibm.ilog.diagram.graphlayout.shortlink</a></span>:  A layout algorithm that reshapes the short links
+of a graph without moving the nodes. </div></li><li class="itemizedlistItem"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/com/ibm/ilog/diagram/graphlayout/random/package-detail.html" class="bluelink">com.ibm.ilog.diagram.graphlayout.random</a></span>: A layout algorithm that moves the nodes of the
+graph at randomly computed positions inside an user-defined region. </div>
+</li><li class="itemizedlistItem"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/com/ibm/ilog/diagram/graphlayout/tree/package-detail.html" class="bluelink">com.ibm.ilog.diagram.graphlayout.tree</a></span>: A layout algorithm that arranges the nodes of a
+tree horizontally or vertically, starting from the root of the tree.
+A radial layout mode allows you to arrange the nodes of a tree on
+concentric circles around the root of the tree. </div>
+</li><li class="itemizedlistItem"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/com/ibm/ilog/diagram/graphlayout/forcedirected/package-detail.html" class="bluelink">com.ibm.ilog.diagram.graphlayout.forcedirected</a></span>: A layout algorithm that can be used to lay out
+any type of graph and allows you to specify the length of the links. </div>
+</li></ul></div>
+</div>
+</div>
+
+</div>
+</div>
+
+
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex354.html" class="bluelink">Introducing graph layout</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex357.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex359.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

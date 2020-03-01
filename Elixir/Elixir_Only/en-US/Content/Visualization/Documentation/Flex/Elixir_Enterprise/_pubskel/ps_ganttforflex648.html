@@ -1,0 +1,42 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Horizontal item renderer</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex634.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex646.html" class="breadcrumb">Calendar item renderers</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex648.html" class="breadcrumb">Horizontal item renderer</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex647.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex649.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Horizontal item renderer</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">A horizontal item renderer is used in week or month mode
+to display an event which lasts for more than 24 hours. Such an event
+is known as a <span class="italics">long event</span>.</div>
+<div class="para">The following figures show the default horizontal item
+renderer in week mode and month mode respectively.</div>
+<div class="figure"><div class="mediaobject"><img src="../../Calendar/_media/calendar_def_horizontal1_default.jpg" alt="The default&#xA;horizontal item renderer showing an event that spans two days in week&#xA;mode" class="imagedata"/></div><div class="caption">The default horizontal item renderer showing an event
+that spans two days in week mode</div></div>
+<div class="figure"><div class="mediaobject"><img src="../../Calendar/_media/calendar_def_horizontal2_default.jpg" alt="The default&#xA;horizontal item renderer showing an event that spans two days in month&#xA;mode" class="imagedata"/></div><div class="caption">The default horizontal item renderer showing an event
+that spans two days in month mode</div></div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">If the event is partially represented, the default item
+renderer displays:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">For an all-day event, the summary and
+arrows.</div></li><li class="itemizedlistItem"><div class="para">For an event that is not all-day, the
+start and end time, the summary of the event, and arrows. </div>
+</li></ul></div>
+<div class="para">The following example shows how to set and configure
+a horizontal item renderer.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+
+  &lt;ilog:Calendar width="100%" height="100%"&gt;
+    &lt;ilog:itemHorizontalRenderer&gt;
+      &lt;mx:Component&gt;
+        &lt;ilog:CalendarItemHorizontalRenderer color="#FF0000" /&gt; 
+      &lt;/mx:Component&gt;
+    &lt;/ilog:itemHorizontalRenderer&gt;
+  &lt;/ilog:Calendar&gt;
+  
+&lt;/mx:Application&gt;</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex646.html" class="bluelink">Calendar item renderers</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex647.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex649.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

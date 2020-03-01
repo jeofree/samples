@@ -1,0 +1,109 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Preparing an application for translation</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="HowTo"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise6.html" class="breadcrumb">Introduction</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise17.html" class="breadcrumb">Preparing an application for translation</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise16.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise18.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Preparing an application for translation</h1></div></div><div class="content">
+
+
+
+
+
+
+
+<div class="proceduralTopicContent">
+<div class="summary">
+<div class="para">If you want to run your IBM® <span class="classificationVariable">ILOG Elixir</span><span class="classificationVariable">Diagram</span> application in a language other than
+those provided, you can localize the IBM <span class="classificationVariable">ILOG Elixir</span><span class="classificationVariable">Diagram</span> properties by creating
+your own resource bundles. </div>
+<div class="para">To create resource bundles:</div>
+</div>
+<div class="procedure">
+<div class="procedureContent"><ol class="steps"><li class="step">
+<div class="stepContent">
+<div class="para">Activate the product to get the sources of the resource
+bundles.</div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Copy the original English resource directory to your
+project directory:</div>
+<div class="divBlock">
+<div class="divBlockContent">
+
+
+
+<div class="para"><span class="filename">&lt;installation-dir&gt;/frameworks/projects/ilog-elixir/bundles/en_US/</span></div>
+</div>
+</div>
+<div class="divBlock">
+<div class="divBlockContent">
+
+
+
+<div class="para"><span class="filename">&lt;installation-dir&gt;/frameworks/projects/ilog-d4f/bundles/en_US/</span></div>
+</div>
+</div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Rename the <span class="filename">en_US</span> directory
+you have just copied to the name of the locale you want to use, for
+example, <span class="filename">fr_FR</span>.</div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Translate the contents of each of the files in the new
+directory into the language of your choice.</div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Recompile the translated property files into a SWC using
+the <span class="command">compc</span> command.</div>
+</div>
+</li><li class="step" id="d0e2269">
+
+<div class="stepContent">
+<div class="para">Include the translated bundles when you compile your
+application with the chosen locale, for example:</div>
+<div class="divBlock">
+<div class="divBlockContent">
+
+
+<pre class="programlisting">mxmlc -locale fr_FR -source-path+=&lt;project-path&gt;/{locale} -
+library-path+=&lt;installation-dir&gt;/frameworks/libs/ilog-elixir.swc 
+myElixirApplication.mxml
+</pre>
+</div>
+</div>
+<div class="divBlock">
+<div class="divBlockContent">
+
+
+<pre class="programlisting">mxmlc -locale fr_FR -source-path+=&lt;project-path&gt;/{locale} -
+library-path+=&lt;installation-dir&gt;/frameworks/libs/ilog-d4f.swc 
+myDiagramApplication.mxml
+</pre>
+</div>
+</div>
+</div>
+</li></ol></div>
+</div>
+<div class="expectedResult">
+<div class="para">When you run your application, all the <span class="classificationVariable">ILOG Elixir</span><span class="classificationVariable">Diagram</span> messages will be displayed
+in your chosen language. In addition, for your application to be fully
+localized, you must localize the  <span class="trademark">Adobe®
+            </span> <span class="trademark">Flex®
+            </span> framework. For more information, see <span class="italics">Localizing Flex Applications</span> in the <span class="italics">Advanced Flex Programming</span> Adobe documentation.</div>
+<div class="paragroup">
+
+<div class="title">Embedding fonts</div>
+<div class="para">Although it is easier to use the default device fonts,
+these fonts may not be fully adequate for certain locales. With Adobe
+Flex, you can embed True Type? font (TTF) or Open Type? font (OTF)
+families in your Flex application. In this case, the font is always
+available to Flash Player when the application is running on a client
+machine, and you do not have to consider the implications of a missing
+or inappropriate font. For more information, see <span class="italics">Using Flex 4 / Enhancing the user interface / Fonts</span>.</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise6.html" class="bluelink">Introduction</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise16.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise18.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

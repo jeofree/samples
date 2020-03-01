@@ -1,0 +1,30 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Relative level constraints (HL)</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex414.html" class="breadcrumb">Hierarchical Layout (HL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex427.html" class="breadcrumb">Relative level constraints (HL)</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex426.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex428.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Relative level constraints (HL)</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">If the flow direction is towards the bottom, level 0
+is topmost in the drawing. In this layout you can specify by relative
+level constraints that a node be above or below another node. If the
+flow direction is towards the right, level 0 is leftmost in the drawing.
+Here you can specify by relative level constraints that a node be
+left or right of another node.  </div>
+
+<div class="para">This forces <code class="code">nodeA</code> to be placed
+at a level with a smaller index than <code class="code">nodeB</code>. Since relative level constraints compete with each other, you must
+specify the priority of the constraint. In fact, links also impose
+constraints on the system, and the link priority has the same impact
+as the constraint priority. A link with priority 10 forces its (usually)
+source node (unless ports are specified) into a lower level than its
+target node. To force the source node into a higher level than the
+target node, you need to create a constraint with a higher priority
+than the link. For instance, to ensure that the constraints are satisfied
+even if there are many links, you can use link priorities between
+0 and 10 and constraint priorities between 1000 and 10,000. </div>
+<div class="para">You can also create a relative level constraint between
+groups of nodes.  </div>
+
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex414.html" class="bluelink">Hierarchical Layout (HL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex426.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex428.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,82 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Longitude/latitude methods</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex809.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex849.html" class="breadcrumb">MX Maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex867.html" class="breadcrumb">Using extra map features</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex869.html" class="breadcrumb">Longitude/latitude methods</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex868.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex870.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Longitude/latitude methods</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The following example shows how to use the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/maps/MapBase.html#fitToArea()" class="bluelink">fitToArea</a></span> and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/maps/MapBase.html#layerExtent()" class="bluelink">layerExtent</a></span> methods for longitude/latitude coordinates. In this
+example, three buttons are used to center the map on France, center
+the map on Paris, and fit the whole map onto the component respectively.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application frameRate="50" xmlns:mx="http://www.adobe.com/2006/mxml"
+   layout="absolute"
+   creationComplete="parisSymbol()"
+   xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+   &lt;mx:Script&gt;
+     &lt;![CDATA[
+         import ilog.maps.MapFeature;
+         import mx.controls.Button;
+         import ilog.maps.MapSymbol;
+         import mx.graphics.Stroke;
+         import mx.containers.Canvas;
+
+         // Paris is known to be at 2D20'26" E / 48D51'34" N
+         private const parisX:Number = dms2dec(2, 20, 26);
+         private const parisY:Number = dms2dec(48, 51, 34);
+
+         // create a symbol at Paris(France) location
+         public function parisSymbol():void {
+           var sym:MapSymbol = new MapSymbol();
+           sym.latitude = parisY;
+           sym.longitude = parisX;
+           var b:Button = new Button();
+           b.width = 10;
+           b.height = 10;
+           sym.component = b;
+           map.addChild(sym);
+         }
+
+         // center the map on Paris
+         public function paris():void {
+           var w:Number = 1;
+           var b:Rectangle = new Rectangle(parisX - w/2, parisY - w/2, w, w);
+           map.fitToArea(b);
+         }
+
+         // Fits the whole map
+         public function full():void {
+           map.fitToArea(null);
+         }
+
+         // fit to France
+         public function france():void {
+           var mf:MapFeature = map.getFeature("FRA");
+           var r:Rectangle = mf.extent;
+           map.fitToArea(r);
+         }
+
+         //convert DMS (degree/minute/second) to decimal degrees
+         internal static function dms2dec(d:Number, m:Number, s:Number):Number {
+           return d + (m + s/60)/60;
+         }
+
+     ]]&gt;
+   &lt;/mx:Script&gt;
+   &lt;ilog:ContinentalEuropeMap animationDuration="2000"
+                              id="map"
+                              allowNavigation="true"
+                              x="0"
+                              y="25"
+                              width="600"
+                              height="400" /&gt;
+     &lt;mx:Button x="0" y="0" width="100" height="20" 
+buttonDown="france()" label="France"/&gt;
+     &lt;mx:Button x="110" y="0" width="100" height="20" 
+buttonDown="paris()" label="Paris"/&gt;
+     &lt;mx:Button x="220" y="0" width="100" height="20" 
+buttonDown="full()" label="All"/&gt;
+
+&lt;/mx:Application&gt;</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex867.html" class="bluelink">Using extra map features</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex868.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex870.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

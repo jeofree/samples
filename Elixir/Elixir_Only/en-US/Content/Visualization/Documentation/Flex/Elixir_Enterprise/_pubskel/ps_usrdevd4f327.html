@@ -1,0 +1,181 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Configuring selection in graphic objects</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f312.html" class="breadcrumb">Creating a graph display from data providers using the Diagram
+class</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f323.html" class="breadcrumb">Handling selection in a diagram</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f327.html" class="breadcrumb">Configuring selection in graphic objects</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f326.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f328.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Configuring selection in graphic objects</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">Nodes and links are implemented as skinnable components,
+by classes Node and Link. As skinnable components, these classes are
+host components to the skin classes which will effectively provide
+the graphic representation of the object in a Diagram component. These
+classes have default associated skins, which are implemented by NodeSkin
+and LinkSkin present in the com.ibm.ilog.diagram.skins.spark package.
+As host components, these classes specify two states that need to
+be supported by the associated skins. The states are: normal and selected. </div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">As part of the skinning contract, the skin implementation
+must: </div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Specify the host component, which must
+be a Node or Link or a subclass of them </div></li><li class="itemizedlistItem"><div class="para">Declare the skin states, at least normal
+and selected, and declare their appearance</div>
+</li><li class="itemizedlistItem"><div class="para">Define the appearance of the different
+skin parts</div></li></ul></div>
+<div class="para">To specify the host component of a skin, you add a Metadata
+tag to the skin declaration, as in the example below:</div>
+<pre class="programlisting"> &lt;fx:Metadata&gt;
+    [HostComponent("com.ibm.ilog.diagram.Node")]
+  &lt;/fx:Metadata&gt;
+</pre>
+<div class="para">The next step in the skinning contract is to declare
+the states required by the host component:</div>
+<pre class="programlisting">&lt;s:Skin ...&gt;
+    &lt;s:states&gt;
+        &lt;s:State name="normal"/&gt;
+        &lt;s:State name="selected"/&gt;
+    &lt;/s:states&gt;
+    ... 
+&lt;/s:Skin&gt;
+</pre>
+<div class="para">In order to modify the appearance of a node or link when
+it gets selected either by API or by user interaction, the skin associated
+with the node or link has to define the appearance of the elements
+in the selected state. For example, the example below indicates that
+a red glow is added to the object when it becomes selected. </div>
+<div class="figure"><div class="mediaobject"><img src="../../Diagram4Flex/_media/NodeSelection_default.png" alt="Example&#xA;showing red glow added to the object when it is selected." class="imagedata"/></div></div>
+<pre class="programlisting"> &lt;s:Group id="base" left="0" top="0" right="0" bottom="0"&gt;
+  
+    &lt;s:filters&gt;
+      &lt;s:GlowFilter includeIn="selected" color="0xFF0000" alpha="0.8" blurX="15" blurY="15"&gt;
+      &lt;/s:GlowFilter&gt;
+    &lt;/s:filters&gt;
+    
+    &lt;s:Rect left="0" top="0" right="0" bottom="0" radiusX="5" radiusY="5" &gt;
+      &lt;s:fill&gt;&lt;mx:SolidColor color="0xC2E0F7" /&gt;&lt;/s:fill&gt;
+      &lt;s:stroke&gt;&lt;mx:SolidColorStroke weight="2" color="0x000000" /&gt;&lt;/s:stroke&gt;
+    &lt;/s:Rect&gt;
+    
+    &lt;s:Label  
+       id="labelElement"  
+       textAlign="center" 
+       alignmentBaseline="useDominantBaseline"
+       verticalAlign="middle"
+       lineBreak="toFit" 
+       left="10" right="10" 
+       top="10" bottom="10"
+       text="{hostComponent.label}"
+       horizontalCenter="0" verticalCenter="1"
+    /&gt;
+  &lt;/s:Group&gt;
+</pre>
+<div class="para">You can also specify the value of properties based on
+skin states. The most commonly used are style properties, but you
+are not limited to them. It is also possible to set any property on
+a component based on the state. The example below illustrates a skin
+class which declares several states and modifies the value of style
+properties based on the state. </div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;s:Skin xmlns="http://ns.adobe.com/mxml/2009"
+        xmlns:mx="library://ns.adobe.com/flex/halo"
+        xmlns:s="library://ns.adobe.com/flex/spark"  
+  
+  &gt;  
+  &lt;Metadata&gt;
+    [HostComponent("projectDiagram.TaskNode")]
+  &lt;Metadata&gt;
+  
+  &lt;s:states&gt;
+    &lt;mx:State name="normal" /&gt;
+    &lt;mx:State name="selected" stateGroups="selection"/&gt;
+    &lt;mx:State name="critical"/&gt;
+    &lt;mx:State name="milestone"/&gt;
+    &lt;mx:State name="summary"/&gt;
+    &lt;mx:State name="criticalSelected" stateGroups="selection"/&gt;
+    &lt;mx:State name="milestoneSelected" stateGroups="selection"/&gt;
+    &lt;mx:State name="summarySelected" stateGroups="selection"/&gt;
+  &lt;/s:states&gt;
+  
+  &lt;s:Group toolTip="{hostComponent.label}" left="0" top="0" right="0" bottom="0" &gt;
+    
+    &lt;s:Rect left="0" right="0" top="0" bottom="0" radiusX="5" radiusY="5" width="100%" height="100%"&gt;
+      &lt;s:fill&gt;
+        &lt;mx:SolidColor 
+           color.selection="blue" 
+         
+           color.milestone="#49B8A8" 
+           color.critical="red"
+           color.normal="#85EDB6"/&gt;
+      &lt;/s:fill&gt;
+      &lt;s:stroke &gt;
+        &lt;mx:SolidColorStroke 
+          color.milestone="black"
+           color.normal="black"
+            color.critical="white" 
+            weight="1"/&gt;
+      &lt;/s:stroke&gt;
+    &lt;/s:Rect&gt;
+    &lt;s:VGroup left="10" right="10" 
+              top="10" bottom="10" &gt;
+      
+      &lt;s:Label 
+        maxWidth="150" 
+        color.milestone="black"
+        color.critical="white"
+        color.selection="white"
+        id="header"  
+        textAlign="center" 
+        alignmentBaseline="useDominantBaseline"
+        verticalAlign="middle"
+        lineBreak="toFit" 
+        fontSize="11"
+        fontWeight="bold"
+        text="{hostComponent.label}"
+        horizontalCenter="0" verticalCenter="1"
+        /&gt;
+      
+      &lt;s:HGroup&gt;
+        &lt;s:Label text.milestoneSelected="Milestone:" 
+          text.milestone="Milestone:" 
+          text="Start:"  fontSize="10" 
+          color.critical="white"
+                color.selection="white"
+          color="black"/&gt;
+        &lt;s:Label text="{hostComponent.data.start}"  fontSize="10"       color.selection="white" color.critical="white" color="black" /&gt;
+      &lt;/s:HGroup&gt;
+      &lt;s:HGroup itemCreationPolicy="immediate"  includeIn="critical,normal,summary, selected, criticalSelected, summarySelected"&gt;
+        &lt;s:Label  text="Finish:"  fontSize="10" color.critical="white"       color.selection="white"  color="black"/&gt;
+        &lt;s:Label text="{hostComponent.data.finish}"  fontSize="10"       color.selection="white" color.critical="white" color="black" /&gt;
+      &lt;/s:HGroup&gt;
+    &lt;/s:VGroup&gt;
+  &lt;/s:Group&gt;
+  
+&lt;/s:Skin&gt;
+
+</pre>
+<div class="para">In the skin presented above, states normal and selected
+are declared, as well as other states. </div>
+<div class="para">States selected, criticalSelected, milestoneSelected,
+and summarySelected are grouped in a state group called selection.
+The state group is then used to modify the value of style properties.
+In this case, a selected node is represented with a blue background
+and white label as below. </div>
+<pre class="programlisting">  &lt;s:fill&gt;
+        &lt;mx:SolidColor 
+           color.selection="blue" 
+         
+           color.milestone="#49B8A8" 
+           color.critical="red"
+           color.normal="#85EDB6"/&gt;
+      &lt;/s:fill&gt;
+
+</pre>
+<div class="figure"><div class="mediaobject"><img src="../../Diagram4Flex/_media/TaskSelection_default.png" alt="Figure&#xA;showing selected node with a blue background and a white label." class="imagedata"/></div></div>
+<div class="para">The skin paradigm provides a powerful framework to create
+all sort of graphical representation for your objects in different
+states. You can include elements, remove elements, and modify property
+values based on state information. For a detailed description on how
+to implement skins, see LINKTO[Adobe documentation - Using Flex 4
+/ Enhancing the user interface / Creating Spark Skins] </div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f323.html" class="bluelink">Handling selection in a diagram</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f326.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f328.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

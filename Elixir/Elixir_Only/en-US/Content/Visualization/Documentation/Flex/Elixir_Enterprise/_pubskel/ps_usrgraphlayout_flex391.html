@@ -1,0 +1,70 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Connector style (TL)</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex379.html" class="breadcrumb">Tree Layout (TL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex385.html" class="breadcrumb">Layout modes of the TL algorithm</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex386.html" class="breadcrumb">Free layout mode</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex391.html" class="breadcrumb">Connector style (TL)</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex390.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex392.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Connector style (TL)</h1></div></div><div class="content">
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The layout algorithm automatically positions the end
+points of links (the connector pins) at the nodes. The connector style
+parameter specifies how these end points are calculated for the outgoing
+links at the parent node. </div>
+<div class="para">By default, the connector style determines how the connection
+points of the links are distributed on the border of the bounding
+box of the nodes, symmetrically with respect to the middle of each
+side. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1199310"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-37online40_default.gif" alt="A sample&#xA;graph shown with each connector pin style in turn: centered, evenly&#xA;spaced, clipped for direct and orthogonal links" class="imagedata"/></div><div class="caption">Connector styles</div></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To specify the connector style: </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for <code class="code">style</code> are: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.CENTERED_PINS</code>  </div><div class="para">The end points of the links are placed
+in the center of the border where the links are attached. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.CLIPPED_PINS</code>  </div><div class="para">Each link pointing to the center of
+the node is clipped at the node border. The connector pins are placed
+at the points on the border where the links are clipped. This style
+affects straight links. It behaves like centered connector pins for
+orthogonal links. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.EVENLY_SPACED_PINS</code>  </div><div class="para">The connector pins are evenly distributed
+along the node border. This style works for straight and orthogonal
+links.  </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.AUTOMATIC_PINS</code>  </div><div class="para">The connector style is selected automatically
+depending on the link style and the layout mode. In nonradial modes,
+the algorithm always chooses centered pins. In radial layout modes,
+it chooses clipped pins.</div>
+</li></ul></div>
+
+
+
+<div class="para">The connector style, the link connection box interface,
+and the link clip interface work together in the following way: by
+respecting the connector style, the proposed connection points are
+calculated on the rectangle obtained from the link connection box
+interface (or on the bounding box of the node, if no link connection
+box interface was specified). Then, the proposed connection point
+is passed to the link clip interface and the returned connection points
+are used to connect the link to the node. </div>
+<div class="para">The following figure shows an example of the combined
+effect. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1271041"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-40online41_default.gif" alt="A sample&#xA;graph with clipping at the node bounding box and at a specified connection&#xA;box" class="imagedata"/></div><div class="caption">Combined effect of link clipping interface and link
+connection box</div></div>
+
+<div class="para">If the links are clipped at the red node in the previous
+figure (left), they appear unsymmetrical with respect to the node
+shape, because the relevant part of the node (here: the upper rhombus)
+is not in the center of the bounding box of the node, but the proposed
+connection points are calculated with respect to the bounding box.
+This can be corrected by using a link connection box interface to
+explicitly specify a smaller connection box for the relevant part
+of the node (previous figure, right) such that the proposed connection
+points are placed symmetrically at the upper rhombus of the node. </div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex386.html" class="bluelink">Free layout mode</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex390.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex392.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

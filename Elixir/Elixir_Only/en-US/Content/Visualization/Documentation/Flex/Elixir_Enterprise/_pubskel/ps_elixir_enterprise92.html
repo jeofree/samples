@@ -1,0 +1,36 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Preventing the editing of a recurring event</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise39.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise78.html" class="breadcrumb">Recurring events</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise89.html" class="breadcrumb">Editing recurring events</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise92.html" class="breadcrumb">Preventing the editing of a recurring event</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise91.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise93.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Preventing the editing of a recurring event</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e13544">
+
+<div class="para"> To prevent the editing of a recurring event, set the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#moveEnabledFunction" class="bluelink">moveEnabledFunction</a></span> and <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#resizeEnabledFunction" class="bluelink">resizeEnabledFunction</a></span> as shown in the following example.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import ilog.calendar.recurrence.IRecurrenceInstance;
+    
+      private function moveResizeEnabled(item:Object):Boolean {
+        return !(item is IRecurrenceInstance);
+      }            
+    ]]&gt;
+  &lt;/mx:Script&gt;              
+  &lt;ilog:Calendar id="calendar"
+                 width="100%" height="100%"                 
+                 moveEnabledFunction="{moveResizeEnabled}"
+                 resizeEnabledFunction="{moveResizeEnabled}"
+                 date="{new Date(2008,0,15)}"&gt;
+    &lt;mx:XMLList&gt;
+      &lt;event summary="Regular Event" startTime="2008/01/14 14:00:00" endTime="2008/01/14 17:00:00"/&gt;
+      &lt;event summary="recurring event" startTime="2008/01/13 08:00:00" endTime="2008/01/13 10:00:00"
+                 rrules="FREQ=DAILY" recurring="true"/&gt;      
+    &lt;/mx:XMLList&gt;
+  &lt;/ilog:Calendar&gt;
+&lt;/mx:Application&gt;</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise89.html" class="bluelink">Editing recurring events</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise91.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise93.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

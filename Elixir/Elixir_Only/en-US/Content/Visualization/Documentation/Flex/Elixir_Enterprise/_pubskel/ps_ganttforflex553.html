@@ -1,0 +1,63 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Creating a task chart control</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex550.html" class="breadcrumb">Gantt task charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex553.html" class="breadcrumb">Creating a task chart control</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex552.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex554.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Creating a task chart control</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="section">
+<h2 class="heading">Defining a task chart control in MXML</h2>
+<div class="sectionContent">
+<div class="para">You can define a <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskChart.html" class="bluelink">TaskChart</a></span> control in MXML using the <code class="code">&lt;ilog:TaskChart&gt;</code> tag. If you intend to refer to this control elsewhere in your MXML,
+for example, in another tag or in an <span class="trademark">ActionScript®
+            </span> block, you must specify an <code class="code">id</code> value.</div>
+<div class="para">A <span class="apiname">TaskChart</span> control
+displays task and constraint data and can be configured by using two
+data providers as shown in the following example.</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+      import mx.collections.HierarchicalData;
+  
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0"},
+        { id: "T3", name: "Summary Task #1",
+          startTime: "2/5/2008 8:0:0", endTime: "2/17/2008 17:0:0",
+          children: [
+            { id: "T4", name: "Task #3",
+              startTime: "2/5/2008 8:0:0", endTime: "2/12/2008 17:0:0" },
+            { id: "T5", name: "Task #4",
+              startTime: "2/13/2008 8:0:0", endTime: "2/17/2008 17:0:0" }
+          ]},
+        { id: "T6", name: "Milestone #1", milestone: "true",
+          startTime: "2/17/2008 17:0:0", endTime: "2/17/2008 17:0:0" }
+      ]);
+
+      [Bindable]
+      public var constraints:ArrayCollection = new ArrayCollection([
+        { fromId:"T1", toId:"T2", kind:"endToStart" },
+        { fromId:"T2", toId:"T4", kind:"endToStart" },
+        { fromId:"T4", toId:"T5", kind:"endToStart" },
+        { fromId:"T5", toId:"T6", kind:"endToStart" }
+      ]);
+    ]]&gt;    
+  &lt;/mx:Script&gt;
+
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%"
+                  taskDataProvider="{tasks}"
+                  constraintDataProvider="{constraints}" 
+                  /&gt;
+&lt;/mx:Application&gt;</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex550.html" class="bluelink">Gantt task charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex552.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex554.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

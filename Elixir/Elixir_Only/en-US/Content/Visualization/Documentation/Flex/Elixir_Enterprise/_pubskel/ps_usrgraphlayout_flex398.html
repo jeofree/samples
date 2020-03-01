@@ -1,0 +1,46 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Level alignment</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex379.html" class="breadcrumb">Tree Layout (TL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex385.html" class="breadcrumb">Layout modes of the TL algorithm</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex395.html" class="breadcrumb">Level layout mode</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex398.html" class="breadcrumb">Level alignment</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex397.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex399.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Level alignment</h1></div></div><div class="content">
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">In level layout mode with flow direction to the top or
+bottom, the nodes are organized in horizontal levels such that the
+nodes of the same level are placed approximately at the same y-coordinate.
+The nodes can be justified, depending on whether the top border, the
+bottom border, or the center of all nodes of the same level should
+have the same y-coordinate. </div>
+<div class="para">In flow direction to the left or right, the nodes are
+organized in vertical levels approximately at the same x-coordinate.
+The nodes of the same level can be justified at the left border, at
+the right border, or at the center. </div>
+<div class="para">To distinguish the level alignment independently from
+the flow direction, the directions north and south are used (see <a href="ps_usrgraphlayout_flex384.html#usrgraphlayout.uss_graphlay_layouts.1198918" class="bluelink">Using compass directions for positional layout parameters
+ (TL)</a>). The north
+border of a node is the border that is closer to the level where its
+parent is placed, and the south border of a node is the border that
+is closer to the level where its child nodes are placed. If the flow
+direction is to the bottom, the level alignment north means that the
+nodes are justified at the top border, and south means that the nodes
+are justified at the bottom border. If the flow direction is to the
+top, north and south are inverted: north means the bottom border and
+south means the top border. If the flow direction is to the right,
+then north means the left border and south means the right border. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1199597"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-44online47_default.gif" alt="Three&#xA;pictures of the same graph showing north-justified, south-justified,&#xA;and center-justified alignment" class="imagedata"/></div><div class="caption">Level alignment</div></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To specify the level alignment: </div>
+</div>
+
+
+</div>
+<div class="para">The valid values for <code class="code">alignment</code> are: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.CENTER</code> (the default) </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.NORTH</code>  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">IlvTreeLayout.SOUTH</code>  </div></li></ul></div>
+
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex395.html" class="bluelink">Level layout mode</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex397.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex399.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

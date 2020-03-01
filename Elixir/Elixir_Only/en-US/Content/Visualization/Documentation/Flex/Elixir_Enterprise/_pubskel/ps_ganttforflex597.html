@@ -1,0 +1,42 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Determining the reason for an itemEditEnd event</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex550.html" class="breadcrumb">Gantt task charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex590.html" class="breadcrumb">Editing tasks in a task chart</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex597.html" class="breadcrumb">Determining the reason for an itemEditEnd event</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex596.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex598.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Determining the reason for an itemEditEnd event</h1></div></div><div class="content">
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">A user can end a task editing operation in several ways.
+In the body of the event listener for the <span class="apiname">itemEditEnd</span> event, you can determine the reason for the event, and then handle
+it accordingly.</div>
+<div class="para">The <span class="apiname">GanttSheetEvent</span> class
+defines the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheetEvent.html#reason" class="bluelink">reason</a></span> property, which contains a value that indicates
+the reason for the event. The <span class="apiname">reason</span> property has the following values defined in the class <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheetEventReason.html" class="bluelink">GanttSheetEventReason</a></span>.</div>
+<div class="caption">Values of the reason property</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="table1216727042085"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Value</div></th>
+<th rowspan="1" colspan="1"><div class="para">Description</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">CANCELLED</div></td>
+<td rowspan="1" colspan="1"><div class="para">Specifies that the user cancelled editing
+and that they do not want to save the edited data. </div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">COMPLETED</div></td>
+<td rowspan="1" colspan="1"><div class="para">Specifies that the user completed the edit
+session, usually by releasing the mouse button.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">OTHER</div></td>
+<td rowspan="1" colspan="1"><div class="para">Specifies that the Gantt sheet is somehow
+in a state where editing is not allowed. </div></td>
+</tr>
+</tbody></table>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex590.html" class="bluelink">Editing tasks in a task chart</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex596.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex598.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,73 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>3D area chart</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise19.html" class="breadcrumb">3D Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise22.html" class="breadcrumb">3D chart controls</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise27.html" class="breadcrumb">3D area chart</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise26.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise28.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">3D area chart</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">A 3D area chart is very similar to a line chart except
+that it fills the chart area from the point to the base of the series.
+An area chart contains a set of  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts3d/series/AreaSeries3D.html" class="bluelink">AreaSeries3D</a></span> 
+classes that connect to the chart <code class="code">dataProvider</code>. The following code shows the creation of a 3D area chart.</div>
+<pre class="programlisting">&lt;?xml version="1.0" ?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+  xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+  &lt;![CDATA[
+    import mx.collections.ArrayCollection;
+    
+    [Bindable]
+    public var temperature:ArrayCollection = new ArrayCollection([
+      {Month:"January", London:39, Sydney:71.8, Beijing:23.7},
+      {Month:"February", London:39.6, Sydney:71.8, Beijing:28.8},
+      {Month:"March", London:42.3, Sydney:69.8, Beijing:40.5},
+      {Month:"April", London:47.3, Sydney:65.1, Beijing:56.5},
+      {Month:"May", London:53.4, Sydney:59.5, Beijing:68},
+      {Month:"June", London:59.4, Sydney:55.2, Beijing:75.9},
+      {Month:"July", London:62.6, Sydney:53.6, Beijing:78.8},
+      {Month:"August", London:61.9, Sydney:55.8, Beijing:76.5},
+      {Month:"September", London:57.6, Sydney:59.5, Beijing:67.6},
+      {Month:"October", London:50.5, Sydney:63.9, Beijing:54.7},
+      {Month:"November", London:43.9, Sydney:67.1, Beijing:39},
+      {Month:"December", London:40.6, Sydney:70.2, Beijing:27.3}]);
+  ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:AreaChart3D width="100%" height="100%"
+     dataProvider="{temperature}" showDataTips="true"&gt;
+    &lt;ilog:horizontalAxis&gt;
+      &lt;mx:CategoryAxis categoryField="Month"/&gt;
+    &lt;/ilog:horizontalAxis&gt;
+    &lt;ilog:series&gt;
+      &lt;ilog:AreaSeries3D yField="London" /&gt;
+      &lt;ilog:AreaSeries3D yField="Sydney" /&gt;
+      &lt;ilog:AreaSeries3D yField="Beijing" form="step"/&gt;
+    &lt;/ilog:series&gt;
+  &lt;/ilog:AreaChart3D&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">The following figure shows how the area chart coded above
+is rendered.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/3dareachart_default.png" alt="Example&#xA;of 3D area chart" class="imagedata"/></div>
+<div class="para">As for the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts3d/LineChart3D.html" class="bluelink">LineChart3D</a></span> class, the
+front most series is rendered with steps.</div>
+<div class="para">The  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts3d/AreaChart3D.html" class="bluelink">AreaChart3D</a></span> class supports
+an additional property compared to the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts3d/LineChart3D.html" class="bluelink">LineChart3D</a></span><code class="code"> </code>class. This is the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts3d/ColumnChart3D.html#type" class="bluelink">type</a></span> property
+that can be <code class="code">overlaid</code> (default), <code class="code">stacked</code>, or <code class="code">100%</code>. </div>
+<div class="para">The following figure shows the step form chart coded
+above rendered with a <code class="code">stacked</code> type. This
+illustrates how the <code class="code">type</code> property affects
+the rendering.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/3dsteptype_default.png" alt="Example&#xA;of 3D step form chart with stacked type" class="imagedata"/></div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise22.html" class="bluelink">3D chart controls</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise26.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise28.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,35 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Local view mode</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex739.html" class="breadcrumb">Organization Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex754.html" class="breadcrumb">Organization chart view modes</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex756.html" class="breadcrumb">Local view mode</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex755.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex757.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Local view mode</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The purpose of the local view mode is to display the
+local hierarchy of a specific item known as the local item. This facilitates
+navigation through large datasets. The following items are displayed:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The local item.</div>
+</li><li class="itemizedlistItem"><div class="para">The siblings of the local item if the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#showSiblings" class="bluelink">showSiblings</a></span> property is set to <code class="code">true</code> (default value).</div>
+</li><li class="itemizedlistItem"><div class="para">At most <code class="code">n</code> levels of local item parents (by default 1) where <code class="code">n</code> is specified by the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#upperLevelLimit" class="bluelink">upperLevelLimit</a></span> property.</div></li><li class="itemizedlistItem"><div class="para">At most <code class="code">m</code> levels of local item children (by default 1) where <code class="code">m</code> is specified by the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#lowerLevelLimit" class="bluelink">lowerLevelLimit</a></span> property.</div></li></ul></div>
+<div class="para">By default the local item is the root of the hierarchy.</div>
+<div class="para">The local item can be changed by highlighting the item
+and clicking the <span class="inlinemediaobject"><img src="../../Elixir/_media/OrgCharthierarchy_default.png" alt="hierarchy.png" class="imagedata"/></span> icon or by pressing the <span class="bold">Enter</span> key.</div>
+<div class="para">To change the local item programatically, specify an
+item of the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#dataProvider" class="bluelink">dataProvider</a></span> in the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#localItem" class="bluelink">localItem</a></span> property.</div>
+<div class="para">If the default item renderers are used, the local item
+is visually identified by a thicker border and darker color.</div>
+<div class="para">The following figure displays the same <code class="code">dataProvider</code> as given in <a href="ps_ganttforflex755.html" class="bluelink">Global view mode</a>, but in local view mode. The local item is <code class="code">Josef Mark</code> and the upper and lower limits are set to 1.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/OrgChartlocalMode_default.png" alt="Example&#xA;of organization chart in local view mode" class="imagedata"/></div>
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">In local view mode, expand and collapse of a node are
+not available because the <span class="apiname">OrgChart</span> component computes which nodes are open from the specific properties
+of this mode.</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex754.html" class="bluelink">Organization chart view modes</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex755.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex757.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

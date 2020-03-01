@@ -1,0 +1,74 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>User interaction with 3D charts</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise19.html" class="breadcrumb">3D Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise36.html" class="breadcrumb">User interaction with 3D charts</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise35.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise37.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">User interaction with 3D charts</h1></div></div><div class="content">
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">3D charts support the Adobe® Flash® Builder™ 4 interactions. These provide the chart
+interaction framework that allows you to select 3D chart items. </div>
+<div class="section" id="usrflprg.uss_flexprg_3dcharts.1024526">
+<h2 class="heading">Selection</h2>
+
+<div class="sectionContent">
+<div class="para">To allow selection on a given 3D chart, set the <code class="code">selectionMode</code> property to <code class="code">single</code> or to <code class="code">multiple</code> if multiple items can
+be selected. The following code shows how to do this.</div>
+<pre class="programlisting">&lt;ilog:ColumnChart3D height="100%" width="100%"
+  selectionMode="multiple"
+  dataProvider="{stockDataAC}"&gt;
+</pre>
+<div class="para">You can select as shown in the following table. </div>
+<div class="caption">Selection actions</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_3dcharts.1022922"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Function</div></th>
+<th rowspan="1" colspan="1"><div class="para">Action</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Select</div></td>
+<td rowspan="1" colspan="1"><div class="para">Click an item in the 3D chart.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Extend a selection</div></td>
+<td rowspan="1" colspan="1"><div class="para">Hold down the CTRL key and click the items.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Reduce a selection</div></td>
+<td rowspan="1" colspan="1"><div class="para">Hold down the CTRL key and click an already
+selected item to remove it from the selection.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Clear a selection</div></td>
+<td rowspan="1" colspan="1"><div class="para">Click anywhere on the chart background, but
+not on 3D chart items.</div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="section" id="usrflprg.uss_flexprg_3dcharts.1024539">
+<h2 class="heading">Navigation</h2>
+<div class="sectionContent">
+<div class="para">Keyboard accessibility is also provided for interactions
+with chart items. The keyboard actions for 3D charts are shown in
+the following table. </div>
+<div class="caption">Keyboard actions</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_3dcharts.1022900"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Keyboard</div></th>
+<th rowspan="1" colspan="1"><div class="para">Action</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Right/left arrow keys</div></td>
+<td rowspan="1" colspan="1"><div class="para">Navigate through the items in a series.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Up/down arrow keys</div></td>
+<td rowspan="1" colspan="1"><div class="para">Navigate through the series.</div></td>
+</tr>
+</tbody></table>
+<div class="para">For more information, see <span class="italics">Handling user interactions with charts</span> and <span class="italics">Selecting chart items</span> in the <span class="italics">Flex 3 Developer’s Guide</span>.</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise19.html" class="bluelink">3D Charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise35.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise37.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

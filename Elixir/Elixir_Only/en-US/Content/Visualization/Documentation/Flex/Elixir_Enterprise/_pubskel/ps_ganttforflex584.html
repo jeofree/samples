@@ -1,0 +1,151 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Gantt sheet data events</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex550.html" class="breadcrumb">Gantt task charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex582.html" class="breadcrumb">Managing task chart events</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex584.html" class="breadcrumb">Gantt sheet data events</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex583.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex585.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Gantt sheet data events</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">A <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html" class="bluelink">GanttSheet</a></span> component
+fires several types of events in response to user interactions with
+the data. You can create an event handler for each of these events.</div>
+<div class="para">You can listen for the following <span class="apiname">GanttSheet</span> data events.</div>
+<div class="caption">Gantt sheet data events</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="table1216739654260"><colgroup span="1">
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">GanttSheet data event</div></th>
+<th rowspan="1" colspan="1"><div class="para">Description</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#event:change" class="bluelink">change</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the selection changed as a
+result of user interaction.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#event:itemClick" class="bluelink">itemClick</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the user clicked the pointer
+over a visual item in the control.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#event:itemDoubleClick" class="bluelink">itemDoubleClick</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the user double-clicked the
+pointer over a visual item in the control.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#event:itemEditBegin" class="bluelink">itemEditBegin</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the user started editing an
+item, either by dragging one of its extremities or by dragging it.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#event:itemEditEnd" class="bluelink">itemEditEnd</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the editing of an item has
+completed.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#event:itemEditMove" class="bluelink">itemEditMove</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the user is moving an item.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#event:itemEditResize" class="bluelink">itemEditResize</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the user is resizing an item.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#event:itemRollOut" class="bluelink">itemRollOut</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the user rolled the pointer
+out of a visual item in the control.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#event:itemRollOver" class="bluelink">itemRollOver</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the user rolled the pointer
+over a visual item in the control.</div></td>
+</tr>
+</tbody></table>
+<div class="para">The Gantt sheet data events are of type <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheetEvent.html" class="bluelink">GanttSheetEvent</a></span>.</div>
+<div class="para">Within an event handler for a Gantt sheet data event
+you can access the data provider item associated with the event. You
+can also access the corresponding task item renderer and its <code class="code">TaskItem</code> object as well as the <span class="apiname">GanttSheet</span> object.</div>
+<div class="para">For information on using the task item editing events
+see <a href="ps_ganttforflex593.html" class="bluelink">Using task editing events</a>.</div>
+<div class="para">In the following example a popup is displayed whenever
+a task is clicked, retrieving the label of the task from the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskItem.html" class="bluelink">TaskItem</a></span> object.</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+      import mx.collections.HierarchicalData;
+      import mx.controls.Alert;
+      import ilog.gantt.ConstraintItem;
+      import ilog.gantt.GanttSheetEvent;
+      import ilog.gantt.TaskItem;
+  
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0"}
+      ]);
+
+      [Bindable]
+      public var constraints:ArrayCollection = new ArrayCollection([
+        { fromId:"T1", toId:"T2", kind:"endToStart" }
+      ]);
+
+      public function onItemClick(event:GanttSheetEvent):void {
+        var taskItem:TaskItem = event.itemRenderer.data as TaskItem;
+        if (taskItem)
+        {
+          Alert.show("You have clicked on the task:\n" + taskItem.label,
+                     "Click Event");
+          return;
+        }
+
+        var constraintItem:ConstraintItem = 
+            event.itemRenderer.data as ConstraintItem;
+
+        if (constraintItem)
+        {
+          var fromTask:Object = constraintItem.fromTask;
+          var toTask:Object = constraintItem.toTask;
+          Alert.show("You have clicked on the constraint:\n"
+                     + "kind: " + constraintItem.kind + "\n"
+                     + "from: " + ganttSheet.itemToTaskItem(fromTask).label
+                     + "\n"
+                     + "to: " + ganttSheet.itemToTaskItem(toTask).label,
+                     "Click Event");
+          return;
+        }
+      }
+    ]]&gt;    
+  &lt;/mx:Script&gt;
+
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%"
+                  taskDataProvider="{tasks}"
+                  constraintDataProvider="{constraints}" 
+                  &gt;
+    &lt;ilog:ganttSheet&gt;
+      &lt;ilog:GanttSheet id="ganttSheet"
+                       itemClick="onItemClick(event);"&gt;
+      &lt;/ilog:GanttSheet&gt;
+    &lt;/ilog:ganttSheet&gt;
+  &lt;/ilog:TaskChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">The previous example uses the <span class="apiname">TaskItem</span> object to retrieve the label of the task. You can achieve the same
+result by retrieving the label directly from the <span class="apiname">name</span> property of the data provider item.</div>
+<pre class="programlisting">     public function onItemClick(event:GanttSheetEvent):void {
+        Alert.show("You have clicked on the task:\n" + event.item.name, 
+                   "Click Event");
+      }
+</pre>
+<div class="para">For more information on the <span class="apiname">TaskItem</span> class see <a href="ps_ganttforflex567.html" class="bluelink">Task item renderer architecture in task chart</a>.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex582.html" class="bluelink">Managing task chart events</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex583.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex585.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,125 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Using other Map control layers</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Overview"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex717.html" class="breadcrumb">Maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex725.html" class="breadcrumb">Using other Map control layers</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex724.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex726.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Using other Map control layers</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para"><span class="bold">The MapComponentLayer</span>r</div>
+<div class="para">The <code class="code">MapComponentLayer</code> allows
+fitting a component onto a map  if given  the location of the corners
+of the component. The locations of the corners must  be expressed
+in longitude and latitude and in either Degree Minute Second format
+or decimal degree format. This group can be used to display an image
+on a map given  the location of its corners. Note that no reprojection
+is performed, so the image must be on the same projection as the map
+on which it will fit.Note also that the image must be entirely inside
+the map. If a corner is outside  the map, the coordinate transformation
+functions will fail.</div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">The <code class="code">MapComponentLayer</code> should
+be part of the content of the main <code class="code">MapGroup</code>: </div>
+<pre class="programlisting">&lt;ibm:MapGroup id="mapGroup"&gt;
+…..
+&lt;ibm:MapComponentGroup depth="3" resizePolicy="scale"
+                             upperLeftLongitude="11D 19M 0S W"
+                             upperLeftLatitude="90°00'00&amp;quot;N"
+                             lowerRightLongitude="180"
+                             lowerRightLatitude="0.908"&gt;
+        &lt;s:BitmapImage source="europe.browse.gif" smooth="true"/&gt;
+      &lt;/ibm:MapComponentGroup&gt;
+&lt;/ibm:MapGroup&gt;
+</pre>
+</div>
+</div>
+<div class="para">The <code class="code">upperLeftLongitude, upperLeftLatitude,
+lowerRightLongitude</code> and <code class="code">lowerRightLatitude</code> define the coordinates of the upper left and lower right corner
+of the component. The <code class="code">resizeMode</code> tells
+the component group how to fit the component. If set to “scale”,
+the component will be scaled using a transformation matrix. If set
+to ‘resize’ the component width and height will be modified
+to make the fit.</div>
+<div class="para"><span class="bold">The MapLayer layer</span></div>
+<div class="para">The <code class="code">MapLayerGroup</code> is a general
+purpose layer designed to place any component at a given location
+expressed in longitude and latitude coordinates. The properties that
+can be used to place a component are  top, bottom, left, right, verticalCenter
+and horizontalCen-ter. Placing a component using the top, bottom,
+left or right properties mean that the top, bottom, left or right
+side of the component will be placed at the specified location.</div>
+<div class="example">
+<div class="exampleContent">
+<pre class="programlisting">&lt;ibm:MapLayerGroup zoomable="false"&gt;
+  &lt;!—Place a button at longitude 2.45 and latitude 44 degrees 12 minutes and 5 seconds --&gt; 
+  &lt;s:Button label=”A location” left=”2.45” top=”44D 12M 5s”
+&lt;/ibm:MapLayerGroup&gt;
+</pre>
+<div class="para">Using the <code class="code">verticalCenter</code> and/or <code class="code">horizontalCenter</code> properties means that the center of
+the component will be placed at the specified location.</div>
+<pre class="programlisting">&lt;ibm:MapLayerGroup zoomable="false"&gt;
+  &lt;s:BitmapImage width="50" height="50"
+                       horizontalCenter="121° 53' 37.78S W"
+                       verticalCenter="37° 19' 51.52s N" source="IBM-logo.png"/&gt;
+&lt;/ibm:MapLayerGroup&gt;
+
+</pre>
+<div class="para">The <code class="code">MapLayerGroup</code> group also
+provides the ability to perform any custom drawing by using the <code class="code">drawingFunction</code> property. This function will be called
+in the <code class="code">updateDisplayList</code> of the group with
+the drawing group as parameter. In the following skin example, a reticule
+is drawn at the location Paris, France:</div>
+<pre class="programlisting">&lt;s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+                      xmlns:s="library://ns.adobe.com/flex/spark"
+                      xmlns:ibm="http://www.ibm.com/xmlns/prod/ilog/elixir/2010" 
+                     minWidth="320"  minHeight="160" alpha.disabled="0.5"&gt;
+  &lt;fx:Script&gt;
+    &lt;![CDATA[
+      ………………………………
+      private function draw(mg:MapLayerGroup):void {
+        var map:MapBase = MapBase.getMap(mg);
+        var u:Number = 5;
+        var p:Point = new Point(2.3510, 48.8567);
+        p = map.longLatToMap(p);
+        p = map.featureGroup.localToGlobal(p);
+        p = mg.globalToLocal(p);
+
+        var g:Graphics = mg.graphics;
+        g.clear();
+        g.lineStyle(0, 0xff0000, 1);
+
+        g.drawCircle(p.x, p.y, 2 * u);
+
+        g.moveTo(p.x - 3 * u, p.y);
+        g.lineTo(p.x - u, p.y);
+
+        g.moveTo(p.x + u, p.y);
+        g.lineTo(p.x + 3 * u, p.y);
+
+        g.moveTo(p.x, p.y - 3 * u);
+        g.lineTo(p.x, p.y - u);
+
+        g.moveTo(p.x, p.y + u);
+        g.lineTo(p.x, p.y + 3 * u);
+      }
+    ]]&gt;
+  &lt;/fx:Script&gt;
+  &lt;ibm:Scroller panModifierKey="none" wheelZoomModifierKey="none" width="100%" height="100%"
+                id="scroller" skinClass="com.ibm.ilog.elixir.skins.spark.ScrollerSkin"&gt;
+
+    &lt;!-- The layer container --&gt;
+    &lt;ibm:MapGroup id="mapGroup"&gt;
+      &lt;!-- the layer holding map features --&gt;
+      &lt;ibm:MapFeatureGroup id="featureGroup"
+            featureRenderer="com.ibm.ilog.elixir.maps.skins.DefaultFeatureRenderer"/&gt;
+      &lt;ibm:MapLayerGroup drawingFunction="draw"/&gt;
+    &lt;/ibm:MapGroup&gt;
+
+  &lt;/ibm:Scroller&gt;
+
+&lt;/s:SparkSkin&gt;
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex717.html" class="bluelink">Maps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex724.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex726.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,43 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Printing organization charts on multiple pages</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex739.html" class="breadcrumb">Organization Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex771.html" class="breadcrumb">Printing organization charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex772.html" class="breadcrumb">Printing organization charts on multiple pages</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex771.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex773.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Printing organization charts on multiple pages</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e129935">
+
+<div class="para">The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/PrintOrgChart.html" class="bluelink">PrintOrgChart</a></span> class allows
+the printing of large organization charts on more than one page.</div>
+
+<div class="para">The process of printing a large organization chart is
+similar to printing a multipage data grid with the <span class="trademark">Adobe®
+            </span> <span class="trademark">Flex®
+            </span> 4 <span class="apiname">PrintDataGrid</span> class. See <span class="italics">Printing multipage output</span> in <span class="italics">Advanced Flex Programming</span>&gt;<span class="italics">Printing</span> in the
+Adobe documentation. The main difference is that pages represent a
+matrix of rows and columns. To visualize your organization chart,
+you have to reassemble the pages.</div>
+<div class="para">The <span class="apiname">validNextPage</span> property
+is <code class="code">true</code> if the <span class="apiname">PrintOrgChart</span> control has data beyond the current print page. You use this property
+to determine whether you need to format and print an additional page.</div>
+<div class="para">The <span class="apiname">nextPage()</span> method
+moves to the next set of data to print. Pages are printed row by row,
+as shown in the following figure.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/orgchart_printorder_default.gif" alt="The print&#xA;order for printing a multipage organization chart" class="imagedata"/></div>
+<div class="para">The following code shows a loop that prints an organization
+chart on multiple pages.</div>
+<pre class="programlisting">// Queue the first page
+printJob.addObject(thePrintView);
+// While there are more pages, print them
+while (thePrintView.myOrgChart.validNextPage) {
+    //Display next set of data (page)
+    thePrintView. myOrgChart.nextPage();
+    //Queue the additional page.
+    printJob.addObject(thePrintView);
+}
+</pre>
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">If you want to print a chart that uses pictures, load
+them before starting the  print operation or they will not be visible.</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex771.html" class="bluelink">Printing organization charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex771.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex773.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

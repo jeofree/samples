@@ -1,0 +1,71 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Generic features and parameters</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex460.html" class="breadcrumb">Nested layouts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex467.html" class="breadcrumb">Recursive layout</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex469.html" class="breadcrumb">Generic features and parameters</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex468.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex470.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Generic features and parameters</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">Depending on the support of its sublayouts, Recursive
+Layout may support the following generic parameters defined in the  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html" class="bluelink">IlvGraphLayout</a></span> class (see <a href="ps_usrgraphlayout_flex367.html" class="bluelink">Generic parameters and features</a>): </div>
+
+
+<div class="para">The following paragraphs describe the particular way
+in which these parameters are used by this subclass. </div>
+<div class="section" id="usrgraphlayout.uss_graphlay_nested.1004271">
+<h2 class="heading">Allowed time</h2>
+
+
+<div class="sectionContent">
+<div class="para">The Recursive Layout can stop the entire layout of a
+nested graph after a certain amount of time. If the allowed time setting
+has elapsed, the Recursive Layout stops; that means it stops the currently
+running layout of a subgraph and skips the subsequent layouts of subgraphs
+that have not yet been started. If at the stop time point a sublayout
+is running on a subgraph that does not support the “allowed
+time” feature, then this sublayout first runs to completion
+before the Recursive Layout is stopped. If the Recursive Layout stops
+early because the allowed time has elapsed, the result code in the
+layout report is <code class="code">IlvGraphLayoutReport.STOPPED_AND_INVALID</code>.  </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_nested.1004274">
+<h2 class="heading">Percentage completion calculation</h2>
+
+
+<div class="sectionContent">
+<div class="para">The Recursive Layout calculates the percentage of completion.
+This value can be obtained from the layout report during the run of
+the layout. The value is, however, a very rough estimation. If the
+layouts on the subgraphs do not support the calculation of the percentage
+completion, the Recursive Layout can report the percentage based only
+on the information how many layouts of subgraphs are already finished.
+For instance, if the entire nesting structure contains five nested
+graphs, the mechanism reports 20% after the layout of the first subgraph
+has finished, 40% after the layout of the second subgraph has finished,
+and so on. If the layouts of the subgraphs support the calculation
+of the percentage completion, the Recursive Layout calculates a more
+detailed percentage. In most cases, the calculated percentage is only
+a very rough estimation that does not always grow linearly over time.
+(For a detailed description of this feature, see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1014202" class="bluelink">Percentage of completion calculation</a> and Listener layout) </div>
+</div>
+</div>
+
+<div class="section" id="usrgraphlayout.uss_graphlay_nested.1004292">
+<h2 class="heading">Stop immediately</h2>
+
+
+<div class="sectionContent">
+<div class="para">The Recursive Layout can be stopped at any time. It stops
+the currently running layout of a subgraph after cleanup if the method  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/tree/IlvTreeLayout.html#stopImmediately()" class="bluelink">stopImmediately</a></span> is called and skips the subsequent layouts of subgraphs
+that have not yet been started. If at the stop time point a sublayout
+is running on a subgraph that does not support the “stop immediately”
+feature, then this sublayout first runs to completion before the Recursive
+Layout is stopped. For a description of this method in the IlvGraphLayout
+class, see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1022821" class="bluelink">Stop immediately</a>. If the layout
+stops before completion, the result code in the layout report is <code class="code">IlvGraphLayoutReport.STOPPED_AND_INVALID</code>. </div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex467.html" class="bluelink">Recursive layout</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex468.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex470.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

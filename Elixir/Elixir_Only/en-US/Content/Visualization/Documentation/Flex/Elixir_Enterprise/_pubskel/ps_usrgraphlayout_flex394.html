@@ -1,0 +1,107 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Spacing parameters</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex379.html" class="breadcrumb">Tree Layout (TL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex385.html" class="breadcrumb">Layout modes of the TL algorithm</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex386.html" class="breadcrumb">Free layout mode</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex394.html" class="breadcrumb">Spacing parameters</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex393.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex395.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Spacing parameters</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The spacing of the layout is controlled mainly by three
+spacing parameters: the distance between a parent and its child nodes,
+the minimum distance between siblings, and the minimum distance between
+nodes of different branches. For instance, if the flow direction is
+to the top or bottom, the offset between parent and child nodes is
+vertical, while the sibling offset and the branch offset are horizontal. </div>
+<div class="para">For tip-over alignment, an additional spacing parameter
+is provided: the minimum distance between branches starting at a node
+with tip-over alignment. This offset is always orthogonal to the normal
+branch offset. If the flow direction is to the top or bottom, the
+tip-over branch offset is vertical. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1199481"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Tree-offset-sketch44_default.gif" alt="Two graphs&#xA;showing the use of spacing parameters" class="imagedata"/></div><div class="caption">Spacing parameters</div></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To specify the spacing parameters: </div>
+</div>
+
+
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1199506">
+<h2 class="heading">For experts: additional spacing parameters</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="sectionContent">
+
+<div class="para">The spacing parameters normally specify the minimum offsets
+between the node borders. Hence, the layout algorithm places the nodes
+such that they do not overlap. You can also specify that the layout
+should ignore the node sizes.</div>
+
+<div class="para">In this case, the spacing parameters are interpreted
+as the minimum distances between the node centers, and the node sides
+are not taken into account during the layout. However, if the specified
+offset parameters are now smaller than the node size, the nodes and
+links will overlap. This often happens with orthogonal links in particular.
+It makes sense to use this option only if all nodes have approximately
+the same size, all links are straight, and the spacing parameters
+are larger than the largest node. </div>
+<div class="para">If the link style is orthogonal, the shape of the links
+from the parent to its child nodes looks like a fork (see <a href="ps_usrgraphlayout_flex389.html#usrgraphlayout.uss_graphlay_layouts.1199121" class="bluelink">Different alignments mixed in the same drawing</a>). The position
+of the bend points in this shape can be influenced by the <span class="italics">orthogonal fork percentage</span>, a value
+between <code class="code">0</code> and <code class="code">100</code>. This is a percentage of the parent child offset. If the orthogonal
+fork percentage is <code class="code">0</code>, the link shape forks
+directly at the parent node. If the percentage is <code class="code">100</code>, the link shape forks at the child node. A good choice is between <code class="code">25</code> and <code class="code">75</code>. This percentage
+can be set. </div>
+
+<div class="para">If the link style is not orthogonal, links may overlap
+neighboring nodes. This happens only in a very few cases, for instance,
+when a link starts at a very small node that is neighbored by a very
+large node. This deficiency can be fixed by increasing the branch
+offset. However, this influences the layout globally, affecting nodes
+without that deficiency. To avoid a global change, you can change
+the <span class="italics">overlap percentage</span> instead, which is a value between 0 and 100. This value is used
+by an internal heuristic of the layout algorithm that considers a
+node to be smaller by this percentage. The default percentage is <code class="code">30</code>. This usually results in better usage of the space.
+However, if very small nodes are neighbored to very large nodes, it
+is recommended to decrease the overlap percentage or to set it to <code class="code">0</code> to switch this heuristic off to avoid links overlapping
+nodes. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To set the overlap percentage: : </div>
+</div>
+
+
+</div>
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">It is recommended that you always set the orthogonal
+fork percentage to a value larger than the value of the overlap percentage.
+ </div>
+</div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1199538"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-42online45_default.gif" alt="Two pictures&#xA;of the same graph showing the effect of the overlap percentage" class="imagedata"/></div><div class="caption">Effect of using the overlap percentage</div></div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex386.html" class="bluelink">Free layout mode</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex393.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex395.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

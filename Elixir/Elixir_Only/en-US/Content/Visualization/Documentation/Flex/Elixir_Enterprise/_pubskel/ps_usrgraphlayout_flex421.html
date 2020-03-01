@@ -1,0 +1,82 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Layout constraints for HL</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex414.html" class="breadcrumb">Hierarchical Layout (HL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex421.html" class="breadcrumb">Layout constraints for HL</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex420.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex422.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Layout constraints for HL</h1></div></div><div class="content">
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The Hierarchical Layout algorithm supports <span class="italics">relative position constraints </span>on
+nodes<span class="italics">.</span> Such a constraint
+is a rule on how a particular node (or a group of nodes) must be placed
+with respect to the other nodes. The constraints influence the relative
+positions. For example, you can force node <code class="code">A</code> to be on the left side of node <code class="code">B</code>, so
+the position of <code class="code">A</code> is expressed relative
+to the position of <code class="code">B</code>. It is theoretically
+possible to specify contradicting constraints: if you specify that
+node <code class="code">A</code> must be on the left side of <code class="code">B</code> and <code class="code">B</code> must be on the left
+side of <code class="code">A</code>, then these constraints are not
+solvable at the same time. If <code class="code">A</code> is on the
+left side of <code class="code">B</code>, then <code class="code">B</code> must be on the right side of <code class="code">A</code>. The Hierarchical
+Layout algorithm tries to detect and resolve constraint conflicts
+automatically. It ignores those constraints that are infeasible. Since
+the automatic constraint resolution is time consuming, it is recommended
+to specify nonconflicting constraints when possible. </div>
+<div class="para">Constraints should be used only if the incremental mode
+is switched off. In fact, the incremental mode is implemented by means
+of additional constraints that are added internally. Hence, if you
+use constraints during the incremental mode, it is very likely that
+the system detects so many constraint conflicts that you get unexpected
+results. </div>
+<div class="para">Constraints should be used carefully. The more constraints
+are specified, the more difficult it is to calculate a layout. Therefore,
+this resulting layout may have more link crossings and be less balanced
+than a graph with no constraints.  </div>
+<div class="para">Each type of constraint is represented by a subclass
+of <code class="code">IlvHierarchicalConstraint</code>. The following
+constraint types are available: </div>
+<table border="0" cellpadding="5" cellspacing="0" class="NoBorder"><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><code class="code">IlvLevelRangeConstraint</code> </div></td>
+<td rowspan="1" colspan="1"><div class="para">Forces a node into a range of certain levels </div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><code class="code">IlvSameLevelConstraint</code> </div></td>
+<td rowspan="1" colspan="1"><div class="para">Forces two nodes to the same level. </div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><code class="code">IlvRelativeLevelConstraint</code> </div></td>
+<td rowspan="1" colspan="1"><div class="para">Forces a node to a lower/higher level than
+another node. </div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><code class="code">IlvGroupSpreadConstraint</code> </div></td>
+<td rowspan="1" colspan="1"><div class="para">Forces a group of nodes on levels that are
+no more than a specified spread value apart. </div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><code class="code">IlvRelativePositionConstraint</code> </div></td>
+<td rowspan="1" colspan="1"><div class="para">Forces a node to a lower/higher position than
+another node of the same level. </div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><code class="code">IlvSideBySideConstraint</code> </div></td>
+<td rowspan="1" colspan="1"><div class="para">Forces two nodes of the same level to be placed
+side by side. </div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><code class="code">IlvExtremityConstraint</code> </div></td>
+<td rowspan="1" colspan="1"><div class="para">Forces a node to the first or last level,
+or to the first or last position within a level. </div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><code class="code">IlvSwimLaneConstraint</code> </div></td>
+<td rowspan="1" colspan="1"><div class="para">Forces a group of nodes into the same rectangular
+swim lane area. </div></td>
+</tr>
+</tbody></table>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex414.html" class="bluelink">Hierarchical Layout (HL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex420.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex422.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

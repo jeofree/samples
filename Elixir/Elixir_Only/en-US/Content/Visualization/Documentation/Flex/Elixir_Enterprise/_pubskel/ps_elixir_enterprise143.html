@@ -1,0 +1,23 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Managing PivotChart events</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise132.html" class="breadcrumb">OLAP and pivot charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise139.html" class="breadcrumb">Pivot charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise143.html" class="breadcrumb">Managing PivotChart events</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise142.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise144.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Managing PivotChart events</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/PivotChart.html" class="bluelink">PivotChart</a></span> class dispatches several events to help you follow the query process
+and provide feedback to the users if needed. For example, you can
+display a message to the user when the query is invoked and remove
+it when the query has ended.</div>
+<pre class="programlisting">&lt;mx:Label id="messageToUser"/&gt;
+&lt;ilog:PivotChart id="pivotchart" width="100%" height="100%" cube="{cube}"
+  invoke="messageToUser.text='Query Invoked'" 
+  result="messageToUser.text='Query Finished'"
+  fault="messageToUser.text='Query Failed'" /&gt;
+</pre>
+<div class="para">You can obviously do any other action you might need
+to on these listeners. For example, in the fault listener you could
+call the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/PivotChart.html#invalidateQuery()" class="bluelink">invalidateQuery</a></span> method to try to re-execute the listener in case
+the problem comes from a temporary network failure.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise139.html" class="bluelink">Pivot charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise142.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise144.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,269 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Time scale styling</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex550.html" class="breadcrumb">Gantt task charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex571.html" class="breadcrumb">Styling a task chart</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex575.html" class="breadcrumb">Time scale styling</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex574.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex576.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Time scale styling</h1></div></div><div class="content">
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">In addition to the styles provided by its base types
+the time scale control defines its own styles. </div>
+<div class="para">The time scale display is composed of the following elements:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Background</div></li><li class="itemizedlistItem"><div class="para">The time scale rows and separator</div>
+</li><li class="itemizedlistItem"><div class="para">Interaction feedback</div>
+</li></ul></div>
+<div class="para">There are two time scale rows: the major time scale row
+at the top and the minor time scale row at the bottom. Each time scale
+row is composed of ticks and text that do not overlap.</div>
+<div class="para">See also the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TimeScale.html" class="bluelink">TimeScale</a></span> class  for more information on the available styles.</div>
+<div class="section" id="section1216740347367">
+<h2 class="heading">Background properties</h2>
+<div class="sectionContent">
+<div class="para">The background is rectangle that is drawn behind all
+elements of the time scale. Its style can be customized with the following
+property: <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TimeScale.html#style:backgroundColors" class="bluelink">backgroundColors</a></span>.</div>
+<div class="para">The <span class="apiname">backgroundColors</span> property takes an array with two colors. If the colors provided
+are the same, the background is painted with the specified color.
+Otherwise, the background is painted using a gradient that goes from
+the first color at the top of the time scale to the second color at
+the bottom.</div>
+<div class="para">The following example shows how to customize the background
+styles provided by the time scale.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+      import mx.collections.HierarchicalData;
+  
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0"}
+      ]);
+
+      [Bindable]
+      public var constraints:ArrayCollection = new ArrayCollection([
+        { fromId:"T1", toId:"T2", kind:"endToStart" }
+      ]);
+    ]]&gt;
+  &lt;/mx:Script&gt;
+
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%"
+                  taskDataProvider="{tasks}"
+                  constraintDataProvider="{constraints}" 
+                  &gt;
+    &lt;ilog:timeScale&gt;
+      &lt;ilog:TimeScale backgroundColors="{['white', 'black']}"/&gt;
+    &lt;/ilog:timeScale&gt;
+  &lt;/ilog:TaskChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example customizes the background colors of the
+time scale.</div>
+</div>
+</div>
+<div class="section" id="section1216740355445">
+<h2 class="heading">Separator properties</h2>
+<div class="sectionContent">
+<div class="para">The separator is displayed by the time scale between
+the major and minor time scale rows. Its style can be customized with
+the following properties: <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TimeScale.html#style:separatorAlpha" class="bluelink">separatorAlpha</a></span>, <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TimeScale.html#style:separatorColor" class="bluelink">separatorColor</a></span> and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TimeScale.html#style:separatorThickness" class="bluelink">separatorThickness</a></span>.</div>
+<div class="para">The following example shows how you can easily customize
+the separator styles provided by the time scale.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+  
+      [Bindable]
+      public var resources:ArrayCollection = new ArrayCollection([
+        { id: "R1", name: "Project Manager", location: "Geneva" }
+      ]);
+        
+      [Bindable]
+      public var tasks:ArrayCollection = new ArrayCollection([
+        { resourceId: "R1", name: "Define project vision",
+          startTime: "1/14/2008 8:0:0", endTime: "1/15/2008 17:0:0" },
+        { resourceId: "R1", name: "Refine project vision",
+          startTime: "1/16/2008 8:0:0", endTime: "1/17/2008 17:0:0" },
+        { resourceId: "R1", name: "Assess project vision",
+          startTime: "1/18/2008 8:0:0", endTime: "1/21/2008 17:0:0" }
+      ]);
+    ]]&gt;
+  &lt;/mx:Script&gt;
+
+  &lt;ilog:ResourceChart id="resourceChart" width="100%" height="100%"
+                      resourceDataProvider="{resources}"
+                      taskDataProvider="{tasks}"&gt;
+    &lt;ilog:timeScale&gt;
+      &lt;ilog:TimeScale separatorAlpha="0.5" 
+                      separatorColor="red" 
+                      separatorThickness="2"/&gt;
+    &lt;/ilog:timeScale&gt;
+  &lt;/ilog:ResourceChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example customizes the color, transparency and thickness
+of the separator of the time scale.</div>
+</div>
+</div>
+<div class="section" id="section1216740362648">
+<h2 class="heading">Tick properties</h2>
+<div class="sectionContent">
+<div class="para">The ticks separate the time segments in both the major
+and minor time scale rows. You can  customize the styling of ticks
+with the following properties: <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TimeScale.html#style:majorTickAlpha" class="bluelink">majorTickAlpha</a></span>, <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TimeScale.html#style:majorTickColor" class="bluelink">majorTickColor</a></span>, and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TimeScale.html#style:minorTickAlpha" class="bluelink">minorTickAlpha</a></span>.</div>
+<div class="para">The following example shows how to customize the tick
+styles provided by the time scale.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+      import mx.collections.HierarchicalData;
+  
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0"}
+      ]);
+
+      [Bindable]
+      public var constraints:ArrayCollection = new ArrayCollection([
+        { fromId:"T1", toId:"T2", kind:"endToStart" }
+      ]);
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%"
+                  taskDataProvider="{tasks}"
+                  constraintDataProvider="{constraints}" 
+                  &gt;
+    &lt;ilog:timeScale&gt;
+      &lt;ilog:TimeScale majorTickAlpha="0.5" majorTickColor="red"
+                      minorTickAlpha="0.5" minorTickColor="blue"/&gt;
+    &lt;/ilog:timeScale&gt;
+  &lt;/ilog:TaskChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example customizes the time scale’s major
+and minor ticks color and transparency.</div>
+</div>
+</div>
+<div class="section" id="section1216740373930">
+<h2 class="heading">Time scale text properties</h2>
+<div class="sectionContent">
+<div class="para">The text contains a label for each time interval shown
+by the time scale rows in the time scale. You can customize the styling
+of text with the following properties: <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TimeScale.html#style:majorTextStyleName" class="bluelink">majorTextStyleName</a></span> and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TimeScale.html#style:minorTextStyleName" class="bluelink">minorTextStyleName</a></span>.</div>
+<div class="para">The following example shows how to customize the text
+styles provided by the time scale.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Style&gt;
+    .myMajorTextStyle {
+      color: blue;
+      fontWeight: bold;
+    }
+    .myMinorTextStyle {
+      color: red;
+      fontStyle: italic;
+    }
+  &lt;/mx:Style&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+      import mx.collections.HierarchicalData;
+  
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0"}
+      ]);
+
+      [Bindable]
+      public var constraints:ArrayCollection = new ArrayCollection([
+        { fromId:"T1", toId:"T2", kind:"endToStart" }
+      ]);
+    ]]&gt;
+  &lt;/mx:Script&gt;
+
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%"
+                  taskDataProvider="{tasks}"
+                  constraintDataProvider="{constraints}" 
+                  &gt;
+    &lt;ilog:timeScale&gt;
+      &lt;ilog:TimeScale majorTextStyleName="myMajorTextStyle"
+                      minorTextStyleName="myMinorTextStyle"/&gt;
+    &lt;/ilog:timeScale&gt;
+  &lt;/ilog:TaskChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example specifies the names of the CSS classes to
+be used to style the text of the major and minor rows in the time
+scale. The CSS classes customize the color, font style and weight
+of the text.</div>
+</div>
+</div>
+<div class="section" id="section1216740381711">
+<h2 class="heading">Highlighting properties</h2>
+<div class="sectionContent">
+<div class="para">Highlighting comprises visual elements that aid in providing
+feedback to users who are interacting with the time scale. The following
+are the main highlighting visual elements:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Highlighting of predefined time intervals
+when users hover over them on the time scale</div>
+</li><li class="itemizedlistItem"><div class="para">Highlighting of arbitrary time intervals
+when users select them on the time scale</div></li></ul></div>
+<div class="para">The highlighting style can be customized with the following
+properties: <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TimeScale.html#style:rollOverAlpha" class="bluelink">rollOverAlpha</a></span> and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TimeScale.html#style:rollOverColor" class="bluelink">rollOverColor</a></span>.</div>
+<div class="para">The following example shows how to customize the highlighting
+styles provided by the time scale.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+      import mx.collections.HierarchicalData;
+  
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0"}
+      ]);
+
+      [Bindable]
+      public var constraints:ArrayCollection = new ArrayCollection([
+        { fromId:"T1", toId:"T2", kind:"endToStart" }
+      ]);
+    ]]&gt;
+  &lt;/mx:Script&gt;
+
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%"
+                  taskDataProvider="{tasks}"
+                  constraintDataProvider="{constraints}" 
+                  &gt;
+    &lt;ilog:timeScale&gt;
+      &lt;ilog:TimeScale rollOverAlpha="0.5" rollOverColor="red"/&gt;
+    &lt;/ilog:timeScale&gt;
+  &lt;/ilog:TaskChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example customizes the rollover color and transparency
+of the time scale.</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex571.html" class="bluelink">Styling a task chart</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex574.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex576.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

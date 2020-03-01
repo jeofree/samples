@@ -1,0 +1,127 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Specifying Graph Layout algorithms in a Diagram component</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f312.html" class="breadcrumb">Creating a graph display from data providers using the Diagram
+class</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f329.html" class="breadcrumb">Specifying Graph Layout algorithms in a Diagram component</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f328.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f330.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Specifying Graph Layout algorithms in a Diagram component</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">Inside a Diagram component, the nodes and links that
+are generated from the data source can be automatically arranged by
+a Graph Layout algorithm. You can specify the algorithms through the
+nodeLayout and linkLayout properties of the Diagram class.   </div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">A set of algorithms are present to cover various types
+of graph data: </div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Hierarchical layout</div>
+</li><li class="itemizedlistItem"><div class="para">Tree layout </div>
+</li><li class="itemizedlistItem"><div class="para">Force-directed layout</div>
+</li><li class="itemizedlistItem"><div class="para">Grid layout</div>
+</li><li class="itemizedlistItem"><div class="para">Random layout</div>
+</li><li class="itemizedlistItem"><div class="para">Short link layout</div>
+</li><li class="itemizedlistItem"><div class="para">Long link layout</div>
+</li></ul></div>
+<div class="para">For more details on each Graph Layout algorithm, see
+LINKTO(Using Graph Layout Algorithms).   The following example specified
+a Hierarchical layout algorithm on a Diagram component: </div>
+<pre class="programlisting">&lt;fx:Declarations&gt;
+    &lt;ibm:HierarchicalLayout id="hierarchical" flowDirection="bottom" globalLinkStyle="orthogonal" /&gt;
+  &lt;/fx:Declarations&gt;
+   
+  &lt;ibm:Diagram id="diagram" left="0" top="0" width="640" height="480" 
+                 nodeDataProvider="{hcv}" linkDataProvider="{ldp}"
+                 xLocationField="@x" yLocationField="@y" labelField="@label" 
+                 minZoom="0.2" maxZoom="4" zoom="1.4" 
+                 automaticGraphLayout="true" nodeLayout="{hierarchical}" /&gt;
+</pre>
+<div class="para">Note that most of the Graph Layout algorithms have per-node
+and per-link properties, they are implemented as attached properties
+that you can specify on the Node or Link instance. For example, in
+the TreeLayout algorithm you can specify an attached property named
+alignment for each Node instance. This property defines the alignment
+of a node with respect to its children. You can set these attached
+properties in your code to specify custom behaviors for individual
+nodes or links or the graph.   Graph Layout classes are also present
+in the namespace so that you can specify both by code or in MXML how
+your diagram should be arranged. </div>
+<div class="section">
+<h2 class="heading">Attaching a Graph Layout algorithm to a Diagram component</h2>
+<div class="sectionContent">
+<div class="para">You can attach two different graph layout algorithms
+to a Diagram component by using the nodeLayout and linkLayout properties
+of the Diagram class.   The nodeLayout property contains a graph layout
+algorithm that arranges the nodes of the graph, like HierarchicalLayout,
+TreeLayout, ForceDirectedLayout and GridLayout classes.   Note: These
+algorithms often change the shapes of the links.   The linkLayout
+property contains a second graph layout algorithm that only changes
+the shapes of the links without moving the nodes like ShortLinkLayout
+or LongLinkLayout algorithms.   In most cases, these two properties
+ease the configuration of the graph layout algorithms. For example,
+to build a business process diagram, a user would need to arrange
+the nodes of the diagram (using the algorithm stored in the nodeLayout
+property) while editing. He would also need to route the links (using
+the algorithm stored in the linkLayout property) to reduce link crossings,
+without moving the nodes again, because he might have moved some nodes
+manually.   The following example shows how to attach a graph layout
+algorithm to a diagram: </div>
+<pre class="programlisting">var layout:TreeLayout = new TreeLayout();
+   layout.flowDirection = TreeLayoutFlowDirection.BOTTOM;
+   layout.globalLinkStyle = TreeLayout.ORTHOGONAL_STYLE;
+   diagram.nodeLayout = layout;
+</pre>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Executing a Graph Layout algorithm</h2>
+<div class="sectionContent">
+<div class="para">To execute a graph layout algorithm attached to a diagram,
+use the performGraphLayout method of the Diagram class. This method
+executes the graph layout algorithms defined by the nodeLayout and/or
+linkLayout properties.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The behavior of the performGraphLayout method is controlled
+by the following properties of the Diagram class:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">nodeLayoutActive: if this property is
+true, the graph layout algorithm contained in the nodeLayout property
+will be called (if it is not null). The default value of this property
+is true. </div></li><li class="itemizedlistItem"><div class="para">linkLayoutActive: if this property is
+true, the graph layout algorithm contained in the linkLayout property
+will be called (if it is not null). The Link Layout algorithm will
+always be called after the graph layout algorithm when both are specified
+and active. The default value of this property is true.</div>
+</li><li class="itemizedlistItem"><div class="para">automaticGraphLayout : if this property
+is true, the graph layout algorithms are performed automatically whenever
+the contents of the diagram change. In this case, there is no need
+to call explicitely the method performGraphLayout, it will be called
+automatically whenever objects are added or removed from the diagram
+or subgraphs are expanded or collapsed. The default value of this
+property is true.</div></li><li class="itemizedlistItem"><div class="para">animateGraphLayout : if this property
+is true, the node movements and link changes are performed using animation.
+The default value of this property is false.</div>
+</li></ul></div>
+<div class="para">The following example shows how to execute the graph
+layout algorithms attached to a diagram: </div>
+<pre class="programlisting">diagram.performGraphLayout();</pre>
+<pre class="programlisting">var layout:TreeLayout = new TreeLayout();
+  layout.flowDirection = TreeLayoutFlowDirection.BOTTOM;
+  layout.globalLinkStyle = TreeLayout.ORTHOGONAL_STYLE;
+  diagram.nodeLayout = layout;
+  diagram.automaticGraphLayout = true;
+</pre>
+<div class="para">and in MXML:</div>
+<pre class="programlisting">&lt;fx:Declarations&gt;
+    &lt;ibm:TreeLayout id="treeLayout" flowDirection="bottom" globalLinkStyle="orthogonal" /&gt;
+&lt;/fx:Declarations&gt;
+  
+&lt;ibm:Diagram id="diagram" left="0" top="0" width="640" height="480" 
+               nodeDataProvider="{hcv}" linkDataProvider="{ldp}"
+               xLocationField="@x" yLocationField="@y" labelField="@label" 
+               minZoom="0.2" maxZoom="4" zoom="1.4" 
+               automaticGraphLayout="true" nodeLayout="{treeLayout}" /&gt;
+
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f312.html" class="bluelink">Creating a graph display from data providers using the Diagram
+class</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f328.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f330.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

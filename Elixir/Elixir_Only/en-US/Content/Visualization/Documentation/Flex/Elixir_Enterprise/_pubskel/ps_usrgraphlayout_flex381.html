@@ -1,0 +1,78 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Features and limitations of the TL</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex379.html" class="breadcrumb">Tree Layout (TL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex381.html" class="breadcrumb">Features and limitations of the TL</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex380.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex382.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Features and limitations of the TL</h1></div></div><div class="content">
+
+
+
+<div class="descriptiveTopicContent">
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1198547">
+<h2 class="heading">Features</h2>
+<div class="sectionContent">
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Takes into account the size of the nodes
+so that no overlapping occurs.</div></li><li class="itemizedlistItem"><div class="para">Optionally reshapes the links to give
+them an orthogonal form (alternating horizontal and vertical line
+segments).</div></li><li class="itemizedlistItem"><div class="para">Offers various layout modes: <span class="italics">free</span>, <span class="italics">levels</span>, <span class="italics">radial</span> and <span class="italics">alternating radial</span>, <span class="italics">balloon</span>, and <span class="italics">automatic tip-over</span>. </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">In free layout mode, arranges the child
+nodes of each node, starting recursively from the root, so that the
+links flow uniformly in the same direction.</div>
+</li><li class="itemizedlistItem"><div class="para">In level layout mode, partitions the
+nodes into levels, and arranges the levels horizontally or vertically. </div>
+</li><li class="itemizedlistItem"><div class="para">In a radial layout mode, partitions
+the nodes into levels, and arranges the levels in circles or ellipses
+around the root.</div></li><li class="itemizedlistItem"><div class="para">In balloon layout mode, child nodes
+are arranged in circles around the parent node, so that each subtree
+forms a balloon.</div></li><li class="itemizedlistItem"><div class="para">In tip-over mode, arranges the nodes
+in a similar way to free layout mode, but tries to tip child nodes
+over automatically to fit the layout better to the aspect ratio.</div>
+</li></ul></div>
+</li><li class="itemizedlistItem"><div class="para">Provides several alignment and offset
+options.</div></li><li class="itemizedlistItem"><div class="para">Allows you to specify nodes that must
+be direct neighbors.</div></li><li class="itemizedlistItem"><div class="para">Provides incremental and nonincremental
+modes. Incremental mode takes the previous position of nodes into
+account and positions the nodes without changing the relative order
+of the nodes in the tree so that the layout is stable on incremental
+changes of the graph.</div></li><li class="itemizedlistItem"><div class="para">Very efficient, scalable algorithm.
+Produces a nice layout quickly even if the number of nodes is huge.</div>
+</li></ul></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1198559">
+<h2 class="heading">Limitations</h2>
+
+
+<div class="sectionContent">
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">If the orthogonal setting is not specified
+as the link style (see <a href="ps_usrgraphlayout_flex390.html" class="bluelink">Link style (TL)</a>), some links
+may in rare cases overlap nodes depending on the size of the nodes,
+the alignment parameters, and the offset parameters.  </div>
+</li><li class="itemizedlistItem"><div class="para">The layout algorithm first determines
+a spanning tree of the graph. If the graph is not a pure tree, some
+links will not be included as part of the spanning tree. These links
+are ignored. For this reason, they may cross other links or overlap
+nodes in the final layout. </div></li><li class="itemizedlistItem"><div class="para">For stability in incremental mode, the
+algorithm tries to preserve the relative order of the child nodes
+of each node. It uses a heuristic to calculate the relative order
+from the previous positions of the nodes. The heuristic may fail if
+child nodes overlap their old positions or are not aligned horizontally
+or vertically. </div></li><li class="itemizedlistItem"><div class="para">Despite preserving the relative order
+of the child nodes, in rare cases the layout is not perfectly stable
+in incremental radial layouts. Subsequent layouts may rotate the nodes
+around the root, although the relative circular order of the nodes
+within their circular levels is still preserved. </div>
+</li><li class="itemizedlistItem"><div class="para">Despite preserving the relative order
+of the child nodes, in rare cases the layout is not perfectly stable
+in incremental balloon layouts. Subsequent layouts may rotate the
+child nodes around the parent, although the relative circular order
+of the nodes is still preserved.</div></li><li class="itemizedlistItem"><div class="para">Tip-over layout modes perform several
+trial layouts with different tip-over alignment options according
+to various heuristics. From these trial layouts, the algorithm picks
+the layout that best fits the aspect ratio. This may not be the optimal
+layout for the aspect ratio, but it is the best layout from the trials.
+Calculating the absolute best-fitting layout is not computationally
+feasible (it is generally an NP-complete problem).</div>
+</li></ul></div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex379.html" class="bluelink">Tree Layout (TL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex380.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex382.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

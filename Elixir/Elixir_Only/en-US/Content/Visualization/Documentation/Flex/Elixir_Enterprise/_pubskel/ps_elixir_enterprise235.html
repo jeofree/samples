@@ -1,0 +1,91 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>The CircularBarRenderer class</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise214.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise215.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise226.html" class="breadcrumb">Building custom gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise228.html" class="breadcrumb">Custom circular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise231.html" class="breadcrumb">The visual elements of circular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise235.html" class="breadcrumb">The CircularBarRenderer class</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise234.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise236.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">The CircularBarRenderer class</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e39437">
+
+
+
+
+
+<div class="para">This class represents an annulus with a start angle equal
+to the start angle of the scale and an end angle that corresponds
+to the value of the renderer.</div>
+<div class="paragroup">
+<div class="title">Customizing the geometry of a CircularBarRenderer</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The geometry of a <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularBarRenderer.html" class="bluelink">CircularBarRenderer</a></span> is controlled by the following
+properties:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularBarRenderer.html#startThickness" class="bluelink">startThickness</a></span> — The thickness of the
+bar at the start angle of the bar (which is also the start angle of
+the scale).</div></li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularBarRenderer.html#endThickness" class="bluelink">endThickness</a></span> — The thickness of the
+bar at the end angle of the scale. The thickness at the end angle
+of the bar that corresponds to the value of the renderer is automatically
+computed from that.</div></li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularBarRenderer.html#placement" class="bluelink">placement</a></span> — The position of the
+annulus relative to the radius. Possible values are: <code class="code">inside</code> (default), <code class="code">outside</code>, and <code class="code">cross</code>.</div></li></ul></div>
+<div class="para"><span class="apiname">startThickness</span> and <span class="apiname">endThickness</span> can be expressed in a percentage of
+the radius or in pixels. The default value is 20% of the radius.</div>
+</div>
+<div class="paragroup">
+<div class="title">Customizing the colors of a CircularBarRenderer</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The <span class="apiname">CircularBarRenderer</span> supports two fill modes:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Solid color — This is the default
+mode. The style properties <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularBarRenderer.html#style:rendererColor" class="bluelink">rendererColor</a></span> and <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularBarRenderer.html#style:rendererAlpha" class="bluelink">rendererAlpha</a></span> are used to fill the bar.</div>
+</li><li class="itemizedlistItem"><div class="para">Color gradients — Fill the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularBarRenderer.html#gradientEntries" class="bluelink">gradientEntries</a></span> array with <span class="apiname">GradientEntry</span> instances to obtain a conical gradient from the scale's start angle
+to the scale's end angle. This gradient is cut at the bar renderer
+current value.</div></li></ul></div>
+<div class="para">The following code example shows different scenarios
+of bar renderers:</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                backgroundColor="0xFFFFFF"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.graphics.*;
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:CircularGauge width="100%" height="100%"&gt;  
+    &lt;ilog:scales&gt;
+      &lt;ilog:CircularLinearScale/&gt;
+    &lt;/ilog:scales&gt;
+    &lt;ilog:elements&gt;
+      &lt;ilog:CircularScaleRenderer/&gt;
+      &lt;ilog:CircularBarRenderer
+        radius="16%"
+        value="100"
+        editable="true"
+        rendererColor="0x0000FF"
+        stroke="{new Stroke(0xAAAAAA, 5)}" /&gt;
+      &lt;ilog:CircularBarRenderer
+        radius="26%"
+        value="80"
+        placement="outside"
+        startThickness="0"
+        editable="true"&gt;
+        &lt;ilog:gradientEntries&gt;
+          &lt;mx:GradientEntry color="0xFF0000" ratio="0"/&gt;
+          &lt;mx:GradientEntry color="0x00FF00" ratio="1"/&gt;          
+        &lt;/ilog:gradientEntries&gt;
+      &lt;/ilog:CircularBarRenderer&gt;
+      &lt;ilog:CircularBarRenderer
+        radius="25%"
+        value="95"
+        placement="inside"        
+        editable="true"&gt;
+        &lt;ilog:gradientEntries&gt;
+          &lt;mx:GradientEntry color="0x0FF000" ratio="0"/&gt;
+          &lt;mx:GradientEntry color="0xFF0000" ratio="1"/&gt;          
+        &lt;/ilog:gradientEntries&gt;
+       &lt;/ilog:CircularBarRenderer&gt;
+    &lt;/ilog:elements&gt;
+  &lt;/ilog:CircularGauge&gt;
+&lt;/mx:Application&gt;
+
+</pre>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise231.html" class="bluelink">The visual elements of circular gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise234.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise236.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

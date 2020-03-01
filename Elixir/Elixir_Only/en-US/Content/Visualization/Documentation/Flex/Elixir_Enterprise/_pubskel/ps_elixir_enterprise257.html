@@ -1,0 +1,89 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Map features</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Concept"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise214.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise254.html" class="breadcrumb">MX Maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise257.html" class="breadcrumb">Map features</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise256.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise258.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Map features</h1></div></div><div class="content">
+
+
+<div class="conceptTopicContent">
+<div class="shortDescription">
+<div class="para">A map feature is a subclass of a container representing,
+for example, a country in Europe or Asia or a state in the case of
+the United States map. Each map feature is identified by its key,
+which is the country code or state code (using the ISO 3166-1 alpha-3,
+three-letter system, or the two-letter system for the United States).
+The corresponding class is the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/maps/MapFeature.html" class="bluelink">MapFeature</a></span> class.</div>
+</div>
+<div class="elaboration">
+<div class="para">By default, a <span class="apiname">MapFeature</span> instance is created for each country or state in a map. You can
+retrieve this instance by using the   <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/maps/MapBase.html#getFeature()" class="bluelink">getFeature</a></span> method
+of the <span class="apiname">MapBase</span> class.</div>
+<div class="para"> If you need to create your own <span class="apiname">MapFeature</span> instance, you can add it as a child of a map by using either the
+API or MXML. This instance replaces the default instance with the
+same key.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">Once you have a <span class="apiname">MapFeature</span> instance, you can:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Style it using the various coloring
+properties of the <span class="apiname">MapFeature</span> object.</div>
+</li><li class="itemizedlistItem"><div class="para">Place symbols on it located at a predefined
+position to provide additional information about the state or country.
+A symbol is an instance of the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/maps/MapSymbol.html" class="bluelink">MapSymbol</a></span> class, which is a subclass of <code class="code">UIComponent</code>.</div></li></ul></div>
+<div class="para">You can group features of the map. The result is a new <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/maps/MapFeature.html" class="bluelink">MapFeature</a></span> object containing the grouped features.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">There are two ways to group features:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Call the method <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/maps/MapBase.html#groupFeatures()" class="bluelink">groupFeatures</a></span> in <span class="trademark">ActionScript®
+            </span></div></li><li class="itemizedlistItem"><div class="para">Declare a new feature in the MXML file</div>
+</li></ul></div>
+<div class="para">To ungroup previously grouped features, call the method <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/maps/MapBase.html#ungroupFeature()" class="bluelink">ungroupFeature</a></span>.</div>
+<div class="para">The following example makes two groups of European countries
+in MXML and shows how to ungroup one of them in ActionScript. In this
+example, the user can click a country within a group to ungroup the
+countries.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                 layout="absolute"
+                 xmlns:ilog="http://www.ilog.com/2007/ilog/flex" 
+xmlns:maps="ilog.maps.*"&gt;
+&lt;mx:Script&gt;
+   &lt;![CDATA[
+     import ilog.maps.MapBase;
+     import ilog.maps.MapEvent;
+     import ilog.maps.MapFeature;
+     import ilog.maps.Map;
+
+     private function itemClick(e:MapEvent):void {
+       var mf:MapFeature = e.mapFeature;
+       if(mf != null &amp;&amp; mf.key == "Group1")
+         MapBase(e.currentTarget).ungroupFeature(mf);
+     }
+
+   ]]&gt;
+&lt;/mx:Script&gt;
+   &lt;ilog:ContinentalEuropeMap allowNavigation="true"
+                              width="500"
+                              height="500"
+                              x="50"
+                              y="50"
+                              mapItemClick="itemClick(event)"&gt;
+
+    &lt;ilog:MapFeature key="Group1" fill="0xff0000"&gt;
+      &lt;ilog:features&gt;
+        &lt;mx:String&gt;CHE&lt;/mx:String&gt;
+        &lt;mx:String&gt;GBR&lt;/mx:String&gt;
+     &lt;/ilog:features&gt;
+    &lt;/ilog:MapFeature&gt;
+
+    &lt;ilog:MapFeature key="Group2" fill="0xffff00"&gt;
+      &lt;ilog:features&gt;
+        &lt;mx:String&gt;GRC&lt;/mx:String&gt;
+        &lt;mx:String&gt;FRA&lt;/mx:String&gt;
+        &lt;mx:String&gt;ITA&lt;/mx:String&gt;
+     &lt;/ilog:features&gt;
+    &lt;/ilog:MapFeature&gt;
+
+   &lt;/ilog:ContinentalEuropeMap&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para"/>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise254.html" class="bluelink">MX Maps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise256.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise258.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

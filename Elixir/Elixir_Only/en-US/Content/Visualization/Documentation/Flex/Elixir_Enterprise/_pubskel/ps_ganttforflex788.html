@@ -1,0 +1,100 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Radar plot series</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex779.html" class="breadcrumb">Radar Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex785.html" class="breadcrumb">Series in radar charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex788.html" class="breadcrumb">Radar plot series</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex787.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex789.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Radar plot series</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">You can use the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts/series/RadarPlotSeries.html" class="bluelink">RadarPlotSeries</a></span> class
+to represent data where each data point has one category that determines
+its position along the angular axis, and one value that determines
+its position along the radial axis. Using the data series renderers,
+you can define the shape that IBM® <span class="classificationVariable">ILOG Elixir</span> displays at each data
+point.</div>
+<div class="para">By default, IBM <span class="classificationVariable">ILOG Elixir</span> displays the first data series in
+the chart as a diamond at each point. When you define multiple data
+series in a chart, IBM <span class="classificationVariable">ILOG Elixir</span> rotates the shape for the series
+starting with a diamond, then a circle, and then a square. If you
+have more series than default renderers, IBM <span class="classificationVariable">ILOG Elixir</span> begins again with the diamond.</div>
+<div class="para">The diamond shape, like the other shapes, is defined
+by a renderer class. The renderer classes that define these shapes
+are located in the <span class="trademark">Adobe®
+            </span> <span class="trademark">Flex®
+            </span> <span class="apiname">mx.charts.renderers</span> package. The circle is defined
+by the <span class="apiname">CircleItemRenderer</span> class.
+To use a renderer other than the default, you can set the  <span class="apiname">itemRenderer</span> style property as shown in the following
+code:</div>
+<pre class="programlisting">&lt;ilog:RadarPlotSeries dataField="London" 
+   itemRenderer="mx.charts.renderers.DiamondItemRenderer" /&gt;
+</pre>
+<div class="para">For more information about renderers, see <a href="ps_ganttforflex791.html" class="bluelink">Radar chart data renderers</a>.</div>
+<div class="para">The following figure shows an example of a radar chart
+with a plot series type. The chart shows the average temperatures
+for London, Sydney, and Beijing on the radial axis, and the months
+of the year on the angular axis.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/radarplot_default.png" alt="Example&#xA;of radar chart with plot series showing temperatures for different&#xA;cities in each month" class="imagedata"/></div>
+<div class="para">The following code displays the radar plot series chart
+shown in the figure.</div>
+<pre class="programlisting">&lt;?xml version="1.0" ?&gt; 
+&lt;!--  Simple example to demonstrate the RadarChart control with
+ RadarPlotSeries. 
+ --&gt; 
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+ xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+&lt;mx:Script&gt;
+&lt;![CDATA[ 
+import mx.charts.renderers.CrossItemRenderer;
+import mx.charts.renderers.CircleItemRenderer;
+import mx.collections.ArrayCollection;
+  [Bindable]
+  public var temperature:ArrayCollection = new ArrayCollection([
+        {Month:"January", London:39, Sydney:71.8, Beijing:23.7},
+        {Month:"February", London:39.6, Sydney:71.8, Beijing:28.8},
+        {Month:"March", London:42.3, Sydney:69.8, Beijing:40.5},
+        {Month:"April", London:47.3, Sydney:65.1, Beijing:56.5},
+        {Month:"May", London:53.4, Sydney:59.5, Beijing:68}, 
+        {Month:"June", London:59.4, Sydney:55.2, Beijing:75.9},
+        {Month:"July", London:62.6, Sydney:53.6, Beijing:78.8},
+        {Month:"August", London:61.9, Sydney:55.8, Beijing:76.5},
+        {Month:"September", London:57.6, Sydney:59.5, Beijing:67.6},
+        {Month:"October", London:50.5, Sydney:63.9, Beijing:54.7},
+        {Month:"November", London:43.9, Sydney:67.1, Beijing:39},
+        {Month:"December", London:40.6, Sydney:70.2, Beijing:27.3}
+     ]);
+
+
+  ]]&gt; 
+  &lt;/mx:Script&gt;
+&lt;mx:Panel width="100%" height="100%" title="Radar Plot Series Example"
+ layout="horizontal"&gt;
+  &lt;ilog:RadarChart id="radar" width="100%" height="100%"
+   dataProvider="{temperature}" showDataTips="true"&gt;
+  &lt;ilog:angularAxis&gt;
+    &lt;ilog:AngularAxis categoryField="Month" displayName="Month" /&gt; 
+  &lt;/ilog:angularAxis&gt;
+  &lt;ilog:radialAxis&gt;
+    &lt;mx:LinearAxis baseAtZero="true" displayName="Temperature (Â˚F)" /&gt; 
+  &lt;/ilog:radialAxis&gt;
+  &lt;ilog:series&gt;
+    &lt;ilog:RadarPlotSeries radius="8" dataField="London" displayName="London"
+     itemRenderer="mx.charts.renderers.CircleItemRenderer" /&gt; 
+    &lt;ilog:RadarPlotSeries radius="8" dataField="Sydney" displayName="Sydney"
+     itemRenderer="mx.charts.renderers.CrossItemRenderer" /&gt; 
+    &lt;ilog:RadarPlotSeries radius="8" dataField="Beijing" displayName="Beijing"
+     itemRenderer="mx.charts.renderers.DiamondItemRenderer" /&gt; 
+  &lt;/ilog:series&gt;
+  &lt;/ilog:RadarChart&gt;
+  &lt;mx:Legend dataProvider="{radar}" /&gt; 
+  &lt;/mx:Panel&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex785.html" class="bluelink">Series in radar charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex787.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex789.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

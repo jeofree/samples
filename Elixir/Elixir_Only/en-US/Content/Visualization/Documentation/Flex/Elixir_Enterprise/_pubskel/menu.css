@@ -1,0 +1,34 @@
+
+html {
+  width:100%;
+  height:100%;
+  margin:0px;
+  padding:0px;
+  border:0px;
+}
+body {
+  background:ButtonFace;
+  margin: 0px 5px;
+  text-align: right;
+}
+.menuButton {
+  padding: 2px 5px;
+  background-color: transparent;
+  border: 1px solid ButtonFace;
+}
+.menuSeperator {
+  height: 100%;
+  margin-left: 2px;
+  margin-right: 3px;
+  padding: 2px 0px;
+  background-color: ThreeDShadow;
+  border: 1px solid ButtonFace;
+  border-color: ButtonFace ThreeDHighlight ButtonFace ButtonFace;
+}
+.menuButtonHover {
+  padding: 2px 5px;
+  background-color: transparent;
+  border: 1px solid ButtonFace;
+  border-color: ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;
+}
+  

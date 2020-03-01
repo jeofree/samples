@@ -1,0 +1,131 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Using editing events</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise39.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise68.html" class="breadcrumb">Event editing</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise72.html" class="breadcrumb">Using editing events</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise71.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise73.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Using editing events</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">A Calendar component dispatches the following calendar
+events as part of the event editing process: the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#event:itemEditBegin" class="bluelink">itemEditBegin</a></span>, <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#event:itemEditMove" class="bluelink">itemEditMove</a></span>, <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#event:itemEditResize" class="bluelink">itemEditResize</a></span>, and <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#event:itemEditEnd" class="bluelink">itemEditEnd</a></span> calendar events. The Calendar
+control defines default event listeners for all of these calendar
+events except <span class="apiname">itemEditBegin</span>.</div>
+<div class="para">You can write your own event listeners for one or more
+of these calendar events to customize the editing process. When you
+write your own event listener, it executes before the default event
+listener defined by the component; the default listener executes afterward.</div>
+<div class="para">You can also replace the default event listener for the
+component with your own event listener. To prevent the default event
+listener from executing, you call the <span class="apiname">preventDefault()</span> method from anywhere in your event listener.</div>
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">Use the following events when you want to customize the
+editing of events:</div>
+</div><dl class="descriptionlist"><dt class="term">itemEditBegin</dt><dd class="descriptionlistItem"><div class="para">Dispatched when the editing session
+starts. The user has pressed the mouse button over an event and started
+ dragging.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para"> The <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#editKind" class="bluelink">editKind</a></span> property is set with the editing operation being
+performed:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apiname">CalendarItemEditKind.MOVE_REASSIGN</span> – the user is dragging the event body</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apiname">CalendarItemEditKind.RESIZE_START</span> – the user is dragging the start extremity of the event</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apiname">CalendarItemEditKind.RESIZE_END</span> – the user is dragging the end extremity of the event</div>
+</li></ul></div>
+<div class="para">The Calendar component does not have a default listener
+for the <span class="apiname">itemEditBegin</span> event. After
+the event is sent the Calendar displays the editing tool tip which
+will provide information on the event while it is being edited.</div>
+<div class="para">For details of the editing tool tip, see <a href="ps_elixir_enterprise70.html" class="bluelink">Defining tool tips</a></div>
+<div class="para">You can write an event listener for this event to modify
+the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/CalendarItem.html" class="bluelink">CalendarItem</a></span> data used by the item renderer, or to modify some other information
+that will be used during editing.</div>
+<div class="para">For more information see <a href="ps_elixir_enterprise73.html" class="bluelink">Accessing event data in an event listener</a>.</div>
+</dd><dt class="term">itemEditMove</dt><dd class="descriptionlistItem"><div class="para">Dispatched when the event is being moved.
+The Calendar component has a default listener for the <span class="apiname">itemEditMove</span> event that adjusts the start and end
+time of the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/CalendarItem.html" class="bluelink">CalendarItem</a></span>.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The default event listener performs the following actions:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Rounds the start time according to the
+current view:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">In Month mode, start time is rounded
+to the nearest start of day.</div></li><li class="itemizedlistItem"><div class="para">In Week or Day mode:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">A start time for a short event is rounded
+to the time slot duration (see <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#getTimeSlotDuration()" class="bluelink">getTimeSlotDuration</a></span> method) </div>
+</li><li class="itemizedlistItem"><div class="para">A start time for a long event is rounded
+to the nearest start of day</div></li></ul></div>
+</li></ul></div>
+</li><li class="itemizedlistItem"><div class="para">Updates the end time so the duration
+of the event remains constant.     </div></li></ul></div>
+<div class="para">You can write an event listener for this event to examine
+and modify the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/CalendarItem.html" class="bluelink">CalendarItem</a></span> data used by the item renderer.</div>
+<div class="para">For more information see <a href="ps_elixir_enterprise73.html" class="bluelink">Accessing event data in an event listener</a> and <a href="ps_elixir_enterprise76.html#section1216913722379" class="bluelink">Custom snapping when moving short events</a>.</div>
+<div class="para">Use the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#isLongEvent()" class="bluelink">isLongEvent</a></span> method  to find out whether
+an event is long or short. For more information see <a href="ps_elixir_enterprise51.html" class="bluelink">Calendar item renderers</a>.</div>
+</dd><dt class="term">itemEditResize</dt><dd class="descriptionlistItem"><div class="para">Dispatched when the event is being resized.
+The Calendar component has a default listener for the <span class="apiname">itemEditResize</span> event that adjusts the start or end
+time of the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/CalendarItem.html" class="bluelink">CalendarItem</a></span> object.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The default event listener performs the following actions:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Rounds the start or end time, depending
+on the kind of edit operation and the current view:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">In Month mode, the start or end time
+is rounded to the nearest start of day:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">A short event cannot be resized.</div>
+</li><li class="itemizedlistItem"><div class="para">A long event has a minimum duration
+of one day.</div></li></ul></div>
+</li><li class="itemizedlistItem"><div class="para">In Week or Day mode:</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">A short event start or end time is rounded to the current
+time slot duration (see <span class="apiname">getTimeSlotDuration()</span> method). A short event has a minimum duration equal to the duration
+of the current time slot.</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">A long event start or end time is rounded
+to the nearest start of day. A long event has a minimum duration of
+one day.</div></li></ul></div>
+</li></ul></div>
+</li><li class="itemizedlistItem"><div class="para">Makes sure that the start time is before
+the end time and that the event has a minimum duration.</div>
+</li></ul></div>
+<div class="para">You can write an event listener for this event to modify
+the <span class="apiname">CalendarItem</span> data used by the
+item renderer.</div>
+<div class="para">For more information see <a href="ps_elixir_enterprise76.html#section1216913714441" class="bluelink">Enforcing a minimum duration when resizing events</a>.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The following limitations apply:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">In month mode, a short item label renderer
+cannot be resized.</div></li><li class="itemizedlistItem"><div class="para">In month mode, a long event cannot be
+resized into a short event.</div></li></ul></div>
+</dd><dt class="term">itemEditEnd </dt><dd class="descriptionlistItem"><div class="para">Dispatched when the event editing session
+ends, typically when the user releases the mouse button.</div>
+<div class="para">The Calendar component has a default listener for this
+event that updates the item in the data provider with the values from
+the <span class="apiname">CalendarItem</span> object associated
+with this item.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The default event listener performs the following actions:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">When the edit operation was not cancelled,
+the default event listener calls the <span class="apiname">commitItem</span> function. This function uses the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#startTimeField" class="bluelink">startTimeField</a></span> and <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#endTimeField" class="bluelink">endTimeField</a></span> properties to determine which properties of the
+data provider item must be updated and stores the edited start and
+end times in those fields. This behavior applies even if the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#startTimeFunction" class="bluelink">startTimeFunction</a></span> or <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/Calendar.html#endTimeFunction" class="bluelink">endTimeFunction</a></span> property is defined. In that
+case, you may want to specify a <span class="apiname">commitItem</span> function that applies the changes to the edited data item.</div>
+</li></ul></div>
+<div class="para">When the data provider item is an XML object, the values
+of <span class="apiname">startTime</span> and <span class="apiname">endTime</span> are stored as Strings using the <span class="apiname">Date.toString</span> method.</div>
+<div class="para">When the data provider item is an <span class="trademark">ActionScript®
+            </span> object, the values
+of the <span class="apiname">startTime</span> and <span class="apiname">endTime</span> are stored as <span class="apiname">Date</span> objects.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">You typically write an event listener for this calendar
+event to perform the following actions:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Store the start and end times in a custom
+type inside the data provider. In this case you need to call  <span class="apiname">preventDefault()</span> to stop the Calendar from storing
+data using the fields defined on the Calendar. Whenever you store
+the start and end times with custom types, you must make sure that
+the calendar handles the types you use or provide your own functions
+specified with the <span class="apiname">startTimeFunction</span> and <span class="apiname">endTimeFunction</span> properties.</div>
+<div class="para">For more information see <a href="ps_elixir_enterprise76.html#section1216913730379" class="bluelink">Updating the data provider item using a custom date format</a>.</div>
+</li><li class="itemizedlistItem"><div class="para">Store custom properties, other than
+the start time and end time identifier, that have been modified during
+ editing.</div></li></ul></div>
+<div class="para">After all listeners of <span class="apiname">itemEditEnd</span> have been called, the Calendar component forces an update of the
+event by calling <span class="apiname">ICollectionView.itemUpdated()</span> for this data provider item, to refresh the Calendar.</div>
+</dd></dl></div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise68.html" class="bluelink">Event editing</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise71.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise73.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

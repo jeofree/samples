@@ -1,0 +1,51 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Overview of a rectangular gauge</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise214.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise215.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise226.html" class="breadcrumb">Building custom gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise241.html" class="breadcrumb">Custom rectangular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise242.html" class="breadcrumb">Overview of a rectangular gauge</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise241.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise243.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Overview of a rectangular gauge</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e40931">
+
+<div class="mediaobject"><img src="../../Elixir/_media/rectangulargaugeoverview_default.png" alt="Visual&#xA;elements of a rectangular gauge" class="imagedata"/></div>
+<div class="para">A rectangular  gauge can be horizontal or vertical depending
+on the value of its <span class="apiname">direction</span> property
+ It can contain several visual elements, as shown in the illustration
+above. These elements are laid out according to the value of their <span class="apiname">area</span> property as shown in the following illustration:</div>
+<div class="mediaobject"><img src="../../Elixir/_media/rectangulargaugelayout_default.png" alt="Layout&#xA;options of rectangular gauges visual elements" class="imagedata"/></div>
+<div class="para">The side areas (top, bottom, left, and right) are used
+to place fixed size indicators, such as labels or various indicators
+about the gauge state. The center of the gauge is used for the core
+elements, such as the scale or the value renderers.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The visual elements of a rectangular gauge extend the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/gaugesClasses/rectangular/RectangularGaugeElement.html" class="bluelink">RectangularGaugeElement</a></span> class or one of its subclasses.
+They are characterized by:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">An area of reference that can either
+be <code class="code">top</code>, <code class="code">bottom</code>, <code class="code">left</code>, <code class="code">right</code>, or <code class="code">center</code></div></li><li class="itemizedlistItem"><div class="para">A position and a size specified using <span class="apiname">x</span>, <span class="apiname">y</span>, <span class="apiname">width</span>, and <span class="apiname">height</span> properties, optionally expressed in a percentage of their corresponding
+area</div></li></ul></div>
+<div class="orderedlist"><div class="orderedlistIntro">
+<div class="para">The layout of the visual elements of a rectangular gauge
+is processed in the following order:</div>
+</div><ol class="orderedlist"><li class="orderedlistItem"><div class="para">If the <span class="apiname">showTitle</span> style property is <code class="code">true</code>, the title is
+placed at a reserved area at the top or bottom depending on the value
+of the <span class="apiname">titlePlacement</span> property.</div>
+</li><li class="orderedlistItem"><div class="para">The side areas are sized so that the
+elements in the left and right, on one hand, and top and bottom, on
+the other hand, can fit respectively their measured width and height
+inside these areas.</div></li><li class="orderedlistItem"><div class="para">The elements in the side areas are positioned
+and sized according to the value of their <span class="apiname">x</span>, <span class="apiname">y</span>, <span class="apiname">width</span>, and <span class="apiname">height</span> properties. Percentage
+values are relative to the bounds of the corresponding areas computed
+in step 2.</div></li><li class="orderedlistItem"><div class="para">The remaining area in the center of
+the gauge is used to lay out the elements in this area. If the gauge
+has no explicit width, either in  pixels or in percentage, the width
+of the center area will be computed from the measured width of the
+elements in this area. Similarly, if the gauge has no  explicit height,
+either in pixels or in percentage, the height of the center area will
+be computed from the measured height of the elements in this area.
+If the  gauge has an explicit width (or height), the elements in the
+center take as much width (or height) as is available</div>
+</li><li class="orderedlistItem"><div class="para">The background and foreground skins,
+defined using the <span class="apiname">backgroundSkin</span> and <span class="apiname">foregroundSkin</span> properties, if any, are sized so
+that they cover the whole gauge except the title area.</div>
+</li></ol></div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise241.html" class="bluelink">Custom rectangular gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise241.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise243.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,35 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Configuring radar chart data</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise184.html" class="breadcrumb">Radar Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise188.html" class="breadcrumb">Configuring radar chart data</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise187.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise189.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Configuring radar chart data</h1></div></div><div class="content">
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The chart data is defined by the fields specified in
+the data series of the chart.</div>
+<div class="para">For more information about radar chart data, see <span class="italics">Defining chart data</span> in <span class="italics">Getting Started with Flex 3</span>. </div>
+<div class="para">For more information on data provider types, see <span class="italics">Types of chart data</span> in the <span class="italics">Flex 3 Developer’s Guide</span>.</div>
+<div class="para">To use the data from a data provider in your radar chart
+control, you must map the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/chartClasses/RadarSeries.html#categoryField" class="bluelink">categoryField</a></span> and  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/chartClasses/RadarSeries.html#dataField" class="bluelink">dataField</a></span> properties of the chart series to fields in the
+data provider. The <span class="apiname">categoryField</span> property
+defines the data for the angular axis, and the <span class="apiname">dataField</span> property defines the data for the radial axis.</div>
+<div class="para">If the angular axis already specifies the <span class="apiname">categoryField</span> of the series, you do not need to
+specify  it again so you specify only the <span class="apiname">dataField</span> property.</div>
+<div class="para">For example, assuming your data provider has the following
+structure:</div>
+<pre class="programlisting">{Month: "Feb", Profit: 1000, Expenses: 200}
+</pre>
+<div class="para">The angular axis is defined as follows:</div>
+<pre class="programlisting">&lt;ilog:AngularAxis categoryField="Month"/&gt; 
+</pre>
+<div class="para">You can use the <code class="code">Profit</code> or <code class="code">Expenses</code> field by mapping the <span class="apiname">dataField</span> property of the series object to one of these fields as follows:</div>
+<pre class="programlisting">&lt;ilog:RadarLineSeries dataField="Profit"/&gt;
+&lt;ilog:RadarLineSeries dataField="Expenses"/&gt;
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise184.html" class="bluelink">Radar Charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise187.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise189.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

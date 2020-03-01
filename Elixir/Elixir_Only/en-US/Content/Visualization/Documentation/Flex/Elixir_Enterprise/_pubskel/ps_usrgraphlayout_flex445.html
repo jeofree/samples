@@ -1,0 +1,64 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>For experts: additional features of LL</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex437.html" class="breadcrumb">Link layout (LL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex445.html" class="breadcrumb">For experts: additional features of LL</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex444.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex446.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">For experts: additional features of LL</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043701">
+<h2 class="heading">Using a node-side filter</h2>
+
+
+<div class="sectionContent">
+<div class="para">Some applications require that links are not connected
+to specific sides of certain nodes. The Link Layout algorithm allows
+you to restrict to which node side a link can connect by using a node-side
+filter. A node-side filter is any class that implements the interface  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvNodeSideFilter.html" class="bluelink">IlvNodeSideFilter</a></span>. This interface defines the following method:. </div>
+<pre class="programlisting">
+public boolean accept(IlvGraphModel graphModel,
+                      Object link,
+                      boolean origin,
+                      Object node,
+                      int side);
+</pre>
+<div class="para">This method allows you to let the input <code class="code">link</code> to connect its <code class="code">origin</code> or destination to the input <code class="code">side</code> of the
+input <code class="code">node</code>. </div>
+
+
+<div class="example">
+<div class="title">Example of setting node-side filter (Link Layout algorithm)</div>
+<div class="exampleContent">
+<div class="para">To set this node-side filter: </div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1272738">
+<h2 class="heading">Using a node box interface</h2>
+<div class="sectionContent">
+
+
+
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043731">
+<h2 class="heading">Using a link connection box interface</h2>
+
+
+<div class="sectionContent">
+<div class="para">By default, the connection points of the links are distributed
+on the border of the bounding box of the nodes. Sometimes, it may
+be necessary to place the connection points on a rectangle that is
+smaller or larger than the bounding box. For instance, this can happen
+when labels are displayed below or above nodes.  </div>
+
+<div class="para">This method is used only in the short link mode. For
+details, see <a href="ps_usrgraphlayout_flex446.html#usrgraphlayout.uss_graphlay_layouts.1165786" class="bluelink">Using a link connection box interface</a>. When using
+the Link Layout in long link mode, just implement the method by returning
+the value 0. </div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex437.html" class="bluelink">Link layout (LL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex444.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex446.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

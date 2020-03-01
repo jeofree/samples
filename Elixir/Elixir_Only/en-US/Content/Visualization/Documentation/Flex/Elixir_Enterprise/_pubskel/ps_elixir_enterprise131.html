@@ -1,0 +1,29 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Coordinate representation</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Overview"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise122.html" class="breadcrumb">Maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise131.html" class="breadcrumb">Coordinate representation</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise130.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise132.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Coordinate representation</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The location of a point can be of the form loc:offset.
+ loc can be either a longitude or lati-tude or the key of a map feature.
+In the case of loc representing a key, the barycenter of the corresponding
+map feature will be used. A possible offset is added  to determine
+the final location.</div>
+<div class="example">
+<div class="exampleContent">
+<pre class="programlisting">left=”0.12” top=”45.3”  0.12 longitude, 45.3 latitude
+left=”FRA” top=”FRA” barycenter of France used for left and right
+left=”0.13:20” 0.12 longitude + 20 pixel offset
+</pre>
+<div class="para">Longitude or latitude can be expressed in decimal degrees
+or in DMS, Degree minute second format. </div>
+<pre class="programlisting">verticalCenter=”11D 19M 0S W”             11 degrees 19 minutes 0 second West
+upperLeftLatitude="90°00'00"N"                       in mxml file, can’t use “ for seconds
+upperLeftLatitude="90°00'00"N"                       can use ° and ‘
+upperLeftLatitude="90° 00' 00S N"                    can mix DMS symbols
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise122.html" class="bluelink">Maps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise130.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise132.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

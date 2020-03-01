@@ -1,0 +1,51 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Creating graph displays by specifying nodes and links</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f340.html" class="breadcrumb">Creating graph displays</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f341.html" class="breadcrumb">Creating graph displays by specifying nodes and links</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f340.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f342.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Creating graph displays by specifying nodes and links</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The Diagram component (as explained in Creating a graph
+display from data providers using the Diagram class) creates a graph
+from data providers and generates node and link instances of the <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/ilog/node/Node.html" class="bluelink">Node</a></span> and the <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/ilog/link/Link.html" class="bluelink">Link</a></span> classes
+to render the data inside the data source. However, you can also create
+a graph by creating instances of the <span class="apiname">Node</span> and <span class="apiname">Link</span> classes and using them
+directly inside a Graph component.   The Graph component is a group
+that is able to display nodes and links. You can specify the position
+of nodes through the top or <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/ilog/graph/Graph.html#verticalCenter" class="bluelink">verticalCenter</a></span> and left or <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/ilog/graph/Graph.html#horizontalCenter" class="bluelink">horizontalCenter</a></span> properties of the elements. You can also lay out
+the graph using graph layout algorithms that you specify through the <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/ilog/graph/Graph.html#nodeLayout" class="bluelink">nodeLayout</a></span> and <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/ilog/graph/Graph.html#linkLayout" class="bluelink">linkLayout</a></span> graph properties. Layout
+algorithms can be automatically executed as nodes or links are added
+or removed, or any changes are made to the structure of the graph,
+or upon request, according to application needs.   The following example
+illustrates a Graph where nodes and links are created and placed using
+a graph layout algorithm:</div>
+<div class="figure"><div class="mediaobject"><img src="../../Diagram4Flex/_media/graph_default.png" alt="Graph&#xA;with nodes and links created using a graph layout algorithm" class="imagedata"/></div></div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:d="http://www.ibm.com/xmlns/prod/ilog/flex/diagram/2010" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               minWidth="1024" minHeight="768"&gt;
+  &lt;s:layout&gt;
+    &lt;s:VerticalLayout paddingBottom="20" paddingLeft="20" paddingRight="20" paddingTop="20"/&gt;
+  &lt;/s:layout&gt;
+  &lt;d:Graph automaticGraphLayout="true"&gt;
+    &lt;d:Node id="node1" label="node 1"/&gt;
+    &lt;d:Node id="node2" label="node 2"/&gt;
+    &lt;d:Node id="node3" label="node 3"/&gt;
+    &lt;d:Node id="node4" label="node 4"/&gt;
+    &lt;d:Node id="node5" label="node 5"/&gt;
+    &lt;d:Node id="node6" label="node 6"/&gt;
+    
+    &lt;d:Link startNode="{node1}" endNode="{node3}"/&gt;
+    &lt;d:Link startNode="{node1}" endNode="{node2}"/&gt;
+    &lt;d:Link startNode="{node1}" endNode="{node4}"/&gt;
+    &lt;d:Link startNode="{node4}" endNode="{node5}"/&gt;
+    &lt;d:Link startNode="{node4}" endNode="{node6}"/&gt;
+    &lt;d:nodeLayout&gt;
+      &lt;d:TreeLayout/&gt;
+    &lt;/d:nodeLayout&gt;
+  &lt;/d:Graph&gt;
+&lt;/s:Application&gt;
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f340.html" class="bluelink">Creating graph displays</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f340.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f342.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

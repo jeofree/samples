@@ -1,0 +1,45 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>The TL algorithm</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex379.html" class="breadcrumb">Tree Layout (TL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex382.html" class="breadcrumb">The TL algorithm</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex381.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex383.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">The TL algorithm</h1></div></div><div class="content">
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The core algorithm for free, level, and radial layout
+modes has just two steps and is very fast. The variations of tip-over
+layout mode perform the second step several times and pick the layout
+result that best fits the aspect ratio (the ratio between the width
+and height of the drawing area). For this reason, tip-over layout
+modes are slower.</div>
+<div class="descriptionlist"><dl class="descriptionlist"><dt class="term">Step 1: Calculating the spanning tree</dt><dd class="descriptionlistItem"><div class="para">If the graph is disconnected, the layout
+algorithm chooses a <span class="italics">root node</span> for each connected component. Starting from the root node, it traverses
+the graph to choose the links of the <span class="italics">spanning tree</span>. If the graph is a pure tree, all
+links are chosen. If the graph has cycles, some links will not be
+included as part of the spanning tree. These links are called <span class="italics">nontree links</span>, while the links of
+the spanning tree are called <span class="italics">tree
+links</span>. The nontree links are ignored in step 2 of
+the algorithm.</div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1198590"><div class="mediaobject"><img src="../../../GraphLayout/_media/spantreediagram33_default.gif" alt="An example&#xA;of a spanning tree" class="imagedata"/></div><div class="caption">A spanning tree </div></div>
+</dd></dl></div>
+<div class="descriptionlist"><dl class="descriptionlist"><dt class="term">Step 2: Calculating node positions and link shapes</dt><dd class="descriptionlistItem"><div class="para">The layout algorithm arranges the nodes
+according to the layout mode and the offset and alignment options.
+In free mode and level mode, the nodes are arranged horizontally or
+vertically so that all tree links flow roughly in the same direction.
+In radial layout modes, the nodes are arranged in circles or ellipses
+around the root so that all tree links flow radially away from the
+root. Finally, the link shapes are calculated according to the link
+style and alignment options. </div></dd></dl></div>
+<div class="section">
+<h2 class="heading">Example of TL</h2>
+<div class="sectionContent">
+
+<div class="important"><div class="importantLabel">Important</div>
+<div class="para">All explanations in the subsequent sections regarding
+the shape of the links in Tree Layout are valid only if the link layout
+is disabled<span class="italics">.</span>  </div>
+</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex379.html" class="bluelink">Tree Layout (TL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex381.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex383.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,32 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Overview of a circular gauge</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise214.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise215.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise226.html" class="breadcrumb">Building custom gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise228.html" class="breadcrumb">Custom circular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise229.html" class="breadcrumb">Overview of a circular gauge</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise228.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise230.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Overview of a circular gauge</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e38293">
+
+<div class="mediaobject"><img src="../../Elixir/_media/circulargaugeoverview_default.png" alt="Visual&#xA;elements of a circular gauge" class="imagedata"/></div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The visual elements of a circular gauge extend the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/gaugesClasses/circular/CircularGaugeElement.html" class="bluelink">CircularGaugeElement</a></span> class or one of its subclasses.
+They are characterized by:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">A reference length to compute the position
+and size of the element. The length is either the width or the height
+of the element depending on the value of the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/gaugesClasses/circular/CircularGaugeElement.html#radiusRelativeTo" class="bluelink">radiusRelativeTo</a></span> property.</div>
+</li><li class="itemizedlistItem"><div class="para">An origin point defined by the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/gaugesClasses/circular/CircularGaugeElement.html#originX" class="bluelink">originX</a></span> and <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/gaugesClasses/circular/CircularGaugeElement.html#originY" class="bluelink">originY</a></span> properties. It can be expressed
+in a percentage of the reference length.</div></li><li class="itemizedlistItem"><div class="para">A radius defined by the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/gaugesClasses/circular/CircularGaugeElement.html#radius" class="bluelink">radius</a></span> property. It is usually expressed
+in a percentage of the reference length.</div></li></ul></div>
+<div class="orderedlist"><div class="orderedlistIntro">
+<div class="para">The layout of the visual elements of a circular gauge
+is processed in the following order:</div>
+</div><ol class="orderedlist"><li class="orderedlistItem"><div class="para">The drawing area bounds of the gauge
+are computed according to padding values, to the space needed for
+the optional title to be displayed, and to the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/circular/CircularGauge.html#aspectRatio" class="bluelink">aspectRatio</a></span> value</div><div class="para">The <span class="apiname">aspectRatio</span> property defines the width/height ratio.
+By default, it is set to 1.0, which means that the drawing area is
+a centered square as large as possible once the padding and the title
+space has been taken into account.</div>
+</li><li class="orderedlistItem"><div class="para">Each element of the elements array is
+positioned and sized according to their <span class="apiname">originX</span>, <span class="apiname">originY</span>, <span class="apiname">radius</span>, and <span class="apiname">radiusRelativeTo</span> properties.</div>
+</li></ol></div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise228.html" class="bluelink">Custom circular gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise228.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise230.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

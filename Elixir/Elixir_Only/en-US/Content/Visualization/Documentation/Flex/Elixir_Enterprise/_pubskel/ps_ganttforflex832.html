@@ -1,0 +1,91 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>The CircularLabelRenderer class</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex809.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex810.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex821.html" class="breadcrumb">Building custom gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex823.html" class="breadcrumb">Custom circular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex826.html" class="breadcrumb">The visual elements of circular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex832.html" class="breadcrumb">The CircularLabelRenderer class</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex831.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex833.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">The CircularLabelRenderer class</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e143658">
+
+
+
+
+
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">This class is used to render text in circular gauges.
+The position of the text is controlled by the following properties:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/gaugesClasses/circular/CircularGaugeElement.html#originX" class="bluelink">originX</a></span> and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/gaugesClasses/circular/CircularGaugeElement.html#originY" class="bluelink">originY</a></span> — The horizontal and
+vertical origins of the text.</div></li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularLabelRenderer.html#style:horizontalAlign" class="bluelink">horizontalAlign</a></span> — The horizontal placement
+of the text relative to <span class="apiname">originX</span>.
+Possible values are: <code class="code">left</code>, <code class="code">center</code>, and <code class="code">right</code>.</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularLabelRenderer.html#style:verticalAlign" class="bluelink">verticalAlign</a></span> — The vertical placement
+of the text relative to <span class="apiname">originY</span>.
+Possible values are: <code class="code">top</code>, <code class="code">middle</code>, and <code class="code">bottom</code>.</div>
+</li></ul></div>
+<div class="para">The text size is controlled by the property <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularLabelRenderer.html#labelFontSize" class="bluelink">labelFontSize</a></span>. It can be expressed in a percentage
+of the radius or in pixels.</div>
+<div class="para">The following code example shows a gauge with different
+label configurations:</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                backgroundColor="0xFFFFFF"&gt;
+  &lt;ilog:CircularGauge width="100%" height="100%"&gt;
+    &lt;ilog:scales&gt;
+      &lt;ilog:CircularLinearScale/&gt;
+    &lt;/ilog:scales&gt;
+    &lt;ilog:elements&gt;
+      &lt;ilog:CircularScaleRenderer/&gt;
+      &lt;ilog:CircleRenderer&gt;
+        &lt;ilog:fill&gt;
+          &lt;mx:SolidColor color="0xFFFF00"/&gt;
+        &lt;/ilog:fill&gt;
+        &lt;ilog:stroke&gt;
+          &lt;mx:Stroke color="0xDDDDDD"/&gt;
+        &lt;/ilog:stroke&gt;
+      &lt;/ilog:CircleRenderer&gt;
+      &lt;ilog:CircularLabelRenderer text="Center" labelFontSize="20%"/&gt;
+      &lt;ilog:CircularLabelRenderer text="Top Left" 
+        horizontalAlign="left" verticalAlign="top" 
+        labelFontSize="5%" originX="25%" originY="25%"/&gt;
+      &lt;ilog:CircularLabelRenderer text="Bottom Left" 
+        horizontalAlign="left" verticalAlign="bottom" 
+        labelFontSize="5%" originX="25%" originY="75%"/&gt;
+      &lt;ilog:CircularLabelRenderer text="Top Right" 
+        horizontalAlign="right" verticalAlign="top" 
+        labelFontSize="5%" originX="75%" originY="25%"/&gt;
+      &lt;ilog:CircularLabelRenderer text="Bottom Right" 
+        horizontalAlign="right" verticalAlign="bottom" 
+        labelFontSize="5%" originX="75%" originY="75%"/&gt;
+    &lt;/ilog:elements&gt;
+  &lt;/ilog:CircularGauge&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">You can also define a custom renderer for rendering the
+label. The following example shows how to use an <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/indicators/AlphaNumericIndicator35.html" class="bluelink">AlphaNumericIndicator35</a></span> renderer to render the label.</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                backgroundColor="0xFFFFFF"&gt;
+  &lt;ilog:CircularGauge width="100%" height="100%"&gt;
+    &lt;ilog:scales&gt;
+      &lt;ilog:CircularLinearScale/&gt;
+    &lt;/ilog:scales&gt;
+    &lt;ilog:elements&gt;
+      &lt;ilog:CircleRenderer&gt;
+        &lt;ilog:fill&gt;
+          &lt;mx:SolidColor color="0x000000"/&gt;
+        &lt;/ilog:fill&gt;
+      &lt;/ilog:CircleRenderer&gt;
+      &lt;ilog:CircularScaleRenderer color="0xFFFFFF"/&gt;
+      &lt;ilog:CircularLabelRenderer text="Center"&gt;
+        &lt;ilog:labelRenderer&gt;
+          &lt;ilog:AlphaNumericIndicator35 numChars="0"/&gt;
+        &lt;/ilog:labelRenderer&gt;
+      &lt;/ilog:CircularLabelRenderer&gt;
+    &lt;/ilog:elements&gt;
+  &lt;/ilog:CircularGauge&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">Note that if you redefine the renderer, the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularLabelRenderer.html#labelFontSize" class="bluelink">labelFontSize</a></span> property is ignored.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex826.html" class="bluelink">The visual elements of circular gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex831.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex833.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

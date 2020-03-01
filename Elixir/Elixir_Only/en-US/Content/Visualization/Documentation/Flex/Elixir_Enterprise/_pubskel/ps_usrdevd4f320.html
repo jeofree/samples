@@ -1,0 +1,92 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Creating subgraph renderers</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f312.html" class="breadcrumb">Creating a graph display from data providers using the Diagram
+class</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f316.html" class="breadcrumb">Customizing nodes, links and subgraphs in a diagram</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f320.html" class="breadcrumb">Creating subgraph renderers</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f319.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f321.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Creating subgraph renderers</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">When the Diagram component is configured to display hierarchical
+data, the objects that are parents of other nodes are known as subgraphs.
+These objects are represented differently, using the Subgraph renderer.
+This renderer allows you to see the parent node, and to expand or
+collapse the parent node in order to see the child objects.</div>
+<div class="figure"><div class="mediaobject"><img src="../../Diagram4Flex/_media/collapsedsubgraph_default.png" alt="Collapsed&#xA;subgraph" class="imagedata"/></div></div>
+<div class="figure"><div class="mediaobject"><img src="../../Diagram4Flex/_media/expandedsubgraph_default.png" alt="Expanded&#xA;subgraph" class="imagedata"/></div></div>
+<div class="para">As you create your own applications, you may need to
+create your own subgraph graphical representations. </div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">In the same way as for nodes and links, subgraph renderers
+can be configured using the following properties:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">graphRenderer</div>
+</li><li class="itemizedlistItem"><div class="para">graphRendererFunction</div>
+</li></ul></div>
+<div class="para">The graphRenderer property contains a factory for subgraph
+renderers. The factory must create instances of the Subgraph class
+or a subclass. The code extract bellow instructs the diagram component
+to create instances of the class MySubgraph to represent subgraphs
+from the node data provider.  </div>
+<pre class="programlisting">&lt;ibm:Diagram themeColor="#0D0E0E" id="diagView"
+                   startNodeField="startNode"
+                   endNodeField="endNode"
+                   allowSelection="false"
+                   updateComplete="onUpdateComplete(event)" 
+                   graphRenderer="MySubgraph"
+                   left="10" right="10" top="10" bottom="10"/&gt;
+</pre>
+<div class="para">The following example shows a graph renderer set programatically:
+ </div>
+<pre class="programlisting">diagram.graphRenderer = new ClassFactory(MySubgraph);
+</pre>
+<div class="para">The graphRendererFunction property contains a function
+that must return an instance of a Subgraph class or a subclass. Declare
+the graphRendererFunction using the following signature:  </div>
+<pre class="programlisting">function rendererFunction(diagram:Diagram,item:Object):Subgraph
+</pre>
+<div class="para">The first argument is the diagram where the node will
+be created. This information is provided as a convenience. The second
+argument is the object in the data provider being represented by the
+given Node. The nodeRendererFunction provides an extra level of flexibility
+by allowing you to return any instance of Subgraph according to your
+application needs.   </div>
+<div class="para">The following code extract illustrates a diagram configuration
+using a graph renderer function:  </div>
+<pre class="programlisting">/**
+     * Creates a graph renderer depending on the item data given as
+     * parameter.
+     *  
+     * @param diagram Diagram where the renderer is displayed
+     * @param ite Business data
+     */
+    public function createRenderer(diagram:Diagram, item:Object):Subgraph{
+      if (item.type == "one")
+        return new SubgraphOne();
+      if (item.type == "two")
+        return new SubgraphTwo();
+      return new Subgraph();
+    }
+    
+    public function configureDiagram(diagram:Diagram):void
+    {
+      ...
+      diagram.graphRendererFunction = createRenderer;
+      ...
+    }
+</pre>
+<div class="para">The same configuration in MXML would be:  </div>
+<pre class="programlisting">&lt;ibm:Diagram themeColor="#0D0E0E" id="diagView"
+                   startNodeField="startNode"
+                   endNodeField="endNode"
+                   allowSelection="false"
+                   updateComplete="onUpdateComplete(event)" 
+                   nodeRendererFunction="{createRenderer}"
+                   left="10" right="10" top="10" bottom="10"/&gt;
+</pre>
+<div class="para">In the same way as nodes and links, subgraph renderers
+are implemented as skinnable components. As a skinnable component,
+the Subgraph class is the host component to the skin class, which
+will effectively provide the graphic representation of the subgraph
+in a Diagram component. For more information on how to use and configure
+subgraphs, see LINKTO[Using the Subgraph class].  </div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f316.html" class="bluelink">Customizing nodes, links and subgraphs in a diagram</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f319.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f321.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

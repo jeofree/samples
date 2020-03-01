@@ -1,0 +1,29 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Updating the data provider item</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex497.html" class="breadcrumb">Gantt resource charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex540.html" class="breadcrumb">Editing tasks in a resource chart</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex544.html" class="breadcrumb">Updating the data provider item</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex543.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex545.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Updating the data provider item</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">To save changes made in the Gantt sheet back to the data
+provider, the default event listener calls the <span class="apiname">commitItem()</span> method. This method uses the <span class="apiname">ResourceChart.taskStartTimeField</span> and <span class="apiname">ResourceChart.taskEndTimeField</span> properties to determine which properties of the data provider item
+must be updated and stores the edited start and end time in those
+fields. This behavior applies even if the <span class="apiname">ResourceChart.taskStartTimeFunction</span> or <span class="apiname">ResourceChart.taskEndTimeFunction</span> properties are defined.</div>
+<div class="para">When the data provider item is an XML object, the values
+of <span class="apiname">startTime</span> and <span class="apiname">endTime</span> are stored as Strings using the <span class="apiname">Date.toString</span> method. When the data provider item
+is an <span class="trademark">ActionScript®
+            </span> object, the values of the <span class="apiname">startTime</span> and <span class="apiname">endTime</span> are stored as <span class="apiname">Date</span> objects.</div>
+<div class="para">You can override this behavior by setting the <span class="apiname">commitItemFunction</span> property to point to a custom <span class="apiname">commitItem()</span> function.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">You typically customize <span class="apiname">commitItem()</span> to perform the following actions:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"> Store the start and end time in a custom
+type inside the task data provider. Whenever you store the start and
+end time with custom types, you must make sure that the task chart
+handles the types you use or provide your own functions specified
+with the <span class="apiname">taskStartTimeFunction</span> and <span class="apiname">taskEndTimeFunction</span> properties. </div>
+</li><li class="itemizedlistItem"><div class="para"> Store custom properties, other than
+the start time and end time that have been modified during editing.</div>
+</li></ul></div>
+<div class="para">For more information on using the <span class="apiname">commitItemFunction</span> see <a href="ps_ganttforflex548.html#section1216740457244" class="bluelink">Updating the data provider item using a custom date format</a>.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex540.html" class="bluelink">Editing tasks in a resource chart</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex543.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex545.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

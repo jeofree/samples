@@ -1,0 +1,120 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Managing organization chart events</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise144.html" class="breadcrumb">Organization Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise172.html" class="breadcrumb">Managing organization chart events</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise171.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise173.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Managing organization chart events</h1></div></div><div class="content">
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent" id="d0e24271">
+
+
+
+
+
+
+
+
+
+
+<div class="para">An  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html" class="bluelink">OrgChart</a></span> control can
+fire several kinds of specific event in response to user interactions.
+You can create an event handler for each of these events.</div>
+<div class="para">For example, if you register a listener for an  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:itemClick" class="bluelink">itemClick</a></span> event on an <span class="apiname">OrgChart</span> class, this listener is called every time an item is clicked. The
+listener can then access the data for this item.</div>
+<div class="para">You can listen for the following <span class="apiname">OrgChart</span> data events.</div>
+<div class="caption">Organization chart data events</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_orgcharts.1018020"><colgroup span="1">
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Organization chart data event</div></th>
+<th rowspan="1" colspan="1"><div class="para">Description</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:change" class="bluelink">change</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the selection changed as a
+result of user interaction.</div></td>
+</tr>
+<tr>
+<td valign="top" rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:itemsAnimated" class="bluelink">itemsAnimated</a></span></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Indicates that a user interaction
+such as opening or closing a node has caused animation.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:itemClick" class="bluelink">itemClick</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the user clicked the pointer
+over a visual item in the control.</div></td>
+</tr>
+<tr>
+<td valign="top" rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:itemClose" class="bluelink">itemClose</a></span></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Indicates that the user has clicked
+the <span class="guicommand">Expand/Collapse</span> icon to
+close a node.</div></td>
+</tr>
+<tr>
+<td valign="top" rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:itemClosing" class="bluelink">itemClosing</a></span></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Indicates that the closing of
+a node is in progress.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:itemDoubleClick" class="bluelink">itemDoubleClick</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the user double-clicked the
+pointer over a visual item in the control.</div></td>
+</tr>
+<tr>
+<td valign="top" rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:itemOpen" class="bluelink">itemOpen</a></span></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Indicates that the user has clicked
+the <span class="guicommand">Expand/Collapse</span> icon to
+open a node.</div></td>
+</tr>
+<tr>
+<td valign="top" rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:itemOpening" class="bluelink">itemOpening</a></span></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Indicates that the opening of
+a node is in progress.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:itemRollOut" class="bluelink">itemRollOut</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the user rolled the pointer
+out of a visual item in the control.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:itemRollOver" class="bluelink">itemRollOver</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the user rolled the pointer
+over a visual item in the control.</div></td>
+</tr>
+<tr>
+<td valign="top" rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:layoutPerformed" class="bluelink">layoutPerformed</a></span></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Indicates that a node layout
+has been performed.</div></td>
+</tr>
+<tr>
+<td valign="top" rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:visibleBoundsChange" class="bluelink">visibleBoundsChange</a></span></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Indicates that the visible area
+that the chart occupies has changed.</div></td>
+</tr>
+</tbody></table>
+<div class="para">The <span class="apiname">OrgChart</span> events
+are of the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChartEvent.html" class="bluelink">OrgChartEvent</a></span> type.</div>
+<div class="para">The following code shows an interaction when an item
+is clicked.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+ xmlns:ilog="http://www.ilog.com/2007/ilog/flex" &gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.controls.Alert;
+      import ilog.orgchart.OrgChartEvent;
+      private function displayItemName(event:OrgChartEvent):void {
+        Alert.show("You have clicked on " + event.item.name, "Click Event");
+      }  
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:OrgChart itemClick="displayItemName(event)" /&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise144.html" class="bluelink">Organization Charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise171.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise173.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

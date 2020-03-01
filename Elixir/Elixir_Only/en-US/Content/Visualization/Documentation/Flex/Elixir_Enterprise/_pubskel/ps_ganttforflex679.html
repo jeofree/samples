@@ -1,0 +1,108 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Recurrence engine</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex634.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex673.html" class="breadcrumb">Recurring events</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex677.html" class="breadcrumb">Recurrence rules</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex679.html" class="breadcrumb">Recurrence engine</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex678.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex680.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Recurrence engine</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e116288">
+
+
+
+
+<div class="para">The implementation of the recurrence engine differs from
+the recurrence rule specification regarding the implementation of
+dates and weeks and support for rules and filters.</div>
+<div class="section">
+<h2 class="heading">Implementation of dates and weeks</h2>
+<div class="sectionContent">
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The date format used in the <span class="apiname">UNTIL</span> parameter (see <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/recurrence/RRule.html#until" class="bluelink">until</a></span>) or in the included/excluded dates is not the date
+format defined by the iCalendar specification:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The supported date formats are those
+of the <span class="apiname">Date.parse()</span> method. Custom
+functions to read and wite dates can be specified on the recurrence
+descriptor.</div></li><li class="itemizedlistItem"><div class="para">The <span class="apiname">WKST</span> parameter is not supported; the engine uses the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/utils/GregorianCalendar.html#firstDayOfWeek" class="bluelink">firstDayOfWeek</a></span> property instead. An instance of this calendar is
+available on the <span class="apiname">calendar</span> property
+of the <span class="apiname">Calendar</span> component, see  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html#calendar" class="bluelink">calendar</a></span>. By default this value is set to <code class="code">0</code> (Sunday); in the iCalendar specification, the default is <code class="code">1</code> (Monday)</div></li><li class="itemizedlistItem"><div class="para">In the iCalendar specification, the
+first week of the year has at least four days; in the implementation
+provided this is configurable as <span class="apiname">GregorianCalendar.minimalDaysInFirstWeek</span> (see <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/utils/GregorianCalendar.html#minimalDaysInFirstWeek" class="bluelink">minimalDaysInFirstWeek</a></span>. By default, this value is set
+to <code class="code">1</code>.</div></li></ul></div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Support for rules and filters</h2>
+<div class="sectionContent">
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The recurrence engine does not support some frequency
+rules and filters:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The frequency (FREQ) values HOURLY,
+MINUTELY, SECONDLY are not supported.</div></li><li class="itemizedlistItem"><div class="para">The parameters BYHOUR, BYMINUTE, BYSECOND
+are not supported.</div></li><li class="itemizedlistItem"><div class="para">The BYSETPOS parameter is not supported.</div>
+</li></ul></div>
+<div class="para">In addition, in the iCalendar specification, the <span class="apiname">DTSTART</span> parameter of a <span class="apiname">VEVENT</span> is used by the recurrence rule to determine the start of the recurrence
+set and to infer missing values (for example the start time in hours
+and minutes of the occurrences); the recurrence engine implemented
+uses the <span class="apiname">startTime</span> field of a data
+item for these purposes.</div>
+<div class="para">The following table shows the supported recurrence rule
+parameters.</div>
+<table border="1" cellpadding="4" cellspacing="0" class="ShadedHead"><colgroup align="left" span="1">
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr bgcolor="#BFD6E7">
+<th valign="top" rowspan="1" colspan="1">iCalendar parameter</th>
+<th valign="top" rowspan="1" colspan="1">Valid values</th>
+</tr>
+</thead><tbody valign="top">
+<tr>
+<td rowspan="1" colspan="1">FREQ</td>
+<td rowspan="1" colspan="1">"YEARLY", "MONTHLY", "WEEKLY", "DAILY"</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">UNTIL</td>
+<td rowspan="1" colspan="1">A Date</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">COUNT</td>
+<td rowspan="1" colspan="1">A positive integer</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">INTERVAL</td>
+<td rowspan="1" colspan="1">A positive integer</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">BYDAY</td>
+<td rowspan="1" colspan="1">A list of week days</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">BYMONTHDAY</td>
+<td rowspan="1" colspan="1">A list of days in the month (positive from the start of
+the month or negative from the end of the  month)</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">BYYEARDAY</td>
+<td rowspan="1" colspan="1">A list of days in the year (positive from the start of
+the year or negative from the end of the year)</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">BYWEEKNO</td>
+<td rowspan="1" colspan="1">A list of week numbers (positive from the start of the
+year or negative from the end of the year)</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">BYMONTH</td>
+<td rowspan="1" colspan="1">A list of month numbers (positive)</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">The iCalendar specification</h2>
+<div class="sectionContent">
+
+<div class="para">For more information on the <span class="literal">iCalendar</span> specification see <a class="bluelink" href="http://www.ietf.org/rfc/rfc2445.txt">http://www.ietf.org/rfc/rfc2445.txt</a>. Section 4.3.10 describes a recurrence rule. Section 4.8.5.4 provides
+examples of recurrence rules.</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex677.html" class="bluelink">Recurrence rules</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex678.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex680.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

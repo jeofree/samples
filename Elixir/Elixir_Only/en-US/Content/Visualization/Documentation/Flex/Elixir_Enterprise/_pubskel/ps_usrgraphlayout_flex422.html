@@ -1,0 +1,79 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Adding and removing constraints in Java for HL</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex414.html" class="breadcrumb">Hierarchical Layout (HL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex422.html" class="breadcrumb">Adding and removing constraints in Java for HL</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex421.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex423.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Adding and removing constraints in Java for HL</h1></div></div><div class="content">
+
+
+
+<div class="descriptiveTopicContent">
+
+
+<pre class="programlisting">
+void addConstraint(IlvHierarchicalConstraint constraint);
+</pre>
+<div class="para">You can add as many constraints as you want. The constraints
+will be respected during the subsequent layout calls until you remove
+them. To remove the most recent constraint, call: </div>
+<pre class="programlisting">
+void removeConstraint();
+</pre>
+<div class="para">To remove a specific constraint, call: </div>
+<pre class="programlisting">
+void removeConstraint(IlvHierarchicalConstraint constraint);
+</pre>
+<div class="para">To remove all existing constraints, call: </div>
+<pre class="programlisting">
+void removeAllConstraints();
+</pre>
+<div class="para">You can retrieve the constraints that were added to a
+Hierarchical Layout with the method: </div>
+<pre class="programlisting">
+Enumeration getConstraints()  
+</pre>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1123464">
+<h2 class="heading">Node groups</h2>
+<div class="sectionContent">
+<div class="para">Some constraints affect single nodes. Other constraints
+affect groups of nodes. The class <code class="code">IlvNodeGroup</code> is a convenient way to specify a group of nodes in Java. You can
+create a group of nodes in the following way: </div>
+<pre class="programlisting">
+group = new IlvNodeGroup();
+while (...) {
+    group.add(node);
+}
+</pre>
+<div class="para">A node group has a similar functionality to a vector.
+You can ask for the size and elements of the group, remove elements
+from the group, or check whether a node already belongs to the group.
+You can also convert a vector of nodes into a group: </div>
+<table border="0" cellpadding="5" cellspacing="0" class="NoBorder"><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><code class="code">group.add(node)</code> </div></td>
+<td rowspan="1" colspan="1"><div class="para">Adds a node to the group. </div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><code class="code">group.remove(node)</code> </div></td>
+<td rowspan="1" colspan="1"><div class="para">Removes a node from the group. </div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><code class="code">group.contains(node)</code> </div></td>
+<td rowspan="1" colspan="1"><div class="para">Checks whether a node is in the group. </div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><code class="code">group.size()</code> </div></td>
+<td rowspan="1" colspan="1"><div class="para">Returns the number of nodes in the group. </div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><code class="code">group.elements()</code> </div></td>
+<td rowspan="1" colspan="1"><div class="para">Returns the nodes of the group as an Enumeration. </div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><code class="code">group = new IlvNodeGroup(vector)</code> </div></td>
+<td rowspan="1" colspan="1"><div class="para">Creates a new group that contains the nodes
+stored in the input vector. </div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex414.html" class="bluelink">Hierarchical Layout (HL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex421.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex423.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

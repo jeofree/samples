@@ -1,0 +1,72 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>The RectangularBarRenderer class</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise214.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise215.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise226.html" class="breadcrumb">Building custom gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise241.html" class="breadcrumb">Custom rectangular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise244.html" class="breadcrumb">The visual elements of rectangular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise248.html" class="breadcrumb">The RectangularBarRenderer class</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise247.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise249.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">The RectangularBarRenderer class</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e42197">
+
+
+
+
+
+<div class="para">This class represents a bar whose position extends from
+the minimum value of the associated scale to the value of the renderer.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The geometry of a <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularBarRenderer.html" class="bluelink">RectangularBarRenderer</a></span> is controlled by the following
+properties:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularBarRenderer.html#rounded" class="bluelink">rounded</a></span> — Indicates whether the
+corners of the bar are rounded or not.</div></li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularBarRenderer.html#radius" class="bluelink">radius</a></span> — Defines the radius
+of the rounded corners, if the corners are rounded.</div>
+</li></ul></div>
+<div class="para">The fill and stroke of the bar can be changed with the <span class="apiname">fill</span> and <span class="apiname">stroke</span> style properties. The fill of the bar renderer is drawn so that
+its definition rectangle extends from the minimum value of the associated
+scale to the maximum value. For example, if the fill is a gradient
+from green to red, the red color is visible only when the maximum
+value of the scale is reached. For a lower value, the gradient will
+stop at the corresponding color.</div>
+<div class="para">The following code example shows different scenarios
+of bar renderers</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                backgroundColor="0xFFFFFF"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.graphics.*;
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:RectangularGauge height="100%" direction="vertical"&gt;  
+    &lt;ilog:scales&gt;
+      &lt;ilog:RectangularLinearScale/&gt;
+    &lt;/ilog:scales&gt;
+    &lt;ilog:elements&gt;
+      &lt;ilog:RectangularScaleRenderer x="75%" width="25%"/&gt;
+      &lt;ilog:RectangularBarRenderer x="2%" width="21%" value="100" 
+        editable="true" 
+        fill="{new SolidColor(0x0000FF)}" 
+        stroke="{new Stroke(0xAAAAAA, 5)}"/&gt;
+      &lt;ilog:RectangularBarRenderer x="27%" width="21%" value="80"
+        editable="true" rounded="true" radius="10"&gt;
+        &lt;ilog:fill&gt;
+          &lt;mx:LinearGradient angle="90"&gt;
+            &lt;mx:GradientEntry color="0xFF0000" ratio="0"/&gt;
+            &lt;mx:GradientEntry color="0x00FF00" ratio="1"/&gt;               
+          &lt;/mx:LinearGradient&gt;    
+        &lt;/ilog:fill&gt;   
+      &lt;/ilog:RectangularBarRenderer&gt;
+      &lt;ilog:RectangularBarRenderer x="52%" width="21%" value="95"     
+        editable="true"&gt;
+        &lt;ilog:fill&gt;
+          &lt;mx:LinearGradient angle="90"&gt;
+             &lt;mx:GradientEntry color="0x0FF000" ratio="0"/&gt;
+             &lt;mx:GradientEntry color="0xFF0000" ratio="1"/&gt;            
+          &lt;/mx:LinearGradient&gt;
+        &lt;/ilog:fill&gt;
+       &lt;/ilog:RectangularBarRenderer&gt;
+    &lt;/ilog:elements&gt;
+  &lt;/ilog:RectangularGauge&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise244.html" class="bluelink">The visual elements of rectangular gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise247.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise249.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

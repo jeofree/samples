@@ -1,0 +1,63 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>User interaction in the Gantt data grid</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex550.html" class="breadcrumb">Gantt task charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex586.html" class="breadcrumb">User interaction with task charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex587.html" class="breadcrumb">User interaction in the Gantt data grid</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex586.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex588.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">User interaction in the Gantt data grid</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The user interaction support available in the Gantt data
+grid, such as selection, sorting, editing, and the drag-and-drop feature,
+is provided entirely by the built-in behavior of <code class="code">AdvancedDataGrid</code>.</div>
+<div class="para">See <span class="italics">DataGrid control
+user interaction</span> and <span class="italics">Sorting data in DataGrid controls</span> in <span class="italics">Adobe Flex 4 Developer’s Guide</span> for more information on the possible built-in user interactions
+of <code class="code">AdvancedDataGrid</code>.</div>
+
+<div class="section" id="section1216726918738">
+<h2 class="heading">Task editing in the data grid</h2>
+<div class="sectionContent">
+<div class="para">The following example shows how to enable the editing
+of tasks in the Gantt data grid by using its <span class="apiname">editable</span> property. </div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.HierarchicalData;
+  
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0" },
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0" }
+      ]);
+    ]]&gt;  
+  &lt;/mx:Script&gt;
+  
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%" 
+                  taskDataProvider="{tasks}"&gt;
+    &lt;ilog:dataGrid&gt;
+      &lt;ilog:GanttDataGrid editable="true"&gt;
+        &lt;ilog:columns&gt;
+          &lt;mx:AdvancedDataGridColumn dataField="id" 
+                                     headerText="ID"
+                                     editable="false"/&gt;
+          &lt;mx:AdvancedDataGridColumn dataField="name"
+                                     headerText="Name"/&gt;
+          &lt;mx:AdvancedDataGridColumn dataField="startTime"
+                                     headerText="Start"/&gt;
+          &lt;mx:AdvancedDataGridColumn dataField="endTime"
+                                     headerText="End"/&gt;
+        &lt;/ilog:columns&gt;
+      &lt;/ilog:GanttDataGrid&gt;
+    &lt;/ilog:dataGrid&gt;
+  &lt;/ilog:TaskChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example sets the <span class="apiname">editable</span> property of the Gantt data grid to <code class="code">true</code> to enable its editing features. The example also displays columns <code class="code">ID</code> , <code class="code">Name</code>,  <code class="code">Start</code>, and  <code class="code">End</code>. The <code class="code">Name</code>,  <code class="code">Start</code>,and  <code class="code">End</code> columns are editable and the <code class="code">ID</code> column is read-only. These characteristics are achieved by setting
+the <code class="code">editable</code> property of each column appropriately.</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex586.html" class="bluelink">User interaction with task charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex586.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex588.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,46 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Accessing task data and the task item renderer in an event listener</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex550.html" class="breadcrumb">Gantt task charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex590.html" class="breadcrumb">Editing tasks in a task chart</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex595.html" class="breadcrumb">Accessing task data and the task item renderer in an event
+listener</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex594.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex596.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Accessing task data and the task item renderer in an event
+listener</h1></div></div><div class="content">
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">From within a Gantt sheet event listener you have access
+to the task data provider item, the current <span class="apiname">startTime</span> and <span class="apiname">endTime</span> of the task, and the
+item renderer used to display the task.</div>
+<div class="para">To access the data provider item you use the <span class="apiname">item</span> property of the event.</div>
+<div class="para">To access the item renderer you use the <span class="apiname">data</span> property of the <span class="apiname">itemRenderer</span> of the event.</div>
+<div class="para">To access the current <span class="apiname">startTime</span> and <span class="apiname">endTime</span>, or the resource associated
+with the task, you use the <span class="apiname">itemRenderer</span> property of the event.</div>
+<div class="para">For more details on the task item renderer and how it
+accesses data see <a href="ps_ganttforflex565.html" class="bluelink">Default task item renderer in task chart</a>.</div>
+<div class="para">The following example shows an event listener for the <span class="apiname">itemEditMove</span> event that accesses the data provider
+item, the task item renderer and the modified start and end time of
+the task.</div>
+<pre class="programlisting">private function onItemEditMove(event:GanttSheetEvent):void
+{
+   //...
+
+   // The renderer
+   var renderer:IDataRenderer = event.itemRenderer;
+
+   // The TaskItem that holds the modified values of the task
+   var taskItem:TaskItem = event.itemRenderer.data as TaskItem;
+
+   // Modified values of the task
+   var startTime:Date = taskItem.startTime;
+   var endTime:Date = taskItem.endTime;
+
+   // The data provider item
+   var item:Object = event.item; 
+
+   // ...
+}
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex590.html" class="bluelink">Editing tasks in a task chart</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex594.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex596.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

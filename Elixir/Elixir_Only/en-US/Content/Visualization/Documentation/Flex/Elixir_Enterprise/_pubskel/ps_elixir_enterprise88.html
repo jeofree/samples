@@ -1,0 +1,64 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Exception events</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Concept"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise39.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise78.html" class="breadcrumb">Recurring events</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise86.html" class="breadcrumb">Recurrence exceptions</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise88.html" class="breadcrumb">Exception events</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise87.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise89.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Exception events</h1></div></div><div class="content">
+
+
+<div class="conceptTopicContent">
+<div class="shortDescription">
+<div class="para">An exception event is an event defined in the data provider
+that replaces one (and only one)  occurrence  of a recurring event.
+An exception must not itself be a recurring event.</div>
+</div>
+<div class="elaboration">
+<div class="para">In order to make the association between the recurring
+event and its exception events, the exception events in the data 
+provider must share an identifier which is defined in the field <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/recurrence/RecurrenceDescriptor.html#idField" class="bluelink">idField</a></span> (or by the function specified
+in the field <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/recurrence/RecurrenceDescriptor.html#idFunction" class="bluelink">idFunction</a></span>).</div>
+<div class="para">The following code excerpt shows an XML model with a
+recurring event and an exception event.</div>
+<pre class="programlisting"> &lt;event id="0" 
+         startTime="Mon Oct 13 11:30:00 GMT+0200 2008" 
+         endTime="Mon Oct 13 13:00:00 GMT+0200 2008" 
+         summary="Recurring event" 
+         rrules="FREQ=DAILY" 
+         recurring="true"/&gt;
+
+ &lt;event id="0" 
+         startTime="Thu Oct 16 12:30:00 GMT+0200 2008" 
+         endTime="Thu Oct 16 14:00:00 GMT+0200 2008" 
+         summary="Exception event" 
+         exdate="Thu Oct 16 11:30:00 GMT+0200 2008"/&gt;</pre>
+<div class="para">In this example the two events have the same value in
+the <code class="code">id</code> field; this field contains the default
+value of the event identifier.</div>
+<div class="important"><div class="importantLabel">Important</div>
+<div class="para">This notion of identifier is not the same as the notion
+of <code class="code">uid</code> in Flex (see <span class="apiname">UIDUtil</span>). These events have the same <code class="code">id</code> but must
+have a different <code class="code">uid</code>.</div>
+</div>
+<div class="para">The exception event also defines the start time of the
+occurrence to replace. The field that contains this date is defined
+in the field <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/recurrence/RecurrenceDescriptor.html#exceptionDateField" class="bluelink">exceptionDateField</a></span> or by the function specified
+in the field <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/recurrence/RecurrenceDescriptor.html#exceptionDateFunction" class="bluelink">exceptionDateFunction</a></span>. By default the field <code class="code">exdate</code> is used to retrieve this date.</div>
+<div class="para">In the example in this topic, the occurrence that should
+have started on October 16th at 11:30 is  replaced by the  exception
+event.</div>
+<div class="para">The association between a recurring event and its exception
+events can be customized by specifying a custom function in the property <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/calendar/recurrence/RecurrenceDescriptor.html#getExceptionEventsFunction" class="bluelink">getExceptionEventsFunction</a></span>. The custom function will return
+the list of exception events of a specified recurring event; it replaces
+the default implementation. </div>
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">In iCalendar, an exception can have THISANDPRIOR or THISANDFUTURE
+keywords to replace every occurrence before or after the exception.
+This is not supported by the Calendar component but it can easily
+be expressed as two recurring events: one recurring event has an end
+date (UNTIL) and the other recurring event starts at the next occurrence
+date.</div>
+</div>
+<div class="para">An exception event is displayed by the item renderers
+with a dedicated icon.</div>
+<div class="mediaobject"><img src="../../Calendar/_media/calendar_exceptionEvent_default.png" alt="Dedicated&#xA;icon for an exception event" class="imagedata"/></div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise86.html" class="bluelink">Recurrence exceptions</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise87.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise89.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

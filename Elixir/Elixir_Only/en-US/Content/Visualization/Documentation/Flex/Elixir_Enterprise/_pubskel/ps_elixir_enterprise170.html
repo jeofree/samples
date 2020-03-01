@@ -1,0 +1,190 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Link properties</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise144.html" class="breadcrumb">Organization Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise168.html" class="breadcrumb">Styling organization charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise170.html" class="breadcrumb">Link properties</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise169.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise171.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Link properties</h1></div></div><div class="content">
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The color and thickness of links that connect the items
+can be configured by setting one or several style properties depending
+on the desired granularity.</div>
+<div class="para">The  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#style:linkColor" class="bluelink">linkColor</a></span> and  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#style:linkThickness" class="bluelink">linkThickness</a></span> style properties allow you to specify the color
+and thickness respectively of all the links in the chart.</div>
+<div class="para">The <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#style:linkStroke" class="bluelink">linkStroke</a></span> style property allows you to specify all the properties
+of the stroke used to draw  the links in the chart. The <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#linkStrokeFunction" class="bluelink">linkStrokeFunction</a></span> property gives a finer granularity by allowing you
+to specify the stroke to use to draw the links between a given item
+and its children. The  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#linkStrokeInherited" class="bluelink">linkStrokeInherited</a></span> property can be used with a
+custom <span class="apiname">linkStrokeFunction</span> to make
+another link inherit the custom stroke or not.</div>
+<div class="orderedlist"><div class="orderedlistIntro">
+<div class="para">To determine the stroke to use, the <span class="apiname">OrgChart</span> component proceeds as follows:</div>
+</div><ol class="orderedlist"><li class="orderedlistItem"><div class="para">If <span class="apiname">linkStrokeFunction</span> is defined, it retrieves the stroke associated with the current
+item.</div></li><li class="orderedlistItem"><div class="para">If there is no stroke associated with
+the current item (result <code class="code">null</code>) but <span class="apiname">linkStrokeInherited</span> is set to <code class="code">true</code>, it finds the nearest parent in the hierarchy that has a stroke
+defined and uses it.</div></li><li class="orderedlistItem"><div class="para">If there is no stroke associated with
+the current item (result <code class="code">null</code>) and <span class="apiname">linkStrokeInherited</span> is set to <code class="code">false</code> or if <span class="apiname">linkStrokeFunction</span> is not
+defined, it uses the <span class="apiname">linkStroke</span> style
+property.</div></li><li class="orderedlistItem"><div class="para">If the <span class="apiname">linkStroke</span> property is not set, it builds the stroke using the <span class="apiname">linkColor</span> and <span class="apiname">linkThickness</span> style properties.</div></li></ol></div>
+<div class="example">
+<div class="title">Example 1</div>
+<div class="exampleContent">
+<div class="para">All links are set green with a thickness of 3 pixels
+at identity using the <span class="apiname">linkColor</span> and <span class="apiname">linkThickness</span> properties.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;ilog:OrgChart width="100%" height="100%"
+                 linkColor="#00FF00" linkThickness="3"&gt;
+    &lt;ilog:dataProvider&gt;
+      &lt;mx:XML&gt;
+        &lt;person name="person 1"&gt;
+          &lt;person name="person 2"&gt;
+            &lt;person name="person 3"/&gt;
+            &lt;person name="person 4"/&gt;
+          &lt;/person&gt;
+          &lt;person name="person 5"&gt;
+            &lt;person name="person 6"/&gt;
+            &lt;person name="person 7"/&gt;
+          &lt;/person&gt;
+        &lt;/person&gt;        
+      &lt;/mx:XML&gt;
+    &lt;/ilog:dataProvider&gt;
+  &lt;/ilog:OrgChart&gt;
+  
+&lt;/mx:Application&gt;
+</pre>
+<div class="mediaobject"><img src="../../Elixir/_media/OrgChartLinkExample1_default.png" alt="All&#xA;links are set green with a thickness of 3 pixels at identity using&#xA;the linkColor and linkThickness properties" class="imagedata"/></div>
+</div>
+</div>
+<div class="example">
+<div class="title">Example 2</div>
+<div class="exampleContent">
+<div class="para">Same as Example 1, but with no rescale on zooming and
+link set to semitransparent using the <span class="apiname">linkStroke</span> style property.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;ilog:OrgChart width="100%" height="100%"&gt;
+    &lt;ilog:linkStroke&gt;
+      &lt;mx:Stroke alpha="0.5" color="#00FF00" weight="3" scaleMode="none" /&gt;
+    &lt;/ilog:linkStroke&gt;
+    &lt;ilog:dataProvider&gt;
+      &lt;mx:XML&gt;
+        &lt;person name="person 1"&gt;
+          &lt;person name="person 2"&gt;
+            &lt;person name="person 3"/&gt;
+            &lt;person name="person 4"/&gt;
+          &lt;/person&gt;
+          &lt;person name="person 5"&gt;
+            &lt;person name="person 6"/&gt;
+            &lt;person name="person 7"/&gt;
+          &lt;/person&gt;
+        &lt;/person&gt;        
+      &lt;/mx:XML&gt;
+    &lt;/ilog:dataProvider&gt;
+  &lt;/ilog:OrgChart&gt;
+  
+&lt;/mx:Application&gt;
+</pre>
+<div class="mediaobject"><img src="../../Elixir/_media/OrgChartLinkExample2_default.png" alt="Same&#xA;as Example 1, but with no rescale on zooming and link set to semitransparent&#xA;using the linkStroke style property" class="imagedata"/></div>
+</div>
+</div>
+<div class="example">
+<div class="title">Example 3</div>
+<div class="exampleContent">
+<div class="para">Link color is set as specified in a property of a data
+item with no inheritance using the <span class="apiname">linkStrokeFunction</span> style property.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.graphics.Stroke;
+      import mx.graphics.IStroke;
+      
+      private function linkStrokeFunction(item:XML):IStroke {
+        if (item.hasOwnProperty("@linkColor")) {
+          return new Stroke(StyleManager.getColorName(item.@linkColor.toString()), 3);
+        } 
+        
+        return null;       
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:OrgChart width="100%" height="100%"
+                 linkStrokeFunction="{linkStrokeFunction}"
+                 linkStrokeInherited="false"&gt;
+    &lt;ilog:dataProvider&gt;
+      &lt;mx:XML&gt;
+        &lt;person name="person 1" linkColor="#00FF00"&gt;
+          &lt;person name="person 2"&gt;
+            &lt;person name="person 3"/&gt;
+            &lt;person name="person 4"/&gt;
+          &lt;/person&gt;
+          &lt;person name="person 5" linkColor="#FF0000"&gt;
+            &lt;person name="person 6"/&gt;
+            &lt;person name="person 7"/&gt;
+          &lt;/person&gt;
+        &lt;/person&gt;        
+      &lt;/mx:XML&gt;
+    &lt;/ilog:dataProvider&gt;
+  &lt;/ilog:OrgChart&gt;
+  
+&lt;/mx:Application&gt;
+</pre>
+<div class="mediaobject"><img src="../../Elixir/_media/OrgChartLinkExample3_default.png" alt="Link&#xA;color is set as specified in a property of a data item with no inheritance&#xA;using the linkStrokeFunction style property" class="imagedata"/></div>
+</div>
+</div>
+<div class="example">
+<div class="title">Example 4</div>
+<div class="exampleContent">
+<div class="para">Link color is set as specified in a property of a data
+item with inheritance using the <span class="apiname">linkStrokeInherited</span> property.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.graphics.Stroke;
+      import mx.graphics.IStroke;
+      
+      private function linkStrokeFunction(item:XML):IStroke {
+        if (item.hasOwnProperty("@linkColor")) {
+          return new Stroke(StyleManager.getColorName(item.@linkColor.toString()), 3);
+        } 
+        
+        return null;       
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:OrgChart width="100%" height="100%"
+                 linkStrokeFunction="{linkStrokeFunction}"
+                 linkStrokeInherited="true"&gt;
+    &lt;ilog:dataProvider&gt;
+      &lt;mx:XML&gt;
+        &lt;person name="person 1" linkColor="#00FF00"&gt;
+          &lt;person name="person 2"&gt;
+            &lt;person name="person 3"/&gt;
+            &lt;person name="person 4"/&gt;
+          &lt;/person&gt;
+          &lt;person name="person 5" linkColor="#FF0000"&gt;
+            &lt;person name="person 6"/&gt;
+            &lt;person name="person 7"/&gt;
+          &lt;/person&gt;
+        &lt;/person&gt;        
+      &lt;/mx:XML&gt;
+    &lt;/ilog:dataProvider&gt;
+  &lt;/ilog:OrgChart&gt;
+  
+&lt;/mx:Application&gt;
+</pre>
+<div class="mediaobject"><img src="../../Elixir/_media/OrgChartLinkExample4_default.png" alt="Link&#xA;color is set as specified in a property of a data item with inheritance&#xA;using the linkStrokeFunction style property" class="imagedata"/></div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise168.html" class="bluelink">Styling organization charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise169.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise171.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,65 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>The logical scale(s) of rectangular gauges</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise214.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise215.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise226.html" class="breadcrumb">Building custom gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise241.html" class="breadcrumb">Custom rectangular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise243.html" class="breadcrumb">The logical scale(s) of rectangular gauges</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise242.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise244.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">The logical scale(s) of rectangular gauges</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e41100">
+
+
+
+<div class="para">A scale is a logical element that handles the main characteristics
+of a gauge: minimum and maximum values (numeric scales), categories
+(category scales), length and offset of reference. A scale can be
+numeric or category-based. Scales are used by many visual elements
+to render themselves. For example, the <span class="apiname">RectangularScaleRenderer</span> or the <span class="apiname">MarkerRenderer</span> use their
+associated scale to render themselves.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">Available rectangular scales are:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/rectangular/RectangularLinearScale.html" class="bluelink">RectangularLinearScale</a></span> </div></li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/rectangular/RectangularLogScale.html" class="bluelink">RectangularLogScale</a></span> </div></li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/rectangular/RectangularCategoryScale.html" class="bluelink">RectangularCategoryScale</a></span> </div></li></ul></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">The following example defines a logical scale with its
+associated scale renderer and a marker pointing a specific value.</div>
+<pre class="programlisting">&lt;ilog:RectangularGauge width="100%"&gt;
+  &lt;ilog:scales&gt;
+    &lt;ilog:RectangularLinearScale 
+      minimum="10" maximum="100" 
+      majorTickInterval="10" minorTickInterval="5"/&gt;
+  &lt;/ilog:scales&gt;
+  &lt;ilog:elements&gt;
+    &lt;ilog:RectangularScaleRenderer id="sr"/&gt;
+    &lt;ilog:RectangularBarRenderer value="30" 
+     height="{sr.tickAreaBounds.height}"/&gt;
+  &lt;/ilog:elements&gt;
+&lt;/ilog:RectangularGauge&gt;
+</pre>
+</div>
+</div>
+<div class="para"> If the scale attribute is not specified on a visual
+element, the visual element is automatically associated with the first
+logical scale in the scales array. If you need to reference a different
+scale, use the <span class="apiname">scale</span> property.</div>
+<div class="para">A scale provides two arrays of <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/TickItem.html" class="bluelink">TickItem</a></span>, one for major ticks and one
+for minor ticks, that are used by the <span class="apiname">RectangularScaleRenderer</span> to position the ticks. By default, the arrays are automatically
+computed, but you can override the default behavior by setting the
+scale properties, for example, the desired interval between two ticks.</div>
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">RectangularCategoryScale and RectangularLogScale do not
+generate minor tick items.</div>
+</div>
+<div class="para">The length and offset of reference are usually computed
+by the scale master so that you do not have to set them. The scale
+master is the visual element that is used as a reference by the scale
+to do its <span class="apiname">positionForValue</span> and <span class="apiname">valueForPosition</span> computations. Usually, and by default,
+this is the unique or last <span class="apiname">RectangularScaleRenderer</span> of the gauge. A visual element inheriting from <span class="apiname">RectangularScaleRelatedRenderer</span> can ask to be the master of its scale by setting the <span class="apiname">master</span> property to <code class="code">true</code>. However, you can only have a single master for a given scale. 
+Once a master has set the length and offset of a logical scale, all
+subsequent calls to the <span class="apiname">positionForValue</span> method of the scale will take that length and offset into account.
+For example, if <span class="apiname">positionForValue</span> is
+called with the minimum value of the scale, the offset position will
+be returned. If the <span class="apiname">positionForValue</span> method is called with the maximum value of the scale, the offset+length
+position will be returned. This allows all visual elements to share
+the same transformation from the data space of the scale to the pixel
+space.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise241.html" class="bluelink">Custom rectangular gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise242.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise244.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

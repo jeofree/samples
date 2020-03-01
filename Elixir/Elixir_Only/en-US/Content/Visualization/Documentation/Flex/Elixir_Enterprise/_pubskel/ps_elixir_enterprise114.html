@@ -1,0 +1,58 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Creating a MapHeatMap component</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise108.html" class="breadcrumb">Heat maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise111.html" class="breadcrumb">Creating heat map controls</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise114.html" class="breadcrumb">Creating a MapHeatMap component</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise113.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise115.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Creating a MapHeatMap component</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e16258">
+
+<div class="para">The <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/heatmap/MapHeatMap.html" class="bluelink">MapHeatMap</a></span> control combines a heat map and a map control. It also provides
+the ability to clip the heat map to the map. The map and the heat
+map controls have to be set properly to get the <span class="apiname">MapHeatMap</span> control to work correctly. The <span class="apiname">MapHeatMap</span> control automatically sets the <span class="apiname">dataFunction</span> property to the default data function for the heat map which assumes
+that the data provider provides objects with latitude/longitude coordinates.
+The map and heat map components are provided as properties of the <span class="apiname">MapHeatMap</span> component as shown in the following example.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+&lt;mx:Script&gt;
+  &lt;![CDATA[
+    
+    private function randomLongLat():Array {
+      var ret:Array = [];
+      for(var i:int = 0; i &lt; 100; i++) {
+        var o:Object = new Object();
+        o.x = Math.random() * 360 - 180;
+        o.y = Math.random() * 180 - 90;
+        ret.push(o);
+      }
+      return ret;
+    }
+    
+  ]]&gt;
+&lt;/mx:Script&gt;
+  &lt;ilog:MapHeatMap width="400" height="200" clipToMap="true"&gt;
+    &lt;ilog:map&gt;
+      &lt;ilog:WorldCountriesMap /&gt;
+    &lt;/ilog:map&gt;
+    &lt;ilog:heatMap&gt;
+      &lt;ilog:DensityHeatMap id="heatMap"
+                          dataProvider="{randomLongLat()}"
+                          pointSize="15" &gt;
+        &lt;ilog:colorModel&gt;
+          &lt;ilog:ColorModel&gt;
+            &lt;ilog:entries&gt;
+              &lt;ilog:ColorEntry color="0xffff00" limit="0" alpha="0"/&gt; 
+              &lt;ilog:ColorEntry color="0x0fffff" limit="{heatMap.pointValue / 2}" alpha="0.5"/&gt;
+           &lt;/ilog:entries&gt;
+          &lt;/ilog:ColorModel&gt;
+        &lt;/ilog:colorModel&gt;
+      &lt;/ilog:DensityHeatMap&gt;
+      
+    &lt;/ilog:heatMap&gt;
+  &lt;/ilog:MapHeatMap&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">The following figure shows the resulting map of the world
+plus <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/heatmap/DensityHeatMap.html" class="bluelink">DensityHeatMap</a></span> component filled randomly with latitude/longitude points.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/heatmap_MapHeatMap_default.png" alt="An example&#xA;of a map plus heat map component" class="imagedata"/></div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise111.html" class="bluelink">Creating heat map controls</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise113.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise115.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

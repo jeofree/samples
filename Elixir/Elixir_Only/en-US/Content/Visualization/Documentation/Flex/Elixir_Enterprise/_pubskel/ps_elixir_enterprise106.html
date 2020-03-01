@@ -1,0 +1,95 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Styling your indicators</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise95.html" class="breadcrumb">Gauges and indicators</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise102.html" class="breadcrumb">Indicators</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise106.html" class="breadcrumb">Styling your indicators</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise105.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise107.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Styling your indicators</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="section">
+<h2 class="heading">Changing the colors of indicator characters </h2>
+<div class="sectionContent" id="d0e15309">
+
+
+<div class="para">You can change the <span class="quote">“on”</span> and <span class="quote">“off”</span> segment colors by changing the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/indicators/indicatorsClasses/IndicatorBase.html#style:onSegmentColor" class="bluelink">onSegmentColor</a></span> and <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/indicators/indicatorsClasses/IndicatorBase.html#style:offSegmentColor" class="bluelink">offSegmentColor</a></span> style properties. Typically, <span class="apiname">onSegmentColor</span> is much brighter than <span class="apiname">offSegmentColor</span> to make the characters easily readable.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The default values are:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apiname">onSegmentColor</span>: <code class="code">0xFF0000</code> (Light red)</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apiname">offSegmentColor</span>: <code class="code">0x330000</code> (Dark red)</div>
+</li></ul></div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Changing the height of indicator characters </h2>
+<div class="sectionContent" id="d0e15410">
+
+
+<div class="para">Character height is controlled by the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/indicators/indicatorsClasses/IndicatorBase.html#style:charHeight" class="bluelink">charHeight</a></span> style property</div>
+<div class="para">In order to get enough room to render characters, <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/indicators/indicatorsClasses/AlphaNumericRenderer35.html" class="bluelink">AlphaNumericRenderer35</a></span> (which corresponds to a 5x7
+matrix) requires <span class="apiname">charHeight</span> to be
+greater than or equal to 13 pixels (7 dots plus 6 gaps).</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Changing the gap between indicator characters</h2>
+<div class="sectionContent" id="d0e15476">
+
+
+<div class="para">You can change the gap between indicator characters using
+the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/indicators/indicatorsClasses/IndicatorBase.html#style:charGap" class="bluelink">charGap</a></span> style property. The default
+is 2 pixels.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Changing the gap between character segments</h2>
+<div class="sectionContent" id="d0e15525">
+
+
+<div class="para">You can change the gap between segments of indicator
+characters using the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/indicators/indicatorsClasses/IndicatorBase.html#style:segmentGap" class="bluelink">segmentGap</a></span> style property. Possible values
+are <code class="code">none</code>, <code class="code">thin</code>, <code class="code">medium</code> and <code class="code">large</code>.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Customizing the segment map</h2>
+<div class="sectionContent">
+<div class="para">The following example shows how to customize the segment
+map that defines the character display for a dot.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+  layout="vertical" xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+  backgroundColor="0x000000" backgroundGradientAlphas="[]"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+
+      import ilog.indicators.indicatorsClasses.SegmentMap;
+      import ilog.indicators.indicatorsClasses.AlphaNumericRenderer35;
+
+      private function customizeMapping():void
+      {
+        // Creates a factory of renderers
+        var cf:ClassFactory = new ClassFactory(AlphaNumericRenderer35);
+        
+        // Creates a copy of the default segment map
+        var mySegmentMap:SegmentMap = AlphaNumericRenderer35.DEFAULT_MAP.clone();
+
+        // Changes the mapping for "."
+        mySegmentMap.setOnSegments(".", [32]);
+        cf.properties = {segmentMap: mySegmentMap};
+        
+        // Set the renderers factory
+        indic2.renderer = cf;
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:AlphaNumericIndicator35 id="indic1" text="Hello World..." charHeight="30" charGap="2"/&gt;
+  &lt;ilog:AlphaNumericIndicator35 id="indic2" text="Hello World..." charHeight="30" charGap="2"
+    initialize="customizeMapping()"/&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">The resulting difference in dot size from 4 elements
+to 1 element is shown in the following figure, with the <span class="quote">“before”</span> figure shown first.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/indics_customsegs_default.gif" alt="Before&#xA;and after changing the segment map for a dot from 4 elements to 1&#xA;element" class="imagedata"/></div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise102.html" class="bluelink">Indicators</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise105.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise107.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

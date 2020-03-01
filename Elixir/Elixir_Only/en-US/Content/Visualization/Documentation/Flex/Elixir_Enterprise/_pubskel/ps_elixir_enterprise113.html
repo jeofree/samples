@@ -1,0 +1,59 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Creating a DensityHeatMap component</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise108.html" class="breadcrumb">Heat maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise111.html" class="breadcrumb">Creating heat map controls</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise113.html" class="breadcrumb">Creating a DensityHeatMap component</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise112.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise114.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Creating a DensityHeatMap component</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e16199">
+
+<div class="para">You can create a density heat map control in MXML using
+the <code class="code">&lt;ilog:DensityHeatMap&gt;</code> tag. If you
+intend to refer to this control elsewhere in your MXML, for example,
+in another tag or in an <span class="trademark">ActionScript®
+            </span> block, you must specify an <code class="code">id</code> value.</div>
+<div class="para">A heat map control displays the value property for a
+set of points using a <span class="apiname">dataProvider</span> object as shown in the following example.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"  
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                layout="absolute"&gt;
+  &lt;ilog:DensityHeatMap width="400" height="400"&gt;
+    &lt;ilog:dataProvider&gt;
+      &lt;mx:XMLList&gt;
+        &lt;point x = "179.8" y = "148.5" /&gt;
+        &lt;point x = "108.0" y = "144.1" /&gt;
+        &lt;point x = "221.2" y = "184.2" /&gt;
+        &lt;point x = "235.8" y = "141.5" /&gt;
+        &lt;point x = "198.0" y = "145.4" /&gt;
+        &lt;point x = "99.5" y = "177.6" /&gt;
+        &lt;point x = "225.3" y = "134.1" /&gt;
+        &lt;point x = "160.1" y = "158.7" /&gt;
+        &lt;point x = "118.3" y = "142.3" /&gt;
+        &lt;point x = "262.6" y = "152.9" /&gt;
+        &lt;point x = "173.4" y = "68.2" /&gt;
+        &lt;point x = "235.3" y = "159.1" /&gt;
+        &lt;point x = "169.6" y = "158.8" /&gt;
+        &lt;point x = "159.7" y = "140.9" /&gt;
+        &lt;point x = "222.7" y = "215.1" /&gt;
+        &lt;point x = "154.2" y = "150.5" /&gt;
+        &lt;point x = "203.9" y = "148.0" /&gt;
+        &lt;point x = "140.0" y = "163.6" /&gt;
+        &lt;point x = "216.0" y = "141.2" /&gt;
+        &lt;point x = "199.2" y = "102.3" /&gt;
+      &lt;/mx:XMLList&gt;
+    &lt;/ilog:dataProvider&gt;
+    &lt;ilog:colorModel &gt;
+     &lt;ilog:ColorModel&gt;
+      &lt;ilog:ColorEntry color="0x0000ff" limit="0" alpha="0"/&gt;
+      &lt;ilog:ColorEntry color="0x00ff00" limit="50" /&gt;
+      &lt;ilog:ColorEntry color="0xff0000" limit="120" /&gt;
+     &lt;/ilog:ColorModel&gt;
+    &lt;/ilog:colorModel&gt;
+  &lt;/ilog:DensityHeatMap&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">The following figure shows the resulting density heat
+map.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/heatmap_createDensityHeatMap_default.png" alt="An example&#xA;of a density heat map" class="imagedata"/></div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise111.html" class="bluelink">Creating heat map controls</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise112.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise114.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

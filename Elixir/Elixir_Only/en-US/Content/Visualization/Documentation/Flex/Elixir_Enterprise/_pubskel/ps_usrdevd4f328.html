@@ -1,0 +1,198 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Positioning the nodes of a diagram from data</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f312.html" class="breadcrumb">Creating a graph display from data providers using the Diagram
+class</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f328.html" class="breadcrumb">Positioning the nodes of a diagram from data</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f327.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f329.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Positioning the nodes of a diagram from data</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">Objects that are present in the node and link data providers
+are represented graphically using renderers. Nodes represent entities;
+links represent relationships.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The Diagram component places these nodes in two different
+ways:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Using a specific position given by the
+application.</div></li><li class="itemizedlistItem"><div class="para">Using a graph layout algorithm.</div>
+</li></ul></div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The Diagram component has the following properties that
+allow you to specify how a node should be placed in a diagram: </div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">xLocationField: indicates the field
+in the data object where the X coordinate of the node is located.</div>
+</li><li class="itemizedlistItem"><div class="para">xLocationFunction: indicates a function
+that is called to compute the X coordinate of the node. The function
+has precedence over the field configuration.</div>
+</li><li class="itemizedlistItem"><div class="para">yLocationField: indicates the field
+in the data object where the Y coordinate of the node is located.</div>
+</li><li class="itemizedlistItem"><div class="para">y LocationFunction: indicates a function
+that is called to compute the Y coordinate of the node. The function
+has precedence over the field configuration.</div>
+</li></ul></div>
+<div class="para">The centerNodesOnLocation property indicates whether
+the location retrieved from the above properties represents the center
+of the node or the upper left corner.</div>
+<div class="section">
+<h2 class="heading">Positioning the nodes of a diagram from data fields</h2>
+<div class="sectionContent">
+<div class="para">The following code example illustrates how location fields
+can be used to place the nodes in a diagram. </div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark"
+               xmlns:ibm="http://www.ibm.com/xmlns/prod/ilog/flex/diagram/2010" 
+               xmlns:mx="library://ns.adobe.com/flex/halo"
+               creationComplete="fillDataProviders()"&gt;
+  &lt;fx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+      
+      [Bindable]
+      public var nodes:ArrayCollection;
+      [Bindable]
+      public var links:ArrayCollection;
+      
+      public function fillDataProviders():void {
+        nodes = new ArrayCollection();
+        var n:Object = new Object();
+        n.label="Node 1";
+        n.xCoord = 10;
+        n.yCoord = 10;
+        nodes.addItem(n);
+        n = new Object();
+        n.label = "Node 2";
+        n.xCoord = 70;
+        n.yCoord = 200;
+        nodes.addItem(n);
+        n = new Object();
+        n.label = "Node 3";
+        n.xCoord = 150;
+        n.yCoord = 50;
+        nodes.addItem(n);
+        
+        links = new ArrayCollection();
+        var link:Object = new Object();
+        link.start = nodes[0];
+        link.end = nodes[1];
+        links.addItem(link);
+        link = new Object();
+        link.start = nodes[0];
+        link.end = nodes[2];
+        links.addItem(link);
+        link = new Object();
+        link.start = nodes[1];
+        link.end = nodes[2];
+        links.addItem(link);
+      }
+    ]]&gt;
+  &lt;/fx:Script&gt;
+  
+  &lt;ibm:Diagram id="diagram" left="0" top="0" width="100%" height="100%" 
+               nodeDataProvider="{nodes}" linkDataProvider="{links}"
+               xLocationField="xCoord" yLocationField="yCoord"
+               startNodeField="start" endNodeField="end"
+               labelField="label"&gt;
+  &lt;/ibm:Diagram&gt;
+  
+&lt;/s:Application&gt;
+
+</pre>
+<div class="para">In this sample, nodes and links are created and added
+to the Diagram data providers. </div>
+<pre class="programlisting">var n:Object = new Object();
+  n.label="Node 1";
+  n.xCoord = 10;
+  n.yCoord = 10;
+  nodes.addItem(n);
+</pre>
+<div class="para">When your data provider is in XML, you can obtain the
+same positioning, for example: </div>
+<pre class="programlisting">  &lt;ibm:Diagram id="diagram" left="0" top="0" width="100%" height="100%" nodeDataProvider="{hcv}"
+               xLocationField="@xCoord" yLocationField="@yCoord" labelField="@label"              
+               createLinksForHierarchy="true"  /&gt;
+</pre>
+<div class="para">When referring to XML attributes, you can use @xCoord
+or xCoord. In the latter case, the @ is implicitly used by the Diagram
+component.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Positioning the nodes of a diagram using functions</h2>
+<div class="sectionContent">
+<div class="para">Specifying the position of nodes using direct fields
+is quite easy, however it may not be flexible enough for some applications.
+In certain application scenarios, it may be necessary to compute the
+position based on other fields as well, or convert the values according
+to certain requirements. In this case, use the properties xLocationFunction
+and yLocationFunction to allow the application to implement its own
+logic regarding the position of the nodes.  The following code example
+is an extract from mapsample present in the product distribution.
+In this example, the node data contains information about the city
+latitude and longitude. The application converts this data into x
+and y coordinates to be used by the Diagram component.  The code extract
+below shows how nodes are created in the Diagram data provider:</div>
+<pre class="programlisting"> &lt;ilog:nodeDataProvider&gt;
+      &lt;mx:ArrayList&gt;
+        
+        &lt;mapSample:City id="portland" name="Portland" latitude="45.60" longitude="-122.60"/&gt;
+        &lt;mapSample:City id="neworleans" name="New Orleans" latitude="30.03" longitude="-90.03"/&gt;
+        &lt;mapSample:City id="miami" name="Miami" latitude="25.82" longitude="-80.28"/&gt;
+        &lt;mapSample:City id="sanFrancisco" name="San Francisco" latitude="37.62" longitude="-122.38"/&gt;
+        &lt;mapSample:City id="losAngeles" name="Los Angeles" latitude="33.93" longitude="-118.40"/&gt;
+        &lt;mapSample:City id="boston" name="Boston" latitude="42.37" longitude="-71.03"/&gt;
+        &lt;mapSample:City id="washington" name="Washington" latitude="38.85" longitude="-77.04"/&gt;
+        &lt;mapSample:City id="detroit" name="Detroit" latitude="42.42" longitude="-83.02"/&gt;
+        &lt;mapSample:City id="dallas" name="Dallas" latitude="32.90" longitude="-97.03"/&gt;
+        &lt;mapSample:City id="phoenix" name="Phoenix" latitude="33.43" longitude="-112.02"/&gt;
+        &lt;mapSample:City id="minneapolis" name="Minneapolis" latitude="44.83" longitude="-93.47"/&gt;
+        &lt;mapSample:City id="atlanta" name="Atlanta" latitude="33.65" longitude="-84.42"/&gt;
+        &lt;mapSample:City id="elPaso" name="El Paso" latitude="31.80" longitude="-106.40"/&gt;
+        &lt;mapSample:City id="denver" name="Denver" latitude="39.75" longitude="-104.87"/&gt;
+        &lt;mapSample:City id="saltLakeCt" name="Salt Lake Ct" latitude="40.78" longitude="-111.97"/&gt;
+        &lt;mapSample:City id="kansasCity" name="Kansas City" latitude="39.32" longitude="-94.72"/&gt;
+        &lt;mapSample:City id="greatFalls" name="Great Falls" latitude="47.48" longitude="-111.37"/&gt;
+      &lt;/mx:ArrayList&gt;
+    &lt;/ilog:nodeDataProvider&gt;
+</pre>
+<div class="para">The Diagram component is configured to convert the latitude
+and longitude information into x and y coordinates using functions: </div>
+<pre class="programlisting"> &lt;ilog:Diagram 
+    skinClass="mapSample.MapSkin"
+    id='diagram'
+    width="100%" 
+    height="100%" 
+    contentBackgroundColor="#212629"
+    selectionMode="single"
+    automaticGraphLayout="false"
+    labelField="name"
+    centerNodesOnLocation="true"
+    xLocationFunction="longitudeToCoordinate"
+    yLocationFunction="latitudeToCoordinate"
+    startNodeField="startCity"
+    endNodeField="endCity"
+    &gt;
+</pre>
+<div class="para">The longitudeToCoordinate and latitudeToCoordinate functions
+perform the required computation to convert latitude and longitude
+information into x and y positions, also taking into account the boundaries
+that depend on the background image. In this case, the map background
+is defined so that latitudes are from 18N to 55.5N and longitudes
+are from 50W to 125W. </div>
+<pre class="programlisting"> public function longitudeToCoordinate(item:Object):Number
+  { 
+    var city:City = item as City;
+    return mapImageWidth - ((-city.longitude - 60) * mapImageWidth / (125 - 60));
+  }
+    
+  public function latitudeToCoordinate(item:Object):Number
+  {
+    var city:City = item as City;
+    return mapImageHeight - (city.latitude - 18) * mapImageHeight / (55.5 - 18);
+  }
+
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f312.html" class="bluelink">Creating a graph display from data providers using the Diagram
+class</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f327.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f329.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

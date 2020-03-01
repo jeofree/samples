@@ -1,0 +1,75 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>A first example using the Diagram control</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Principle"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f312.html" class="breadcrumb">Creating a graph display from data providers using the Diagram
+class</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f313.html" class="breadcrumb">A first example using the Diagram control</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f312.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f314.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">A first example using the Diagram control</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/ilog/diagram/Diagram.html" class="bluelink">Diagram</a></span> class
+is an <span class="trademark">Adobe®
+            </span> <span class="trademark">Flex®
+            </span> UIComponent
+that automatically creates a graphic representation composed of nodes
+and links in a business data model. Like many other Flex graphic components,
+it relies on the Flex  ‘data provider” paradigm. In
+the case of the <span class="apiname">Diagram</span> class, two
+properties act as data providers, <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/ilog/diagram/Diagram.html#nodeDataProvider" class="bluelink">nodeDataProvider</a></span> for nodes, and <span class="apilink"><a href="../../../../../../../../../../flex_diagram30/doc/html/en-US/refasdoc/html/ilog/diagram/Diagram.html#linkDataProvider" class="bluelink">linkDataProvider</a></span> for links. The <span class="apiname">Diagram</span> class takes care of rendering the nodes and links found in the <span class="apiname">nodeDataProvider</span> and <span class="apiname">linkDataProvider</span> properties, as well as listening to changes in these data sources
+to reflect them in the graphic representation of the nodes and links
+in the diagram.  The following code example shows how to display a
+basic graph using the <span class="apiname">Diagram</span> component.</div>
+<div class="para">Figure to be added</div>
+
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark"
+               xmlns:ibm="http://www.ibm.com/xmlns/prod/ilog/flex/diagram/2010" xmlns:mx="library://ns.adobe.com/flex/halo"&gt;
+
+  &lt;fx:Script&gt;
+  &lt;![CDATA[
+    import mx.collections.HierarchicalData;
+  ]]&gt;
+  &lt;/fx:Script&gt;
+  
+  &lt;fx:Declarations&gt;
+    &lt;fx:XML id="data"&gt;
+      &lt;graph label="root"&gt;  
+        &lt;node label="Node 1" x="100" y="100" /&gt;
+        &lt;node label="Node 2" x="200" y="100"/&gt;
+        &lt;node label="Node 3" x="100" y="200"/&gt;
+        &lt;graph label="Graph 1" x="200" y="200"&gt;
+          &lt;node label="Node 11" x="0" y="0" /&gt;
+          &lt;node label="Node 12" x="30" y="40"/&gt;
+        &lt;/graph&gt;
+      &lt;/graph&gt;
+    &lt;/fx:XML&gt;
+    &lt;mx:HierarchicalCollectionView showRoot="false" 
+          source="{new HierarchicalData(data)}" id="hcv"/&gt;
+  &lt;/fx:Declarations&gt;
+  
+  &lt;s:layout&gt;
+    &lt;s:VerticalLayout paddingBottom="20" paddingLeft="20"                                                             
+           paddingRight="20" paddingTop="20"/&gt;
+  &lt;/s:layout&gt;
+
+  &lt;ibm:Diagram id="diagram" left="0" top="0" width="100%" height="100%"  
+            nodeDataProvider="{hcv}"  xLocationField="x" 
+            yLocationField="y" labelField="label"/&gt;
+&lt;/s:Application&gt;
+</pre>
+<div class="para">This sample defines a simple node data provider by encapsulating
+an XML tree (the graph data) in an instance of HierarchicalData, itself
+embedded in an instance of HierarchicalCollectionView. The HierarchicalCollectionView
+instance implements the ICollectionView interface and can therefore
+be used as the value of the <span class="apiname">nodeDataProvider</span> property of the <span class="apiname">Diagram</span> component.</div>
+<div class="para">The declaration at the end of the code example specifies
+a new <span class="apiname">Diagram</span> component and its size
+and <span class="apiname">nodeDataProvider</span> attributes.
+The pair of attributes (xLocationField, yLocationField) specify the
+names of the properties in the business data nodes that hold x and
+y coordinate values. The labelField attribute specifies the name of
+the property in the data nodes whose content will be displayed as
+node labels on the diagram.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f312.html" class="bluelink">Creating a graph display from data providers using the Diagram
+class</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f312.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f314.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

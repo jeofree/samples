@@ -1,0 +1,123 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Specifying organization chart data with custom functions</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex739.html" class="breadcrumb">Organization Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex743.html" class="breadcrumb">Configuring organization chart data</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex746.html" class="breadcrumb">Specifying organization chart data with custom functions</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex745.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex747.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Specifying organization chart data with custom functions</h1></div></div><div class="content">
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">If the data values for a field in an organization chart
+control are not directly available in one of the fields of the data
+provider items, you can specify a custom function to provide the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html" class="bluelink">OrgChart</a></span> control with
+the required information.</div>
+<div class="para">If a custom function and a field are both specified,
+the function takes precedence over the field. The function properties
+used to specify custom functions are listed in the following table.</div>
+<div class="caption">Functions and their corresponding field names</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_orgcharts.1016887"><colgroup span="1">
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Function property</div></th>
+<th rowspan="1" colspan="1"><div class="para">Corresponding field name</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">addressFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">address</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">assistantFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">assistant</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">businessUnitFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">businessUnit</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">emailFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">email</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">faxFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">fax</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">instantMessagerFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">instantMessager</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">layoutFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">layout</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">locationFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">location</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">mobilePhoneFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">mobilePhone</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">nameFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">name</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">pictureFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">picture</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">phoneFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">phone</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">positionFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">position</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">presenceIndicatorFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">presenceIndicator</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">timeZoneFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">timeZone</div></td>
+</tr>
+</tbody></table>
+<div class="para">To illustrate the use of custom functions, the following
+code shows how a custom function uses one value read from the data
+item in the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#dataProvider" class="bluelink">dataProvider</a></span> to retrieve another data item value.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+ xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      private function getAddress(item:Object):String {
+        var address:String;    
+        switch(item.location) {
+          case "location 1":
+            address = "address 1";
+            break
+          case "location 2":
+            address = "address 2";
+            break
+          default:
+            address = "main address";            
+        }
+        return address;
+      }           
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:OrgChart width="400" height="200" &gt;
+    &lt;ilog:fields&gt;
+      &lt;ilog:OrgChartFields addressFunction="{getAddress}" /&gt;
+    &lt;/ilog:fields&gt;
+  &lt;/ilog:OrgChart&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">If no custom function is set for a field and the field
+is set to <code class="code">null</code>, then the field is hidden.
+This is particularly useful if the item renderer displays data that
+is by default not available in the   <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/orgchart/OrgChart.html#dataProvider" class="bluelink">dataProvider</a></span>.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex743.html" class="bluelink">Configuring organization chart data</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex745.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex747.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

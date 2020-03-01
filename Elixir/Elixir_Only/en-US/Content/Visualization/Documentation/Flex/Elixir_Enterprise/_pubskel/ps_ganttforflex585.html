@@ -1,0 +1,77 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Gantt sheet navigation events</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex550.html" class="breadcrumb">Gantt task charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex582.html" class="breadcrumb">Managing task chart events</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex585.html" class="breadcrumb">Gantt sheet navigation events</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex584.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex586.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Gantt sheet navigation events</h1></div></div><div class="content">
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The Gantt sheet control fires an event of type <span class="apiname">visibleTimeRangeChange</span> when the visible time range
+is modified, typically as a result of a user interaction.</div>
+<div class="caption">Gantt sheet navigation event</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="table1216726894285"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">GanttSheet navigation event </div></th>
+<th rowspan="1" colspan="1"><div class="para">Description</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#event:visibleTimeRangeChange" class="bluelink">visibleTimeRangeChange</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the visible time range has
+changed.</div></td>
+</tr>
+</tbody></table>
+<div class="para">The Gantt sheet visible time range event is of type <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheetEvent.html" class="bluelink">GanttSheetEvent</a></span>.</div>
+<div class="para">During animation of the change in the visible time range,
+a listener receives a <span class="apiname">visibleTimeRangeChange</span> event for each animation step. You can use the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheetEvent.html#adjusting" class="bluelink">adjusting</a></span> property of the <span class="apiname">GanttSheetEvent</span> object to determine whether the event is occurring during an animation.
+Each intermediate event has the <span class="apiname">adjusting</span> property set to <code class="code">true</code>; this property is
+set to <code class="code">false</code> for the last event of an animation
+or when the change is not animated.</div>
+<div class="para">The following example shows how to display the visible
+time range whenever it is modified.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.HierarchicalData;
+      import mx.controls.Alert;
+      import ilog.gantt.GanttSheetEvent;
+
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"}
+      ]);
+
+      public function onVisibleTimeRangeChange(
+                                        event:GanttSheetEvent):void {
+        
+        // Ignore the intermediate events generated during animation or
+        // during user interactions.
+        if (event.adjusting)
+          return;
+
+        Alert.show("The visible time range is now:\n" + 
+           "from " + GanttSheet(event.target).visibleTimeRangeStart+ 
+           "\nto " + GanttSheet(event.target).visibleTimeRangeEnd,
+           "VisibleTimeRangeChange Event");
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt;
+
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%"
+                  taskDataProvider="{tasks}"
+                  &gt;
+    &lt;ilog:ganttSheet&gt;
+      &lt;ilog:GanttSheet 
+        visibleTimeRangeChange="onVisibleTimeRangeChange(event)"/&gt;
+    &lt;/ilog:ganttSheet&gt;
+  &lt;/ilog:TaskChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">In this example, if the <span class="apiname">visibleTimeRangeChange</span> event is dispatched during animation the event is ignored.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex582.html" class="bluelink">Managing task chart events</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex584.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex586.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

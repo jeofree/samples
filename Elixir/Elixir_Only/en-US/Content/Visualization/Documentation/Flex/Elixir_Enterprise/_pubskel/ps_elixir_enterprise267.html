@@ -1,0 +1,88 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>User interaction with maps</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise214.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise254.html" class="breadcrumb">MX Maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise267.html" class="breadcrumb">User interaction with maps</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise266.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise268.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">User interaction with maps</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The maps control has some selection and navigation features
+built in. These are described in the following sections.</div>
+<div class="section" id="usrflprg.uss_flexprg_maps.1020353">
+<h2 class="heading">Selection</h2>
+
+<div class="sectionContent">
+<div class="para">To allow selection on a given map, set the <span class="apiname">allowSelection</span> property to <code class="code">true</code>. To allow multiple selection on a given map, set the <span class="apiname">allowMultipleSelection</span> property to <code class="code">true</code>. The following code shows how to do this.</div>
+<pre class="programlisting">&lt;ilog:WorldCountriesMap height="100%" width="100%"
+   allowSelection="true" allowMultipleSelection="true" /&gt;</pre>
+<div class="para">You can select as shown in the following table.</div>
+<div class="caption">Selection actions</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_maps.1021166"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Function</div></th>
+<th rowspan="1" colspan="1"><div class="para">Action</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Select</div></td>
+<td rowspan="1" colspan="1"><div class="para">Click an item in the map.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Extend a selection</div></td>
+<td rowspan="1" colspan="1"><div class="para">Hold down the CTRL key and click the items.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Reduce a selection</div></td>
+<td rowspan="1" colspan="1"><div class="para">Hold down the CTRL key and click an already
+selected item to remove it from the selection.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Clear a selection</div></td>
+<td rowspan="1" colspan="1"><div class="para">Click anywhere on the map background, but
+not on map data.</div></td>
+</tr>
+<tr>
+<td valign="top" rowspan="1" colspan="1"><div class="para">Select a neighboring item.</div></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">CTRL + Arrow keys.</div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="section" id="usrflprg.uss_flexprg_maps.1021149">
+<h2 class="heading">Navigation</h2>
+
+
+
+<div class="sectionContent">
+<div class="para">A  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/maps/MapBase.html" class="bluelink">MapBase</a></span> view can be zoomed and panned to display a specific
+part of the map. The navigation features can be controlled by the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/maps/MapBase.html#allowNavigation" class="bluelink">allowNavigation</a></span> property
+of the map. The following code shows how to do this.</div>
+<pre class="programlisting">&lt;ilog:WorldCountriesMap height="100%" width="100%"
+   allowNavigation="true" /&gt;</pre>
+<div class="para">The available actions are described in the following
+table.</div>
+<div class="caption">Navigation actions</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_maps.1021199"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Action</div></th>
+<th rowspan="1" colspan="1"><div class="para">Mouse</div></th>
+<th rowspan="1" colspan="1"><div class="para">Keyboard</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Zoom in</div></td>
+<td rowspan="1" colspan="1"><div class="para">Rotate the mouse wheel forward.</div></td>
+<td rowspan="1" colspan="1"><div class="para">+</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Zoom out</div></td>
+<td rowspan="1" colspan="1"><div class="para">Rotate the mouse wheel backward.</div></td>
+<td rowspan="1" colspan="1"><div class="para">-</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">Pan</div></td>
+<td rowspan="1" colspan="1"><div class="para">Click and drag.</div></td>
+<td rowspan="1" colspan="1"><div class="para">Arrow keys</div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise254.html" class="bluelink">MX Maps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise266.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise268.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

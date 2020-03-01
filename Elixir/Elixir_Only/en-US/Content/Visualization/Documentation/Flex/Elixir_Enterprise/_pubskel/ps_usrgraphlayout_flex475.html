@@ -1,0 +1,82 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Information stored in a layout report</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex470.html" class="breadcrumb">Using advanced features</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex472.html" class="breadcrumb">Using a graph layout report</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex475.html" class="breadcrumb">Information stored in a layout report</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex474.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex476.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Information stored in a layout report</h1></div></div><div class="content">
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The base class  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayoutReport.html" class="bluelink">IlvGraphLayoutReport</a></span> stores the following information:  </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><a href="ps_usrgraphlayout_flex475.html#usrgraphlayout.uss_graphlay_advanced.1031183" class="bluelink">Code</a> </div>
+</li><li class="itemizedlistItem"><div class="para"><a href="ps_usrgraphlayout_flex475.html#usrgraphlayout.uss_graphlay_advanced.999253" class="bluelink">Layout time</a> </div>
+</li><li class="itemizedlistItem"><div class="para"><a href="ps_usrgraphlayout_flex475.html#usrgraphlayout.uss_graphlay_advanced.999260" class="bluelink">Percentage of completion</a> </div>
+</li><li class="itemizedlistItem"><div class="para"><a href="ps_usrgraphlayout_flex475.html#usrgraphlayout.uss_graphlay_advanced.1008123" class="bluelink">Additional information</a> </div>
+</li></ul></div>
+<div class="section" id="usrgraphlayout.uss_graphlay_advanced.1031183">
+<h2 class="heading">Code</h2>
+
+
+<div class="sectionContent">
+<div class="para">This field contains information about special, predefined
+cases that may have occurred during the layout. The possible values
+are the following:  </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">LAYOUT_DONE</code> appears if the layout was performed successfully.  </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">STOPPED_AND_VALID</code> appears if the layout was performed but was stopped before completion,
+either because the layout time elapsed or because the method <code class="code">stopImmediately</code> was called. The positions of nodes
+and links are valid at the stopping point because the layout algorithm
+uses an iterative mechanism.  </div></li><li class="itemizedlistItem"><div class="para"><code class="code">STOPPED_AND_INVALID</code> appears if a (noniterative) layout was performed but was stopped
+before completion, either because the layout time elapsed or because
+the method <code class="code">stopImmediately</code> was called.
+The positions of nodes and links are not valid at the stopping point.
+Often, they have not yet been changed at all. </div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">NOT_NEEDED</code> appears if the layout was not performed because no changes occurred
+in the grapher and parameters since the last time the layout was performed
+successfully. </div></li><li class="itemizedlistItem"><div class="para"><code class="code">EMPTY_GRAPHER</code> appears if the grapher is empty.  </div></li></ul></div>
+<div class="para">To read the code, use the method:  </div>
+<pre class="programlisting">
+int getCode()  
+</pre>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_advanced.999253">
+<h2 class="heading">Layout time</h2>
+
+
+<div class="sectionContent">
+<div class="para">This field contains the total duration of the layout
+algorithm at the end of the layout. To read the time (in milliseconds),
+use the method:  </div>
+<pre class="programlisting">
+long getLayoutTime()  
+</pre>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_advanced.999260">
+<h2 class="heading">Percentage of completion</h2>
+<div class="sectionContent">
+<div class="para">This field contains an estimation of the percentage of
+the layout that has been completed. This can be used if the layout
+algorithm supports the generic percentage completion calculation feature.
+(See <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1014202" class="bluelink">Percentage of completion calculation</a>.) It is typically
+used inside layout event listeners that are described in the following
+section. To access the percentage, use the method: </div>
+<pre class="programlisting">
+int getPercentageComplete()  
+</pre>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_advanced.1008123">
+<h2 class="heading">Additional information</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">Additional information for particular layout algorithms
+is stored by the subclasses of <code class="code">IlvGraphLayoutReport</code>. For details, see the reference documentation of these classes:
+ </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/topologicalmesh/IlvTopologicalMeshLayoutReport.html" class="bluelink">IlvTopologicalMeshLayoutReport</a></span>   </div></li><li class="itemizedlistItem"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/uniformlengthedges/IlvUniformLengthEdgesLayoutReport.html" class="bluelink">IlvUniformLengthEdgesLayoutReport</a></span>  </div></li><li class="itemizedlistItem"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/multiple/IlvMultipleLayoutReport.html" class="bluelink">IlvMultipleLayoutReport</a></span>  </div></li><li class="itemizedlistItem"><div class="para"> <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/recursive/IlvRecursiveLayoutReport.html" class="bluelink">IlvRecursiveLayoutReport</a></span>  </div></li></ul></div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex472.html" class="bluelink">Using a graph layout report</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex474.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex476.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

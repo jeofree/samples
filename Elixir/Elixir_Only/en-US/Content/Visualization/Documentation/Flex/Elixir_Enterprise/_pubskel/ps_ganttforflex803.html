@@ -1,0 +1,171 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Styling treemaps</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex796.html" class="breadcrumb">Treemaps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex803.html" class="breadcrumb">Styling treemaps</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex802.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex804.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Styling treemaps</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e137749">
+
+
+<div class="para">Describes the properties that you can set to change the
+appearance of a  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html" class="bluelink">TreeMap</a></span> control once it has been created and configured
+to read and map data.</div>
+<div class="section">
+<h2 class="heading">The algorithm property</h2>
+<div class="sectionContent" id="d0e137804">
+
+
+<div class="para">The algorithm property affects the arrangement of items.</div>
+<div class="para">When you use the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#algorithm" class="bluelink">algorithm</a></span> property,
+you can choose either the <code class="code">squarified</code> (default
+value) algorithm that packs items with similar areas together, or
+the <code class="code">alternating</code> algorithm that arranges
+the items according to their order in the data provider.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">The labelThreshold property</h2>
+<div class="sectionContent" id="d0e137869">
+
+
+<div class="para">The <span class="apiname">labelThreshold</span> property
+affects the display of labels for treemap items.</div>
+<div class="para">The  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#labelThreshold" class="bluelink">labelThreshold</a></span> property can be used to display labels for treemap items. By default
+it is set to -1, which means that no labels are drawn. Setting it
+to 2 means that labels of depth 0, 1, and 2 are displayed.</div>
+<div class="para">Labels are only drawn inside each treemap item if there
+is enough room for them not to overlap on each other or adjacent areas.
+Label drawing can be customized by using the usual text style properties.
+The <span class="apiname">labelThreshold</span> property is used
+in the code given in the section on the margin properties that follows.</div>
+</div>
+</div>
+<div class="section" id="section1196930888532">
+<h2 class="heading">The margin properties</h2>
+<div class="sectionContent" id="d0e137937">
+
+
+
+
+
+
+
+
+
+
+<div class="para">The margin properties affect the margins between treemap
+items.</div>
+<div class="para">The size of an item in a treemap is computed automatically
+from the area information; however, you can use the maximum margin
+and margin proportion properties to specify which margins appear between
+items in the right, left, top, and bottom directions. The following
+example sets the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#topMarginProportion" class="bluelink">topMarginProportion</a></span> property to 20% of the size of a treemap item. This gives more room
+at the top of each item so that the label can be displayed inside
+the margin:</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+   &lt;![CDATA[
+    public function lFunction(item:Object):String {
+      return "-&gt;"+item.@label;
+    }
+   ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:TreeMap width="200" height="400"
+                 areaField="total" labelFunction="{lFunction}"
+                 labelThreshold="2"
+                 topMarginProportion="0.2"&gt;
+        &lt;!-- data --&gt;
+  &lt;/ilog:TreeMap&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">You can also remove the margin by setting the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#maxTopMargin" class="bluelink">maxTopMargin</a></span>,
+  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#maxBottomMargin" class="bluelink">maxBottomMargin</a></span>,  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#maxLeftMargin" class="bluelink">maxLeftMargin</a></span>,
+and  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#maxRightMargin" class="bluelink">maxRightMargin</a></span> properties to zero.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">The borderColor property</h2>
+<div class="sectionContent" id="d0e138178">
+
+
+<div class="para">The <span class="apiname">borderColor</span> property
+affects the border around a treemap item.</div>
+<div class="para">The border around a treemap item can be styled using
+the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#style:borderColor" class="bluelink">borderColor</a></span> style property. The following code shows how to
+do this.</div>
+<pre class="programlisting">&lt;ilog:TreeMap height="100%" width="100%"
+  borderColor="0xFF0000"
+  dataProvider="{stockDataAC}"&gt;
+</pre>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">The colorScheme property</h2>
+<div class="sectionContent" id="d0e138244">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="para">The <span class="apiname">colorScheme</span> property
+affects the color computation for a treemap item.</div>
+<div class="para">The  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#style:colorScheme" class="bluelink">colorScheme</a></span> style property allows you to choose how the color
+of each treemap item is computed. There are three types of color scheme:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The <code class="code">none</code> color
+scheme: in this case the color is taken from the result given by the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#colorFunction" class="bluelink">colorFunction</a></span>,
+if any.</div></li><li class="itemizedlistItem"><div class="para">The <code class="code">depth</code> color scheme: in this case the color is computed from the depth
+of the item in the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#dataProvider" class="bluelink">dataProvider</a></span> hierarchy
+and from the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#style:fillColor" class="bluelink">fillColor</a></span> style property.</div></li><li class="itemizedlistItem"><div class="para">Other color schemes: in this case the
+color is computed from the value corresponding to the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#colorField" class="bluelink">colorField</a></span> in
+the <span class="apiname">dataProvider</span> using a different
+kind of distribution algorithm. Most of the distribution algorithms
+distribute the color linearly from the minimum to the maximum value
+of the color attributed to <span class="apiname">colorField</span>. You can change the neutral value of this distribution using the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#neutral" class="bluelink">neutral</a></span> property
+of the treemap. </div></li></ul></div>
+<div class="para">The default value for <span class="apiname">colorScheme</span> is <code class="code">sequential</code>.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">The renderFunction property</h2>
+<div class="sectionContent" id="d0e138576">
+
+
+
+
+<div class="para">The renderFunction property affects the rendering of
+a treemap item.</div>
+<div class="para">If the default rendering of an item is a rectangular
+area filled with the color computed by the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#style:colorScheme" class="bluelink">colorScheme</a></span> style property and this does not fit in with your
+needs, you can set a function on the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#renderFunction" class="bluelink">renderFunction</a></span> property that overrides the default drawing. This function takes
+several parameters that help you to draw the item.</div>
+<div class="para">For example:</div>
+<pre class="programlisting">&lt;ilog:TreeMap renderFunction={renderFunction}/&gt;
+</pre>
+<div class="para">with the following code:</div>
+<pre class="programlisting">function renderFunction(item:Object, graphics:Graphics, rect:Rectangle,
+                        fillColor:uint, depth:int, isLeaf:Boolean):void {
+      var matr:Matrix = new Matrix();
+      matr.createGradientBox(rect.width, rect.height, 0, rect.x, rect.y);
+      graphics.beginGradientFill(GradientType.LINEAR,  [fillColor,
+         ColorUtil.adjustBrightness(fillColor, 50)], 
+         [100,100], [0x00, 0xFF], matr, SpreadMethod.PAD);
+      graphics.drawRect(rect.x, rect.y, rect.width, rect.height);
+      graphics.endFill();
+}
+</pre>
+<div class="para">replaces the default drawing by a gradient based on the
+color computed by the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#style:colorScheme" class="bluelink">colorScheme</a></span>  style property.</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex796.html" class="bluelink">Treemaps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex802.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex804.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

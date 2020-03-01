@@ -1,0 +1,44 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Extremity constraints (HL)</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex414.html" class="breadcrumb">Hierarchical Layout (HL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex431.html" class="breadcrumb">Extremity constraints (HL)</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex430.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex432.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Extremity constraints (HL)</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">To force a node to the first level, you can specify: </div>
+<pre class="programlisting">
+layout.setSpecNodeLevelIndex(node, 0);
+</pre>
+<div class="para">However, you cannot specify a level index for the last
+level because it is unknown at the beginning of layout how many levels
+will be created. It is unwise to specify: </div>
+<pre class="programlisting">
+layout.setSpecNodeLevelIndex(node, java.lang.Integer.MAX_VALUE);
+</pre>
+<div class="para">because this will create many empty levels between the
+levels actually used and the last one. Even though these empty levels
+are removed in postprocessing steps, this influences the speed and
+quality of the layout. (In fact, the algorithm will run out of memory
+if you set the specified level index unreasonably high.) </div>
+<div class="para">By using constraints you can achieve the same effect
+more efficiently.  </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To force a node to the first level: </div>
+</div>
+
+
+</div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To force a node to the last level: </div>
+</div>
+
+
+</div>
+<div class="para">The following figure illustrates some extremity constraints. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1123700"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Hierarchical-extrconst107_default.gif" alt="layout-Hierarchical-extrconst107.gif" class="imagedata"/></div><div class="caption">Sketch of Extremity Constraints</div></div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex414.html" class="bluelink">Hierarchical Layout (HL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex430.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex432.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,57 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Configuring a DensityHeatMap component</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex703.html" class="breadcrumb">Heat maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex710.html" class="breadcrumb">Configuring heat maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex714.html" class="breadcrumb">Configuring a DensityHeatMap component</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex713.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex715.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Configuring a DensityHeatMap component</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e120730">
+
+
+
+
+
+<div class="section" id="section1221134070337">
+<h2 class="heading">DensityHeatMap parameters</h2>
+<div class="sectionContent">
+<div class="para">The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/heatmap/DensityHeatMap.html" class="bluelink">DensityHeatMap</a></span> component draws a heat map that displays information about the density
+of data points. It uses a <span class="apiname">BitmapData</span> object to draw this information directly. Each data point in the
+data provider is drawn as a radial gradient in the pixmap, providing
+a value between <code class="code">0</code> and <span class="apiname">pointValue</span> for each pixel. The blending of data points with other points is
+controlled by the <span class="apiname">pointBlendMode</span> property.</div>
+
+</div>
+</div>
+<div class="section">
+<h2 class="heading">DensityHeatMap rendering options</h2>
+<div class="sectionContent">
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">A density heat map allows you to vary the following rendering
+options:</div>
+</div><dl class="descriptionlist"><dt class="term">doubleBuffer</dt><dd class="descriptionlistItem"><div class="para">When this property is set to <code class="code">true</code>, the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/heatmap/DensityHeatMap.html" class="bluelink">DensityHeatMap</a></span> object uses two buffers for the final rendering.
+One buffer is used to accumulate values to be rendered and a second
+buffer is used to build the final image by translating values to colors.
+Double buffering gives faster palette switching and faster dynamic
+point insertion. However, as this mode uses two buffers, there is
+higher memory consumption.</div></dd><dt class="term">pointValue </dt><dd class="descriptionlistItem"><div class="para">This property controls the value of
+a data point drawn in the bitmap. This is the value corresponding
+to the center of the circle representing the data point.</div>
+</dd><dt class="term">pointSize</dt><dd class="descriptionlistItem"><div class="para">This property defines the size of a
+data point. Each data point is drawn as a circular gradient whose
+radius is <span class="apiname">pointSize</span>.</div>
+</dd><dt class="term">pointBlendMode</dt><dd class="descriptionlistItem"><div class="para">A string value, from the <span class="apiname">flash.display.BlendMode</span> class, specifying the blend
+mode to be applied to the resulting bitmap when drawing points adjacent
+to the data point.</div></dd><dt class="term">pixelValueFunction</dt><dd class="descriptionlistItem"><div class="para">This property defines a function that
+is used to return the value corresponding to a given pixel. This function
+can be defined by the user to fit the application needs. A default
+implementation is provided in the <span class="apiname">DensityHeatMap</span> control which returns the grey value of the pixel.</div>
+</dd><dt class="term">Palette</dt><dd class="descriptionlistItem"><div class="para">The palette property is an array of
+256 colors that can be provided to do the final rendering of the density
+heatmap. At rendering time, each pixel value is converted to a color
+using this palette. If no palette is provided but a color model is
+provided through the <span class="apiname">colorModel</span> property,
+a palette is derived from this color model.</div>
+</dd></dl></div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex710.html" class="bluelink">Configuring heat maps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex713.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex715.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

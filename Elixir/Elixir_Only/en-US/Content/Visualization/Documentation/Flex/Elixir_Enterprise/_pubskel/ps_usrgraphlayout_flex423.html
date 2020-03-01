@@ -1,0 +1,49 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Level range constraints (HL)</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex414.html" class="breadcrumb">Hierarchical Layout (HL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex423.html" class="breadcrumb">Level range constraints (HL)</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex422.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex424.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Level range constraints (HL)</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">In Step 1 of the layout algorithm (the leveling phase),
+the nodes are partitioned into levels. These levels are indexed starting
+from 0. For instance, when the flow direction is to the bottom, the
+nodes of the level index 0 are placed at the topmost horizontal level
+line and the nodes with larger level index are placed at a position
+lower than the nodes with smaller level index (see <a href="ps_usrgraphlayout_flex417.html#usrgraphlayout.uss_graphlay_layouts.1080632" class="bluelink">Level and position indices</a>). The layout
+algorithm calculates these level indices automatically. </div>
+<div class="para">You can choose how the levels are partitioned by specifying
+the range of the level index for some nodes. The nodes are placed
+in the levels whose index is in the specified range. You have to specify
+the minimum and maximum index of the level.  </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To specify the minimum and maximum index of the level: </div>
+</div>
+
+
+
+</div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">If you want to force the node to level 5 and above, set <code class="code">UNSPECIFIED</code> as the maximum level.  </div>
+</div>
+
+
+</div>
+<div class="para">In this particular case, you could also use zero (0)
+as the minimum level because the level indices start at 0. </div>
+<div class="para">You can apply the constraint to a group of several nodes
+at once. This has the same effect as specifying the constraint for
+each single node of the group, but it is more memory efficient and
+convenient. For instance, if you want to force the group of three
+nodes to the levels between 5 and 7: </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To specify these parameters: </div>
+</div>
+
+
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex414.html" class="bluelink">Hierarchical Layout (HL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex422.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex424.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

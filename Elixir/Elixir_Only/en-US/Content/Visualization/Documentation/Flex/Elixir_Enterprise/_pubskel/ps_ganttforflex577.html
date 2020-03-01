@@ -1,0 +1,395 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Task styling for a task chart</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex550.html" class="breadcrumb">Gantt task charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex571.html" class="breadcrumb">Styling a task chart</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex577.html" class="breadcrumb">Task styling for a task chart</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex576.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex578.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Task styling for a task chart</h1></div></div><div class="content">
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The task display for the default task item renderer is
+composed of the following elements:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Bar</div></li><li class="itemizedlistItem"><div class="para">Start symbol</div>
+</li><li class="itemizedlistItem"><div class="para">End symbol </div>
+</li><li class="itemizedlistItem"><div class="para">Text</div></li><li class="itemizedlistItem"><div class="para">Roll over and selection feedback</div>
+</li></ul></div>
+<div class="para">The <span class="apiname">TaskItemRenderer</span> uses skins as shown in the following table.</div>
+<table border="1" cellpadding="4" cellspacing="0" class="ShadedHead"><colgroup align="left" span="1">
+<col span="1"/>
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr bgcolor="#BFD6E7">
+<th valign="top" rowspan="1" colspan="1">Property name</th>
+<th valign="top" rowspan="1" colspan="1"> Default value</th>
+<th valign="top" rowspan="1" colspan="1"> Description</th>
+</tr>
+</thead><tbody valign="top">
+<tr>
+<td rowspan="1" colspan="1"><span class="apiname">barSkin</span></td>
+<td rowspan="1" colspan="1"><code class="code">ilog.gantt.TaskBarSkin</code> </td>
+<td rowspan="1" colspan="1">The skin used to render the task bar.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="apiname">startSymbolSkin</span></td>
+<td rowspan="1" colspan="1"><code class="code">ilog.gantt.TaskSymbolSkin</code></td>
+<td rowspan="1" colspan="1">The skin used to render the start symbol of a task.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="apiname">endSymbolSkin</span><code class="code"/></td>
+<td rowspan="1" colspan="1"><code class="code">ilog.gantt.TaskSymbolSkin</code> </td>
+<td rowspan="1" colspan="1">The skin used to render the end symbol of a task.</td>
+</tr>
+</tbody></table>
+<div class="para">See the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskItemRenderer.html" class="bluelink">TaskItemRenderer</a></span> API for more information on the available style
+properties.</div>
+<div class="section" id="section1216740392461">
+<h2 class="heading">Bar properties</h2>
+<div class="sectionContent">
+<div class="para">The bar is a rectangle that is drawn from the start time
+to the end time of the task. The top and bottom margins allow you
+to position the bar vertically within the task item renderer. The
+margins are defined by the properties <span class="apiname">barTopMargin</span> and <span class="apiname">barBottomMargin</span>.</div>
+<div class="para">The colors of the bar and border are defined by the <span class="apiname">backgroundColor</span> and <span class="apiname">borderColor</span> properties. The width of the border is defined by the <span class="apiname">borderThickness</span> property.</div>
+<div class="para">To hide the bar, set <span class="apiname">barTopMargin</span> to 1.0 and <span class="apiname">barBottomMargin</span> to 1.0.</div>
+<div class="para">The following example shows how to customize the background
+and border colors provided by the default task item renderer.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Style&gt;
+    .myTaskItemStyle {
+      backgroundColor : #FFCCCC;
+      borderColor : #FF0000;
+      borderThickness : 2.0;
+      textPosition: right;
+    }
+    .mySummaryItemStyle {
+      backgroundColor : #FFCCCC;
+      borderColor : #FF0000;
+      borderThickness : 2.0;
+      startSymbolShape: down-pentagon;
+      endSymbolShape: down-pentagon;
+      barTopMargin: 0;
+      barBottomMargin: 0.5;
+      textPosition: right;
+    }
+  &lt;/mx:Style&gt;
+
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.HierarchicalData;
+  
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0"},
+        { id: "T3", name: "Summary Task #1",
+          startTime: "2/5/2008 8:0:0", endTime: "2/17/2008 17:0:0",
+          children: [
+            { id: "T4", name: "Task #3",
+              startTime: "2/5/2008 8:0:0", endTime: "2/12/2008 17:0:0" },
+            { id: "T5", name: "Task #4",
+              startTime: "2/13/2008 8:0:0", endTime: "2/17/2008 17:0:0" }
+          ]},
+        { id: "T6", name: "Milestone #1", milestone: "true",
+          startTime: "2/17/2008 17:0:0", endTime: "2/17/2008 17:0:0" }
+      ]);
+    ]]&gt;    
+  &lt;/mx:Script&gt;
+
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%"
+                      taskDataProvider="{tasks}"
+                      taskItemStyleName="myTaskItemStyle"
+                      summaryItemStyleName="mySummaryItemStyle"/&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example specifies the name of the CSS classes to
+be used to style the task item renderers for leaf and summary tasks.
+The styles for these CSS classes reproduce the default layout of leaf
+and summary tasks and customize the width of the border and the colors
+of the bars for leaf and summary tasks.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Start and end symbol properties</h2>
+<div class="sectionContent">
+<div class="para">The start and end symbols mark the start and end time
+of a task. The start symbol is displayed centered at the start time
+of a task. Both its width and its height are equal to the height of
+the task item renderer. The end symbol is displayed centered at the
+end time of a task.</div>
+<div class="para">The default skin for symbols provides different shapes.
+Use the <span class="apiname">startSymbolShape</span> property
+and <span class="apiname">endSymbolShape</span> property to select
+the shape of the start and end symbols respectively.</div>
+<table border="1" cellpadding="4" cellspacing="0" class="ShadedHead"><colgroup align="left" span="1">
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr bgcolor="#BFD6E7">
+<th valign="top" rowspan="1" colspan="1">Shape</th>
+<th valign="top" rowspan="1" colspan="1">Name</th>
+</tr>
+</thead><tbody valign="top">
+<tr>
+<td rowspan="1" colspan="1">- (hidden)</td>
+<td rowspan="1" colspan="1"><code class="code">none</code></td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="inlinemediaobject"><img src="../../Gantt4Flex/_media/flexprg_gantt_taskchart_upPentagon_default.png" alt="An upward&#xA;pointing pentagon shape as a symbol" class="imagedata"/></span></td>
+<td rowspan="1" colspan="1"><code class="code">upPentagon</code></td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="inlinemediaobject"><img src="../../Gantt4Flex/_media/flexprg_gantt_taskchart_downPentagon_default.png" alt="A downward&#xA;pointing pentagon shape as a symbol" class="imagedata"/></span></td>
+<td rowspan="1" colspan="1"><code class="code">downPentagon</code></td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="inlinemediaobject"><img src="../../Gantt4Flex/_media/flexprg_gantt_taskchart_diamond_default.png" alt="A diamond&#xA;shape as a symbol" class="imagedata"/></span></td>
+<td rowspan="1" colspan="1"><code class="code">diamond</code></td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="inlinemediaobject"><img src="../../Gantt4Flex/_media/flexprg_gantt_taskchart_upTriangle_default.png" alt="An upward&#xA;pointing triangle shape as a symbol" class="imagedata"/></span></td>
+<td rowspan="1" colspan="1"><code class="code">upTriangle</code></td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="inlinemediaobject"><img src="../../Gantt4Flex/_media/flexprg_gantt_taskchart_downTriangle_default.png" alt="A downward&#xA;pointing triangle shape as a symbol" class="imagedata"/></span></td>
+<td rowspan="1" colspan="1"><code class="code">downTriangle</code></td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="inlinemediaobject"><img src="../../Gantt4Flex/_media/flexprg_gantt_taskchart_upArrow_default.png" alt="An upward&#xA;pointing arrow shape as a symbol" class="imagedata"/></span></td>
+<td rowspan="1" colspan="1"><code class="code">upArrow</code></td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="inlinemediaobject"><img src="../../Gantt4Flex/_media/flexprg_gantt_taskchart_downArrow_default.png" alt="A downward&#xA;pointing arrow shape as a symbol" class="imagedata"/></span></td>
+<td rowspan="1" colspan="1"><code class="code">downArrow</code></td>
+</tr>
+</tbody></table>
+<div class="para">To hide the start symbol or end symbol, set the <span class="apiname">startSymbolShape</span> or <span class="apiname">endSymbolShape</span> to <code class="code">none</code>.</div>
+<div class="para">The rendering of the start symbol can be customized with
+the following  properties: <span class="apiname">startSymbolBorderColor</span>, <span class="apiname">startSymbolBorderThickness</span>, <span class="apiname">startSymbolColor</span>, <span class="apiname">startSymbolShape</span>, and <span class="apiname">startSymbolSkin</span>. For the end
+symbol, the corresponding properties are: <span class="apiname">endSymbolBorderColor</span>,  <span class="apiname">endSymbolBorderThickness</span>, <span class="apiname">endSymbolColor</span>, <span class="apiname">endSymbolShape</span>, and <span class="apiname">endSymbolSkin</span>.</div>
+<div class="para">The following sample shows how to customize the start
+and end symbols of the default task item renderer for summary tasks.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Style&gt;
+    .mySummaryItemStyle {
+      startSymbolColor: #FF0000;
+      startSymbolBorderColor: #880000;
+      startSymbolShape: up-triangle;
+      endSymbolColor: #FF0000;
+      endSymbolBorderColor: #880000;
+      endSymbolShape: down-triangle;
+      barTopMargin: 0;
+      barBottomMargin: 0.5;
+      textPosition: right;
+    }
+    .myMilestoneItemStyle {
+      startSymbolColor: #FF0000;
+      startSymbolBorderColor: #880000;
+      startSymbolShape: down-arrow;
+      barTopMargin: 1;
+      barBottomMargin: 1;
+      textPosition: right;
+    }
+  &lt;/mx:Style&gt;
+
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.HierarchicalData;
+  
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0"},
+        { id: "T3", name: "Summary Task #1",
+          startTime: "2/5/2008 8:0:0", endTime: "2/17/2008 17:0:0",
+          children: [
+            { id: "T4", name: "Task #3",
+              startTime: "2/5/2008 8:0:0", endTime: "2/12/2008 17:0:0" },
+            { id: "T5", name: "Task #4",
+              startTime: "2/13/2008 8:0:0", endTime: "2/17/2008 17:0:0" }
+          ]},
+        { id: "T6", name: "Milestone #1", milestone: "true",
+          startTime: "2/17/2008 17:0:0", endTime: "2/17/2008 17:0:0" }
+      ]);
+    ]]&gt;
+  &lt;/mx:Script&gt;
+
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%"
+                  taskDataProvider="{tasks}"
+                  summaryItemStyleName="mySummaryItemStyle"
+                  milestoneItemStyleName="myMilestoneItemStyle"
+                  /&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example specifies the names of the CSS classes to
+be used to style the task item renderers for summary tasks and milestones.
+The styles for these CSS classes reproduce the default layout of summary
+tasks and milestones and customize the shape and colors of the start
+and end symbols of summary tasks as well as the start symbol for milestones.</div>
+</div>
+</div>
+<div class="section" id="section1216740409352">
+<h2 class="heading">Task text properties</h2>
+<div class="sectionContent">
+<div class="para">The text is a label that provides a written description
+for a task. You can customize the styling of the text with the <span class="apiname">textStyleName</span> and <span class="apiname">textPosition</span> properties.</div>
+<div class="para">The following example shows how to customize the text
+style provided by the default task item renderer.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Style&gt;
+    .myTaskItemStyle {
+      textStyleName: "myTextStyle"; 
+      textRollOverColor: red; 
+      textSelectedColor: green; 
+      textSelectedRollOverColor: black;
+      textPosition: left;
+    }
+    .mySummaryItemStyle {
+      textStyleName: "myTextStyle"; 
+      textRollOverColor: red; 
+      textSelectedColor: green; 
+      textSelectedRollOverColor: black;
+      textPosition: left;
+      startSymbolShape: down-pentagon;
+      endSymbolShape: down-pentagon;
+      barTopMargin: 0;
+      barBottomMargin: 0.5;      
+    }
+    .myMilestoneItemStyle {
+      textStyleName: "myTextStyle"; 
+      textRollOverColor: red; 
+      textSelectedColor: green; 
+      textSelectedRollOverColor: black;
+      textPosition: left;
+      startSymbolShape: diamond;
+      barTopMargin: 1;
+      barBottomMargin: 1;
+    }
+    .myTextStyle {
+      color: blue;
+      fontWeight: bold;
+    }
+    
+  &lt;/mx:Style&gt;
+
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.HierarchicalData;
+
+      [Bindable]  
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0"},
+        { id: "T3", name: "Summary Task #1",
+          startTime: "2/5/2008 8:0:0", endTime: "2/17/2008 17:0:0",
+          children: [
+            { id: "T4", name: "Task #3",
+              startTime: "2/5/2008 8:0:0", endTime: "2/12/2008 17:0:0" },
+            { id: "T5", name: "Task #4",
+              startTime: "2/13/2008 8:0:0", endTime: "2/17/2008 17:0:0" }
+          ]},
+        { id: "T6", name: "Milestone #1", milestone: "true",
+          startTime: "2/17/2008 17:0:0", endTime: "2/17/2008 17:0:0" }
+      ]);
+    ]]&gt;
+  &lt;/mx:Script&gt;
+
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%"
+                  taskDataProvider="{tasks}"
+                  taskItemStyleName="myTaskItemStyle"
+                  milestoneItemStyleName="myMilestoneItemStyle"
+                  summaryItemStyleName="mySummaryItemStyle"/&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example specifies the names of the CSS classes to
+be used to style the task item renderers for leaf and summary tasks
+and milestones. The styles for these CSS classes reproduce the default
+layout of these kinds of tasks, and customize the text color and the
+position of the task labels.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Roll over and selection feedback</h2>
+<div class="sectionContent">
+<div class="para">The default task item renderer allows you to customize
+the colors of the task bar, symbols and text for the interaction states:
+selected, rolled over, selected and rolled over.</div>
+<div class="para">The following table shows the style properties used for
+coloring the elements of the task item renderer depending on the selection
+state.</div>
+<table border="1" cellpadding="4" cellspacing="0" class="ShadedHead"><colgroup align="left" span="1">
+<col span="1"/>
+<col span="1"/>
+<col span="1"/>
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr bgcolor="#BFD6E7">
+<th valign="top" rowspan="1" colspan="1">Element</th>
+<th valign="top" rowspan="1" colspan="1">Default </th>
+<th valign="top" rowspan="1" colspan="1"> Selected</th>
+<th valign="top" rowspan="1" colspan="1">Rolled over</th>
+<th valign="top" rowspan="1" colspan="1">Selected and rolled over</th>
+</tr>
+</thead><tbody valign="top">
+<tr>
+<td rowspan="1" colspan="1">bar background</td>
+<td rowspan="1" colspan="1"><span class="apiname">backgroundColor</span></td>
+<td rowspan="1" colspan="1"><span class="apiname">selectedColor</span></td>
+<td rowspan="1" colspan="1"><span class="apiname">rollOverColor</span></td>
+<td rowspan="1" colspan="1"><span class="apiname">selectedRollOverColor</span></td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">start symbol background</td>
+<td rowspan="1" colspan="1"><span class="apiname">startSymbolColor</span> </td>
+<td rowspan="1" colspan="1"><span class="apiname">selectedColor</span></td>
+<td rowspan="1" colspan="1"><span class="apiname">rollOverColor</span></td>
+<td rowspan="1" colspan="1"> <span class="apiname">selectedRollOverColor</span></td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">end symbol background</td>
+<td rowspan="1" colspan="1"><span class="apiname">endSymbolColor</span></td>
+<td rowspan="1" colspan="1"><span class="apiname">selectedColor</span></td>
+<td rowspan="1" colspan="1"><span class="apiname">rollOverColor</span></td>
+<td rowspan="1" colspan="1"> <span class="apiname">selectedRollOverColor</span></td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">bar border</td>
+<td rowspan="1" colspan="1"><span class="apiname">borderColor</span></td>
+<td rowspan="1" colspan="1"><span class="apiname">borderSelectedColor</span></td>
+<td rowspan="1" colspan="1"><span class="apiname">borderRollOverColor</span></td>
+<td rowspan="1" colspan="1"><span class="apiname">borderSelectedRollOverColor</span></td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">start symbol border</td>
+<td rowspan="1" colspan="1"><span class="apiname">startSymbolBorderColor</span></td>
+<td rowspan="1" colspan="1"><span class="apiname">startSymbolBorderColor</span></td>
+<td rowspan="1" colspan="1"><span class="apiname">borderRollOverColor</span></td>
+<td rowspan="1" colspan="1"><span class="apiname">borderSelectedRollOverColor</span></td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">end symbol border</td>
+<td rowspan="1" colspan="1"><span class="apiname">endSymbolBorderColor</span></td>
+<td rowspan="1" colspan="1"><span class="apiname">endSymbolBorderColor</span></td>
+<td rowspan="1" colspan="1"><span class="apiname">borderRollOverColor</span></td>
+<td rowspan="1" colspan="1"><span class="apiname">borderSelectedRollOverColor</span></td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">text</td>
+<td rowspan="1" colspan="1"><span class="apiname">color</span></td>
+<td rowspan="1" colspan="1"><span class="apiname">textSelectedColor</span></td>
+<td rowspan="1" colspan="1"><span class="apiname">textRollOverColor</span></td>
+<td rowspan="1" colspan="1"><span class="apiname">textSelectedRollOverColor</span></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex571.html" class="bluelink">Styling a task chart</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex576.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex578.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

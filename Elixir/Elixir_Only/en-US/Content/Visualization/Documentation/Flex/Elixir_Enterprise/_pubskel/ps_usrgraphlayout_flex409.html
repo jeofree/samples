@@ -1,0 +1,126 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Spacing parameters</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex379.html" class="breadcrumb">Tree Layout (TL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex385.html" class="breadcrumb">Layout modes of the TL algorithm</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex406.html" class="breadcrumb">Balloon layout mode</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex409.html" class="breadcrumb">Spacing parameters</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex408.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex410.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Spacing parameters</h1></div></div><div class="content">
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="section">
+<h2 class="heading">Branch Offset</h2>
+<div class="sectionContent">
+<div class="para">Balloon layout mode has minimum spacing only between
+nodes, and does not distinguish between minimum offsets of siblings,
+branches, and parent-child relationships. The minimum spacing between
+nodes is controlled by the branch offset, as in free mode and level
+mode. The sibling offset and parent-child offset have no effect in
+balloon layout mode.</div>
+<div class="para">To specify the minimum offset between nodes:</div>
+
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Angle Spacing</h2>
+<div class="sectionContent">
+<div class="para">The angles between sectors of a balloon, and the radius
+of the balloon have more effect on the spacing  of the layout than
+the minimum offset. A bad choice of sector angles requires larger
+radii to avoid  overlaps, and hence a larger area for the layout.
+Therefore, the layout offers different angle spacing modes.</div>
+<div class="para">In the following figure, the layout on the left uses
+regular angle spacing and the layout on the right uses  proportional
+angle spacing. On the right, the sector angle for the blue subtree
+is much larger than the sector  angles for each green subtree, since
+the blue subtree is larger than  the green subtrees.</div>
+<div class="figure"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Tree-balloon_anglespacing_default.png" alt="Angle&#xA;spacing in balloon layout: left: regular, right: (slow) proportional" class="imagedata"/></div><div class="caption">Angle spacing: left: regular, right: proportional
+ (slow)</div></div>
+<div class="para">To specify angle spacing:</div>
+
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">The valid values for mode are:</div>
+</div><dl class="descriptionlist"><dt class="term">IlvTreeLayout.REGULAR</dt><dd class="descriptionlistItem"><div class="para">The available angle range at a node
+is evenly split so that each subtree balloon  at the node can occupy
+the same angle. This looks very uniform but tends to waste space if
+the subtrees are  not the same size. See the angle spacing figure,
+left image.</div></dd><dt class="term">IlvTreeLayout.FAST_PROPORTIONAL</dt><dd class="descriptionlistItem"><div class="para">The available angle range at a node
+is proportionally split so that  larger subtree balloons at the node
+can occupy larger angles. As a consequence, a larger subtree requires
+a  smaller radius, hence this mode uses less space. The algorithm
+uses a fast heuristic to calculate the angle ranges. This heuristic
+is not very precise and sometimes produces asymmetric layouts. The
+quality of the result depends strongly on the choice of start angle.
+The heuristic runs in linear time.</div></dd><dt class="term">IlvTreeLayout.PROPORTIONAL</dt><dd class="descriptionlistItem"><div class="para">Same as the fast proportional mode:
+the available angle range at a node is  proportionally split so that
+larger subtree balloons at the node can occupy larger angles. However,
+the algorithm uses a slow heuristic that is more precise, uses the
+space even better, and produces symmetric layouts. The quality of
+the result does not depend on the choice of start angle. The heuristic
+runs in  quadratic time. This is the default mode. See the angle spacing
+figure, right image.</div></dd></dl></div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Radius mode</h2>
+<div class="sectionContent">
+<div class="para">When the sector angles have been chosen for the subtree
+balloons, the radius (length of the link from parent to  child) must
+be calculated so that no subtrees overlap. The choice of radius is
+a trade-off  between symmetry and area. Choosing a uniform radius
+for all child nodes of the same parent often requires a  lot of space.
+See the figure showing examples of uniform and  variable radius layouts,
+top left image. If the radius is variable, symmetries are lost. As
+a  compromise, you can choose to have a variable radius only for large
+subtree balloons and keep a uniform radius  for all the leaves of
+a parent, See the figure showing examples of uniform and  variable
+radius layouts, top right image, where the link towards the blue subtree
+is longer than the links to the green subtrees. If symmetries are
+not important, an additional  optimization phase can be selected that
+shifts the balloons closer together. The optimization phase can be
+ applied to subtrees that are not leaves. See the figure showing examples
+of uniform and  variable radius layouts, lower left image. This phase
+can  also be used to shift leaves together. See the figures showing
+examples of uniform and  variable radius layouts, lower right image.
+In the latter case, the leaves are often rather scattered and no longer
+on a circle. </div>
+<div class="figure"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Tree-balloon_radius_uniform_default.png" alt="Balloon&#xA;layout mode, radius mode: left: uniform, right: uniform leaves (larger&#xA;subtrees have variable radius) " class="imagedata"/></div><div class="caption">Radius mode: left: uniform, right: uniform leaves
+(larger subtrees have variable radius) </div></div>
+<div class="figure"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Tree-balloon_radius_variable_default.png" alt="Balloon&#xA;layout mode, radius mode: left: optimized uniform leaves, right: optimized&#xA;variable. " class="imagedata"/></div><div class="caption">Radius mode: left: optimized uniform leaves, right:
+optimized variable</div></div>
+<div class="para">To specify the radius mode:</div>
+
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">The valid values for <code class="code">mode</code> are:</div>
+</div><dl class="descriptionlist"><dt class="term">IlvTreeLayout.UNIFORM_RADIUS</dt><dd class="descriptionlistItem"><div class="para">The radii of all subtree balloons that
+are child nodes of the same node are uniform. This mode requires the
+largest area but also gives the greatest number of symmetries in the
+layout. However, if the tree is not very balanced, it usually wastes
+a lot of space. See the variable radius figure, upper left image.</div>
+</dd><dt class="term">IlvTreeLayout.UNIFORM_LEAVES_RADIUS</dt><dd class="descriptionlistItem"><div class="para">The radii of all leaves that are child
+nodes of the same node are uniform, however the radius of a balloon
+that contains more than one node can vary. This value is better for
+unbalanced trees since it uses the available space much better. Use
+this value if symmetries in the layout are important. See the variable
+radius figure, upper right image.</div></dd><dt class="term">IlvTreeLayout.VARIABLE_RADIUS</dt><dd class="descriptionlistItem"><div class="para">The radius of all different child balloons
+at the same parent node can vary. It will even vary for child nodes
+of the same node, if these child nodes have different node sizes.</div>
+</dd><dt class="term">IlvTreeLayout.OPTIMIZED_UNIFORM_LEAVES_RADIUS</dt><dd class="descriptionlistItem"><div class="para">The initial placement is done as in
+uniform leaves radius mode. Additionally, an optimization heuristic
+shifts subtrees together to reduce the radii. This has  the advantage
+of smaller space requirements but loses symmetries in the diagram.
+Leaves that have the same parent node still keep the same radius.
+See the variable radius figure, lower left image.</div>
+</dd><dt class="term">IlvTreeLayout.OPTIMIZED_VARIABLE_RADIUS</dt><dd class="descriptionlistItem"><div class="para">The initial placement is done as in
+variable radius mode. Additionally, an optimization heuristic shifts
+subtrees together to reduce the radii. This has the advantage  of
+smaller space requirements but loses symmetries in the diagram. This
+affects even leaves of the same  parent, hence they may end up rather
+scattered around the parent. See the variable radius figure, lower
+right image.</div></dd></dl></div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex406.html" class="bluelink">Balloon layout mode</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex408.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex410.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

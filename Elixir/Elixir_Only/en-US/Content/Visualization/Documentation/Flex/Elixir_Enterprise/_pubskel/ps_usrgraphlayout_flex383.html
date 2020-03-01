@@ -1,0 +1,125 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Generic features and parameters of the TL algorithm</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex379.html" class="breadcrumb">Tree Layout (TL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex383.html" class="breadcrumb">Generic features and parameters of the TL algorithm</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex382.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex384.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Generic features and parameters of the TL algorithm</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1270497">
+<h2 class="heading">Overview (TL)</h2>
+<div class="sectionContent">
+<div class="para">The  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/tree/IlvTreeLayout.html" class="bluelink">IlvTreeLayout</a></span> class supports the following generic features defined in the  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html" class="bluelink">IlvGraphLayout</a></span> class (see also <a href="ps_usrgraphlayout_flex369.html" class="bluelink">Base class parameters and features</a>):  </div>
+
+
+<div class="para">The following subsections describe the particular way
+in which these features are used by the subclass  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/tree/IlvTreeLayout.html" class="bluelink">IlvTreeLayout</a></span>.  </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1198743">
+<h2 class="heading">Allowed time (TL)</h2>
+
+<div class="sectionContent">
+<div class="para">The layout algorithm stops if the allowed time setting
+has elapsed. (For a description of this layout parameter in the <code class="code">IlvGraphLayout</code> class, see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1017208" class="bluelink">Allowed time</a>.) If the layout
+stops early because the allowed time has elapsed, the nodes and links
+are not moved from their positions before the layout call and the
+result code in the layout report is <code class="code">IlvGraphLayoutReport.STOPPED_AND_INVALID</code>.  </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1198750">
+<h2 class="heading">Layout of connected components (TL)</h2>
+
+<div class="sectionContent">
+<div class="para">The layout algorithm can utilize the generic mechanism
+to layout connected components. (For more information about this mechanism,
+see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1017460" class="bluelink">Layout of connected components</a>). It has,
+however, a specialized internal mechanism to layout connected components
+and, therefore, the generic mechanism is switched off by default. </div>
+<div class="para">The generic connected component layout mechanism has
+the disadvantage that it moves connected components completely. Fixed
+nodes within a component do not preserve their old position, and the
+resulting layout may be unstable on incremental changes, depending
+on which layout instance is used for the component layout. </div>
+<div class="para">If the generic connected component layout mechanism is
+disabled, the algorithm uses its own specialized internal mechanism
+instead of the generic mechanism to lay out each component as a separate
+tree. This is usually faster and more stable on incremental changes
+than the generic mechanism. Furthermore, it enables the user to set
+the position of the layout. </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1198759">
+<h2 class="heading">Link clipping (TL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm can use a link clip interface to
+clip the end points of a link. (See <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1017682" class="bluelink">Link clipping</a>.) </div>
+<div class="para">This is useful if the nodes have a nonrectangular shape
+such as a triangle, rhombus, or circle. If no link clip interface
+is used, the links are normally connected to the bounding boxes of
+the nodes, not to the border of the node shapes. See <a href="ps_usrgraphlayout_flex393.html" class="bluelink">Using a link clipping interface (TL)</a> for details
+of the link clipping mechanism. </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1198770">
+<h2 class="heading">Link connection box (TL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm can use a link connection box interface
+(see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1017739" class="bluelink">Link connection box</a>) in combination
+with the link clip interface. If no link clip interface is used, the
+link connection box interface has no effect. For details see <a href="ps_usrgraphlayout_flex392.html" class="bluelink">Using a link connection box interface (TL)</a>. </div>
+</div>
+</div>
+
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1198780">
+<h2 class="heading">Percentage of completion calculation (TL)</h2>
+
+<div class="sectionContent">
+<div class="para">The layout algorithm calculates the estimated percentage
+of completion. This value can be obtained from the layout report during
+the run of layout. (For a detailed description of this feature, see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1014202" class="bluelink">Percentage of completion calculation</a> and <a href="ps_usrgraphlayout_flex476.html#usrgraphlayout.uss_graphlay_advanced.1026354" class="bluelink">Graph layout event listeners</a>.) </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1198790">
+<h2 class="heading">Preserve fixed links (TL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm does not reshape the links that
+are specified as fixed. (For more information on link parameters in
+the <code class="code">IlvGraphLayout</code> class, see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1022705" class="bluelink">Preserve fixed links</a> and Link style (TML).) </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1198800">
+<h2 class="heading">Preserve fixed nodes (TL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm does not move the nodes that are
+specified as fixed. (For more information on node parameters in the <code class="code">IlvGraphLayout</code> class, see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1022740" class="bluelink">Preserve fixed nodes</a>.) Moreover,
+the layout algorithm ignores fixed nodes completely and also does
+not route the links that are incident to the fixed nodes. This can
+result in unwanted overlapping nodes and link crossings. However,
+this feature is useful for individual, disconnected components that
+can be laid out independently.  </div>
+</div>
+</div>
+
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1198817">
+<h2 class="heading">Stop immediately (TL)</h2>
+
+<div class="sectionContent">
+<div class="para">The layout algorithm stops after cleanup if the method  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/tree/IlvTreeLayout.html#stopImmediately()" class="bluelink">stopImmediately</a></span> is called. (For a description of this method in
+the <code class="code">IlvGraphLayout</code> class, see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1022821" class="bluelink">Stop immediately</a>.) If the layout
+stops early because the allowed time has elapsed, the nodes and links
+are not moved from their positions before the layout call, and the
+result code in the layout report is <code class="code">IlvGraphLayoutReport.STOPPED_AND_INVALID</code>.  </div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex379.html" class="bluelink">Tree Layout (TL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex382.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex384.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

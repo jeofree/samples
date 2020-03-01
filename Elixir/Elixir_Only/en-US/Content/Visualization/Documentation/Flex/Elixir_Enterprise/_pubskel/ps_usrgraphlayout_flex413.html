@@ -1,0 +1,207 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>For experts: additional tips for the TL</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex379.html" class="breadcrumb">Tree Layout (TL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex413.html" class="breadcrumb">For experts: additional tips for the TL</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex412.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex414.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">For experts: additional tips for the TL</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+
+
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1200001">
+<h2 class="heading">Specifying east-west neighbors</h2>
+
+
+
+
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">You can specify that two unrelated nodes must be direct
+neighbors in a direction perpendicular to the flow direction. In the
+level and radial layout modes, the nodes are placed in the same level
+next to each other. In the free layout and tip-over modes, the nodes
+are placed aligned at the north border. Such nodes are called <span class="italics">east-west neighbors</span> because one node
+is placed as the direct neighbor on the east side of the other node.
+The other node becomes the direct neighbor on the west side of the
+first node. (See also <a href="ps_usrgraphlayout_flex384.html#usrgraphlayout.uss_graphlay_layouts.1198918" class="bluelink">Using compass directions for positional layout parameters
+ (TL)</a>). </div>
+<div class="para">Technically, the nodes are treated as parent and child,
+even if there may be no link between them. Therefore, one of the two
+nodes can have a real parent, but the other node should not because
+its virtual parent is its <span class="italics">east-west
+neighbor</span>.  </div>
+<div class="para">The east-west neighbor feature can be used, for example,
+for annotating nodes in a typed syntax tree occurring in compiler
+construction. <a href="ps_usrgraphlayout_flex413.html#usrgraphlayout.uss_graphlay_layouts.1200012" class="bluelink">Annotated syntax tree of statement a[25] = b[24] +
+0.5;</a> shows an
+example of such a tree. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1200012"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-52online55_default.gif" alt="A sample&#xA;annotated syntax tree" class="imagedata"/></div><div class="caption">Annotated syntax tree of statement a[25] = b[24] +
+0.5;</div></div>
+<div class="para">To specify that two nodes are east-west neighbors, use
+the method: </div>
+<pre class="programlisting">
+void setEastWestNeighboring(Object eastNode, Object westNode);   
+</pre>
+<div class="para">You can also use the following method, which is identical
+except for the reversed parameter order: </div>
+<pre class="programlisting">
+void setWestEastNeighboring(Object westNode, Object eastNode);   
+</pre>
+<div class="para">If the flow direction is to the bottom, the latter method
+may be easier to remember because, in this case, west is to the left
+of east in the layout, which is similar to the text flow of the parameters. </div>
+<div class="para">To obtain the node that is the east or west neighbor
+of a node, use the calls: </div>
+<pre class="programlisting">
+Object getEastNeighbor(Object node);   
+</pre>
+<pre class="programlisting">
+Object getWestNeighbor(Object node);   
+</pre>
+<div class="para">Note that each node can have at most one east neighbor
+and one west neighbor because they are <span class="italics">direct</span> neighbors. If more than one direct neighbor
+is specified, it is partially ignored. Cyclic specifications can cause
+conflict as well. For instance, if node B is the east neighbor of
+node A and node C is the east neighbor of B, then node A cannot be
+the east neighbor of C. (Strictly speaking, such cycles could be technically
+possible in some situations in the radial layout mode, but nonetheless
+they are not allowed in any layout mode.) </div>
+<div class="para">If B is the east neighbor of A, then A is automatically
+the west neighbor of B. On the other hand, the east neighbor of A
+can itself have another east neighbor. This allows the creation of
+chains of east-west neighbors, which is a common way to visualize
+lists of trees. Two examples are shown in <a href="ps_usrgraphlayout_flex413.html#usrgraphlayout.uss_graphlay_layouts.1200058" class="bluelink">Chains of east-west neighbors to visualize lists of
+trees</a>. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1200058"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-53online56_default.gif" alt="Visualizing&#xA;lists of trees with chains of east-west neighbors" class="imagedata"/></div><div class="caption">Chains of east-west neighbors to visualize lists of
+trees</div></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1200114">
+<h2 class="heading">Retrieving link categories</h2>
+
+
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">The Tree Layout algorithm works on a spanning tree, as
+mentioned in a <a href="ps_usrgraphlayout_flex382.html" class="bluelink">The TL algorithm</a>. If the graph
+to be laid out is not a pure tree, the algorithm ignores some links.
+To treat such links in a special way, you can obtain a list of nontree
+links. </div>
+<div class="para">Because there are parents and child nodes in the spanning
+tree, the following link categories must be distinguished: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">A forward tree link is a link from a
+parent to its child. </div></li><li class="itemizedlistItem"><div class="para">A backward tree link is a link from
+a child to its parent. If the link is drawn as a directed arrow, the
+arrow will point in the opposite direction to the flow direction.
+ </div></li><li class="itemizedlistItem"><div class="para">A nontree link is a link between two
+unrelated nodes; neither one is a child of the other. </div>
+</li></ul></div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1200123"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-54online57_default.gif" alt="A graph&#xA;showing different categories of tree links" class="imagedata"/></div><div class="caption">Link categories</div></div>
+<div class="para">The layout algorithm uses these link categories internally
+but does not store them permanently to save time and ensure memory
+efficiency. If you want to treat some link categories in a special
+way (for example, to call the Link Layout on the nontree links), you
+must specify <span class="italics">before the layout</span> that you want to access the link categories <span class="italics">after the layout</span>. To do this, use
+the method  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/tree/IlvTreeLayout.html#setCategorizingLinks(boolean)" class="bluelink">setCategorizingLinks</a></span> in the following way: </div>
+<pre class="programlisting">
+layout.setCategorizingLinks(true);
+// now perform a layout
+layout.performLayout();
+// now you can access the link categories
+</pre>
+<div class="para">After the layout, the link categories can be obtained
+by the methods: </div>
+<div class="para"> <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/tree/IlvTreeLayout.html#getCalcForwardTreeLinks()" class="bluelink">getCalcForwardTreeLinks</a></span></div>
+<div class="para"> <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/tree/IlvTreeLayout.html#getCalcBackwardTreeLinks()" class="bluelink">getCalcBackwardTreeLinks</a></span></div>
+<div class="para"> <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/tree/IlvTreeLayout.html#getCalcNonTreeLinks()" class="bluelink">getCalcNonTreeLinks</a></span></div>
+<div class="para">The link category data gets filled each time the layout
+is called, unless you set the method  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/tree/IlvTreeLayout.html#setCategorizingLinks(boolean)" class="bluelink">setCategorizingLinks</a></span> back to <code class="code">false</code>.  </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1200173">
+<h2 class="heading">Sequences of layouts with incremental changes</h2>
+
+<div class="sectionContent">
+<div class="para">You can work with trees that have become out-of-date,
+for example, those that need to be extended with more child nodes.
+If you perform a layout after an extension, you probably want to identify
+the parts that had already been laid out in the original graph. The
+Tree Layout algorithm supports these incremental changes in incremental
+mode because it takes the previous positions of the nodes into account.
+It preserves the relative order of the child nodes in the subsequent
+layout. </div>
+<div class="para">In nonincremental mode, the Tree Layout algorithm calculates
+the order of the child nodes from the node order given by the attached
+graph model (or grapher). In this case, the layout is independent
+from the positions of the nodes before layout. It does not preserve
+the relative order of the child nodes in subsequent layouts.</div>
+<div class="para">Incremental mode is enabled by default.</div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To disable incremental mode: </div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1200184">
+<h2 class="heading">Interactive editing</h2>
+
+<div class="sectionContent">
+<div class="para">The fact that the relative order of the layout is preserved
+is particularly useful during interactive editing. It allows you to
+correct the layout easily. For instance, if the first layout places
+a node A left to its sibling node B but you need to reverse the order,
+you can simply move node A to the right of node B and start a new
+layout to clean up the drawing. In the second layout, A remains to
+the right of B, and the subtree of A will “follow” node
+A.  </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1200186"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-55online58_default.gif" alt="Three&#xA;pictures showing the effect of moving a node and then doing the layout&#xA;again" class="imagedata"/></div><div class="caption">Interactive editing to achieve a specific order of
+child nodes</div></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1200210">
+<h2 class="heading">Specifying the order of child nodes</h2>
+
+<div class="sectionContent">
+<div class="para">Some applications require a specific relative order of
+the child nodes in the tree. For example, when the flow direction
+is to the bottom, a certain child must be placed to the left of another
+child. Even if the graph has never been laid out, you can use the
+coordinates to specify a certain order of the child nodes at a node.
+You can use the following: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">First, make sure that the incremental
+mode is enabled. </div></li><li class="itemizedlistItem"><div class="para">In free and level layout modes with
+flow direction to the bottom or top, determine the maximum width <code class="code">W</code> of all nodes. Simply move the child that should be
+in the leftmost position to the coordinate <code class="code">(0</code>, <code class="code">0)</code>, and the child that should be in
+the <span class="italics">i</span>th relative
+position (in order from left to right) to the coordinate <code class="code">((W+1)*i</code>, <code class="code">0)</code>. </div>
+</li><li class="itemizedlistItem"><div class="para">If the flow direction is to the left
+or to the right, determine the maximum height <code class="code">H</code> of all nodes. Move the child that should be in the topmost position
+to the coordinate <code class="code">(0</code>, <code class="code">0)</code> and the child that should be in the <span class="italics">i</span>th relative position (in the order from top to
+bottom) to coordinate <code class="code">(0</code>, <code class="code">(H+1)*i)</code>. </div></li><li class="itemizedlistItem"><div class="para">In the radial layout modes, determine
+the maximum diagonal <code class="code">D = W2 + H</code> of all
+nodes. If the position of the parent is <code class="code">(x</code>, <code class="code">y)</code> before the layout, move the child
+that should be the first in the circular order to the coordinate <code class="code">(x</code>, <code class="code">y+D)</code> and the child that
+should be in the <span class="italics">i</span>th relative position in the circular order to coordinate <code class="code">(x+D*i, y+D)</code>.  </div><div class="para">If you want
+to specify a relative order for all nodes in radial layout mode, you
+must do this for the parents before you do it for the child nodes.
+In this case, moving the child nodes can be performed easily during
+a depth-first traversal from the root to the leaves. </div>
+</li></ul></div>
+<div class="para">The layout that is performed after moving the child nodes
+arranges the child nodes with the relative order. </div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex379.html" class="bluelink">Tree Layout (TL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex412.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex414.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

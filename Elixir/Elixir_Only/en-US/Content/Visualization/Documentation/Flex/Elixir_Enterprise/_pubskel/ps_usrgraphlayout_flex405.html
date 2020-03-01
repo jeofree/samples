@@ -1,0 +1,137 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Tips and tricks</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex379.html" class="breadcrumb">Tree Layout (TL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex385.html" class="breadcrumb">Layout modes of the TL algorithm</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex399.html" class="breadcrumb">Radial layout modes</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex405.html" class="breadcrumb">Tips and tricks</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex404.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex406.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Tips and tricks</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+
+
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1271400">
+<h2 class="heading">Adding an invisible root to the layout</h2>
+
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">If the graph contains several trees that are disconnected
+from each other, the layout places them individually next to each
+other. Each connected component has its own radial structure with
+circular layers. However, sometimes it is appropriate to fit all connected
+components into a single circular layer structure. Conceptually, this
+is done by adding an invisible root at the center and connecting all
+disconnected trees to this root. <a href="ps_usrgraphlayout_flex405.html#usrgraphlayout.uss_graphlay_layouts.1199791" class="bluelink">Layout of connected components without and with an
+invisible root </a> shows the
+effect of using an invisible root. This works only if the generic
+mechanism to lay out connected components is switched off. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To add an invisible root to the layout: </div>
+</div>
+
+
+</div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1199791"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-48online51_default.gif" alt="Two pictures&#xA;of the same graph to show the layout without and then with an invisible&#xA;root" class="imagedata"/></div><div class="caption">Layout of connected components without and with an
+invisible root </div></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1199816">
+<h2 class="heading">Even spacing for the first circle</h2>
+
+
+
+<div class="sectionContent">
+<div class="para">Radial mode is designed to optimize the space such that
+the circles have a small radius and the overall space for the entire
+layout is small. To achieve this, the layout algorithm may create
+larger gaps on the inner circles for better space usage of the outer
+circles. This may produce unevenly spaced circles, most notably for
+the first circle where all nodes have the same parent node. </div>
+<div class="para">To avoid this effect, you can force the nodes to be evenly
+spaced on the entire first circle. Depending on the structure of the
+graph, this may cause the overall layout to waste more space on the
+other circles but may produce a more pleasing graph. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To enable even spacing:  </div>
+</div>
+
+
+</div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1199824"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-49online52_default.gif" alt="Two pictures&#xA;of the same graph showing unevenly space first circle and then evenly&#xA;space first circle" class="imagedata"/></div><div class="caption">Evenly and unevenly spaced first circle </div></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1199847">
+<h2 class="heading">For experts: forcing all levels to alternating</h2>
+<div class="sectionContent">
+<div class="para">When layout mode <code class="code">ALTERNATING_RADIAL</code> is used, the layout checks whether the alternating node arrangement
+of a level saves space. If it does not save space, the layout uses
+the normal radial arrangement. Hence, for many sparse graphs, radial
+and alternating radial mode yield the same result because the alternating
+arrangement does not save space for any level. It is possible to disable
+the space check, that is, to perform an alternating arrangement for
+all levels even if this results in waste of space. </div>
+
+</div>
+</div>
+<div class="section">
+<h2 class="heading">For experts: multiple circles per alternating level</h2>
+
+<div class="sectionContent">
+<div class="para">When layout mode <code class="code">ALTERNATING_RADIAL</code> is used, the layout places nodes of the same level alternately into
+two circles instead of one circle. It is possible to increase the
+number of circles even more.</div>
+
+<div class="para">In this case, three circles are used. That means, if
+the <code class="code">allLevelsAlternating</code> flag is <code class="code">true</code>, the layout places each level of nodes onto three
+alternating circles. If the <code class="code">allLevelsAlternating</code> flag is <code class="code">false</code>, it checks whether each
+level requires more space to place the nodes on one circle or on three
+circles. High values for the number of alternating circles should
+not be used, because it slows down the algorithm and may produce link
+crossings.</div>
+<div class="para">If you set the number of alternating circles to <code class="code">0</code> and the <code class="code">allLevelsAlternating</code> flag is <code class="code">false</code>, then this has a special
+meaning. In this case, a heuristic tries to calculate the best number
+of circles per level automatically. As a result, each level might
+have a different number of circles, depending on the number of nodes
+and the sibling relationships between the nodes.</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1199853">
+<h2 class="heading">For experts: setting a maximum child angle</h2>
+
+
+
+<div class="sectionContent">
+<div class="para">If a node has a lot of child nodes, they may extend over
+a major portion of the circle and, therefore, are placed nearly 360
+degrees around the node. This can result in links overlapping some
+nodes. The deficiency can be fixed by increasing the offset between
+parent and child nodes. However, this affects the layout globally
+which means that nodes without the deficiency are also affected.To
+avoid a global change such as this, you can limit the maximum angle
+between the two rays from the parent (if it is not the root) to its
+two outermost child nodes. This increases the offset between parent
+and child nodes only where necessary.  </div>
+<div class="para">In <a href="ps_usrgraphlayout_flex405.html#usrgraphlayout.uss_graphlay_layouts.1199860" class="bluelink">Maximum child angle</a>, you can
+see in the layout on the left that many of the links overlap other
+nodes. In the layout on the right, you can see how this problem was
+solved by setting a maximum child angle between two rays from a parent
+to the two outermost child nodes. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1199860"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-50online53_default.gif" alt="Two pictures&#xA;of the same graph to show how a smaller angle allowed for child nodes&#xA;avoids overlapping" class="imagedata"/></div><div class="caption">Maximum child angle</div></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To set an angle in degrees.</div>
+</div>
+
+
+</div>
+<div class="para">Recommended values are between <code class="code">30</code> and <code class="code">180</code>. Setting the value to <code class="code">0</code> means the angle is unrestricted. The calculation
+of the angle is not very precise above 180 degrees or if the aspect
+ratio is not 1.0. </div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex399.html" class="bluelink">Radial layout modes</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex404.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex406.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

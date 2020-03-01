@@ -1,0 +1,90 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Advanced recursion: mixing different layouts in a nested graph</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="HowTo"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex460.html" class="breadcrumb">Nested layouts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex462.html" class="breadcrumb">Layout of nested graphs in code</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex466.html" class="breadcrumb">Advanced recursion: mixing different layouts in a nested
+graph</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex465.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex467.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Advanced recursion: mixing different layouts in a nested
+graph</h1></div></div><div class="content">
+
+
+
+
+
+
+<div class="proceduralTopicContent">
+<div class="summary">
+<div class="para">The need for mixing layouts arises when at least one
+of the following conditions is met: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The layout algorithm to be applied on
+subgraphs is not the same as the algorithm needed for the topmost
+graph. </div></li><li class="itemizedlistItem"><div class="para">Different layouts need to be applied
+to different subgraphs. </div></li><li class="itemizedlistItem"><div class="para">The same layout algorithm needs to be
+applied to different graphs but with different settings. </div>
+</li></ul></div>
+<div class="para">In these cases of <span class="italics">advanced
+recursion</span>, where you want to apply different layouts
+to different subgraphs, you need to specify which layout should be
+used for which subgraph. Furthermore you need to start the layouts
+in the correct order. This is called <span class="italics">recursive layout</span>.  </div>
+<div class="para">The class <code class="code">IlvRecursiveLayout</code> is a subclass of  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html" class="bluelink">IlvGraphLayout</a></span>, but it is not a real layout algorithm. It is rather
+a facility to apply other layout algorithms recursively on a nested
+graph.  </div>
+<div class="para">The class <code class="code">IlvRecursiveLayout</code> can also be used to apply the same layout to all subgraphs. In fact,
+when using the API explained in subsection <a href="ps_usrgraphlayout_flex465.html" class="bluelink">Simple recursion: applying the same layout to all subgraphers</a>, an instance
+of <code class="code">IlvRecursiveLayout</code> is used internally. </div>
+<div class="para">The class <code class="code">IlvRecursiveLayout</code> can furthermore be used to apply multiple layouts to the same nested
+graph. This is for instance necessary if for each subgraph, a node
+layout and a separate link layout must be applied. </div>
+<div class="para">Further details and code samples of the class <code class="code">IlvRecursiveLayout</code> are explained in the following section <a href="ps_usrgraphlayout_flex467.html" class="bluelink">Recursive layout</a>. </div>
+<div class="para">To apply layout algorithms recursively: </div>
+</div>
+<div class="procedure">
+<div class="procedureContent"><ol class="steps"><li class="step">
+<div class="stepContent">
+<div class="para">Allocate and attach an instance of <code class="code">IlvRecursiveLayout</code>. Since it is a subclass of <code class="code">IlvGraphLayout</code>, you use the same mechanism as for all other graph layout classes: </div>
+
+
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Specify which layout style should be used  for each subgraph.
+You must allocate  an individual instance of <code class="code">IlvGraphLayout </code>for each subgraph. </div>
+<pre class="programlisting">
+recLayout.setLayout(subgraph1, new IlvTreeLayout());
+recLayout.setLayout(subgraph2, new IlvBusLayout());
+recLayout.setLayout(subgraph3, new IlvGridLayout());
+</pre>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Set the layout parameters of these individual layouts
+of the subgraphs as needed. </div>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Apply the recursive layout to the top-level grapher.
+This automatically applies the sublayouts to the subgraphs as well.
+Since <code class="code">IlvRecursiveLayout</code> is a subclass
+of <code class="code">IlvGraphLayout</code>, you use the same method
+as for all other graph layout classes </div>
+<pre class="programlisting">
+try {
+        recLayout.performLayout();
+}
+catch (IlvGraphLayoutException e) {
+        System.err.println(e.getMessage());
+}
+</pre>
+</div>
+</li><li class="step">
+<div class="stepContent">
+<div class="para">Detach the recursive layout from the top-level grapher
+when it is no longer needed. This automatically detaches all sublayouts
+from all subgraphers. </div>
+<pre class="programlisting">
+recLayout.detach();
+</pre>
+</div>
+</li></ol></div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex462.html" class="bluelink">Layout of nested graphs in code</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex465.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex467.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,68 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Synchronizing a component with a map</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise214.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise254.html" class="breadcrumb">MX Maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise272.html" class="breadcrumb">Using extra map features</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise275.html" class="breadcrumb">Synchronizing a component with a map</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise274.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise276.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Synchronizing a component with a map</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/maps/MapBase.html#matrix" class="bluelink">matrix</a></span> property specifies a <span class="apiname">Matrix</span> object
+that reflects the current map transformation. The identity matrix
+applies when the map fits the component.</div>
+<div class="para">You can use the <span class="apiname">matrix</span> property to synchronize a component with a map by listening  for
+changes to the <span class="apiname">matrix</span> property.</div>
+<div class="para">The following example shows how to construct a map layer
+as an instance of <span class="apiname">UIComponent</span> on
+top of the map.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                layout="absolute" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                applicationComplete="complete(event)"&gt;
+&lt;mx:Script&gt;
+  &lt;![CDATA[
+    import mx.graphics.SolidColor;
+    import mx.events.PropertyChangeEvent;
+    import ilog.maps.MapFeature;
+    import mx.core.UIComponent;
+    
+    private var _layer:UIComponent;
+
+    private function complete(e:Event):void {
+      _layer = new UIComponent();
+      map.addChild(_layer);
+      map.addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, synchronize);
+      invalidateDisplayList();
+    }
+    
+    private function synchronize(e:PropertyChangeEvent):void {
+      if(e.property == "matrix") {
+        _layer.transform.matrix = map.matrix;
+      }
+    }
+    
+    protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+      super.updateDisplayList(unscaledWidth, unscaledHeight);
+      if(_layer == null)
+        return;
+      var g:Graphics = _layer.graphics;
+      g.clear();
+      g.beginFill(0);
+      for each (var mf:MapFeature in map.mapFeatures) {
+        var p:Point = mf.barycenter;
+        p = map.latLongToCanvas(p);
+        p = map.drawingCanvas.localToGlobal(p);
+        p = _layer.globalToLocal(p);
+        g.drawCircle(p.x, p.y, 3);
+      }
+      g.endFill();
+    }
+  ]]&gt;
+&lt;/mx:Script&gt;  
+  &lt;ilog:ContinentalEuropeMap allowNavigation="true" id="map" top="10" left="10" bottom="20" right="10" /&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example creates a layer that contains a dot on each
+country. The positions and sizes of the dots remain synchronized with
+the countries on the map when you resize the map.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/maps_layer_matrix_default.png" alt="Result&#xA;of using matrix property to synchronize a layer of dots with the map" class="imagedata"/></div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise272.html" class="bluelink">Using extra map features</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise274.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise276.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

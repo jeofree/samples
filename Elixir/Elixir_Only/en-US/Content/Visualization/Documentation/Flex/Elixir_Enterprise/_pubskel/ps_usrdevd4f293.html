@@ -1,0 +1,69 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Key aspects of a IBM Diagram user interface</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f289.html" class="breadcrumb">Introduction</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f293.html" class="breadcrumb">Key aspects of a IBM <span class="classificationVariable">Diagram</span> user interface</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f292.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f294.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Key aspects of a IBM <span class="classificationVariable">Diagram</span> user interface</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">To develop a graphical user interface using <span class="classificationVariable">Diagram</span>, you must be aware of the following
+three aspects:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Skinning</div></li><li class="itemizedlistItem"><div class="para">Model-driven diagrams</div>
+</li><li class="itemizedlistItem"><div class="para">Monitoring panels</div>
+</li></ul></div>
+<div class="section">
+<h2 class="heading">Skinning</h2>
+<div class="sectionContent">
+<div class="para">Skins are graphical style elements that are used to control
+the appearance of a component. The node and link skins are the starting
+point of a diagram display. Skins can contain multiple elements, such
+as graphic elements and text, and states, for example, normal or selected.
+You can create skins to represent trucks, factories, network elements
+or business process elements. These should have built-in behavior,
+which means that they react dynamically to data changes or user interaction.
+  A skin is usually written in MXML and applied to a component using
+MXML or CSS. For more information, see Adobe documentation, Using
+Flex 4 / Enhancing the user interface / Creating Spark Skins.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Model-driven diagrams</h2>
+<div class="sectionContent">
+<div class="para">Applications that must automatically create a diagram
+from a data source (such as workflows, business processes, entity
+relationships, or network topologies) use a model-driven approach.
+This kind of display is created by binding the data source elements
+to nodes and links in the diagram. These nodes and links will be graphically
+represented using the skins configured according to the data object.
+For example, you can specify that a given type of data instance is
+represented by a node with a given skin, and that a particular value
+of a property is bound to some skin configuration that alters the
+aspect of the node in the diagram. In most cases, underlying models
+do not contain any information about the location of the different
+objects. For example, a business process describes the sequence of
+different tasks and events, but doesn't contain any information on
+how to display this sequence. Similarly, a network topology only describes
+how physical elements are interconnected together. An important aspect
+of a model-driven display, therefore, is the ability to invoke automatic
+graph layout algorithms that will compute the optimal placement of
+the created visual components, including nodes and links. Background
+images, subgraphs, swimlanes, and interactions such as panning, zooming,
+and selection, can also be configured.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Monitoring panels</h2>
+<div class="sectionContent">
+<div class="para">To build custom displays for monitoring or supervisory
+purposes (such as industrial schematics, business dashboards, and
+other generic human-machine interfaces), the approach is quite the
+opposite from the model-driven approach. Start by manually placing
+nodes on top of a static background. You can then create the graphic
+representation of the monitoring panel using <span class="classificationVariable">Diagram</span>components (Graph, Subgraph, Node,
+and Link) and store the resulting schematic in an MXML file associated
+with the Flex library containing the skins required to display the
+graphic objects.</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f289.html" class="bluelink">Introduction</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f292.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f294.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

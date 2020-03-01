@@ -1,0 +1,63 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Time range selection events</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex634.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex656.html" class="breadcrumb">Managing calendar events</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex659.html" class="breadcrumb">Time range selection events</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex658.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex660.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Time range selection events</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e113180">
+
+<div class="para">The calendar control fires <span class="apiname">timeRangeSelection</span> events when the user selects a time range on the calendar grid.</div>
+<div class="para">The <span class="apiname">timeRangeSelection</span> events indicate that the user is selecting a time range.</div>
+<table border="1" cellpadding="4" cellspacing="0" class="ShadedHead"><colgroup align="left" span="1">
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr bgcolor="#BFD6E7">
+<th valign="top" rowspan="1" colspan="1">Calendar time range event </th>
+<th valign="top" rowspan="1" colspan="1">Description</th>
+</tr>
+</thead><tbody valign="top">
+<tr>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html#event:timeRangeSelectionBegin" class="bluelink">timeRangeSelectionBegin</a></span></td>
+<td rowspan="1" colspan="1">Indicates that a time range selection has  been initiated.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html#event:timeRangeSelectionChange" class="bluelink">timeRangeSelectionChange</a></span></td>
+<td rowspan="1" colspan="1">Indicates that the time range selection has changed. The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html#timeRangeSelection" class="bluelink">timeRangeSelection</a></span> property contains the current selection.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html#event:timeRangeSelectionResize" class="bluelink">timeRangeSelectionResize</a></span></td>
+<td rowspan="1" colspan="1">Indicates that the time range selection has been resized.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html#event:timeRangeSelectionEnd" class="bluelink">timeRangeSelectionEnd</a></span></td>
+<td rowspan="1" colspan="1">Indicates that a time range selection has ended. The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/CalendarEvent.html#reason" class="bluelink">reason</a></span> property of the event is set to <span class="apiname">CalendarEventReason.COMPLETED</span> if the time range
+selection has successfully ended and to <span class="apiname">CalendarEventReason.CANCELLED</span> otherwise.</td>
+</tr>
+</tbody></table>
+<div class="para">The calendar time range selection events are of type <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/CalendarEvent.html" class="bluelink">CalendarEvent</a></span>. For a range, the time of day
+in hours and minutes is taken into account as well as the date.</div>
+<div class="para">The following example shows how to display and update
+the time range selection with a label.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                layout="vertical"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[ 
+      import ilog.calendar.CalendarEvent;
+      private function timeRangeSelectionChange(event:CalendarEvent):void {
+        var selectedTimeRange:Array = calendar.timeRangeSelection;
+        if (selectedTimeRange == null) {
+          timeRangeSelection.text = "No selection";
+        } else {
+          timeRangeSelection.text = selectedTimeRange[0] + " to " + selectedTimeRange[1];
+        }
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;mx:Label id="timeRangeSelection" /&gt;
+  &lt;ilog:Calendar id="calendar" width="100%" height="100%"  
+                 timeRangeSelectionChange="timeRangeSelectionChange(event)" /&gt;
+&lt;/mx:Application&gt;</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex656.html" class="bluelink">Managing calendar events</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex658.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex660.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

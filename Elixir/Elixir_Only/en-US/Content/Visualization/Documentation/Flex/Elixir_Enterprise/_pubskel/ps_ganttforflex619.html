@@ -1,0 +1,150 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>3D column chart</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex614.html" class="breadcrumb">3D Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex617.html" class="breadcrumb">3D chart controls</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex619.html" class="breadcrumb">3D column chart</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex618.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex620.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">3D column chart</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">A 3D column chart contains a set of  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts3d/series/ColumnSeries3D.html" class="bluelink">ColumnSeries3D</a></span> classes that connects to the <code class="code">dataProvider</code> of the chart. The following code shows the creation of a 3D column
+chart.</div>
+<pre class="programlisting">&lt;?xml version="1.0" ?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+  xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+  &lt;![CDATA[
+    import mx.collections.ArrayCollection;
+    
+    [Bindable]
+    public var temperature:ArrayCollection = new ArrayCollection([
+      {Month:"January", London:39, Sydney:71.8, Beijing:23.7},
+      {Month:"February", London:39.6, Sydney:71.8, Beijing:28.8},
+      {Month:"March", London:42.3, Sydney:69.8, Beijing:40.5},
+      {Month:"April", London:47.3, Sydney:65.1, Beijing:56.5},
+      {Month:"May", London:53.4, Sydney:59.5, Beijing:68},
+      {Month:"June", London:59.4, Sydney:55.2, Beijing:75.9},
+      {Month:"July", London:62.6, Sydney:53.6, Beijing:78.8},
+      {Month:"August", London:61.9, Sydney:55.8, Beijing:76.5},
+      {Month:"September", London:57.6, Sydney:59.5, Beijing:67.6},
+      {Month:"October", London:50.5, Sydney:63.9, Beijing:54.7},
+      {Month:"November", London:43.9, Sydney:67.1, Beijing:39},
+      {Month:"December", London:40.6, Sydney:70.2, Beijing:27.3}]);
+  ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:ColumnChart3D width="100%" height="100%"
+    dataProvider="{temperature}" showDataTips="true"&gt;
+    &lt;ilog:horizontalAxis&gt;
+      &lt;mx:CategoryAxis categoryField="Month"/&gt;
+    &lt;/ilog:horizontalAxis&gt;
+    &lt;ilog:series&gt;
+      &lt;ilog:ColumnSeries3D yField="London" displayName="London" /&gt;
+      &lt;ilog:ColumnSeries3D yField="Sydney" displayName="Sydney" /&gt;
+      &lt;ilog:ColumnSeries3D yField="Beijing" displayName="Beijing" /&gt;
+    &lt;/ilog:series&gt;
+  &lt;/ilog:ColumnChart3D&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">The  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts3d/ColumnChart3D.html" class="bluelink">ColumnChart3D</a></span> class has
+a  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts3d/ColumnChart3D.html#type" class="bluelink">type</a></span> property
+that can be used to choose between several types of column arrangement.
+The following figures show the column chart coded above rendered with
+different <code class="code">type</code> values. This shows how the <code class="code">type</code> property affects the rendering.</div>
+<div class="section" id="usrflprg.uss_flexprg_3dcharts.1024899">
+<h2 class="heading">Example 1</h2>
+<div class="sectionContent">
+<div class="para">Type values: type="clustered" (default value) and type="overlaid"</div>
+<div class="mediaobject"><img src="../../Elixir/_media/3dclustover_default.png" alt="Example&#xA;of column chart with type = clustered and type = overlaid" class="imagedata"/></div>
+</div>
+</div>
+<div class="section" id="usrflprg.uss_flexprg_3dcharts.1024892">
+<h2 class="heading">Example 2</h2>
+<div class="sectionContent">
+<div class="para">Type values: type="100%" and type="stacked"</div>
+<div class="mediaobject"><img src="../../Elixir/_media/3dstackedtype_default.png" alt="Example&#xA;of column chart with type = 100% and type = stacked" class="imagedata"/></div>
+</div>
+</div>
+<div class="section" id="usrflprg.uss_flexprg_3dcharts.1016183">
+<h2 class="heading">Complex charts</h2>
+
+
+
+
+
+
+
+<div class="sectionContent">
+<div class="para">You can mix the four rendering styles to create more
+complex charts by using a  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts3d/series/ColumnSet3D.html" class="bluelink">ColumnSet3D</a></span> object
+that groups columns in a similar way to how the <span class="trademark">Adobe®
+            </span> <span class="trademark">Flex®
+            </span> 2D <code class="code">ColumnSet</code> object works on Adobe Flex 2D charts.</div>
+<div class="para">For example, the following code shows how to mix the <code class="code">clustered</code> and <code class="code">overlaid</code> types.</div>
+<pre class="programlisting"> &lt;ilog:ColumnChart3D width="100%" height="100%"
+     dataProvider="{temperature}" showDataTips="true" type="overlaid"&gt;
+    &lt;ilog:horizontalAxis&gt;
+      &lt;mx:CategoryAxis categoryField="Month"/&gt;
+    &lt;/ilog:horizontalAxis&gt;
+    &lt;ilog:series&gt;
+      &lt;ilog:ColumnSet3D type="clustered"&gt;
+        &lt;ilog:ColumnSeries3D yField="London" displayName="London"/&gt;
+        &lt;ilog:ColumnSeries3D yField="Sydney" displayName="Sydney"/&gt;
+      &lt;/ilog:ColumnSet3D&gt;
+      &lt;ilog:ColumnSeries3D yField="Beijing" displayName="Beijing"/&gt;      
+    &lt;/ilog:series&gt;
+  &lt;/ilog:ColumnChart3D&gt;
+</pre>
+<div class="para">The following figure shows how a 3D chart that mixes <code class="code">clustered</code> and <code class="code">overlaid</code> types
+is rendered.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/3dmixclustover_default.png" alt="Example&#xA;of 3D chart that mixes clustered and overlaid types" class="imagedata"/></div>
+<div class="para">The  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts3d/series/ColumnSeries3D.html#minField" class="bluelink">minField</a></span> property of a  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts3d/series/ColumnSeries3D.html" class="bluelink">ColumnSeries3D</a></span> class allows you to specify the field that is used to compute the
+minimum vertical value for the column. Instead of being drawn from
+the horizontal axis to the <code class="code">y</code> value, it
+is drawn from the <code class="code">minField</code> value to the <code class="code">y</code> value. </div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Cylinder representation</h2>
+<div class="sectionContent" id="d0e107560">
+
+<div class="para">To switch from the default cuboid representation of the
+column to a cylinder representation, use the <span class="apiname">form</span> attribute of the  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/charts3d/series/ColumnSeries3D.html" class="bluelink">ColumnSeries3D</a></span> class.</div>
+<div class="para">The following example in MXML shows the use of the <span class="apiname">form</span> attribute in a column chart.</div>
+<pre class="programlisting">&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+  xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+  &lt;![CDATA[
+    import mx.collections.ArrayCollection;
+    [Bindable]
+    private var medalsAC:ArrayCollection = new ArrayCollection( [
+      { Country: "USA", Gold: 35, Silver:39, Bronze: 29 },
+      { Country: "China", Gold: 32, Silver:17, Bronze: 14 },
+      { Country: "Russia", Gold: 27, Silver:27, Bronze: 38 } ]);
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:ColumnChart3D width="100%" height="100%" depth="10"
+    showDataTips="true" dataProvider="{medalsAC}"&gt;            
+    &lt;ilog:horizontalAxis&gt;
+      &lt;mx:CategoryAxis categoryField="Country"/&gt;
+    &lt;/ilog:horizontalAxis&gt;            
+    &lt;ilog:series&gt;
+      &lt;ilog:ColumnSeries3D xField="Country" yField="Gold" displayName="Gold" 
+        form="cylinder"/&gt;
+      &lt;ilog:ColumnSeries3D xField="Country" yField="Silver" displayName="Silver"
+        form="cylinder"/&gt;
+      &lt;ilog:ColumnSeries3D xField="Country" yField="Bronze" displayName="Bronze"
+        form="cylinder"/&gt;
+    &lt;/ilog:series&gt;
+  &lt;/ilog:ColumnChart3D&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This MXML example of cylinder representation for a column
+chart renders as shown in the following figure.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/3d_colchart_cylinder1_default.png" alt="A column&#xA;chart example with the cylinder representation" class="imagedata"/></div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex617.html" class="bluelink">3D chart controls</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex618.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex620.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

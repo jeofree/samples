@@ -1,0 +1,92 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Specifying calendar data with custom functions</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex634.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex638.html" class="breadcrumb">Configuring calendar data</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex641.html" class="breadcrumb">Specifying calendar data with custom functions</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex640.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex642.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Specifying calendar data with custom functions</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e111259">
+
+<div class="para">If the data values for a field in a calendar control
+are not directly available in one of the  fields of the data provider
+items, you can specify a custom function to provide the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html" class="bluelink">Calendar</a></span> control with the required information.</div>
+<div class="para">If a custom function and a field are both specified,
+the function takes precedence over the field.</div>
+<div class="para">The function properties used to specify custom functions
+are listed in the following table.</div>
+<div class="caption">Functions and their corresponding field names</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="table1208961953206"><colgroup span="1">
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Function property</div></th>
+<th rowspan="1" colspan="1"><div class="para">Corresponding field name</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">calendarFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">calendar</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">categoriesFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">categories</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">descriptionFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">description</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">endTimeFunction </div></td>
+<td rowspan="1" colspan="1"><div class="para">endTime</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">locationFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">location</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">startTimeFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">startTime</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">summaryFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">summary</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para">statusFunction</div></td>
+<td rowspan="1" colspan="1"><div class="para">status</div></td>
+</tr>
+</tbody></table>
+<div class="para">The following example shows how you can replace the default
+date parsing function by your own to read the start and end time in
+XML.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"  
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                layout="absolute"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+    
+      public function parseDate(value:String):Date {
+        return new Date(value);
+      }
+      
+      public function startTimeFunction(item:Object):Date {
+        return parseDate(item.@startTime);
+      }
+      
+      public function endTimeFunction(item:Object):Date {
+        return parseDate(item.@endTime);
+      }
+
+    ]]&gt;
+  &lt;/mx:Script&gt;                
+  &lt;ilog:Calendar width="100%" height="100%"
+                 startTimeFunction="{startTimeFunction}"
+                 endTimeFunction="{endTimeFunction}"&gt;
+    &lt;ilog:dataProvider&gt;
+      &lt;mx:XML&gt;
+        &lt;event startTime="4/16/2008/ 10:0:0" endTime="4/16/2008/ 16:0:0" summary="Do something"/&gt; 
+      &lt;/mx:XML&gt;
+    &lt;/ilog:dataProvider&gt;
+  &lt;/ilog:Calendar&gt;
+&lt;/mx:Application&gt;</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex638.html" class="bluelink">Configuring calendar data</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex640.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex642.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

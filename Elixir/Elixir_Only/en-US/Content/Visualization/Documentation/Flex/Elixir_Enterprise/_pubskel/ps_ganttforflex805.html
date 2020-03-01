@@ -1,0 +1,104 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Managing treemap events</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex796.html" class="breadcrumb">Treemaps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex805.html" class="breadcrumb">Managing treemap events</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex804.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex806.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Managing treemap events</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent" id="d0e138897">
+
+
+
+
+
+
+
+
+
+
+<div class="para">A  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html" class="bluelink">TreeMap</a></span> control can fire several kinds of specific event
+in response to user interactions. You can create an event handler
+for each of these events.</div>
+<div class="para">For example, if there is a function listening for the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#event:itemClick" class="bluelink">itemClick</a></span> event on the treemap and you click an item, you
+can access the data for this item.</div>
+<div class="para">You can listen for the following treemap data events.</div>
+<div class="caption">Treemap data events</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_treemap.1021170"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Treemap data event</div></th>
+<th rowspan="1" colspan="1"><div class="para">Description</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#event:change" class="bluelink">change</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the selection changed as a
+result of user interaction.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#event:itemClick" class="bluelink">itemClick</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the user clicked the pointer
+over a visual item in the control.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#event:itemDoubleClick" class="bluelink">itemDoubleClick</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the user double-clicked the
+pointer over a visual item in the control.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#event:itemRollOut" class="bluelink">itemRollOut</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the user rolled the pointer
+out of a visual item in the control.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#event:itemRollOver" class="bluelink">itemRollOver</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Indicates that the user rolled the pointer
+over a visual item in the control.</div></td>
+</tr>
+</tbody></table>
+<div class="para">The treemap events are of type  <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMapEvent.html" class="bluelink">TreeMapEvent</a></span>.</div>
+<div class="para">The following code is an example of how to display a
+tool tip on each treemap item by listening for the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#event:itemRollOver" class="bluelink">itemRollOver</a></span> event and the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/treemap/TreeMap.html#event:itemRollOut" class="bluelink">itemRollOut</a></span> event.</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+   &lt;![CDATA[
+   import mx.controls.ToolTip;
+   import mx.managers.ToolTipManager;
+   import ilog.treemap.TreeMapEvent;
+  
+   public var tooltip:ToolTip;
+  
+   public function onover(event:TreeMapEvent):void {     
+     if (event.item) {
+       tooltip = 
+         ToolTipManager.createToolTip(event.item.@label,
+           MouseEvent(event.triggerEvent).stageX,
+           MouseEvent(event.triggerEvent).stageY)
+       as ToolTip;
+     }
+   }
+   
+   public function onout(event:TreeMapEvent):void {
+     if (tooltip) {
+       ToolTipManager.destroyToolTip(tooltip);
+       tooltip = null;
+     }
+   }
+   ]]&gt;   
+  &lt;/mx:Script&gt;
+  &lt;ilog:TreeMap width="200" height="400"
+                 areaField="total"               
+                 itemRollOver="onover(event)"
+                 itemRollOut="onout(event)"
+                 &gt;
+        &lt;!-- data --&gt;
+  &lt;/ilog:TreeMap&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex796.html" class="bluelink">Treemaps</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex804.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex806.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

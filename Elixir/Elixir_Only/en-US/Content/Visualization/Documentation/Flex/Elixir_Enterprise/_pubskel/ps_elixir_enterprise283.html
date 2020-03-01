@@ -1,0 +1,53 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Advanced Parameters tab</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise214.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise254.html" class="breadcrumb">MX Maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise276.html" class="breadcrumb">Generating custom maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise281.html" class="breadcrumb">Getting to know the Custom Map Converter tool</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise283.html" class="breadcrumb">Advanced Parameters tab</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise282.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise284.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Advanced Parameters tab</h1></div></div><div class="content">
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">All advanced parameters are optional.</div>
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">The advanced parameters are:</div>
+</div><dl class="descriptionlist"><dt class="term">ActionScript Class Name</dt><dd class="descriptionlistItem"><div class="para">Several choices are offered for the
+geometries class name in <span class="trademark">ActionScript®
+            </span> based around the name of the shapefile and  <span class="classificationVariable">ILOG Elixir</span>. The associated main class will have
+the same name with the <span class="filename">Map</span> suffix.</div>
+</dd><dt class="term">Output Directory</dt><dd class="descriptionlistItem"><div class="para">By default, the output directory is
+your user directory, also called your home directory. On <span class="trademark">Microsoft®
+            </span> <span class="trademark">Windows®
+            </span> machines, this is <span class="filename">C:\Documents and Settings\</span><span class="replaceable">
+      &lt;username&gt;
+    </span>; on <span class="trademark">Mac®
+            </span> machines,
+click the <span class="guicommand">Home</span> icon in the <span class="guicommand">Finder</span> toolbar to access your home directory;
+on <span class="trademark">Linux®
+            </span> machines,
+every user has a user directory that is at <span class="filename">/home/</span><span class="replaceable">
+      &lt;username&gt;
+    </span>.</div>
+</dd><dt class="term">BaryCenter Shapefile</dt><dd class="descriptionlistItem"><div class="para">A barycenter file is created if you
+modify a barycenter of the map manually. The barycenter file is created
+next to the main Shapefile. When you reload a project or a Shapefile,
+the Custom Map Converter looks for barycenter
+files in the same directory as the main Shapefile. If it finds any,
+it loads the barycenters from these files.</div>
+</dd><dt class="term">Export Option / Coordinate Type</dt><dd class="descriptionlistItem"><div class="para">Two types of coordinates are used to
+define the map features. These are Integer type and Double type. Integer
+coordinates create a more compact component, because arrays of coordinates
+use less memory. Double coordinates lead to more precise map drawing,
+but use more memory to store.</div></dd><dt class="term">Target Coordinate System</dt><dd class="descriptionlistItem"><div class="para">By default, this is the geographic system
+of latitude and longitude. You can select a different projection name
+from the list. When you select a target projection, the map in the <span class="literal">View</span> pane changes to show the result.</div>
+</dd><dt class="term">Source Coordinate System</dt><dd class="descriptionlistItem"><div class="para">By default, this is the geographic system
+of latitude and longitude. You can select a different projection name
+from the list.</div></dd></dl></div>
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">For each coordinate system, there is cartography information:</div>
+</div><dl class="descriptionlist"><dt class="term">Advanced</dt><dd class="descriptionlistItem"><div class="para">Select the <span class="guicommand">Advanced</span> option to view and set the cartography parameters associated with
+the source or target projection, depending on which tab is selected.
+Each coordinate system is presented as a projection name and parameters,
+plus its datum (if applicable) and ellipsoid.</div>
+</dd></dl></div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise281.html" class="bluelink">Getting to know the Custom Map Converter tool</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise282.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise284.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

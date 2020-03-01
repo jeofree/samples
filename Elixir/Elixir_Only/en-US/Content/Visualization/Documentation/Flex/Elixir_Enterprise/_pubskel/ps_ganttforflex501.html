@@ -1,0 +1,297 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Configuring resource chart data</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex497.html" class="breadcrumb">Gantt resource charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex501.html" class="breadcrumb">Configuring resource chart data</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex500.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex502.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Configuring resource chart data</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">A resource chart control gets its data from two data
+providers: a resource data provider containing the resource data items,
+and a task data provider containing the task data items.</div>
+<div class="para">The resource data provider can be a flat list or can
+contain hierarchical or grouped resource data. It is set using the <span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/ResourceChart.html#resourceDataProvider" class="bluelink">resourceDataProvider</a></span> property of the <span class="apiname">ResourceChart</span> object. The data grid of the resource chart leverages all features
+of the <span class="apiname">AdvancedDataGrid</span> it is built
+on, and most considerations regarding the definition of data for an <span class="apiname">AdvancedDataGrid</span> object apply to the resource data
+provider. For more information see <span class="italics">Hierarchical and grouped data display</span> in <span class="italics">Using the AdvancedDataGrid control</span> in <span class="italics">Adobe Flex 4 Developer's Guide</span>.</div>
+
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">You must set the resource data provider using the <span class="apiname">resourceDataProvider</span> property on the <span class="apiname">ResourceChart</span> instance. Setting a data provider
+on the data grid will have no effect.</div>
+</div>
+<div class="para">The task data provider is a flat list of tasks. It is
+set using the <span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/ResourceChart.html#taskDataProvider" class="bluelink">taskDataProvider</a></span> property of the ResourceChart object. For more information
+see <a href="ps_ganttforflex501.html#section1198161382350" class="bluelink">The task data provider</a>.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">In addition to specifying the resource data provider
+and the task data provider of the resource chart control, you must
+also: </div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Specify the fields of the resource items
+that are used as the columns in the data grid. For more details see <a href="ps_ganttforflex501.html#usrflprg.uss_flexprg_gantt.1014554" class="bluelink">Specifying resource columns</a>.</div>
+</li><li class="itemizedlistItem"><div class="para">Specify the fields of the task items
+that are used to represent the tasks in the Gantt sheet. For more
+details see <a href="ps_ganttforflex501.html#usrflprg.uss_flexprg_gantt.1015024" class="bluelink">Specifying task data items with field mappings</a> and <a href="ps_ganttforflex501.html#usrflprg.uss_flexprg_gantt.1022881" class="bluelink">Specifying task data items with a custom function</a>.</div>
+</li><li class="itemizedlistItem"><div class="para">Specify the fields of data provider
+items that are used to associate the tasks with the resources. For
+more detail see <a href="ps_ganttforflex501.html#usrflprg.uss_flexprg_gantt.1024704" class="bluelink">Specifying the relationship between resources and tasks</a>.</div>
+</li></ul></div>
+<div class="section" id="section1198161382350">
+<h2 class="heading">The task data provider</h2>
+
+
+<div class="sectionContent">
+<div class="para">The task data provider is a list-based data provider.
+For more information on list-based data providers see <span class="italics">Using Data Providers and Collections</span> in the <span class="italics">Adobe Flex 4 Developer's
+Guide</span>.</div>
+
+<div class="para">You specify the task data for the <span class="apiname">ResourceChart</span> control by using the <span class="apiname">taskDataProvider</span> property.</div>
+<div class="descriptionlist"><div class="descriptionlistIntro">
+<div class="para">The task data provider supports the following types of
+data:</div>
+</div><dl class="descriptionlist"><dt class="term">XML</dt><dd class="descriptionlistItem"><div class="para">A string containing valid XML text or
+any of the following objects containing valid E4X format XML data: <code class="code">&lt;mx:XML&gt;</code> or <code class="code">&lt;mx:XMLList&gt;</code> compile-time tag, or an <span class="apiname">XML</span> or <span class="apiname">XMLList</span> object.</div></dd><dt class="term">IList or ICollectionView</dt><dd class="descriptionlistItem"><div class="para">An object that implements the <span class="apiname">IList</span> or <span class="apiname">ICollectionView</span> interface (such as an instance of the <span class="apiname">ArrayCollection</span> or <span class="apiname">XMLListCollection</span> class), whose
+data provider conforms to the structure specified in either of these
+items.</div></dd><dt class="term">Other objects</dt><dd class="descriptionlistItem"><div class="para">An array of items or an object.</div>
+</dd></dl></div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">When setting the <span class="apiname">taskDataProvider</span> property the <span class="apiname">ResourceChart</span> control
+modifies its internal representation of the task data as follows: </div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">XML or XMLList are wrapped in an instance
+of <span class="apiname">XMLListCollection</span>.</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apiname">IList</span> or <span class="apiname">ICollectionView</span> are used directly.</div>
+</li><li class="itemizedlistItem"><div class="para">An <span class="apiname">Array</span> object is wrapped in an instance of <span class="apiname">ArrayCollection</span>.</div></li><li class="itemizedlistItem"><div class="para">An <span class="trademark">ActionScript®
+            </span> object of any other data type is
+wrapped in an <span class="apiname">ArrayCollection</span> using
+an <span class="apiname">Array</span> containing the object as
+its sole entry.</div></li></ul></div>
+<div class="para">For example, you pass an <span class="apiname">Array</span> to the <span class="apiname">taskDataProvider</span> property.
+If you read the data back from the <span class="apiname">taskDataProvider</span> property it is returned as an instance of <span class="apiname">ArrayCollection</span>.</div>
+<div class="para">The best practice when your task data can change dynamically
+is to use a collection, which provides the necessary notifications
+of changes.</div>
+</div>
+</div>
+<div class="section" id="usrflprg.uss_flexprg_gantt.1014554">
+<h2 class="heading">Specifying resource columns</h2>
+<div class="sectionContent">
+<div class="para">To specify the resource properties that are shown on
+the Gantt data grid, map the properties of a resource to columns.
+This mapping follows the scheme defined by <span class="apiname">AdvancedDataGrid</span>.</div>
+<div class="para">The following example shows how to do this: </div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+  
+      [Bindable]
+      public var resources:ArrayCollection = new ArrayCollection([
+        { id: "R1", name: "Project Manager", location: "Geneva" }
+      ]);
+        
+      [Bindable]
+      public var tasks:ArrayCollection = new ArrayCollection([
+        { resourceId: "R1", name: "Define project vision",
+          startTime: "1/14/2008 8:0:0", endTime: "1/15/2008 17:0:0" },
+        { resourceId: "R1", name: "Refine project vision",
+          startTime: "1/16/2008 8:0:0", endTime: "1/17/2008 17:0:0" },
+        { resourceId: "R1", name: "Assess project vision",
+          startTime: "1/18/2008 8:0:0", endTime: "1/21/2008 17:0:0" }
+      ]);
+    ]]&gt;  
+  &lt;/mx:Script&gt;
+  
+  &lt;ilog:ResourceChart id="resourceChart" width="100%" height="100%" 
+                      resourceDataProvider="{resources}"
+                      taskDataProvider="{tasks}"&gt;
+    &lt;ilog:dataGrid&gt;
+      &lt;ilog:GanttDataGrid&gt;
+        &lt;ilog:columns&gt;
+          &lt;mx:AdvancedDataGridColumn dataField="name" 
+                                     headerText="Name"/&gt;
+          &lt;mx:AdvancedDataGridColumn dataField="location" 
+                                     headerText="Location"/&gt;
+        &lt;/ilog:columns&gt;
+      &lt;/ilog:GanttDataGrid&gt;
+    &lt;/ilog:dataGrid&gt;
+  &lt;/ilog:ResourceChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example displays the Name and Location columns in
+the Gantt data grid, mapped from the <span class="apiname">name</span> and <span class="apiname">location</span> properties of resource
+items.</div>
+<div class="para">See <span class="italics">Specifying columns</span> in <span class="italics">Creating a DataGrid control</span> in <span class="italics">Adobe Flex 4 Developer’s
+Guide</span> for more information.</div>
+
+</div>
+</div>
+<div class="section" id="usrflprg.uss_flexprg_gantt.1015024">
+<h2 class="heading">Specifying task data items with field mappings</h2>
+<div class="sectionContent" id="d0e87314">
+
+<div class="para">In addition to specifying the <span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/ResourceChart.html#taskDataProvider" class="bluelink">taskDataProvider</a></span> of the <span class="apiname">ResourceChart</span> control, to display (or render) the tasks you must map the fields
+of task data items (start time, end time, and label) to fields that
+exist in the task data provider by setting field properties in the
+control. In the task data provider, a field is either a property (if
+the task data provider items are ActionScript objects) or an attribute
+(if the task data provider items are XML objects).</div>
+<div class="para">The following table shows the field properties in a <span class="apiname">ResourceChart</span> control that contain the field names
+used to map task data. In each case, the first default value of the
+field name is for an ActionScript object and the second (with @ prefix)
+is for an XML object.</div>
+<div class="caption">Field properties for the ResourceChart control</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_gantt.1015506"><colgroup span="1">
+<col span="1"/>
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Property</div></th>
+<th rowspan="1" colspan="1"><div class="para">Default value</div></th>
+<th rowspan="1" colspan="1"><div class="para">Purpose</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apiname">taskEndTimeField</span></div></td>
+<td rowspan="1" colspan="1"><div class="para"><code class="code">endTime</code> or <code class="code">@endTime</code></div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property is used as the end time of each task data item.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apiname">taskLabelField</span></div></td>
+<td rowspan="1" colspan="1"><div class="para"><code class="code">name</code> or <code class="code">@name</code></div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property is used to display the label of each task data item.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apiname">taskStartTimeField</span></div></td>
+<td rowspan="1" colspan="1"><div class="para"><code class="code">startTime</code> or <code class="code">@startTime</code></div></td>
+<td rowspan="1" colspan="1"><div class="para">The value of the field whose name is stored
+in this property is used as the start time of each task data item.</div></td>
+</tr>
+<tr>
+<td valign="top" rowspan="1" colspan="1"><div class="para"><span class="apiname">taskIsMilestoneField</span></div></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para"><code class="code">milestone</code></div></td>
+<td valign="top" rowspan="1" colspan="1"><div class="para">The value of the field whose
+name is stored in this property is used to determine whether a task
+is a milestone.</div></td>
+</tr>
+</tbody></table>
+<div class="para">The value of fields <span class="apiname">taskEndTimeField</span> and <span class="apiname">taskStartTimeField</span> must be
+either a <span class="apiname">Date</span> object or any <span class="apiname">String</span> representation of a date that is supported
+by the constructor of <span class="apiname">Date</span> objects.</div>
+<div class="para">The value of the field <span class="apiname">taskIsMilestoneField</span> must be either a Boolean object or a String with the possible values <code class="code">true</code> or <code class="code">false</code>.</div>
+</div>
+</div>
+<div class="section" id="usrflprg.uss_flexprg_gantt.1022881">
+<h2 class="heading">Specifying task data items with a custom function</h2>
+<div class="sectionContent">
+<div class="para">If you need an alternative way of retrieving the values
+of task data items, you can use the <span class="apiname">taskEndTimeFunction</span>, <span class="apiname">taskLabelFunction</span>, <span class="apiname">taskStartTimeFunction</span>, and <span class="apiname">taskIsMilestoneFunction</span> properties of the control to specify custom functions that will
+be used to obtain the end time, label, and start time and the milestone
+flag respectively of each task data item from the <span class="apiname">taskDataProvider</span> object.</div>
+<div class="para">The following example shows how you can use your own
+date-parsing function to read the start and end time in XML.</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+    &lt;mx:Script&gt;
+      &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+  
+      [Bindable]
+      public var resources:ArrayCollection = new ArrayCollection([
+        { id: "R1", name: "Project Manager", location: "Geneva" }
+      ]);
+        
+      [Bindable]
+      public var tasks:ArrayCollection = new ArrayCollection([
+        { resourceId: "R1", name: "Define project vision",
+          startTime: "1/14/2008 8:0:0", endTime: "1/15/2008 17:0:0" },
+        { resourceId: "R1", name: "Refine project vision",
+          startTime: "1/16/2008 8:0:0", endTime: "1/17/2008 17:0:0" },
+        { resourceId: "R1", name: "Assess project vision",
+          startTime: "1/18/2008 8:0:0", endTime: "1/21/2008 17:0:0" }
+      ]);
+
+        public function parseDate(value:String):Date {
+          return new Date(value);
+        }
+        public function startTimeFunction(item:Object):Date {
+          return parseDate(item.startTime);
+        }
+        public function endTimeFunction(item:Object):Date {
+          return parseDate(item.endTime);
+        }
+      ]]&gt;
+    &lt;/mx:Script&gt;
+
+    &lt;ilog:ResourceChart width="100%" height="100%"
+                        resourceDataProvider="{resources}"
+                        taskDataProvider="{tasks}"
+                        taskStartTimeFunction="{startTimeFunction}"
+                        taskEndTimeFunction="{endTimeFunction}"/&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">In this example the <code class="code">parseData</code> function mimics the default behavior.</div>
+<div class="para">You can use the <span class="apiname">taskLabelFunction</span> property to specify a function that returns a label depending on
+the item in a similar way.</div>
+</div>
+</div>
+<div class="section" id="usrflprg.uss_flexprg_gantt.1024704">
+<h2 class="heading">Specifying the relationship between resources and tasks</h2>
+<div class="sectionContent">
+<div class="para">The resource chart control associates resources and tasks
+as follows: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">One resource can have zero or more tasks</div>
+</li><li class="itemizedlistItem"><div class="para">One task can have zero resources or
+one resource</div></li></ul></div>
+<div class="para">This association is built using fields of the data provider
+items which are specified with properties of the <span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/ResourceChart.html" class="bluelink">ResourceChart</a></span> class as shown in the following
+table. </div>
+<div class="caption">Field properties in the resource-task association</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_gantt.1024753"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Property</div></th>
+<th rowspan="1" colspan="1"><div class="para">Default value</div></th>
+<th rowspan="1" colspan="1"><div class="para">Description</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/ResourceChart.html#resourceIdField" class="bluelink">resourceIdField</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para"><code class="code">id</code> or <code class="code">@id</code></div></td>
+<td rowspan="1" colspan="1"><div class="para">A uniquer identifier of the resource within
+the resource data provider. This is a field of the resource data provider
+items.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/ResourceChart.html#taskResourceIdField" class="bluelink">taskResourceIdField</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para"><code class="code">resourceId</code> or <code class="code">@resourceId</code></div></td>
+<td rowspan="1" colspan="1"><div class="para">The identifier of the resource associated
+with the task. This is a field of the task data provider items.</div></td>
+</tr>
+</tbody></table>
+<div class="para">If changes are made to the relationship outside the resource
+chart control, you must notify the task data provider for the tasks
+concerned by calling its <code class="code">ICollectionView.itemUpdated()</code> method.</div>
+<div class="para">The <code class="code">ResourceChart</code> class provides
+the following methods to access the association:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><code class="code">getResource(task:Object):Object</code> – returns the resource associated with a task</div>
+</li><li class="itemizedlistItem"><div class="para"><code class="code">getTasks(resource:Object):Array</code>– returns the tasks associated with a resource</div>
+</li></ul></div>
+<div class="para">For complete information on the properties and the associated
+methods see the <span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/ResourceChart.html" class="bluelink">ResourceChart</a></span> class.</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex497.html" class="bluelink">Gantt resource charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex500.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex502.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,360 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Gantt sheet styling</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex550.html" class="breadcrumb">Gantt task charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex571.html" class="breadcrumb">Styling a task chart</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex574.html" class="breadcrumb">Gantt sheet styling</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex573.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex575.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Gantt sheet styling</h1></div></div><div class="content">
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">In addition to the styles provided by its base types
+the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html" class="bluelink">GanttSheet</a></span> control
+defines its own styles.</div>
+<div class="para">The Gantt sheet display is composed of the following
+elements, arranged from back to front:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Row grid</div></li><li class="itemizedlistItem"><div class="para">Work grid</div></li><li class="itemizedlistItem"><div class="para">Time grid</div></li><li class="itemizedlistItem"><div class="para">Tasks – styling of the tasks
+is described in the section <a href="ps_ganttforflex577.html" class="bluelink">Task styling for a task chart</a></div></li><li class="itemizedlistItem"><div class="para">Constraints – styling of the
+constraints is described in the section <a href="ps_ganttforflex578.html" class="bluelink">Constraint styling</a></div>
+</li><li class="itemizedlistItem"><div class="para">Time indicator</div>
+</li></ul></div>
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">Keep this back-to-front order in mind when defining the
+color settings of your Gantt sheet. An opaque element in one layer
+hides the corresponding area in the underlying layers.</div>
+</div>
+<div class="section" id="section1216740298241">
+<h2 class="heading">Row grid properties</h2>
+<div class="sectionContent">
+<div class="para">The row grid is a set of horizontal visual elements that
+aid in associating tasks displayed in the Gantt sheet with their respective
+resources. The following are the main elements of the row grid, arranged
+from back to front:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Rows where tasks are displayed. These
+rows are aligned with the resources corresponding to the tasks in
+the Gantt data grid. You can customize their styling with the following
+style property: <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#style:alternatingItemColors" class="bluelink">alternatingItemColors</a></span>.</div></li><li class="itemizedlistItem"><div class="para">Horizontal grid lines that delimit the
+rows. You can customize their styling with the following style property: <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#style:horizontalGridLineColor" class="bluelink">horizontalGridLineColor</a></span>.</div></li></ul></div>
+<div class="para">For the horizontal grid lines to be shown, you have to
+set the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#showHorizontalGridLines" class="bluelink">showHorizontalGridLines</a></span> property on the Gantt sheet to <code class="code">true</code>, as it is not displayed by default.</div>
+<div class="para">The following example shows how to customize the row
+grid styles provided by the Gantt sheet.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+      import mx.collections.HierarchicalData;
+  
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0"},
+        { id: "T3", name: "Summary Task #1",
+          startTime: "2/5/2008 8:0:0", endTime: "2/17/2008 17:0:0",
+          children: [
+            { id: "T4", name: "Task #3",
+              startTime: "2/5/2008 8:0:0", endTime: "2/12/2008 17:0:0" },
+            { id: "T5", name: "Task #4",
+              startTime: "2/13/2008 8:0:0", endTime: "2/17/2008 17:0:0" }
+          ]},
+        { id: "T6", name: "Milestone #1", milestone: "true",
+          startTime: "2/17/2008 17:0:0", endTime: "2/17/2008 17:0:0" }
+      ]);
+
+      [Bindable]
+      public var constraints:ArrayCollection = new ArrayCollection([
+        { fromId:"T1", toId:"T2", kind:"endToStart" },
+        { fromId:"T2", toId:"T4", kind:"endToStart" },
+        { fromId:"T4", toId:"T5", kind:"endToStart" },
+        { fromId:"T5", toId:"T6", kind:"endToStart" }
+      ]);
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%"
+                  taskDataProvider="{tasks}"
+                  constraintDataProvider="{constraints}" 
+                  &gt;
+    &lt;ilog:ganttSheet&gt;
+      &lt;ilog:GanttSheet alternatingItemColors="{[0xECF6F4, 0xEDE5F3]}"
+                       showHorizontalGridLines="true"
+                       horizontalGridLineColor="0xFFFFFF" /&gt;
+    &lt;/ilog:ganttSheet&gt;
+  &lt;/ilog:TaskChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example customizes the alternating item colors of
+the Gantt sheet and the color of the horizontal grid lines. </div>
+</div>
+</div>
+<div class="section" id="section1216740306460">
+<h2 class="heading">Work grid properties</h2>
+<div class="sectionContent">
+<div class="para">The work grid shows vertical areas that represent the
+working and nonworking time ranges in the Gantt sheet. You can customize
+the work grid with the following properties: <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#style:nonWorkingAlpha" class="bluelink">nonWorkingAlpha</a></span>, <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#style:nonWorkingColor" class="bluelink">nonWorkingColor</a></span>, <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#style:nonWorkingFill" class="bluelink">nonWorkingFill</a></span>, <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#style:workingColor" class="bluelink">workingColor</a></span>, <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#style:workingAlpha" class="bluelink">workingAlpha</a></span>, <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#style:workingFill" class="bluelink">workingFill</a></span>.</div>
+<div class="para">If both <span class="apiname">workingColor</span> and <span class="apiname">workingFill</span> are set, <span class="apiname">workingFill</span> takes precedence. By default, <span class="apiname">workingFill</span> is not set, so <span class="apiname">workingColor</span> is used. The same applies to <span class="apiname">nonWorkingColor</span> and <span class="apiname">nonWorkingFill</span>.</div>
+<div class="para">The following example shows how to customize the simpler
+work grid styles provided by the Gantt sheet.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+      import mx.collections.HierarchicalData;
+  
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0"}
+      ]);
+
+      [Bindable]
+      public var constraints:ArrayCollection = new ArrayCollection([
+        { fromId:"T1", toId:"T2", kind:"endToStart" }
+      ]);
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%"
+                  taskDataProvider="{tasks}"
+                  constraintDataProvider="{constraints}" 
+                  &gt;
+    &lt;ilog:ganttSheet&gt;
+      &lt;ilog:GanttSheet workingColor="green" workingAlpha="0.5"
+                       nonWorkingColor="yellow" nonWorkingAlpha="0.5"/&gt;
+    &lt;/ilog:ganttSheet&gt;
+  &lt;/ilog:TaskChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example customizes the working and nonworking color
+and transparency of the work grid in the Gantt sheet.</div>
+<div class="para">The work grid can also be customized to use fill styles
+to paint the working and nonworking vertical areas. You can customize
+the fill styles in two ways:</div>
+<div class="orderedlist"><ol class="orderedlist"><li class="orderedlistItem"><div class="para">In <span class="trademark">ActionScript®
+            </span>, retrieve the instance of <span class="apiname">GanttSheet</span> and set its style properties with the
+appropriate instances of <span class="apiname">IFill</span>.</div>
+</li><li class="orderedlistItem"><div class="para">In MXML, set the <span class="apiname">ganttSheet</span> property of <span class="apiname">TaskChart</span> with a <span class="apiname">GanttSheet</span> instance that has been customized with
+your fill styles.</div></li></ol></div>
+<div class="para">The following example shows the MXML way.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+      import mx.collections.HierarchicalData;
+  
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0"}
+      ]);
+
+      [Bindable]
+      public var constraints:ArrayCollection = new ArrayCollection([
+        { fromId:"T1", toId:"T2", kind:"endToStart" }
+      ]);
+    ]]&gt;
+  &lt;/mx:Script&gt;
+
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%"
+                  taskDataProvider="{tasks}"
+                  constraintDataProvider="{constraints}" 
+                  &gt;
+    &lt;ilog:ganttSheet&gt;
+      &lt;ilog:GanttSheet&gt;
+        &lt;ilog:workingFill&gt;
+          &lt;mx:LinearGradient&gt;
+            &lt;mx:entries&gt;
+              &lt;mx:GradientEntry color="red" ratio="0" alpha="0.5"/&gt;
+              &lt;mx:GradientEntry color="blue" ratio="0.33" alpha="0.5"/&gt;
+            &lt;/mx:entries&gt;
+          &lt;/mx:LinearGradient&gt;
+        &lt;/ilog:workingFill&gt;
+        &lt;ilog:nonWorkingFill&gt;
+          &lt;mx:SolidColor color="yellow" alpha="0.4"/&gt;
+        &lt;/ilog:nonWorkingFill&gt;
+      &lt;/ilog:GanttSheet&gt;
+    &lt;/ilog:ganttSheet&gt;
+  &lt;/ilog:TaskChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example customizes the working and nonworking fill
+styles used to paint the corresponding areas of the Gantt sheet.</div>
+</div>
+</div>
+<div class="section" id="section1216740318913">
+<h2 class="heading">Time grid properties</h2>
+<div class="sectionContent">
+<div class="para">The time grid shows vertical lines in the Gantt sheet
+that are aligned with the ticks in the minor row of the time scale.
+You can customize the styling of the time grid with the following
+properties: <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#style:timeGridAlpha" class="bluelink">timeGridAlpha</a></span> and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#style:timeGridColor" class="bluelink">timeGridColor</a></span>.</div>
+<div class="para">The following example shows how to customize the time
+grid styles provided by the Gantt sheet.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+      import mx.collections.HierarchicalData;
+  
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0"}
+      ]);
+
+      [Bindable]
+      public var constraints:ArrayCollection = new ArrayCollection([
+        { fromId:"T1", toId:"T2", kind:"endToStart" }
+      ]);
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%"
+                  taskDataProvider="{tasks}"
+                  constraintDataProvider="{constraints}" 
+                  &gt;
+    &lt;ilog:ganttSheet&gt;
+      &lt;ilog:GanttSheet timeGridColor="green" timeGridAlpha="0.9"/&gt;
+    &lt;/ilog:ganttSheet&gt;
+  &lt;/ilog:TaskChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example customizes the color and transparency of
+the time grid in the Gantt sheet.</div>
+</div>
+</div>
+<div class="section" id="section1216740328413">
+<h2 class="heading">Time indicator properties</h2>
+<div class="sectionContent">
+<div class="para">The current time indicator shows a vertical line corresponding
+to the current time in the Gantt sheet. You can customize the styling
+of the time indicator with the following properties: <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#style:currentTimeIndicatorAlpha" class="bluelink">currentTimeIndicatorAlpha</a></span> and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#style:currentTimeIndicatorColor" class="bluelink">currentTimeIndicatorColor</a></span>.</div>
+<div class="para">For the current time indicator to be shown, you have
+to set the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#showCurrentTimeIndicator" class="bluelink">showCurrentTimeIndicator</a></span> property on the Gantt sheet to <code class="code">true</code>, as it is not displayed by default.</div>
+<div class="para">The following example shows how to customize the time
+indicator styles provided by the Gantt sheet.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                creationComplete="initApp()"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import ilog.utils.TimeUnit;
+      import ilog.utils.GregorianCalendar;
+      import mx.collections.ArrayCollection;
+      import mx.collections.HierarchicalData;
+  
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0"}
+      ]);
+
+      [Bindable]
+      public var constraints:ArrayCollection = new ArrayCollection([
+        { fromId:"T1", toId:"T2", kind:"endToStart" }
+      ]);
+
+      [Bindable]
+      private var start:Date;
+      
+      [Bindable]
+      private var end:Date;
+      
+      private function initApp():void {
+        // Make sure the current time is visible
+        var calendar:GregorianCalendar = ganttSheet.calendar;
+        var now:Date = new Date();
+        var start:Date = calendar.addUnits(now, TimeUnit.WEEK, -1); 
+        var end:Date = calendar.addUnits(now, TimeUnit.WEEK, 1);
+        ganttSheet.visibleTimeRangeStart = start;
+        ganttSheet.visibleTimeRangeEnd = end;
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%"
+                  taskDataProvider="{tasks}"
+                  constraintDataProvider="{constraints}" 
+                  &gt;
+    &lt;ilog:ganttSheet&gt;
+      &lt;ilog:GanttSheet id="ganttSheet"
+                       showCurrentTimeIndicator="true"
+                       currentTimeIndicatorColor="blue" 
+                       currentTimeIndicatorAlpha="0.8"/&gt;
+    &lt;/ilog:ganttSheet&gt;    
+  &lt;/ilog:TaskChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example customizes the color and transparency of
+the current time indicator in the Gantt sheet.</div>
+</div>
+</div>
+<div class="section" id="section1216741709159">
+<h2 class="heading">Animation properties</h2>
+<div class="sectionContent">
+<div class="para">The animation properties are used to control the animation
+aspects of the Gantt sheet, namely:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The animation duration that determines
+how long the animations will last</div></li><li class="itemizedlistItem"><div class="para">The function used to determine the pace
+of progression of an animation</div></li></ul></div>
+<div class="para">For more details on the available animation features,
+see <a href="ps_ganttforflex579.html" class="bluelink">Animating a task chart</a>.</div>
+<div class="para">The following example shows how to customize the animation-related
+styles provided by the Gantt sheet.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+      import mx.collections.HierarchicalData;
+      import mx.effects.easing.Linear;
+  
+      [Bindable]
+      public var tasks:HierarchicalData = new HierarchicalData([
+        { id: "T1", name: "Task #1",
+          startTime: "1/14/2008 8:0:0", endTime: "1/28/2008 17:0:0"},
+        { id: "T2", name: "Task #2",
+          startTime: "1/29/2008 8:0:0", endTime: "2/5/2008 17:0:0"}
+      ]);
+
+      [Bindable]
+      public var constraints:ArrayCollection = new ArrayCollection([
+        { fromId:"T1", toId:"T2", kind:"endToStart" }
+      ]);
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  
+  &lt;ilog:TaskChart id="taskChart" width="100%" height="100%"
+                      taskDataProvider="{tasks}"
+                      constraintDataProvider="{constraints}"
+                      &gt;
+    &lt;ilog:ganttSheet&gt;
+      &lt;ilog:GanttSheet animationDuration="200" 
+                       easingFunction="{Linear.easeNone}"/&gt;
+    &lt;/ilog:ganttSheet&gt;    
+  &lt;/ilog:TaskChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">This example customizes the Gantt sheet’s animation
+duration and the easing function.</div>
+<div class="para">To disable time navigation animation altogether, just
+set the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html#style:animationDuration" class="bluelink">animationDuration</a></span> style property of the Gantt sheet to zero as follows:</div>
+<pre class="programlisting">     &lt;ilog:GanttSheet animationDuration="0"/&gt; 
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex571.html" class="bluelink">Styling a task chart</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex573.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex575.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

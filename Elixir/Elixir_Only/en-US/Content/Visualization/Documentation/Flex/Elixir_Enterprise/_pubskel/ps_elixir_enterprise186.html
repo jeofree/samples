@@ -1,0 +1,93 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Radar chart architecture</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise184.html" class="breadcrumb">Radar Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise186.html" class="breadcrumb">Radar chart architecture</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise185.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise187.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Radar chart architecture</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e28285">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="para">The IBM® <span class="classificationVariable">ILOG Elixir</span> radar chart classes rely on the Adobe® Flash® Builder™ 4 base classes as shown in the following
+Unified Modeling Language (UML) figure. This dependency allows you
+to reuse the same concepts, and in particular the Adobe Flash Builder 4 axes, legends, effects, and data canvas,
+which can be used as is.</div>
+<div class="mediaobject"><img src="../../Elixir/_media/radar_classes_default.png" alt="Class&#xA;diagram of Adobe Flex charting classes and IBM ILOG Elixir radar classes" class="imagedata"/></div>
+<div class="para">The radar chart classes shown in the UML diagram are
+described in the following table. </div>
+<div class="caption">Main radar chart classes</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_radarcharts.1019675"><colgroup span="1">
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Radar chart class</div></th>
+<th rowspan="1" colspan="1"><div class="para">Description</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/RadarChart.html" class="bluelink">RadarChart</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">The top level class for radar charts. This
+class inherits directly from the <span class="apiname">PolarChart</span> class. It is the top-level object to be used in MXML.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/RadarGridLines.html" class="bluelink">RadarGridLines</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Corresponds to the <span class="apiname">GridLines</span> class in Adobe® Flash® Builder™ 4Cartesian
+charts. This class draws lines radially and concentrically, as for <span class="apiname">GridLines</span>. The <span class="apiname">RadarGridLines</span> class has the following settable properties:  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/RadarGridLines.html#style:radialFill" class="bluelink">radialFill</a></span>,  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/RadarGridLines.html#style:radialAlternateFill" class="bluelink">radialAlternateFill</a></span>,  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/RadarGridLines.html#style:angularFill" class="bluelink">angularFill</a></span>,  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/RadarGridLines.html#style:angularAlternateFill" class="bluelink">angularAlternateFill</a></span>,  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/RadarGridLines.html#style:radialStroke" class="bluelink">radialStroke</a></span>, and  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/RadarGridLines.html#style:angularStroke" class="bluelink">angularStroke</a></span>.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/AngularAxis.html" class="bluelink">AngularAxis</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">The perimeter axis of the chart. This is graphically
+represented by the  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/AngularAxisRenderer.html" class="bluelink">AngularAxisRenderer</a></span> class.
+The <span class="apiname">AngularAxis</span> class inherits from
+the standard <span class="apiname">CategoryAxis</span>.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/AngularAxisRenderer.html" class="bluelink">AngularAxisRenderer</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Draws the angular axis. Most of the style
+properties are attached to this class, for example, the <span class="apiname">stroke</span>, <span class="apiname">tickLength</span>,<span class="italics"> </span><code class="code"/><span class="apiname">tickPlacement</span>, and <span class="apiname">canDropLabel</span> properties.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"> <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/chartClasses/RadarSeries.html" class="bluelink">RadarSeries</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">The base class for radar series. You do not
+use this class directly, but use instead the subclasses  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/series/RadarPlotSeries.html" class="bluelink">RadarPlotSeries</a></span>,  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/series/RadarLineSeries.html" class="bluelink">RadarLineSeries</a></span>,  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/series/RadarBubbleSeries.html" class="bluelink">RadarBubbleSeries</a></span>, and  <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/charts/series/RadarColumnSeries.html" class="bluelink">RadarColumnSeries</a></span>.</div></td>
+</tr>
+</tbody></table>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise184.html" class="bluelink">Radar Charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise185.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise187.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,53 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Side-by-side constraints (HL)</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex414.html" class="breadcrumb">Hierarchical Layout (HL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex430.html" class="breadcrumb">Side-by-side constraints (HL)</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex429.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex431.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Side-by-side constraints (HL)</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">To force nodes to be directly neighbored, use the side-by-side
+constraint.  </div>
+
+<div class="para">If the node group consists of just two nodes, it forces
+the two nodes to be placed side by side. However, it does not specify
+which node is at the lower node position and which node is at the
+higher node position. If the group consists of more than two nodes,
+it forces the nodes to be placed at consecutive positions such that
+all nodes are clustered together. A node that does not belong to the
+group cannot be placed between the nodes of the group. </div>
+<div class="para">For example, assume that the group contains the three
+nodes <code class="code">A</code>, <code class="code">B</code>, <code class="code">C</code>. The constraint is satisfied if the position indices
+of <code class="code">A</code>, <code class="code">B</code>, and <code class="code">C</code> are 3, 4, 5 or 9, 7, 8. However, if node <code class="code">D</code> is placed between <code class="code">A</code> and <code class="code">B</code> (say, <code class="code">D</code> has position 4, <code class="code">A</code> has position 3, and <code class="code">C</code> has
+position 5), then the constraint is not satisfied because <code class="code">D</code> does not belong to the same group. </div>
+<div class="para">The side-by-side constraint has an effect only if the
+nodes actually belong to the same level. To achieve this, you can,
+for instance, use a same level constraint in addition. </div>
+<div class="para">Side-by-side constraints have priorities that decide
+how to resolve constraint conflicts. The higher the priority, the
+more likely the constraint is satisfied.  </div>
+<div class="para">You can use side-by-side constraints to create nested
+clusters. For example, in Java: </div>
+<pre class="programlisting">
+IlvNodeGroup group1 = new IlvNodeGroup();
+group1.add(nodeA);
+group1.add(nodeB);
+group1.add(nodeC);
+group1.add(nodeD);
+layout.addConstraint(
+    new IlvSideBySideConstraint(group1, 10.0f));
+IlvNodeGroup group2 = new IlvNodeGroup();
+group2.add(nodeB);
+group2.add(nodeC);
+layout.addConstraint(
+    new IlvSideBySideConstraint(group2, 10.0f));
+</pre>
+<div class="para">The first constraint specifies that <code class="code">nodeA</code>, <code class="code">nodeB</code>, <code class="code">nodeC</code>, and <code class="code">nodeD</code> must be clustered. The second
+constraint specifies that <code class="code">nodeB</code> and <code class="code">nodeC</code> are clustered inside the larger cluster. This
+means that no other node can be placed between the four nodes and,
+furthermore, neither <code class="code">nodeA</code> nor <code class="code">nodeD</code> can be placed between <code class="code">nodeB</code> and <code class="code">nodeC</code>. The following figure shows
+four solutions that satisfy both constraints. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1123659"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Hierarchical-sbsconstr106_default.gif" alt="Four&#xA;different solutions for a set of side-by-side constraints" class="imagedata"/></div><div class="caption">Sketch of solutions for side-by-side constraints</div></div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex414.html" class="bluelink">Hierarchical Layout (HL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex429.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex431.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

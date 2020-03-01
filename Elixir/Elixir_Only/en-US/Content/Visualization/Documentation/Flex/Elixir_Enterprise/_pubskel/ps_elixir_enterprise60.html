@@ -1,0 +1,28 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Current time indicator</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise39.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise56.html" class="breadcrumb">Styling a calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise60.html" class="breadcrumb">Current time indicator</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise59.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise61.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Current time indicator</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e9189">
+
+<div class="para">The current time indicator represents the current time
+of day; it is displayed as a line in day or week mode. This indicator
+is not visible in month mode.You can hide this indicator by setting
+the <span class="apiname">showCurrentTimeIndicator</span> property
+to false. You can customize the appearance of the line using the <span class="apiname">currentTimeIndicatorStroke</span> property.</div>
+<div class="mediaobject"><img src="../../Calendar/_media/currentTimeIndicator_default.jpg" alt="Current&#xA;time indicator in calendar (day or week mode)" class="imagedata"/></div>
+<div class="para">The following example shows a way to customize the current
+time indicator.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"  
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                layout="absolute"&gt;
+  &lt;ilog:Calendar width="100%" height="100%"&gt;
+    &lt;ilog:currentTimeIndicatorStroke&gt;
+      &lt;mx:Stroke color="#0000FF" caps="none" weight="3" /&gt;
+    &lt;/ilog:currentTimeIndicatorStroke&gt;
+  &lt;/ilog:Calendar&gt;
+&lt;/mx:Application&gt;</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise56.html" class="bluelink">Styling a calendar</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise59.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise61.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

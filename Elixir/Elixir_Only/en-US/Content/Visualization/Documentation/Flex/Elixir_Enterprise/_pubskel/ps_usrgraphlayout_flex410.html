@@ -1,0 +1,96 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Tips and tricks</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex379.html" class="breadcrumb">Tree Layout (TL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex385.html" class="breadcrumb">Layout modes of the TL algorithm</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex406.html" class="breadcrumb">Balloon layout mode</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex410.html" class="breadcrumb">Tips and tricks </a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex409.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex411.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Tips and tricks </h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="section">
+<h2 class="heading">Start angle</h2>
+<div class="sectionContent">
+<div class="para">If you want to rotate a balloon layout, you can modify
+the start angle of the layout. This is the angle where the first child
+node is placed at the root. All subtrees will rotate with this start
+angle. Note that the Angle Spacing value FAST_PROPORTIONAL is not
+stable with respect to the start angle: the layout can change considerably
+when you change the start angle. The other Angle Spacing values are
+stable: they just rotate the entire layout. The start angle must be
+between 0° and 360°.</div>
+<div class="para">To change the start angle:</div>
+
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Angle range</h2>
+<div class="sectionContent">
+<div class="para">Normally, child nodes are placed all around their parent
+node; they occupy an angle range of 360° around the parent. It
+is possible to limit the angle range available for child nodes. In
+the following figure, the angle range for child nodes is 360°
+degrees on the left, 270° in the middle and 180° on the
+right. You can specify a different angle range for the root, for nodes
+that have only leaves, and for inner nodes of the tree. </div>
+<div class="figure"><div class="mediaobject"><img src="../../../GraphLayout/_media/layout-Tree-balloon_angles_default.png" alt="Balloon&#xA;layout: the effect of the angle range value in a balloon: left: 360,&#xA;middle: 270, right: 180" class="imagedata"/></div><div class="caption">The effect of the balloon child angle: left: 360,
+middle: 270, right: 180 </div></div>
+<div class="para">To change the angle ranges:</div>
+<div class="example">
+<div class="exampleContent">
+<div class="paragroup">
+<div class="title">In CSS</div>
+<div class="para">In CSS, specify:</div>
+<pre class="programlisting">balloonRootChildrenAngle: "270";
+balloonInnerChildrenAngle: "270";
+balloonLeafChildrenAngle: "270";
+</pre>
+</div>
+</div>
+<div class="exampleContent">
+<div class="paragroup">
+<div class="title">In Java</div>
+<div class="para">In <span class="trademark">Java™
+            </span>, call:</div>
+<pre class="programlisting">layout.setBalloonRootChildrenAngle(270);  
+layout.setBalloonInnerChildrenAngle(270);  
+layout.setBalloonLeafChildrenAngle(270);  
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Disconnected trees</h2>
+<div class="sectionContent" id="d0e64651">
+
+
+
+
+
+
+
+<div class="para">Multiple disconnected trees can be laid out together
+by the balloon layout mode. By default, they are  arranged in a sequence
+according to the flow direction of the layout. As an alternative,
+you can choose the generic disconnected graph spacing. For details,
+see <a href="ps_usrgraphlayout_flex383.html#usrgraphlayout.uss_graphlay_layouts.1198750" class="bluelink">Layout of connected components (TL)</a>. Another
+alternative, as for radial layout mode, is to introduce an invisible
+root. In this case, the balloons are arranged around the invisible
+root.</div>
+<div class="para">To add an invisible root to the layout:</div>
+<div class="example">
+
+<div class="exampleContent">
+<div class="paragroup">
+<div class="title">In Java</div>
+<div class="para">In <span class="trademark">Java™
+            </span>, call:</div>
+<pre class="programlisting">layout.setLayoutOfConnectedComponentsEnabled(false); 
+layout.setInvisibleRootUsed(true);  
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex406.html" class="bluelink">Balloon layout mode</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex409.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex411.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,61 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Predefined circular gauges</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex809.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex810.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex813.html" class="breadcrumb">Using and customizing predefined gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex815.html" class="breadcrumb">Predefined circular gauges</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex814.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex816.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Predefined circular gauges</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e141029">
+
+
+
+<div class="section">
+<h2 class="heading">Full circular gauges</h2>
+<div class="sectionContent">
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">Full circular gauges have a rotation point at the center
+of the gauge and an aspect ratio of 1.0. IBM® <span class="classificationVariable">ILOG Elixir</span> provides two full circular gauges:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/controls/black/BlackCircularGauge.html" class="bluelink">BlackCircularGauge</a></span> (black-style skinned gauge)</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/controls/simple/SimpleCircularGauge.html" class="bluelink">SimpleCircularGauge</a></span> (full programmatic gauge)</div>
+</li></ul></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">The following code shows how to use some properties,
+including style properties, of predefined circular gauges:</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex" 
+                backgroundColor="0xFFFFFF"&gt;
+  &lt;ilog:BlackCircularGauge width="100%" height="100%"
+     value="20" minimum="0" maximum="100"
+     orientation="clockwise" startAngle="210" endAngle="330"
+     majorTickInterval="10" minorTickInterval="1"
+     skinColor="0xaa1111" /&gt;
+  &lt;ilog:SimpleCircularGauge width="100%" height="100%"
+     value="20" minimum="0" maximum="100"
+     orientation="cclockwise" startAngle="0" endAngle="180"
+     majorTickInterval="20" minorTickInterval="10" 
+     backgroundColors="[0xaa1111, 0x111111]"/&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Semicircular gauges</h2>
+<div class="sectionContent">
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">Semicircular gauges have a scale going from 0 to 180
+degrees (or conversely, depending on their orientation). They have
+an aspect ratio greater than 1.0 and the elements have a y origin
+at a position greater than 50%. IBM <span class="classificationVariable">ILOG Elixir</span> provides two semicircular
+gauges:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/controls/black/BlackSemiCircularGauge.html" class="bluelink">BlackSemiCircularGauge</a></span> (black-style skinned gauge)</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/controls/simple/SimpleSemiCircularGauge.html" class="bluelink">SimpleSemiCircularGauge</a></span> (full programmatic gauge)</div>
+</li></ul></div>
+<div class="para">Semicircular gauges can be configured in a similar way
+to full circular gauges.</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex813.html" class="bluelink">Using and customizing predefined gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex814.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex816.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

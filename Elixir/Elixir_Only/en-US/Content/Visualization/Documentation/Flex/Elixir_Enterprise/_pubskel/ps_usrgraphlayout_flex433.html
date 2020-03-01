@@ -1,0 +1,71 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Constraint priorities (HL)</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex414.html" class="breadcrumb">Hierarchical Layout (HL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex433.html" class="breadcrumb">Constraint priorities (HL)</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex432.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex434.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Constraint priorities (HL)</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">A set of constraints may cause conflicts. This means
+that not all of the constraints can be satisfied at the same time.
+For instance, it is impossible to force two nodes into the same level
+by an <code class="code">IlvSameLevelConstraint</code> while at the
+same time forcing one of the nodes to a higher level than the other
+node by an <code class="code">IlvRelativeLevelConstraint</code>.
+In this case, one of the two constraints must be ignored during layout. </div>
+<div class="para">In general, constraint conflicts are resolved by ignoring
+the constraints with the lowest priority while the constraints with
+the highest priority get satisfied. The following rules explain the
+constraint priorities in detail. </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The constraints that influence into
+which level a node is placed are applied before the constraints that
+influence the position of the node within a level. </div>
+</li><li class="itemizedlistItem"><div class="para">The  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/hierarchical/IlvExtremityConstraint.html" class="bluelink">IlvExtremityConstraint</a></span> is translated into a sequence of constraints with
+high priority. For instance, the extremity constraint with the south
+side is translated into several same level constraints and several
+relative level constraints. </div></li><li class="itemizedlistItem"><div class="para">The  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/hierarchical/IlvSameLevelConstraint.html" class="bluelink">IlvSameLevelConstraint</a></span> and the  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/hierarchical/IlvGroupSpreadConstraint.html" class="bluelink">IlvGroupSpreadConstraint</a></span> have the highest priority. They are never in conflict
+with each other. They dominate all other constraints, even the specified
+level index. </div></li><li class="itemizedlistItem"><div class="para">The  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/hierarchical/IlvLevelRangeConstraint.html" class="bluelink">IlvLevelRangeConstraint</a></span> (and the direct level index specification) has the
+second highest priority. If two nodes are forced to the same level
+but have disjoint specified level ranges, then the level range is
+ignored. In the following example: </div>
+<pre class="programlisting">
+layout.addConstraint(new IlvSameLevelConstraint(node1, node2));
+layout.setSpecNodeLevelIndex(node1, 5);
+layout.setSpecNodeLevelIndex(node2, 10);
+</pre>
+<div class="para">both <code class="code">node1</code> and <code class="code">node2</code> will be placed at level 5. The conflicting specification:
+layout.setSpecNodeLevelIndex(node2, 10) is ignored. </div>
+</li><li class="itemizedlistItem"><div class="para">The  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/hierarchical/IlvRelativeLevelConstraint.html" class="bluelink">IlvRelativeLevelConstraint</a></span> is dominated by the same level constraint, by the
+level range constraint, and by the direct specification of level indices.
+If several relative level constraints conflict each other, the one
+with the highest specified priority dominates. However, note that
+all links are implicitly considered relative level constraints as
+well. If links with high priority force a node to a certain level,
+then a relative level constraint with lower priority will be ignored. </div>
+</li><li class="itemizedlistItem"><div class="para">The  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/hierarchical/IlvSwimLaneConstraint.html" class="bluelink">IlvSwimLaneConstraint</a></span> is always evaluated, even if the incremental mode
+is enabled. The constraint has a higher priority than the relative
+position constraint and the side-by-side constraint. You can specify
+side-by-side constraints for a group of nodes that belong to the same
+swim lane, but side-by-side constraints of nodes of different swim
+lanes are ignored. You can specify relative position constraints between
+nodes of the same swim lane. You can also specify relative position
+constraints between one entire swim lane group and another swim lane
+group, which effectively orders the swim lanes. But relative position
+constraints are ignored if they would require breaking the swim lanes
+apart. The swim lane constraint dominates the specified position indices
+and the extremity constraints, that is, if a swim lane constraint
+is used, you cannot specify position indices or east/west extremity
+constraints for any node. </div></li><li class="itemizedlistItem"><div class="para">The  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/hierarchical/IlvSideBySideConstraint.html" class="bluelink">IlvSideBySideConstraint</a></span> is evaluated only if the corresponding nodes belong
+to the same level. Typically you will use a same level constraint
+to force the nodes to the same level, and then a side-by-side constraint
+to force the nodes to a certain ordering. The side-by-side constraints
+dominate the relative position constraints. If several side-by-side
+constraints are conflicting, the one with the highest specified priority
+dominates the other constraints. </div></li><li class="itemizedlistItem"><div class="para">The  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/hierarchical/IlvRelativePositionConstraint.html" class="bluelink">IlvRelativePositionConstraint</a></span> is also evaluated only if the corresponding nodes
+belong to the same level. It is dominated by the side-by-side constraint;
+however, conflicts with side-by-side constraints are rare. If several
+relative position constraints are conflicting, the one with the highest
+specified priority dominates the other constraints.  </div>
+</li></ul></div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex414.html" class="bluelink">Hierarchical Layout (HL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex432.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex434.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,123 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Generic features and parameters of the FL</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex371.html" class="breadcrumb">Force-directed (FL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex375.html" class="breadcrumb">Generic features and parameters of the FL</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex374.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex376.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Generic features and parameters of the FL</h1></div></div><div class="content">
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1270186">
+<h2 class="heading">Overview (FL)</h2>
+<div class="sectionContent">
+<div class="para">The  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/uniformlengthedges/IlvUniformLengthEdgesLayout.html" class="bluelink">IlvUniformLengthEdgesLayout</a></span> class supports the following generic parameters
+defined in the <code class="code">IlvGraphLayout</code> class (see <a href="ps_usrgraphlayout_flex369.html" class="bluelink">Base class parameters and features</a>):  </div>
+
+
+<div class="para">The following subsections describe the particular way
+in which these parameters are used by this subclass.  </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1018341">
+<h2 class="heading">Allowed time (FL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm stops if the allowed time setting
+has elapsed. (See <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1017208" class="bluelink">Allowed time</a>.) </div>
+</div>
+</div>
+
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1041992">
+<h2 class="heading">Layout of connected components (FL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm can utilize the generic mechanism
+to lay out connected components. (For more information about this
+mechanism, see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1017460" class="bluelink">Layout of connected components</a>.)  </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1001528">
+<h2 class="heading">Layout region (FL)</h2>
+
+
+<div class="sectionContent">
+
+
+<div class="para">Note that by default the Force-directed Layout algorithm does not use the layout region.
+(For details see also <a href="ps_usrgraphlayout_flex376.html#usrgraphlayout.uss_graphlay_layouts.1055425" class="bluelink">Force fit to layout region (FL)</a>.)  </div>
+
+
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1129131">
+<h2 class="heading">Link clipping (FL)</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm can use a link clip interface to
+clip the end points of a link. (See <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1017682" class="bluelink">Link clipping</a>.) </div>
+<div class="para">This is useful if the nodes have a nonrectangular shape
+such as a triangle, rhombus, or circle. If no link clip interface
+is used, the links are normally connected to the bounding boxes of
+the nodes, not to the border of the node shapes. See <a href="ps_usrgraphlayout_flex378.html" class="bluelink">Using a link clipping interface with FL</a> for details
+of the link clipping mechanism. </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1129148">
+<h2 class="heading">Link connection box (FL)</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm can use a link connection box interface
+(see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1017739" class="bluelink">Link connection box</a>.) In combination
+with the link clip interface. If no link clip interface is used, the
+link connection box interface has no effect. For details see <a href="ps_usrgraphlayout_flex378.html" class="bluelink">Using a link clipping interface with FL</a>. </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1129127">
+<h2 class="heading">Preserve fixed links (FL)</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm does not reshape the links that
+are specified as fixed. (See <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1022705" class="bluelink">Preserve fixed links</a> and <a href="ps_usrgraphlayout_flex376.html#usrgraphlayout.uss_graphlay_layouts.1018398" class="bluelink">Link style (FL)</a>.) </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1001543">
+<h2 class="heading">Preserve fixed nodes (FL)</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm does not move the nodes that are
+specified as fixed. Moreover, the algorithm takes into account the
+fixed nodes when computing the position of the nonfixed nodes. (See <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1022740" class="bluelink">Preserve fixed nodes</a>.) </div>
+</div>
+</div>
+
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1041964">
+<h2 class="heading">Stop immediately (FL)</h2>
+
+
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm stops after cleanup if the method  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html#stopImmediately()" class="bluelink">stopImmediately</a></span> is called. (For a description of this method in
+the <code class="code">IlvGraphLayout</code> class, see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1022821" class="bluelink">Stop immediately</a>.) If the layout
+stops early because the allowed time has elapsed, the result code
+in the layout report is <code class="code">IlvGraphLayoutReport.STOPPED_AND_INVALID</code>.  </div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex371.html" class="bluelink">Force-directed (FL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex374.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex376.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

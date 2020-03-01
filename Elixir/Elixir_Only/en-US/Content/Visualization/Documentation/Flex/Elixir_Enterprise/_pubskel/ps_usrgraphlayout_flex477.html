@@ -1,0 +1,88 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Laying out connected components of a disconnected graph</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex470.html" class="breadcrumb">Using advanced features</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex477.html" class="breadcrumb">Laying out connected components of a disconnected graph</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex476.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex478.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Laying out connected components of a disconnected graph</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+
+
+<div class="para">If a graph is composed of several connected components or contains isolated nodes (nodes without
+any links), it can be desirable to apply the layout algorithm separately
+on each connected component and then to position the connected components
+using a specialized layout algorithm (usually,  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/grid/IlvGridLayout.html" class="bluelink">IlvGridLayout</a></span>). The following figure shows an example of a graph containing four
+connected components. Simply by enabling the layout of the connected
+components on the regular layout instance (here,  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/topologicalmesh/IlvTopologicalMeshLayout.html" class="bluelink">IlvTopologicalMeshLayout</a></span>), the connected components are automatically identified
+and laid out individually. Finally, the four connected components
+are positioned using a highly customizable placement algorithm ( <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/grid/IlvGridLayout.html" class="bluelink">IlvGridLayout</a></span>).  </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_advanced.1008371"><div class="mediaobject"><img src="../../../GraphLayout/_media/TML4connectedComps2_default.gif" alt="An example&#xA;of a graph with four connected components laid out individually and&#xA;positioned using a highly customizable placement algorithm" class="imagedata"/></div><div class="caption">Automatic layout of connected components in a disconnected
+graph</div></div>
+<div class="para">To indicate whether a subclass of <code class="code">IlvGraphLayout</code> supports this feature, use the method in the class <code class="code">IlvGraphLayout</code>:  </div>
+<pre class="programlisting">
+boolean supportsLayoutOfConnectedComponents()  
+</pre>
+<div class="para">The default implementation returns <code class="code">false</code>. A subclass can override this method in order to return <code class="code">true</code> to indicate that this feature is supported.  </div>
+
+
+<pre class="programlisting">
+void setLayoutOfConnectedComponentsEnabled(boolean enable)  
+</pre>
+<div class="para">To obtain the current setting:  </div>
+<pre class="programlisting">
+boolean isLayoutOfConnectedComponentsEnabled()  
+</pre>
+<div class="para">The default value is the value returned by the following
+method: </div>
+<pre class="programlisting">
+boolean isLayoutOfConnectedComponentsEnabledByDefault()   
+</pre>
+<div class="para">The default implementation of this method in <code class="code">IlvGraphLayout</code> returns <code class="code">false</code>. For some of the layout classes, it is appropriate that this feature
+is enabled by default. Therefore  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/uniformlengthedges/IlvUniformLengthEdgesLayout.html" class="bluelink">IlvUniformLengthEdgesLayout</a></span> overrides this method to return <code class="code">true</code>.  </div>
+<div class="para">If enabled on a layout class that supports this feature,
+the method <code class="code">performLayout</code> of the class <code class="code">IlvGraphLayout</code> cuts the attached graph model into connected
+components and lays out each connected component separately.  </div>
+<div class="para">How does the layout of connected components feature work
+when this mechanism is enabled in the layout classes that support
+this feature? Instead of directly calling the method  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html#layout(boolean)" class="bluelink">layout</a></span> to perform the layout on the entire graph, the method  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html#performLayout(boolean, boolean)" class="bluelink">performLayout</a></span> first cuts the graph into connected components.
+Then, each connected component is laid out separately by a call of
+the method <code class="code">layout</code>. To do this, the attached
+graph is temporarily changed into internally generated graphs corresponding
+to each of the connected components of the original graph. Finally,
+the layout instance returned by the method: </div>
+<pre class="programlisting">
+IlvGraphLayout getLayoutOfConnectedComponents()   
+</pre>
+<div class="para">is used to position the connected components. To specify
+the layout instance that places the connected components, use the
+following method: </div>
+<pre class="programlisting">
+void setLayoutOfConnectedComponents(IlvGraphLayout layout)   
+</pre>
+<div class="para">If no layout instance is specified using this method,
+the method <code class="code">getLayoutOfConnectedComponents</code> returns an instance of  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/grid/IlvGridLayout.html" class="bluelink">IlvGridLayout</a></span>. Its layout region parameter is set by default to the rectangle
+(<code class="code">0</code>, <code class="code">0</code>, <code class="code">800</code>, <code class="code">800</code>). Its “layout
+mode” parameter is set to  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/grid/IlvGridLayout.html#TILE_TO_ROWS" class="bluelink">TILE_TO_ROWS</a></span>.  </div>
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">The Tree, Hierarchical, and Circular layouts contain
+built-in support for disconnected graphs. For the Tree and Hierarchical
+layouts, the result can be different from the result of the generic
+mechanism (the layout of connected components feature) provided by
+the base class  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/IlvGraphLayout.html" class="bluelink">IlvGraphLayout</a></span>. Depending your particular needs, you can use either
+the generic mechanism or the built-in support.  </div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex470.html" class="bluelink">Using advanced features</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex476.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex478.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

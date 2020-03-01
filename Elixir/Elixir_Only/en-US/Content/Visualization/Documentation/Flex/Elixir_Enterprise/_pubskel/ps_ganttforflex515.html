@@ -1,0 +1,115 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Defining a custom task item renderer for a resource chart</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex497.html" class="breadcrumb">Gantt resource charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex511.html" class="breadcrumb">Resource chart item renderers</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex515.html" class="breadcrumb">Defining a custom task item renderer for a resource chart</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex514.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex516.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Defining a custom task item renderer for a resource chart</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">To display tasks from the task data provider, the Gantt
+sheet component uses either the default <code class="code">TaskItemRenderer</code> class or the task item renderer specified by the <code class="code">taskItemRenderer</code> property.</div>
+<div class="para">A custom task item renderer must:</div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Extend the <span class="apiname">DisplayObject</span> class or one of its subclasses. In practice the preferred base classes
+are <span class="apiname">UIComponent</span>, or <span class="apiname">Sprite</span> for a lighter component.</div>
+</li><li class="itemizedlistItem"><div class="para">Implement the <span class="apiname">IDataRenderer</span> interface.</div></li><li class="itemizedlistItem"><div class="para">Implement either the <span class="apiname">IInvalidating</span> interface or the <span class="apiname">IProgrammaticSkin</span> interface.</div></li></ul></div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">A custom task item renderer should:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Implement the <span class="apiname">ISimpleStyleClient</span> interface in order to use styling</div></li><li class="itemizedlistItem"><div class="para">Implement the <span class="apiname">ilog.gantt.IConstraintConnectionBounds</span> interface when the renderer can draw beyond its bounds which are
+defined by the <span class="apiname">x</span>, <span class="apiname">y</span>, <span class="apiname">height</span> and <span class="apiname">width</span> properties.</div></li></ul></div>
+<div class="para">The x-coordinate and the width of the task item renderer
+are set by the Gantt sheet depending on the start and end time of
+the data item. The y-coordinate and the height of the task item renderer
+are set by the Gantt sheet based on the position and height of the
+row corresponding to the resource associated with the task which is
+defined in the data grid of the resource chart.</div>
+<div class="para">The contents of the <code class="code">data</code> property
+for a task item renderer are a <code class="code">TaskItem</code> object. The <code class="code">TaskItem</code> class allows you
+to access the <code class="code">startTime</code>, <code class="code">endTime</code>, <code class="code">label</code> and <code class="code">isMilestone</code> fields, the task data provider item, the associated resource data
+provider item, the <span class="apiname">GanttSheet</span> object,
+and the interaction state of the task item renderer.</div>
+<div class="para">You can access the <code class="code">startTime</code>, <code class="code">endTime</code>, <code class="code">label</code> and <code class="code">isMilestone</code> fields inside the task
+item renderer as follows.</div>
+<pre class="programlisting">  var taskItem:TaskItem = data as TaskItem;
+   var startTime:Date = taskItem.startTime;
+   var endTime:Date = taskItem.endTime;
+   var label:String = taskItem.label;
+   var isMilestone:Boolean = taskItem.isMilestone;
+</pre>
+<div class="para">You can access the task data provider item from the task
+item renderer as follows.</div>
+<pre class="programlisting">   var taskItem:TaskItem = data as TaskItem;
+   var dataProviderItem:Object = taskItem.data;
+</pre>
+<div class="para">You can access the resource data provider item from the
+task item renderer as follows:</div>
+<pre class="programlisting">   var taskItem:TaskItem = data as TaskItem;
+   var resource:Object = taskItem.resource;
+</pre>
+<div class="para">Once you have the data provider item and the <code class="code">TaskItem</code> object, you can retrieve the GanttSheet and
+access the interaction state of the task item renderer as follows.</div>
+<pre class="programlisting"> var ganttSheet:GanttSheet = taskItem.owner as GanttSheet;
+ var isHighlighted:Boolean = ganttSheet.isItemHighlighted(dataProviderItem);
+ var isSelected:Boolean = ganttSheet.isItemSelected(dataProviderItem);
+</pre>
+<div class="para">The following example in MXML shows how to declare an
+inline custom task item renderer that displays a label in a box whose
+background color depends on the end date of the task.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.collections.ArrayCollection;
+  
+      [Bindable]
+      public var resources:ArrayCollection = new ArrayCollection([
+        { id: "R1", name: "Project Manager", location: "Geneva" }
+      ]);
+        
+      [Bindable]
+      public var tasks:ArrayCollection = new ArrayCollection([
+        { resourceId: "R1", name: "Define project vision",
+          startTime: "1/14/2008 8:0:0", endTime: "1/15/2008 17:0:0" },
+        { resourceId: "R1", name: "Refine project vision",
+          startTime: "1/16/2008 8:0:0", endTime: "1/17/2008 17:0:0" },
+        { resourceId: "R1", name: "Assess project vision",
+          startTime: "1/18/2008 8:0:0", endTime: "1/21/2008 17:0:0" }
+      ]);
+    ]]&gt;
+  &lt;/mx:Script&gt;
+
+  &lt;ilog:ResourceChart id="resourceChart" width="100%" height="100%"
+                      resourceDataProvider="{resources}"
+                      taskDataProvider="{tasks}"&gt;
+    &lt;ilog:ganttSheet&gt;
+      &lt;ilog:GanttSheet&gt;
+        &lt;ilog:taskItemRenderer&gt;
+          &lt;mx:Component&gt;
+            &lt;mx:Canvas horizontalScrollPolicy="off" clipContent="true"
+                       backgroundColor="{getBackgroundColor(data)}"&gt;
+              &lt;mx:Script&gt;
+                &lt;![CDATA[
+                  private function getBackgroundColor(data:Object):uint
+                  {
+                    var color:uint;
+                    if (data.endTime &gt; new Date(2008, 0, 20))
+                      color = 0xff5050;
+                    else
+                      color = 0xd0f0f0;
+                    return color;
+                  }
+                ]]&gt;
+              &lt;/mx:Script&gt;
+              &lt;mx:Label text="{data.label}" /&gt;
+            &lt;/mx:Canvas&gt;
+          &lt;/mx:Component&gt;
+        &lt;/ilog:taskItemRenderer&gt;
+      &lt;/ilog:GanttSheet&gt;
+    &lt;/ilog:ganttSheet&gt;
+  &lt;/ilog:ResourceChart&gt;
+&lt;/mx:Application&gt;</pre>
+<div class="para">In this example the task is rendered as a label in a
+box. The background of the task is red if its end time exceeds 2008-01-20.
+Otherwise the task has a light emerald background. You can drag the
+tasks to different positions to see changes in color.</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex511.html" class="bluelink">Resource chart item renderers</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex514.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex516.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

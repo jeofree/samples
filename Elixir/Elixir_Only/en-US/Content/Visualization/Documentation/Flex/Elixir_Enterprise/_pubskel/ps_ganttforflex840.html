@@ -1,0 +1,136 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>The RectangularScaleRenderer class</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex809.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex810.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex821.html" class="breadcrumb">Building custom gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex836.html" class="breadcrumb">Custom rectangular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex839.html" class="breadcrumb">The visual elements of rectangular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex840.html" class="breadcrumb">The RectangularScaleRenderer class</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex839.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex841.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">The RectangularScaleRenderer class</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e145029">
+
+
+
+
+
+
+
+
+
+<div class="para">The scale renderer is the visual element responsible
+for rendering the ticks and labels of a scale. The <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularScaleRenderer.html" class="bluelink">RectangularScaleRenderer</a></span> class uses data provided by
+the logical scale, like <code class="code">majorTicks</code> and <code class="code">minorTicks</code> arrays.</div>
+<div class="para">The scale render is usually considered as the logical
+scale master. In other words, all the visual elements that use the
+scale to render themselves will transform the data to pixel coordinates
+in the same way as the scale renderer.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The scale renderer is made of two areas:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The label area. This area is sized so
+that the labels can fit in it. It can be on the top or bottom side
+of the scale renderer for horizontal gauges, or on the left or right
+side of the scale renderer for vertical gauges. This choice is defined
+through the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularScaleRenderer.html#labelPlacement" class="bluelink">labelPlacement</a></span> property of the scale renderer.</div>
+</li><li class="itemizedlistItem"><div class="para">The tick area. This area takes up the
+remaining area of the scale renderer. Its bounds are defined in the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularScaleRenderer.html#tickAreaBounds" class="bluelink">tickAreaBounds</a></span> property of the scale renderer.
+Usually, other visual elements, such as <span class="apiname">MarkerRenderer</span> or <span class="apiname">RectangularBarRenderer</span> use 
+these bounds to lay out themselves so that they are drawn on the tick
+area and not on the whole scale renderer area. See <a href="ps_ganttforflex848.html" class="bluelink">Building a rectangular gauge step by step</a>.</div>
+</li></ul></div>
+<div class="paragroup">
+<div class="title">Formatting tick marks</div>
+<div class="para">You can customize the rendering of the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularScaleRenderer.html" class="bluelink">RectangularScaleRenderer</a></span> ticks by setting the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularScaleRenderer.html#majorTickRenderer" class="bluelink">majorTickRenderer</a></span> property for major ticks and
+the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularScaleRenderer.html#minorTickRenderer" class="bluelink">minorTickRenderer</a></span> property for minor ticks. If
+the specified renderer implements <span class="apiname">IDataRenderer</span>, the associated <span class="apiname">TickItem</span> is set
+to the data property of the renderer.</div>
+<div class="para">The gauges framework includes two default tick item renderers: <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/RectangleTickRenderer.html" class="bluelink">RectangleTickRenderer</a></span> and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/CircleTickRenderer.html" class="bluelink">CircleTickRenderer</a></span>. The size of the tick renderer
+instances is controlled by the properties <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularScaleRenderer.html#majorTickWidth" class="bluelink">majorTickWidth</a></span>, <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularScaleRenderer.html#majorTickLength" class="bluelink">majorTickLength</a></span>, <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularScaleRenderer.html#minorTickWidth" class="bluelink">minorTickWidth</a></span>, and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularScaleRenderer.html#minorTickLength" class="bluelink">minorTickLength</a></span>. These properties can all be
+expressed in pixels or in a percentage of the tick area of the scale
+renderer. </div>
+<div class="para">The placement of the tick renderer instances is based
+on the value of the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularScaleRenderer.html#tickPlacement" class="bluelink">tickPlacement</a></span> property. Possible values are: <code class="code">leading</code>, <code class="code">trailing</code>, or <code class="code">middle</code>. </div>
+<div class="para">The following example shows how to format the tick marks
+of a <span class="apiname">RectangularScaleRenderer</span> and
+change the renderer for major ticks:</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;ilog:RectangularGauge&gt;
+    &lt;ilog:scales&gt;
+      &lt;ilog:RectangularLinearScale/&gt;
+    &lt;/ilog:scales&gt;
+    &lt;ilog:elements&gt;
+      &lt;ilog:RectangularScaleRenderer tickPlacement="trailing" 
+        majorTickWidth="2%" majorTickLength="50%"
+        minorTickWidth="1%" minorTickLength="20%"&gt;
+        &lt;ilog:majorTickRenderer&gt;
+          &lt;mx:Component&gt;
+            &lt;ilog:RectangleTickRenderer&gt;
+              &lt;ilog:fill&gt;
+                &lt;mx:SolidColor color="0xFF0000"/&gt;
+              &lt;/ilog:fill&gt;
+            &lt;/ilog:RectangleTickRenderer&gt;
+          &lt;/mx:Component&gt;
+        &lt;/ilog:majorTickRenderer&gt;
+      &lt;/ilog:RectangularScaleRenderer&gt;
+    &lt;/ilog:elements&gt;
+  &lt;/ilog:RectangularGauge&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+<div class="paragroup">
+<div class="title">Formatting labels</div>
+<div class="para">You can size and format the scale labels using the properties <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularScaleRenderer.html#labelPlacement" class="bluelink">labelPlacement</a></span> and <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularScaleRenderer.html#labelFunction" class="bluelink">labelFunction</a></span>, as well as the various style
+properties related to fonts.</div>
+<div class="para">The following example shows how to place the labels at
+the leading edge of the scale (on the left side since the gauge is
+vertical) with a customized text, a specific font size, family, and
+color:</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import ilog.gauges.TickItem;
+      private function withDegrees(t:TickItem):String {
+        return t.value + "°";
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt;
+  &lt;ilog:RectangularGauge height="100%" direction="vertical"&gt;
+    &lt;ilog:scales&gt;
+      &lt;ilog:RectangularLinearScale/&gt;
+    &lt;/ilog:scales&gt;
+    &lt;ilog:elements&gt;
+      &lt;ilog:RectangularScaleRenderer fontSize="24" color="red" 
+        fontFamily="Arial" labelPlacement="leading"
+        labelFunction="{withDegrees}" /&gt;
+    &lt;/ilog:elements&gt;
+  &lt;/ilog:RectangularGauge&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="paragroup">
+<div class="title">Defining a custom renderer</div>
+<div class="para">You can also define a custom renderer for rendering labels
+of the scale. The following example shows how to use a <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/indicators/NumericIndicator.html" class="bluelink">NumericIndicator</a></span> renderer to render the labels.</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                backgroundColor="0x000000"&gt;
+  &lt;ilog:RectangularGauge&gt;
+    &lt;ilog:scales&gt;
+      &lt;ilog:RectangularLinearScale minimum="100" maximum="150" majorTickInterval="10" minorTickInterval="5"/&gt;
+    &lt;/ilog:scales&gt;
+    &lt;ilog:elements&gt;
+      &lt;ilog:RectangularScaleRenderer&gt;
+        &lt;ilog:labelRenderer&gt;
+          &lt;mx:Component&gt;
+            &lt;ilog:NumericIndicator numChars="3" textHorizontalAlign="right"/&gt;
+          &lt;/mx:Component&gt;
+        &lt;/ilog:labelRenderer&gt;
+      &lt;/ilog:RectangularScaleRenderer&gt;
+    &lt;/ilog:elements&gt;
+  &lt;/ilog:RectangularGauge&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex839.html" class="bluelink">The visual elements of rectangular gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex839.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex841.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

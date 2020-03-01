@@ -1,0 +1,100 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Defining tool tips</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex634.html" class="breadcrumb">Calendar</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex663.html" class="breadcrumb">Event editing</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex665.html" class="breadcrumb">Defining tool tips</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex664.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex666.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Defining tool tips</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e114069">
+
+<div class="section">
+<h2 class="heading">Event data tool tips</h2>
+<div class="sectionContent" id="d0e114094">
+
+
+
+
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The <span class="apiname">Calendar</span> component
+uses two tool tips for a data item:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">A data tip displayed when the mouse
+pointer hovers over the event</div></li><li class="itemizedlistItem"><div class="para">An editing tip displayed while the event
+is being moved or resized to provide feedback on the ongoing operation</div>
+</li></ul></div>
+<div class="mediaobject"><img src="../../Calendar/_media/calendarEventTip_default.jpg" alt="Example&#xA;of calendar event tip that appears when an event is being moved or&#xA;resized" class="imagedata"/></div>
+<div class="para">By default both tool tips show the same information:
+the summary of the event, its start and end time, and its duration.
+You can customize the contents of the data tip by setting the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html#dataTipFunction" class="bluelink">dataTipFunction</a></span> property of the <span class="apiname">Calendar</span> object. You can customize the editing tip by setting the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html#editingTipFunction" class="bluelink">editingTipFunction</a></span> property of the Calendar object.</div>
+<div class="para">The following example shows how to use the <span class="apiname">dataTipFunction</span> and <span class="apiname">editingTipFunction</span> properties to specify custom tool tip texts.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                creationComplete="initApp()"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.utils.StringUtil;
+      import mx.formatters.DateFormatter;
+      import ilog.calendar.CalendarItem;
+      private var dateFormatter:DateFormatter = new DateFormatter();
+      private function initApp():void {
+        dateFormatter.formatString = "YYYY/MM/DD JJ:NN";
+      }
+      public function formatTip(item:CalendarItem):String { 
+        return StringUtil.substitute("From {0} to {1}", 
+                         dateFormatter.format(item.startTime),
+                         dateFormatter.format(item.endTime));
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt; 
+  &lt;ilog:Calendar width="100%" height="100%" date="{new Date('2008/4/13')}" dataTipFunction="{formatTip}" editingTipFunction="{formatTip}"&gt;
+    &lt;ilog:dataProvider&gt;
+      &lt;mx:XMLList&gt;
+        &lt;event startTime="2008/4/14 10:00" endTime="2008/4/14 16:00" summary="Event1"/&gt;
+        &lt;event startTime="2008/4/16 10:00" endTime="2008/4/16 16:00" summary="Event2"/&gt;
+        &lt;event startTime="2008/4/15 10:00" endTime="2008/4/18 16:00" summary="Event3"/&gt;
+      &lt;/mx:XMLList&gt;
+    &lt;/ilog:dataProvider&gt;
+  &lt;/ilog:Calendar&gt;
+&lt;/mx:Application&gt;</pre>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Time range selection tool tip</h2>
+<div class="sectionContent" id="d0e114222">
+
+
+
+<div class="para">A Calendar component displays a data tip when a time
+range selection is being made.</div>
+<div class="mediaobject"><img src="../../Calendar/_media/calendarTimeSelectionTip_default.jpg" alt="Example&#xA;of time range selection tip that appears when a time range is being&#xA;selected" class="imagedata"/></div>
+<div class="para">You can customize this data tip by setting the <span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/calendar/Calendar.html#timeRangeTipFunction" class="bluelink">timeRangeTipFunction</a></span> property of the Calendar object.</div>
+<div class="para">The following example shows how to use the <span class="apiname">timeRangeTipFunction</span> property to specify custom
+tool tip text.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                creationComplete="initApp()"&gt;
+  &lt;mx:Script&gt;
+    &lt;![CDATA[
+      import mx.utils.StringUtil;
+      import mx.formatters.DateFormatter;
+      import ilog.calendar.CalendarItem;
+      private var dateFormatter:DateFormatter = new DateFormatter();
+      private function initApp():void {
+        dateFormatter.formatString = "YYYY/MM/DD JJ:NN";
+      }
+      public function formatTip(date1:Date, date2:Date):String {
+        return StringUtil.substitute("From {0} to {1}",                         
+                         dateFormatter.format(date1),
+                         dateFormatter.format(date2));
+      }
+    ]]&gt;
+  &lt;/mx:Script&gt; 
+  &lt;ilog:Calendar width="100%" height="100%" date="{new Date('2008/4/13')}" 
+                 timeRangeTipFunction="{formatTip}" &gt;
+  &lt;/ilog:Calendar&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex663.html" class="bluelink">Event editing</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex664.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex666.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,76 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Features and limitations of the HL</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex414.html" class="breadcrumb">Hierarchical Layout (HL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex416.html" class="breadcrumb">Features and limitations of the HL</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex415.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex417.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Features and limitations of the HL</h1></div></div><div class="content">
+
+
+
+<div class="descriptiveTopicContent">
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1271581">
+<h2 class="heading">Features</h2>
+<div class="sectionContent">
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Organizes nodes without overlaps in
+horizontal or vertical levels. </div></li><li class="itemizedlistItem"><div class="para">Arranges the graph such that the majority
+of links are short and flow uniformly in the same direction (from
+left to right, from top to bottom, and so on). </div>
+</li><li class="itemizedlistItem"><div class="para">Reduces the number of link crossings.
+Most of the time, produces drawings with no crossings or only a small
+number of crossings. </div></li><li class="itemizedlistItem"><div class="para">Often produces balanced drawings that
+emphasize the symmetries in the graph. </div></li><li class="itemizedlistItem"><div class="para">Supports self-links (that is, links with the same origin and
+destination node), multiple links between the same pair of nodes, and cycles. </div>
+</li><li class="itemizedlistItem"><div class="para">Efficient, scalable algorithm. Produces
+a nice layout for most sparse and medium-dense graphs relatively quickly,
+even if the number of nodes is very large.  </div>
+</li><li class="itemizedlistItem"><div class="para">Provides several alignment and offset
+options. </div></li><li class="itemizedlistItem"><div class="para">Supports port specifications where links
+attach the nodes. Allows you to specify which side of a node (top,
+bottom, left, right) a link can be connected to or to specify which
+relative port position should be used for the connection.  </div>
+</li><li class="itemizedlistItem"><div class="para">Supports layout constraints. Allows
+you to specify relative positional constraints, for instance, that
+a node is above another node or left of another node. </div>
+</li><li class="itemizedlistItem"><div class="para">Incremental and nonincremental mode.
+In incremental mode, the previous position of nodes are taken into
+account. Positions the nodes without changing the relative order of
+the nodes so that the layout is stable on incremental changes of the
+graph.  </div></li><li class="itemizedlistItem"><div class="para">Can handle flat and nested graphs. In
+recursive layout mode, it routes the intergraph links of nested graphs
+and places the labels of nodes and links in subgraphs.</div>
+</li><li class="itemizedlistItem"><div class="para">The computation time depends on the
+number of nodes, the number of levels, and the number of links that
+cross several levels. Most of the time, the links are placed between
+adjacent levels, which keeps the computation time small.  </div>
+</li></ul></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1029206">
+<h2 class="heading">Limitations</h2>
+
+
+<div class="sectionContent">
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The algorithm tries to minimize the
+number of link crossings (which is generally an NP-complete problem). It is mathematically impossible
+to solve this problem quickly for any graph size. Therefore, the algorithm
+uses a very fast heuristic that obtains a good layout, but not always
+with the theoretical minimum number of link crossings. </div>
+</li><li class="itemizedlistItem"><div class="para">The algorithm tries to place the nodes
+such that all links point uniformly in the same direction. It is impossible
+to place cycles of links in this way. For this reason, it sometimes
+produces a graph where a small number of links are reversed to point
+into the opposite direction. The algorithm tries to minimize the number
+of reversed links (which, again, is an NP-complete problem). Therefore,
+the algorithm uses a very fast heuristic resulting in a good layout,
+but not always with the theoretical minimum number of reversed links.
+ </div></li><li class="itemizedlistItem"><div class="para">The computation time required to obtain
+an appropriate drawing depends most significantly on the number of
+bends in the links. Since the algorithm places one bend whenever a
+link crosses a level, the number of bends can grow relatively quickly
+if the layout requires many long links that span several levels. Therefore,
+the layout process may become very time-consuming for dense graphs
+(the number of links is relatively high compared to the number of
+nodes) or for graphs that require a large number of node levels. </div>
+</li></ul></div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex414.html" class="bluelink">Hierarchical Layout (HL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex415.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex417.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

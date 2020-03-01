@@ -1,0 +1,53 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>The logical scale(s) of circular gauges</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex600.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex809.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex810.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex821.html" class="breadcrumb">Building custom gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex823.html" class="breadcrumb">Custom circular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex825.html" class="breadcrumb">The logical scale(s) of circular gauges</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex824.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex826.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">The logical scale(s) of circular gauges</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e142126">
+
+
+
+<div class="para">A scale is a logical element that handles the main characteristics
+of a gauge: minimum and maximum values (numeric scales), categories
+(category scales), start and end angles, orientation. A scale can
+be numeric or category-based. Scales are used by many visual elements
+to render themselves. For example, the <span class="apiname">CircularScaleRenderer</span> or the <span class="apiname">NeedleRenderer</span> use their
+associated scale to render themselves.</div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">Available circular scales are:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/CircularLinearScale.html" class="bluelink">CircularLinearScale</a></span></div></li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/CircularLogScale.html" class="bluelink">CircularLogScale</a></span> </div></li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../../../../elixir30/doc/html/en-US/refasdoc/html/ilog/gauges/circular/CircularCategoryScale.html" class="bluelink">CircularCategoryScale</a></span> </div></li></ul></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">The following example defines a logical scale with its
+associated scale renderer and a needle pointing a specific value.</div>
+<pre class="programlisting">&lt;ilog:CircularGauge width="100%" height="100%"&gt;
+    &lt;ilog:scales&gt;
+      &lt;ilog:CircularLinearScale 
+        minimum="10" maximum="100" 
+        majorTickInterval="10" minorTickInterval="5"
+        startAngle="0" endAngle="180"
+        orientation="cclockwise"/&gt;
+    &lt;/ilog:scales&gt;
+    &lt;ilog:elements&gt;
+      &lt;ilog:CircularScaleRenderer/&gt;
+      &lt;ilog:NeedleRenderer value="30" radius="30%"/&gt;
+    &lt;/ilog:elements&gt;
+ &lt;/ilog:CircularGauge&gt;
+</pre>
+</div>
+</div>
+<div class="para"> If the scale attribute is not specified on a visual
+element, the visual element is automatically associated with the first
+logical scale in the scales array. If you need to reference a different
+scale, use the <span class="apiname">scale</span> property.</div>
+<div class="para">A scale provides two arrays of <span class="apiname">TickItem</span>, one for major ticks and one for minor ticks, that are used by the <span class="apiname">CircularScaleRenderer</span> to position the ticks. By
+default, the arrays are automatically computed, but you can override
+the default behavior by setting the scale properties, for example,
+the desired interval between two ticks.</div>
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">CircularCategoryScale and CircularLogScale do not generate
+minor tick items.</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex823.html" class="bluelink">Custom circular gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex824.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex826.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

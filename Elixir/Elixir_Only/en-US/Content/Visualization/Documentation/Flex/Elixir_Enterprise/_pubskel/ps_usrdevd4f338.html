@@ -1,0 +1,229 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Skinning the Diagram component</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f312.html" class="breadcrumb">Creating a graph display from data providers using the Diagram
+class</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f338.html" class="breadcrumb">Skinning the Diagram component</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f337.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f339.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Skinning the Diagram component</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">As the Diagram component is a Spark control, the diagram
+skin controls all its visual elements.   The Diagram skin is usually
+applied by using CSS or MXML. In CSS, use the skinClass style property,
+as illustrated below:  </div>
+<pre class="programlisting">ibm|Diagram {
+   skinClass: ClassReference("mapSample.MapSkin");
+}
+</pre>
+<div class="para">In MXML, the same configuration can be accomplished as
+below:</div>
+<pre class="programlisting">&lt;ibm:Diagram
+   skinClass="mapSample.MapSkin"
+   id='diagram'
+   width="100%"
+   height="100%"
+   labelField="name"
+   startNodeField="startCity"
+   endNodeField="endCity"/&gt;
+</pre>
+<div class="para">You can also specify the skin class in ActionScript,
+setting the style property value directly:</div>
+<pre class="programlisting">myDiagram.setStyle("skinClass", Class(mapSample.MapSkin));
+</pre>
+<div class="para">Refer to LINKTO[Adobe Flex 4 Using Flex 4 / Enhancing
+the user interface / Creating Spark Skins ] for further information
+on how to create Spark skins.</div>
+<div class="section">
+<h2 class="heading">Default diagram skin class</h2>
+<div class="sectionContent">
+<div class="para">The following default skin class for the Diagram control
+is placed in com.ibm.ilog.diagram.skins.spark.DiagramSkin:   </div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!---
+The default skin for the Diagram component.
+--&gt;
+&lt;s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009"
+             xmlns:mx="library://ns.adobe.com/flex/halo"
+             xmlns:s="library://ns.adobe.com/flex/spark"
+             xmlns:ibm="http://www.ibm.com/xmlns/prod/ilog/flex/diagram/2010"
+             minWidth="100" minHeight="100"
+             alpha.disabled="0.5"&gt;
+  &lt;!-- host component --&gt;
+  &lt;fx:Metadata&gt;
+    &lt;![CDATA[ 
+    /** 
+    * @copy spark.skins.default.ApplicationSkin#hostComponent
+    */
+    [HostComponent("com.ibm.ilog.diagram.Diagram")]
+    ]]&gt;
+  &lt;/fx:Metadata&gt;
+  
+  &lt;fx:Script&gt;
+    static private const exclusions:Array = ["scroller", "background"];
+    
+    /** 
+     * @copy spark.skins.SparkSkin#colorizeExclusions
+     */		
+    override public function get colorizeExclusions():Array {return exclusions;}
+    
+    /* Define the content fill items that should be colored by the "contentBackgroundColor" style. */
+    static private const contentFill:Array = ["bgFill"];
+    override public function get contentItems():Array {return contentFill};
+  &lt;/fx:Script&gt;
+  
+  &lt;s:states&gt;
+    &lt;mx:State name="normal" /&gt;
+    &lt;mx:State name="disabled" /&gt;
+  &lt;/s:states&gt;
+  
+  &lt;!-- border --&gt;
+  &lt;s:Rect left="0" right="0" top="0" bottom="0"&gt;
+    &lt;s:stroke&gt;
+      &lt;mx:SolidColorStroke color="0x686868" weight="1"/&gt;
+    &lt;/s:stroke&gt;
+  &lt;/s:Rect&gt;
+  
+  &lt;!-- fill --&gt;
+  &lt;!-- background appearance --&gt;
+  &lt;s:Rect id="background" left="1" right="1" top="1" bottom="1" &gt;
+    &lt;s:fill&gt;
+      &lt;mx:SolidColor id="bgFill" color="0xFFFFFF" /'&gt;
+    &lt;/s:fill&gt;
+  &lt;/s:Rect'&gt;
+  
+  &lt;ibm:GraphScroller left="1" top="1" right="1" bottom="1" id="scroller" focusEnabled="false"&gt;
+    &lt;s:Group&gt;
+      &lt;ibm:Graph id="graph"/&gt;
+    &lt;/s:Group&gt;
+  &lt;/ibm:GraphScroller&gt;
+&lt;/s:SparkSkin&gt;
+</pre>
+<div class="para">The default Diagram skin declares two states: normal
+and disabled. The alpha property of the component is configured differently
+if the component is in the disabled state. </div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The Diagram component declares two skin parts: </div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">A mandatory Graph in to which nodes
+and links created from data items get loaded, rendered, and laid out.</div>
+</li><li class="itemizedlistItem"><div class="para">An optional GraphScroller used to scroll,
+zoom and pan the graph.</div></li></ul></div>
+<div class="para">    The default skin also supports a background color,
+which is displayed below the graph.  </div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">The background color is specified as a style property
+in the component using properties:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">contentBackgroundAlpha Alpha of the
+background of the diagram.</div></li><li class="itemizedlistItem"><div class="para">contentBackgroundColor Color of the
+background of the diagram.</div></li></ul></div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Customizing the diagram skin</h2>
+<div class="sectionContent">
+<div class="para">To customize the diagram skin, create a new Diagram skin
+class. Copy the source code of a skin that is similar to what you
+want. The base class of the new skin is the default Diagram skin class.
+The new skin must follow the skinning contract. See LINKTO[Using Flex
+4 / Enhancing the user interface / Creating Spark Skins] for details
+on how to create Spark skins. In your new skin class, specify the
+Diagram component as the host component.</div>
+<pre class="programlisting"> &lt;fx:Metadata&gt;
+    &lt;![CDATA[ 
+    [HostComponent("com.ibm.ilog.diagram.Diagram")]
+    ]]&gt;
+  &lt;/fx:Metadata&gt;
+</pre>
+<div class="para">Declare the skin states and define their appearance.</div>
+<pre class="programlisting">&lt;s:states&gt;
+    &lt;mx:State name="normal" /&gt;
+    &lt;mx:State name="disabled" /&gt;
+&lt;/s:states&gt;
+</pre>
+<div class="para">Declare a Graph as a skin part and optionally a GraphScroller.
+In this example, both skin parts are declared, as well as a new element
+used to display a background image map.</div>
+<pre class="programlisting">&lt;ibm:GraphScroller left="1" top="1" right="1" bottom="1" id="scroller" focusEnabled="false"&gt;
+   &lt;s:Group&gt;
+      &lt;s:BitmapImage source="@Embed('assets/usa.png')"    width="947" height="546"/&gt;
+      &lt;ibm:Graph id="graph"/&gt;
+   &lt;/s:Group&gt;
+</pre>
+<div class="para">When you have implemented your new skin, you can customize
+it further by adding new elements and modifying the appearance of
+the elements based on the skin state. When you have specified the
+skin, you can configure the component to use the new skin using CSS,
+MXML or ActionScript . </div>
+<pre class="programlisting">&lt;ibm:Diagram
+   skinClass="mapSample.MapSkin"
+   id='diagram'
+   width="100%"
+   height="100%"
+   labelField="name"
+   startNodeField="startCity"
+   endNodeField="endCity"/&gt;
+</pre>
+<div class="para">The following code example shows the complete source
+code for the new skin class:</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+
+&lt;s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009"
+             xmlns:mx="library://ns.adobe.com/flex/halo"
+             xmlns:s="library://ns.adobe.com/flex/spark"
+             xmlns:ibm="http://www.ibm.com/xmlns/prod/ilog/flex/diagram/2010"
+             minWidth="100" minHeight="100"
+             alpha.disabled="0.5"&gt;
+  &lt;!-- host component --&gt;
+  &lt;fx:Metadata&gt;
+    &lt;![CDATA[ 
+    [HostComponent("com.ibm.ilog.diagram.Diagram")]
+    ]]&gt;
+  &lt;/fx:Metadata&gt;
+  
+  &lt;fx:Script&gt;
+    static private const exclusions:Array = ["scroller", "background"];
+    
+    /** 
+     * @copy spark.skins.SparkSkin#colorizeExclusions
+     */   
+    override public function get colorizeExclusions():Array {return exclusions;}
+    
+    /* Define the content fill items that should be colored by the "contentBackgroundColor" style. */
+    static private const contentFill:Array = ["bgFill"];
+    override public function get contentItems():Array {return contentFill};
+  &lt;/fx:Script&gt;
+  
+  &lt;s:states&gt;
+    &lt;mx:State name="normal" /&gt;
+    &lt;mx:State name="disabled" /&gt;
+  &lt;/s:states&gt;
+  
+  &lt;!-- border --&gt;
+  &lt;s:Rect left="0" right="0" top="0" bottom="0"&gt;
+    &lt;s:stroke&gt;
+      &lt;mx:SolidColorStroke color="0x686868" weight="1"/&gt;
+    &lt;/s:stroke&gt;
+  &lt;/s:Rect&gt;
+  
+  &lt;!-- fill --&gt;
+  &lt;!-- background appearance --&gt;
+  &lt;s:Rect id="background" left="1" right="1" top="1" bottom="1" &gt;
+    &lt;s:fill&gt;
+      &lt;mx:SolidColor id="bgFill" color="0xFFFFFF" /&gt;
+    &lt;/s:fill&gt;
+  &lt;/s:Rect&gt;
+  
+  &lt;ibm:GraphScroller left="1" top="1" right="1" bottom="1" id="scroller" focusEnabled="false"&gt;
+   &lt;s:Group&gt;
+      &lt;s:BitmapImage source="@Embed('assets/usa.png')"    width="947" height="546"/&gt;
+      &lt;ibm:Graph id="graph"/&gt;
+   &lt;/s:Group&gt;
+  
+
+  &lt;/ibm:GraphScroller&gt;
+  
+&lt;/s:SparkSkin&gt;
+</pre>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f312.html" class="bluelink">Creating a graph display from data providers using the Diagram
+class</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f337.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f339.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

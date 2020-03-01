@@ -1,0 +1,66 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Generic features and parameters of the LL</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex437.html" class="breadcrumb">Link layout (LL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex441.html" class="breadcrumb">Generic features and parameters of the LL</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex440.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex442.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Generic features and parameters of the LL</h1></div></div><div class="content">
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/link/IlvLinkLayout.html" class="bluelink">IlvLinkLayout</a></span> class supports the following generic parameters as defined in the
+class <code class="code">IlvGraphLayout</code> (see <a href="ps_usrgraphlayout_flex369.html" class="bluelink">Base class parameters and features</a>):  </div>
+
+
+<div class="para">The following comments describe the particular way in
+which these parameters are used by this subclass.  </div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1029028">
+<h2 class="heading">Allowed time (LL)</h2>
+
+<div class="sectionContent">
+<div class="para">The layout algorithm stops if the allowed time setting
+has elapsed. (For a description of this layout parameter in the <code class="code">IlvGraphLayout</code> class, see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1017208" class="bluelink">Allowed time</a>.) If the layout
+stops early because the allowed time has elapsed, some links may not
+be routed in the best possible way. The result code in the layout
+report is <code class="code">IlvGraphLayoutReport.STOPPED_AND_INVALID</code>.  </div>
+</div>
+</div>
+
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1165620">
+<h2 class="heading">Automatic layout (LL)</h2>
+
+<div class="sectionContent">
+<div class="para">The Link Layout routes the links so that they bypass
+the nodes and cross each other as few times as possible. It does not
+position any nodes. However, if the user moves, adds, or resizes nodes,
+or adds or removes links, the Link Layout drawing usually becomes
+invalid; that is, the links no longer look orthogonal, overlap the
+moved nodes, or cross other links.  </div>
+<div class="para">Using the automatic layout feature of the <code class="code">IlvGraphLayout</code> class, the layout is reperformed whenever
+a change of the graph occurs. (For a description of this layout parameter
+in the <code class="code">IlvGraphLayout</code> class, see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1020626" class="bluelink">Automatic layout</a>.) </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1165602">
+<h2 class="heading">Preserve fixed links (LL)</h2>
+
+
+<div class="sectionContent">
+<div class="para">The layout algorithm does not reshape the links that
+are specified as fixed. (See <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1022705" class="bluelink">Preserve fixed links</a>.) The fixed
+links are taken into account when computing the optimal layout of
+the nonfixed links. </div>
+</div>
+</div>
+
+
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1043115">
+<h2 class="heading">Stop immediately (LL)</h2>
+
+<div class="sectionContent">
+<div class="para">The layout algorithm stops if the method  <span class="apilink"><a href="../../../../../../../../../../jviews-diagrammer87/doc/html/en-US/refjava/html/ilog/views/graphlayout/link/IlvLinkLayout.html" class="bluelink">IlvLinkLayout</a></span> is called. (For a description of this method in the <code class="code">IlvGraphLayout</code> class, see <a href="ps_usrgraphlayout_flex369.html#usrgraphlayout.uss_graphlay_basics.1022821" class="bluelink">Stop immediately</a>.) If the layout
+stops early, some links may not be routed in the best possible way.
+The result code in the layout report is <code class="code">IlvGraphLayoutReport.STOPPED_AND_INVALID</code>.  </div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex437.html" class="bluelink">Link layout (LL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex440.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex442.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

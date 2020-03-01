@@ -1,0 +1,58 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Using tooltips</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f287.html" class="breadcrumb">Developing with the <span class="classificationVariable">Diagram</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f312.html" class="breadcrumb">Creating a graph display from data providers using the Diagram
+class</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrdevd4f332.html" class="breadcrumb">Using tooltips</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrdevd4f331.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f333.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Using tooltips</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">There is no particular mechanism built in to the Diagram
+component to handle tooltip display. It relies on Flex standard tooltip
+management, based on the <code class="code">tooltip</code> property
+of the <span class="apiname">UIComponent</span> class. This property
+might need to be set on Node instances in a diagram to display a tooltip. </div>
+<div class="para">Query: when might this happen?</div>
+
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">There are different ways to achieve this:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">Use a custom node renderer. </div>
+<div class="para">The Diagram component exposes two properties controlling
+how data nodes are rendered, that is, how node instances are created:
+nodeRenderer and nodeRendererFunction. The nodeRenderer  property
+value is an mx.core.IFactory implementation that is simply used to
+instantiate any subclass of Node. The nodeRendererFunction property
+value is, as its name indicates, a function that must return an instance
+of Node (for any data node passed as parameter). Either your subclass
+of Node sets the tooltip property when being instantiated (which is
+enough when using the nodeRenderer factory mechanism), or you need
+to specify a nodeRendererFunction that will create a Node instance
+and set a tooltip on it.  For example :</div>
+<pre class="programlisting">/**
+ * Create a Node instance and set a tooltip on it
+ */
+public function createNode(diagram:Diagram,dataNode:Object):Node
+{
+  var node:Node = new Node();
+  node.data = dataNode;
+  // bind the tootlTip property of the Node instance to the name 
+  // property of the data node.
+  BindingUtils.bindProperty(node,"toolTip",dataNode,"name”);
+  return node;
+}
+</pre>
+<div class="para"/>
+</li><li class="itemizedlistItem"><div class="para">Using a custom skin for the nodes.</div>
+<div class="para"> Another way to add tooltips to Node instances is by
+using a custom skin (see the chapter about skinning Node instances).
+For example, you might declare a spark.components.Group instance as
+top level container in your skin. You can specify the tooltip (using
+a binding expression un mxml if need be) on it :</div>
+<pre class="programlisting">&lt;!-- Bind the tooltip property of this group to the label property of the host component of this skin (i.e.  the Node instance) --&gt;
+&lt;s:Group toolTip="{hostComponent.label}" left="0" top="0" right="0" bottom="0" &gt;
+&lt;!—Define other skin content here --&gt;
+&lt;/s:Group&gt;
+</pre>
+</li></ul></div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrdevd4f312.html" class="bluelink">Creating a graph display from data providers using the Diagram
+class</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrdevd4f331.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrdevd4f333.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrdevd4f288.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

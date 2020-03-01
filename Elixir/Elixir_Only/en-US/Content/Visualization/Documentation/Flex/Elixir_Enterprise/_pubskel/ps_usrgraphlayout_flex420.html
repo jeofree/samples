@@ -1,0 +1,250 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Incremental mode with HL</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex351.html" class="breadcrumb">Using graph layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex360.html" class="breadcrumb">Layout algorithms</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex414.html" class="breadcrumb">Hierarchical Layout (HL)</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_usrgraphlayout_flex420.html" class="breadcrumb">Incremental mode with HL</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_usrgraphlayout_flex419.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex421.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Incremental mode with HL</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent">
+<div class="para">In some circumstances you may need to use a sequence
+of layouts on the same graph. For example: </div>
+<div class="itemizedlist"><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">You work with graphs that have become
+out-of-date and you need to extend the graph. If you perform a layout
+on the extended graph, you probably want to identify the parts that
+were already laid out in the original graph. The layout should not
+change very much when compared with the layout of the original graph. </div>
+</li><li class="itemizedlistItem"><div class="para">The first layout results in a drawing
+with minor deficiencies. You want to solve these deficiencies manually
+and perform a second layout to clean up the drawing. The second layout
+probably should not greatly change the parts of the graph that were
+already acceptable after the first layout.  </div>
+</li></ul></div>
+<div class="para">The Hierarchical Layout normally works nonincrementally.
+It performs a layout from scratch and moves all nodes to new positions
+and reroutes all links. The previous positions of nodes have no influence
+on the result of the layout. Hence, even a small change can cause
+a large effect on the next layout. </div>
+<div class="para">But the Hierarchical Layout also supports incremental
+sequences of layout that “do not change very much.”
+It can place the nodes close to their previous positions, so that
+you can more easily identify the parts that had already been laid
+out in the original graph. Incremental mode takes the previous positions
+of the nodes into account. In this mode the algorithm preserves the
+relative order of the levels and the nodes within the levels in the
+subsequent layout. It does not preserve the absolute positions of
+the nodes, but it tries to detect the structure of the previous layout
+by examining the node coordinates. For instance, if two nodes are
+in the same level, then they stay in the same level after an incremental
+layout. If a node is in a higher level than another node, it stays
+in the higher level.  </div>
+<div class="para">The following figure illustrates the difference between
+an incremental and nonincremental layout. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1123291"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-76online81_default.gif" alt="Three&#xA;diagrams to show how moving to an incremental layout differs from&#xA;moving to a nonincremental layout" class="imagedata"/></div><div class="caption">Incremental and nonincremental layouts</div></div>
+<div class="para">Incremental mode is disabled by default.</div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To enable incremental mode:</div>
+</div>
+
+
+</div>
+
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1272034">
+<h2 class="heading">Phases of the incremental mode</h2>
+<div class="sectionContent">
+<div class="para">The layout algorithm analyzes the drawing in incremental
+mode in the following way: </div>
+<div class="orderedlist"><ol class="orderedlist"><li class="orderedlistItem"><div class="para">First, it determines from the node coordinates
+which nodes must belong to the same level. For instance, if the flow
+direction is towards the bottom, it tries to detect horizontal reference
+lines at those vertical positions where many nodes are placed along
+a line. The specified vertical node offset helps to detect these lines
+because the horizontal reference lines should be approximately the
+vertical node offset apart. See the following figure. </div>
+</li><li class="orderedlistItem"><div class="para">All nodes that touch the same reference
+line are assigned to the same level. </div></li><li class="orderedlistItem"><div class="para">It determines the order of the nodes
+within each level by analyzing where the node touches the reference
+line. For instance, if the flow direction is towards the bottom, it
+determines from the x coordinate of the nodes how they are ordered
+within the levels. </div></li><li class="orderedlistItem"><div class="para">If long links span several levels, the
+algorithm can preserve the shape of a long link. It determines the
+point where a link crosses the level reference line. It creates a
+bend point for the long link inside the level. It tries to preserve
+the order of the bend points in each level. For instance, if in a
+flow direction towards the bottom, a long link bypasses another node
+on the right side, then the incremental layout tries to find a similar
+shape of the link that bypasses the node on the right side, as illustrated
+in the following figure. </div></li><li class="orderedlistItem"><div class="para">Finally, the layout tries to calculate
+the absolute positions of the nodes that respect the levels and the
+ordering within the levels. It tries to balance the node positions.
+However, it also tries to place each node close to its previous position.
+Both criteria often compete with each other, because to get a perfect
+balance, nodes must sometimes move far from their original position.
+The Hierarchical Layout contains a parametrized heuristic to satisfy
+both criteria. </div></li></ol></div>
+<div class="para">The following figure shows the result of the incremental
+phases. </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1123322"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-77online82_default.gif" alt="Two diagrams&#xA;showing the use of levels in moving to an incremental layout" class="imagedata"/></div><div class="caption">Incremental layout phases</div></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1123325">
+<h2 class="heading">Expert parameters of the incremental mode</h2>
+<div class="sectionContent">
+<div class="para">Each phase of the incremental mode can be parameterized.
+These layout parameters have an effect only if incremental mode is
+switched on. </div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1123327">
+<h3 class="heading">Minimizing long link crossings</h3>
+<div class="sectionContent">
+<div class="para">The incremental layout tries to preserve the shape of
+long links that cross several levels. This implies that link crossings
+between long links are not resolved. If crossings of long links are
+not desired, it may be better to reroute long links from scratch.
+The following figure shows four hierarchy trees, with the original
+layout at the upper left. The bottom right shows the result if long
+links are rerouted, and the top right shows the result if the shape
+of long links is preserved.  </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1124022"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-78online83_default.gif" alt="Four&#xA;diagrams showing how incremental layouts differ when there is no crossing&#xA;reduction, crossing reduction, and long link only crossing reductionf" class="imagedata"/></div><div class="caption">Crossing reduction during incremental layouts</div></div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To reroute long links from scratch, you must enable the
+crossing reduction mechanism for long links: </div>
+</div>
+
+
+</div>
+<div class="para">The crossing reduction of long links determines only
+the shape of the links. It does not influence the order of the other
+nodes within the levels.  </div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1123990">
+<h3 class="heading">Minimizing all link crossings</h3>
+<div class="sectionContent">
+<div class="para">Optionally, you can apply a crossing reduction to all
+nodes within each level. In this case, the incremental layout determines
+from the node coordinates which nodes belong to the same level, but
+it may reorder the nodes within the levels completely to avoid link
+crossings. It also reorders the long links in this case. The previous
+figure, bottom left shows the result. Notice that the order of the
+nodes “F,” “G,” and “H”
+have changed to resolve the link crossings.  </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To enable the crossing reduction for all nodes: </div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1124102">
+<h3 class="heading">Setting absolute level positioning</h3>
+<div class="sectionContent">
+<div class="para">The incremental layout tries to place the nodes in absolute
+positions that are close to the previous positions. It tries to avoid
+nodes moving a large distance, because even if the relative order
+of the nodes within the levels does not change, large movement distances
+can be confusing for users. It is much easier to keep a mental map
+of the diagram if the nodes remain close to the previous positions.
+ </div>
+<div class="para">The following figure illustrates node repositioning with
+and without taking the previous positions into account. The incremental
+layout of the original graph at the top left results in the graph
+at the top right, which is easier to recognize as the same graph than
+the graph at the bottom.  </div>
+<div class="para">The absolute level positioning feature is enabled by
+default, but it can be disabled. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To disable the absolute level positioning feature: </div>
+</div>
+
+
+</div>
+<div class="para">With this statement, the layout does not try to place
+the nodes close to the previous positions. It places the nodes such
+that the layout is balanced. However, to create a perfect balance,
+the layout may need to move a few nodes so far apart that you can
+no longer recognize the diagram after the layout from the node positions
+that were shown in the previous layout (see the following figure,
+bottom). </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1123398"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-79online84_default.gif" alt="Three&#xA;diagrams showing how the outcome can differ when absolute positions&#xA;are respected and then not respected" class="imagedata"/></div><div class="caption">Absolute positioning during incremental layouts</div></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1123401">
+<h3 class="heading">Setting absolute level position range and tendency</h3>
+
+<div class="sectionContent">
+<div class="para">If absolute level positioning is enabled, it competes
+with the aesthetic criteria to create a balanced layout. Due to the
+fact that nodes must stay close to their previous positions, the diagram
+after incremental layout may be somewhat unbalanced and unsymmetrical.
+The Hierarchical Layout algorithm uses a heuristic that you can influence
+by two parameters, the absolute level position range and tendency. </div>
+<div class="para">The absolute level positioning feature is enabled by
+default, but it can be disabled. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To disable the absolute level positioning feature: </div>
+</div>
+
+
+</div>
+<div class="para">This statement specifies that within the range of 100
+coordinate units from the old position of the node, the balance is
+the only criteria for the placement. This means that a node whose
+optimal position is less than 100 coordinate units away from its previous
+position is placed exactly at its optimal position. Nodes whose optimal
+position is farther away are placed at a position that is a compromise
+between previous position and optimal position. This is illustrated
+in figure below, right. </div>
+<div class="example">
+<div class="exampleContent">
+<div class="para">To set the absolute level position tendency: </div>
+</div>
+
+
+</div>
+<div class="para">This statement specifies that when the optimal position
+of a node is far away from its previous position, its position is
+70% influenced by its previous position and 30% influenced by its
+optimal position. Imagine a rubber band that tries to pull a node
+to its previous position, and another rubber band that tries to pull
+the same node to its optimally balanced position. The level position
+tendency <code class="code">70</code> means that one rubber band
+pulls with 70% of the force towards the previous position, and the
+other rubber band pulls with 30% towards the optimal position. Increasing
+the tendency means that the node stays closer to its old position,
+decreasing it means that the node moves closer to its optimal position.
+If you set the tendency to 0%, this has the same effect as disabling
+the incremental absolute level positioning (see the following figure). </div>
+<div class="figure" id="usrgraphlayout.uss_graphlay_layouts.1123433"><div class="mediaobject"><img src="../../../GraphLayout/_media/Fig4-80online85_default.gif" alt="Absolute&#xA;positioning during incremental layouts with different position tendencies&#xA;(0, 50, and 90)" class="imagedata"/></div><div class="caption">Absolute positioning during incremental layouts</div></div>
+</div>
+</div>
+<div class="section" id="usrgraphlayout.uss_graphlay_layouts.1123436">
+<h3 class="heading">Marking nodes for incremental layout</h3>
+<div class="sectionContent">
+<div class="para">Incremental layout normally treats all nodes and links
+of the drawing in the same way. However, you may have added nodes
+and links to the drawing programmatically, and the new nodes and links
+do not have meaningful coordinates yet. Perhaps you have placed them
+all at the origin (0,0), or at random coordinates. In this case, you
+need an incremental layout that takes the coordinates of all nodes
+into account that were previously laid out, while it ignores the coordinates
+of all new nodes. The incremental mode of the Hierarchical Layout
+allows you to specify in Java which nodes cannot be laid out incrementally
+by calling the method: </div>
+<pre class="programlisting">
+layout.markForIncremental(nodeOrLink);
+</pre>
+<div class="para">If you call this statement, the node or link is marked
+such that its coordinates are ignored during the next incremental
+layout. The positions of marked nodes and links are calculated from
+scratch. The mark is valid only until the next layout and is automatically
+cleared afterwards. </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_usrgraphlayout_flex414.html" class="bluelink">Hierarchical Layout (HL)</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_usrgraphlayout_flex419.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_usrgraphlayout_flex421.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_usrgraphlayout_flex352.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

@@ -1,0 +1,185 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Opening and closing nodes</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="Process"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise144.html" class="breadcrumb">Organization Charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise181.html" class="breadcrumb">Opening and closing nodes</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise180.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise182.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Opening and closing nodes</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e26775">
+
+
+
+
+
+
+<div class="para">Since IBM® <span class="classificationVariable">ILOG Elixir</span> 3.0, the <span class="apiname">OrgChart</span> component supports the open or closed state of a node. The chart
+branch of a closed node is not displayed and not processed, resulting
+in better performance.</div>
+<div class="para">The expand and collapse methods for opening and closing
+nodes are available in global view mode only.</div>
+<div class="para">A node can be opened or closed with or without animation.</div>
+<div class="section">
+<h2 class="heading">Controlling node states at OrgChart creation time </h2>
+<div class="sectionContent" id="d0e26884">
+
+<div class="para">By default all the nodes (data items) are expanded when
+the data provider is set on the <span class="apiname">OrgChart</span> component.</div>
+<div class="para">To have better control over which nodes are open, set
+the <span class="apiname">displayItemExpanded</span> style property
+to <code class="code">false</code>, so that no node is automatically
+opened by the <span class="apiname">OrgChart</span> component.</div>
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">If the <span class="apiname">displayItemExpanded</span> style property is set to <code class="code">true</code> when a
+node is added, the node is automatically opened, and so are any child
+nodes added at the same time.</div>
+</div>
+<div class="para">To select open nodes, create and set an <span class="apiname">IHierarchicalCollectionView</span> instance as a data provider
+to the <span class="apiname">OrgChart</span>. You can then set
+the open nodes in the collection by setting  the <span class="apiname">openNodes</span> property as shown in the following code sample.</div>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex" 
+                layout="horizontal" creationComplete="init()" &gt;
+    &lt;mx:Script&gt;
+      &lt;![CDATA[
+        import mx.collections.HierarchicalData;
+        import mx.collections.HierarchicalCollectionView;
+        import mx.collections.IHierarchicalCollectionView;
+                
+        [Bindable]
+        private var xml:XML  = &lt;p name="Employee 1"&gt;
+         &lt;p name="Employee 2"&gt;
+           &lt;p name="Employee 3"/&gt;
+           &lt;p name="Employee 4"/&gt;
+         &lt;/p&gt;
+         &lt;p name="Employee 5"&gt;
+           &lt;p name="Employee 6"/&gt;
+           &lt;p name="Employee 7"/&gt;
+         &lt;/p&gt;         
+       &lt;/p&gt;;
+
+        protected function init():void {
+                    
+          var col:IHierarchicalCollectionView = 
+            new HierarchicalCollectionView(new HierarchicalData(xml));
+            
+          col.openNodes = [xml, xml.children()[0]]; // Employee 1 and Employee 2
+          
+          chart.dataProvider = col;
+        }
+
+      ]]&gt;
+    &lt;/mx:Script&gt;
+    
+   &lt;ilog:OrgChart id="chart" width="100%" height="100%" displayItemExpanded="false" /&gt;              
+
+&lt;/mx:Application&gt; </pre>
+<div class="para">The nodes <span class="quote">“Employee 6”</span> and <span class="quote">“Employee 7”</span> will not be displayed but the others will
+be.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Controlling node states after OrgChart properties validated</h2>
+<div class="sectionContent" id="d0e26959">
+
+
+
+<div class="para">After the validation of the properties of an <span class="apiname">OrgChart</span>, you can use dedicated methods to control
+node states.</div>
+<div class="para">The following table shows the <span class="apiname">OrgChart</span> methods available to control whether a node is expanded or collapsed.</div>
+<table border="1" cellpadding="4" cellspacing="0" class="ShadedHead"><colgroup align="left" span="1">
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr bgcolor="#BFD6E7">
+<th valign="top" rowspan="1" colspan="1">Method Name </th>
+<th valign="top" rowspan="1" colspan="1">Description</th>
+</tr>
+</thead><tbody valign="top">
+<tr>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#collapseAll(Boolean)" class="bluelink">collapseAll</a></span></td>
+<td rowspan="1" colspan="1">Closes all the nodes (without animation).</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#collapseItem(Object,Boolean,Boolean)" class="bluelink">collapseItem</a></span></td>
+<td rowspan="1" colspan="1">Closes a node (with or without animation).</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#expandAll(Boolean)" class="bluelink">expandAll</a></span>  </td>
+<td rowspan="1" colspan="1">Opens all the nodes (without animation).</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#expandItem(Object,Boolean,Boolean,Boolean)" class="bluelink">expandItem</a></span></td>
+<td rowspan="1" colspan="1">Opens a node (with or without animation).</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#isItemOpen(Boolean)" class="bluelink">isItemOpen</a></span>  </td>
+<td rowspan="1" colspan="1"> Returns <code class="code">true</code> if a node is open.</td>
+</tr>
+</tbody></table>
+<div class="para">These methods work in global view mode only. For more
+information on this mode, see <a href="ps_elixir_enterprise160.html" class="bluelink">Global view mode</a>.</div>
+<div class="para">The <span class="apiname">expandAll</span> and <span class="apiname">collapseAll</span> methods do not dispatch <span class="apiname">OrgChartEvent.ITEM_OPENING</span> or <span class="apiname">OrgChartEvent.ITEM_CLOSING</span> events.</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Events</h2>
+<div class="sectionContent" id="d0e27148">
+
+
+
+<div class="para">The <span class="apiname">OrgChart</span> component
+dispatches events when nodes are expanded or collapsed as shown in
+the following table.</div>
+<table border="1" cellpadding="4" cellspacing="0" class="ShadedHead"><colgroup align="left" span="1">
+<col span="1"/>
+<col span="1"/></colgroup><thead>
+<tr bgcolor="#BFD6E7">
+<th valign="top" rowspan="1" colspan="1">Event Type  </th>
+<th valign="top" rowspan="1" colspan="1">Description</th>
+</tr>
+</thead><tbody valign="top">
+<tr>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:itemsAnimated" class="bluelink">itemsAnimated</a></span></td>
+<td rowspan="1" colspan="1">An animation of the item renderer is ongoing. This animation
+may have been triggered by an expand or collapse operation.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:itemClose" class="bluelink">itemClose</a></span></td>
+<td rowspan="1" colspan="1">The item has been collapsed.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:itemClosing" class="bluelink">itemClosing</a></span> </td>
+<td rowspan="1" colspan="1">The item is about to be collapsed.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:itemOpen" class="bluelink">itemOpen</a></span></td>
+<td rowspan="1" colspan="1">The item has been expanded.</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChart.html#event:itemOpening" class="bluelink">itemOpening</a></span></td>
+<td rowspan="1" colspan="1">The item is about to be expanded.</td>
+</tr>
+</tbody></table>
+<div class="para">If the <span class="apiname">preventDefault()</span> method is called during the processing of an <span class="apiname">ITEM_OPENING</span> or <span class="apiname">ITEM_CLOSING</span> event, the operation
+will be cancelled.</div>
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">The expandAll and collapseAll methods do not dispatch
+OrgChartEvent.ITEM_OPENING or  OrgChartEvent.ITEM_CLOSING events.</div>
+</div>
+</div>
+</div>
+<div class="section">
+<h2 class="heading">Item renderer</h2>
+<div class="sectionContent" id="d0e27327">
+
+<div class="para">When the <span class="apiname">OrgChart</span> is
+in global view mode, the default item renderer displays an expand/collapse
+icon by default. When this icon is clicked, it opens or closes the
+node represented by the item renderer.</div>
+<div class="para">To hide the expand/collapse icon, set the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/orgchart/OrgChartItemRenderer.html#style:showExpandCollapseIcon" class="bluelink">showExpandCollapseIcon</a></span> style property to <code class="code">false</code>.</div>
+
+<div class="para">To see how to use the keyboard to expand or collapse
+a node, see <a href="ps_elixir_enterprise173.html" class="bluelink">User interaction with organization charts</a>.</div>
+</div>
+</div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise144.html" class="bluelink">Organization Charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise180.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise182.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

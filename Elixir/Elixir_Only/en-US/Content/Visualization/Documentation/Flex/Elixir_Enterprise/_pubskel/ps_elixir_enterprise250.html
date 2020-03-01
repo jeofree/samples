@@ -1,0 +1,81 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>The RectangularLabelRenderer class</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise214.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise215.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise226.html" class="breadcrumb">Building custom gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise241.html" class="breadcrumb">Custom rectangular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise244.html" class="breadcrumb">The visual elements of rectangular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise250.html" class="breadcrumb">The RectangularLabelRenderer class</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise249.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise251.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">The RectangularLabelRenderer class</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e42640">
+
+
+
+
+
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">This class is used to render text in rectangular gauges.
+The text is usually placed on a side area of the gauge (see <a href="ps_elixir_enterprise242.html" class="bluelink">Overview of a rectangular gauge</a>). The position of the text
+is controlled by:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para">The bounds of the element.</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularLabelRenderer.html#style:horizontalAlign" class="bluelink">horizontalAlign</a></span> — The horizontal placement
+of the text relative to the bounds width. Possible values are: <code class="code">left</code>, <code class="code">center</code>, and <code class="code">right</code>.</div></li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/rectangular/renderers/RectangularLabelRenderer.html#style:verticalAlign" class="bluelink">verticalAlign</a></span> — The vertical placement
+of the text relative to the bounds height. Possible values are: <code class="code">top</code>, <code class="code">middle</code>, and <code class="code">bottom</code>.</div></li></ul></div>
+<div class="para">The styling of the text is controlled by the font style
+properties like <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/gaugesClasses/GaugeElement.html#style:fontSize" class="bluelink">fontSize</a></span> and <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/gaugesClasses/GaugeElement.html#style:fontFamily" class="bluelink">fontFamily</a></span>. </div>
+<div class="para">The following code example shows a gauge with different
+label configurations:</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                backgroundColor="0xFFFFFF"&gt;
+  &lt;ilog:RectangularGauge width="100%"&gt;
+    &lt;ilog:scales&gt;
+      &lt;ilog:RectangularLinearScale/&gt;
+    &lt;/ilog:scales&gt;
+    &lt;ilog:elements&gt;
+      &lt;ilog:RectangularLabelRenderer text="Center" fontSize="20" 
+        area="center"/&gt;
+      &lt;ilog:RectangularLabelRenderer text="Top" 
+        verticalAlign="top" 
+        fontSize="15" area="top"/&gt;
+      &lt;ilog:RectangularLabelRenderer text="Left" 
+        horizontalAlign="left"  
+        fontSize="15" area="left"/&gt;
+      &lt;ilog:RectangularLabelRenderer text="Right" 
+        horizontalAlign="right" 
+        fontSize="15" area="right"/&gt;
+      &lt;ilog:RectangularLabelRenderer text="Bottom" 
+        verticalAlign="bottom" 
+        fontSize="15" area="bottom"/&gt;
+    &lt;/ilog:elements&gt;
+  &lt;/ilog:RectangularGauge&gt;
+&lt;/mx:Application&gt;
+</pre>
+<div class="para">You can also define a custom renderer for rendering the
+label. The following example shows how to use an <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/indicators/AlphaNumericIndicator35.html" class="bluelink">AlphaNumericIndicator35</a></span> renderer to render the label.</div>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+                xmlns:ilog="http://www.ilog.com/2007/ilog/flex"
+                backgroundColor="0xFFFFFF"&gt;
+  &lt;ilog:RectangularGauge width="100%"&gt;
+    &lt;ilog:scales&gt;
+      &lt;ilog:RectangularLinearScale/&gt;
+    &lt;/ilog:scales&gt;
+    &lt;ilog:elements&gt;
+      &lt;ilog:RectangularScaleRenderer/&gt;
+      &lt;ilog:RectangularLabelRenderer text="Top" 
+        verticalAlign="top" area="top"&gt;
+        &lt;ilog:labelRenderer&gt;
+          &lt;ilog:AlphaNumericIndicator35 numChars="0" onSegmentColor="0x550000" offSegmentColor="0xCCCCCC"/&gt;
+        &lt;/ilog:labelRenderer&gt;
+      &lt;/ilog:RectangularLabelRenderer&gt;
+      &lt;ilog:RectangularLabelRenderer text="Bottom" 
+        verticalAlign="bottom" area="bottom"&gt;
+        &lt;ilog:labelRenderer&gt;
+          &lt;ilog:AlphaNumericIndicator35 numChars="0" onSegmentColor="0x550000" offSegmentColor="0xCCCCCC"/&gt;
+        &lt;/ilog:labelRenderer&gt;
+      &lt;/ilog:RectangularLabelRenderer&gt;
+    &lt;/ilog:elements&gt;
+  &lt;/ilog:RectangularGauge&gt;
+&lt;/mx:Application&gt;
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise244.html" class="bluelink">The visual elements of rectangular gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise249.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise251.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

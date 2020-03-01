@@ -1,0 +1,34 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Time navigation</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex497.html" class="breadcrumb">Gantt resource charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex529.html" class="breadcrumb">Animating a resource chart</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex530.html" class="breadcrumb">Time navigation</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex529.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex531.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Time navigation</h1></div></div><div class="content">
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The Gantt sheet and the time scale provide built-in support
+for animating operations related to time navigation. For example,
+when users zoom in or out, pan to a given time, or focus on a given
+time range, all of these operations can be animated.</div>
+<div class="note"><div class="noteLabel">Note</div>
+<div class="para">By default, all of the built-in interactions provided
+by the Gantt sheet and time scale are animated. </div>
+</div>
+<div class="para">The animation settings for time navigation are held by
+the Gantt sheet. They control both the animation of time navigation
+in the Gantt sheet and animation in the time scale.</div>
+<div class="para">For more details of the available animation-related styles,
+see <span>[no target]</span>.</div>
+<div class="para">The <span class="apiname">GanttSheet</span> component
+also allows you to animate the following time navigation operations
+through its API by setting the <span class="apiname">animate</span> parameter.</div>
+<pre class="programlisting">moveTo(time:Date, animate:Boolean = false):void
+showAll(margin:Number = 10, animate:Boolean = false):void
+zoom(ratio:Number, time:Date = null, animate:Boolean = false):void
+</pre>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex529.html" class="bluelink">Animating a resource chart</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex529.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex531.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

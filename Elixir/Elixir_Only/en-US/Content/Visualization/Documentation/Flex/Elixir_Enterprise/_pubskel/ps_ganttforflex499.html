@@ -1,0 +1,65 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>Resource chart architecture</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex482.html" class="breadcrumb">Developing with the <span class="classificationVariable">Gantt</span> component</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex497.html" class="breadcrumb">Gantt resource charts</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_ganttforflex499.html" class="breadcrumb">Resource chart architecture</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_ganttforflex498.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex500.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">Resource chart architecture</h1></div></div><div class="content">
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="descriptiveTopicContent">
+<div class="para">The resource chart architecture is shown in the following
+figure.</div>
+<div class="mediaobject"><img src="../../Gantt4Flex/_media/flexprg_gantt_ResourceChart_Classes_default.png" alt="UML class&#xA;diagram of the relevant Adobe Flex 4 classes and the IBM ILOG Elixir&#xA;Gantt classes" class="imagedata"/></div>
+<div class="para">The resource chart classes shown in the UML diagram are
+described in the following table.</div>
+<div class="caption">Main resource chart classes</div><table border="1" cellpadding="4" cellspacing="0" class="ShadedHead" id="usrflprg.uss_flexprg_gantt.1029334"><thead>
+<tr align="left" bgcolor="#bfd6e7" valign="top">
+<th rowspan="1" colspan="1"><div class="para">Class</div></th>
+<th rowspan="1" colspan="1"><div class="para">Description</div></th>
+</tr>
+</thead><tbody>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/ResourceChart.html" class="bluelink">ResourceChart</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">The resource chart component. It extends the <span class="apiname">UIComponent</span> class. It is the top-level object to
+be used in MXML.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttDataGrid.html" class="bluelink">GanttDataGrid</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">The component that displays the data grid
+for the resources. The GanttDataGrid class extends the <span class="apiname">AdvancedDataGrid</span> class.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheet.html" class="bluelink">GanttSheet</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">The component that displays the Gantt sheet.
+It extends the <span class="apiname">UIComponent</span> class.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/GanttSheetEvent.html" class="bluelink">GanttSheetEvent</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">Defines the type of events dispatched by the
+Gantt sheet.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/TimeScale.html" class="bluelink">TimeScale</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">The component that displays the time scale.
+It extends the <span class="apiname">UIComponent</span> class.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskItemRenderer.html" class="bluelink">TaskItemRenderer</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">The default item renderer for tasks in the
+Gantt sheet.</div></td>
+</tr>
+<tr valign="top">
+<td rowspan="1" colspan="1"><div class="para"><span class="apilink"><a href="../../../../../../../../../../flex_gantt30/doc/html/en-US/refasdoc/html/ilog/gantt/TaskItem.html" class="bluelink">TaskItem</a></span></div></td>
+<td rowspan="1" colspan="1"><div class="para">The data that is set on the task item renderers.</div></td>
+</tr>
+</tbody></table>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_ganttforflex497.html" class="bluelink">Gantt resource charts</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_ganttforflex498.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_ganttforflex500.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_ganttforflex483.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>

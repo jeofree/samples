@@ -1,0 +1,40 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><title>About value renderer classes</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="doc.css"/></head><body><div class="General"><div class="breadcrumbs"><span class="breadcrumb"><a href="ps_elixir_enterprise.html" class="breadcrumb">IBM <span class="classificationVariable">ILOG Elixir Enterprise</span> V3.0 3.0</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise5.html" class="breadcrumb"><span class="classificationVariable">ILOG Elixir</span> Developer’s Guide</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise214.html" class="breadcrumb">Appendix: MX gauges and maps</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise215.html" class="breadcrumb">MX Gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise226.html" class="breadcrumb">Building custom gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise228.html" class="breadcrumb">Custom circular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise231.html" class="breadcrumb">The visual elements of circular gauges</a></span><span class="separator">&#160;&gt;&#160;</span><span class="breadcrumb"><a href="ps_elixir_enterprise233.html" class="breadcrumb">About value renderer classes</a></span></div><div class="header"><div class="content"><div class="navigation"><a href="manualIX.html" class="navigation" accesskey="I"><span class="index">INDEX</span></a><span class="separator">&#160;|&#160;</span><a href="ps_elixir_enterprise232.html" class="navigation" accesskey="P"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise234.html" class="navigation" accesskey="N"><span class="next">NEXT</span></a></div><h1 class="heading">About value renderer classes</h1></div></div><div class="content">
+
+
+<div class="descriptiveTopicContent" id="d0e39081">
+
+
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">A value renderer is a renderer class that represents
+a data value. The circular gauges framework provides three predefined
+value renderers:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/circular/renderers/NeedleRenderer.html" class="bluelink">NeedleRenderer</a></span> — A customizable needle
+that points the value of the renderer. See <a href="ps_elixir_enterprise234.html" class="bluelink">The NeedleRenderer class</a> for details.</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularBarRenderer.html" class="bluelink">CircularBarRenderer</a></span> — A customizable bar
+that starts from the start angle of the scale and extends to the angle
+corresponding to the value of the renderer. See <a href="ps_elixir_enterprise235.html" class="bluelink">The CircularBarRenderer class</a> for details.</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/circular/renderers/CircularGaugeAsset.html" class="bluelink">CircularGaugeAsset</a></span> — A value renderer that
+delegates the rendering to an <span class="apiname">IFlexDisplayObject</span>, which usually represents an external asset. See <a href="ps_elixir_enterprise239.html" class="bluelink">The CircularGaugeAsset class</a> for details.</div>
+</li></ul></div>
+<div class="itemizedlist"><div class="itemizedlistIntro">
+<div class="para">These renderers extend the <span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/gaugesClasses/circular/CircularValueRenderer.html" class="bluelink">CircularValueRenderer</a></span> class, which can be customized
+using the following properties:</div>
+</div><ul class="itemizedlist"><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/gaugesClasses/circular/CircularValueRenderer.html#value" class="bluelink">value</a></span> — The value the renderer
+represents.</div></li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/gaugesClasses/circular/CircularValueRenderer.html#editable" class="bluelink">editable</a></span> — This property indicates
+whether the value can be edited using mouse gestures.</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/gaugesClasses/circular/CircularValueRenderer.html#liveDragging" class="bluelink">liveDragging</a></span> — If this property is
+set to true, the value of the renderer changes during user interaction
+and not only after the interaction (which is the default behavior).</div>
+</li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/gaugesClasses/circular/CircularValueRenderer.html#editMode" class="bluelink">editMode</a></span> — The possible values
+of this property are: <code class="code">discrete</code> and <code class="code">continuous</code>. If the property is set to <code class="code">discrete</code>, the value renderer snaps to the scale accepted
+values (categories for <span class="apiname">CircularCategoryScale</span>, or value on the snapping interval for <span class="apiname">CircularLinearScale</span>) when the user moves the mouse. Otherwise, the rendered value moves
+continuously.</div></li><li class="itemizedlistItem"><div class="para"><span class="apilink"><a href="../../../../../../../en-US/refasdoc/html/ilog/gauges/gaugesClasses/circular/CircularValueRenderer.html#mouseMode" class="bluelink">mouseMode</a></span> — This property defines
+the reactive area of the renderer during an interaction. If it is
+set to <code class="code">shape</code>, only the drawn area of the
+renderer reacts to the mouse. Otherwise, the reactive area corresponds
+to a circle defined by the <span class="apiname">originX</span>, <span class="apiname">originY</span>, and <span class="apiname">radius</span> of the renderer.</div></li></ul></div>
+</div>
+<div class="relatedLinks"><div class="relatedLinksLabel">Current section</div><ul class="relatedLinks"><li><a href="ps_elixir_enterprise231.html" class="bluelink">The visual elements of circular gauges</a></li></ul></div></div><div class="footer"><div class="content"><div class="navigation"><a href="ps_elixir_enterprise232.html" class="navigation"><span class="previous">PREVIOUS</span></a><span class="separator">&#160;&#160;</span><a href="ps_elixir_enterprise234.html" class="navigation"><span class="next">NEXT</span></a></div><div class="copyright">&#169; Copyright IBM Corp. 1987, 2009. <a href="ps_elixir_enterprise2.html" class="navigation"><span class="legalterms">Legal Terms</span></a></div></div></div></div></body></html>
