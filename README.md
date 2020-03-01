@@ -14,5 +14,5 @@ For a VMWare Infocenter (PDF version) click [here](https://github.com/jeofree/sa
 
 For a recent OpenAPI 3.0 (Formerly Swagger 2.0) Spec and Documentation:
 
-Right-click here to download the html file.
-Open the downloaded file with Chrome or another browser.
+1. Right-click [here](roostify-core-api.html) and select "Save link" to download the html file.
+2. Open the downloaded file with Chrome or another browser.
