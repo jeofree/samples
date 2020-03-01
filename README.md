@@ -18,4 +18,5 @@ For a recent OpenAPI 3.0 (Formerly Swagger 2.0) Spec and Documentation:
 2. Open the downloaded file with Chrome or another browser.
 
  <img src="roostify-core-api-kong-2.png" alt="" width="426">
- *A screenshot of the documentation above as published in a Kong API Gateway*
+ 
+ _A screenshot of the documentation above as published in a Kong API Gateway_
