@@ -20,7 +20,7 @@ For a recent OpenAPI 3.0 (Formerly Swagger 2.0) Spec and Documentation:
 1. Right-click [here](roostify-core-api.html) and select "Save link as..." to download the html file.
 2. Open the downloaded file with Chrome or another browser.
 
- <img src="roostify-core-api-kong-2.png" alt="" width="526">
+ <img src="Product_Controllers_Knowledge_Bank.JPG" alt="" width="526">
  
  _A screenshot of the documentation above as published in a Kong API Gateway_
 
