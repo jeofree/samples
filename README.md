@@ -21,7 +21,7 @@ For a recent OpenAPI 3.0 (Formerly Swagger 2.0) Spec and Documentation:
 1. Right-click [here](roostify-core-api.html) and select "Save link as..." to download the html file.
 2. Open the downloaded file with Chrome or another browser.
 
- <img src="ui-and-graphics/roostify-core-api-kong-2.png" alt="" width="526">
+ <img src="roostify-core-api-kong-2.png" alt="" width="526">
  
  _A screenshot of the documentation above as published in a Kong API Gateway_
 
@@ -34,10 +34,10 @@ Goldman Sachs Confluence Knowledge Bank Interface
 
 Goldman Sachs Legal Entity Controllers Interface
 
-<img src="Legal_Entity_Controllers_Knowledge_Bank.JPG" alt="" width="626">
+<img src="ui-and-graphics/Legal_Entity_Controllers_Knowledge_Bank.JPG" alt="" width="626">
 
 
 API Documentation Interface
 
-<img src="api-splash-search.png" alt="" width="626">
+<img src="ui-and-graphics/api-splash-search.png" alt="" width="626">
 
