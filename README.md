@@ -54,5 +54,5 @@ Product Documentation Interface
 
 ## Graphics and Interactive Graphics
 
-<img src="ui-and-graphics/Diagram_Design_Sony.pdf" alt="" width="926">
+<img src="ui-and-graphics/Diagram_Design_Sony.png" alt="" width="926">
 
