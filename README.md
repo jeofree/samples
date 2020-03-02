@@ -56,3 +56,8 @@ Product Documentation Interface
 
 <img src="ui-and-graphics/sony-diagram.png" alt="" width="926">
 
+
+Interactive Machine Learning Platform [Graphic](http://jeffreyburr.org/Sony/Machine_Learning_Scroll_Sample.html)
+
+
+
