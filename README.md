@@ -58,7 +58,7 @@ Product Documentation Interface
 
 ## Interactive Graphics
 
-Machine Learning [Platform](http://jeffreyburr.org/Sony/Machine_Learning_Scroll_Sample.html)
+[Machine Learning Platform](http://jeffreyburr.org/Sony/Machine_Learning_Scroll_Sample.html)
 
-Neural Network [Intro](http://jeffreyburr.org/Sony/ML_NN_Scroll/Machine_Learning_NN_Scroll.html)
+[Neural Network Activation Layer Types](http://jeffreyburr.org/Sony/ML_NN_Scroll/Machine_Learning_NN_Scroll.html)
 
