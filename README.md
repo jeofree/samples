@@ -1,4 +1,6 @@
-# Jeffrey Burr Work Samples
+# Jeffrey Burr Work Examples
+
+This portfolio contains a sampling of documentation, user interfaces, and graphics that I've created over the years for clients and employers.
 
 ## Infocenters
 
