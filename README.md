@@ -32,7 +32,9 @@ For a recent OpenAPI 3.0 (Formerly Swagger 2.0) Spec and Documentation:
 ## Installation Guide
 
 <img src="ui-and-graphics/sphinx_slate_sample.png" alt="" width="626">
+
 _A screenshot of an installation guide written in and published using Slate and Python/Sphinx_
+
 <br/><br/>
 ## UIs
 Goldman Sachs Confluence Knowledge Bank Interface
