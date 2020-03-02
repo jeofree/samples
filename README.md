@@ -37,11 +37,11 @@ _A screenshot of an installation guide written and published using Slate and Pyt
 ## UIs
 Goldman Sachs Confluence Knowledge Bank Interface
 
- <img src="ui-and-graphics/Product_Controllers_Knowledge_Bank.JPG" alt="" width="726">
+ <img src="ui-and-graphics/Product_Controllers_Knowledge_Bank.JPG" alt="" width="926">
 
 Goldman Sachs Legal Entity Controllers Interface
 
-<img src="ui-and-graphics/Legal_Entity_Controllers_Knowledge_Bank.JPG" alt="" width="726">
+<img src="ui-and-graphics/Legal_Entity_Controllers_Knowledge_Bank.JPG" alt="" width="926">
 
 <br/><br/>
 API Documentation Interface
