@@ -12,8 +12,6 @@ For a full IBM Infocenter sample click [here](http://jeffreyburr.org/IBM/Elixir_
 
 For a VMWare Infocenter (PDF version) click [here](https://github.com/jeofree/samples/blob/master/vfabric-gemfire-ug-6.6.4.pdf).
 
-
-<br/><br/>
 <br/><br/>
 
 ## API Documentation
@@ -31,7 +29,7 @@ For a recent OpenAPI 3.0 (Formerly Swagger 2.0) Spec and Documentation:
 
 ## Installation Guide
 
-<img src="ui-and-graphics/sphinx_slate_sample.png" alt="" width="626">
+<img src="sphinx_slate_sample.png" alt="" width="626">
 
 _A screenshot of an installation guide written in and published using Slate and Python/Sphinx_
 
