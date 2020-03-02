@@ -12,6 +12,8 @@ For a full IBM Infocenter sample click [here](http://jeffreyburr.org/IBM/Elixir_
 
 For a VMWare Infocenter (PDF version) click [here](https://github.com/jeofree/samples/blob/master/vfabric-gemfire-ug-6.6.4.pdf).
 
+
+<br/><br/>
 <br/><br/>
 
 ## API Documentation
@@ -21,16 +23,11 @@ For a recent OpenAPI 3.0 (Formerly Swagger 2.0) Spec and Documentation:
 1. Right-click [here](roostify-core-api.html) and select "Save link as..." to download the html file.
 2. Open the downloaded file with Chrome or another browser.
 
-
+ <img src="roostify-core-api-kong-2.png" alt="" width="526">
  
  _A screenshot of the documentation above as published in a Kong API Gateway_
 
 <br/><br/>
-## Installation Guide
- <img src="ui-and-graphics/sphinx_slate_sample.png" alt="" width="626">
-
-_A screenshot of an installation guide created in Slate and published using Python/Sphinx_
-
 <br/><br/>
 ## UIs
 Goldman Sachs Confluence Knowledge Bank Interface
@@ -45,4 +42,3 @@ Goldman Sachs Legal Entity Controllers Interface
 API Documentation Interface
 
 <img src="ui-and-graphics/api-splash-search.png" alt="" width="626">
-
