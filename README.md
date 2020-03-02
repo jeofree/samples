@@ -43,11 +43,11 @@ Goldman Sachs Legal Entity Controllers Interface
 
 <img src="ui-and-graphics/Legal_Entity_Controllers_Knowledge_Bank.JPG" alt="" width="726">
 
-
+<br/><br/>
 API Documentation Interface
 
-<img src="ui-and-graphics/api-splash-search.png" alt="" width="726">
-
+<img src="ui-and-graphics/api-splash-search.png" alt="" width="926">
+<br/><br/>
 Product Documentation Interface
 
-<img src="ui-and-graphics/kong-roostify-landing-page.png" alt="" width="726">
+<img src="ui-and-graphics/kong-roostify-landing-page.png" alt="" width="926">
