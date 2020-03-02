@@ -51,3 +51,8 @@ API Documentation Interface
 Product Documentation Interface
 
 <img src="ui-and-graphics/kong-roostify-landing-page.png" alt="" width="926">
+
+## Graphics and Interactive Graphics
+
+<img src="ui-and-graphics/Diagram_Design_Sony.pdf" alt="" width="926">
+
