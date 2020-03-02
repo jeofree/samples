@@ -31,7 +31,7 @@ For a recent OpenAPI 3.0 (Formerly Swagger 2.0) Spec and Documentation:
 
 <img src="sphinx_slate_sample.png" alt="" width="726">
 
-_A screenshot of an installation guide written in and published using Slate and Python/Sphinx_
+_A screenshot of an installation guide written and published using Slate and Python/Sphinx_
 
 <br/><br/>
 ## UIs
@@ -47,3 +47,7 @@ Goldman Sachs Legal Entity Controllers Interface
 API Documentation Interface
 
 <img src="ui-and-graphics/api-splash-search.png" alt="" width="726">
+
+Product Documentation Interface
+
+<img src="ui-and-graphics/kong-roostify-landing-page.png" alt="" width="726">
