@@ -4,6 +4,7 @@ This portfolio contains a sampling of documentation, user interfaces, and graphi
 
 ## Infocenters
 
+This represents the kind of documentation I wrote in my earliest technical writing experiences, typically working on a team of half a dozen writers or so, learning how to write using DITA and various XML editors like Epic Editor, Oxygen XML, and IBM's in-house Information Developers Workbench (IDWB) which was actually the precusor to the DITA-OT. 
 
 For a full IBM Infocenter sample click [here](http://jeffreyburr.org/IBM/Elixir_Only/en-US/Content/Visualization/Documentation/Flex/Elixir_Enterprise/_pubskel/).
 
