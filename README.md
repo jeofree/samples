@@ -28,7 +28,7 @@ For a recent OpenAPI 3.0 (Formerly Swagger 2.0) Spec and Documentation:
 ## UI
 Goldman Sachs Confluence Knowledge Bank Interface
 
- <img src="ui-and-graphics/Product_Controllers_Knowledge_Bank.JPG" alt="" width="526">
+ <img src="ui-and-graphics/Product_Controllers_Knowledge_Bank.JPG" alt="" width="626">
 
 
 
