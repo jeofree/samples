@@ -10,6 +10,9 @@ For a full IBM Infocenter sample click [here](http://jeffreyburr.org/IBM/Elixir_
 
 For a VMWare Infocenter (PDF version) click [here](https://github.com/jeofree/samples/blob/master/vfabric-gemfire-ug-6.6.4.pdf).
 
+
+
+
 ## API Documentation
 
 For a recent OpenAPI 3.0 (Formerly Swagger 2.0) Spec and Documentation:
