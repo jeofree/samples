@@ -4,7 +4,7 @@ This portfolio contains a sampling of documentation, user interfaces, and graphi
 
 ## Infocenters
 
-This represents the kind of documentation I wrote in my earliest technical writing experiences, typically working on a team of half a dozen writers or so, learning how to write using DITA and various XML editors like Epic Editor, Oxygen XML, and IBM's in-house Information Developers Workbench (IDWB) which was actually the precusor to the DITA-OT. 
+This represents the kind of documentation I wrote in my earliest technical writing experiences for companies including Alcatel, Lucent, and IBM. This typically meant working on a team of ~ half a dozen writers, learning how to write using DITA and various XML editors like Epic Editor, Oxygen XML, and IBM's in-house Information Developers Workbench (IDWB) which was actually the precusor to the DITA-OT. 
 
 For a full IBM Infocenter sample click [here](http://jeffreyburr.org/IBM/Elixir_Only/en-US/Content/Visualization/Documentation/Flex/Elixir_Enterprise/_pubskel/).
 
@@ -16,6 +16,8 @@ For a VMWare Infocenter (PDF version) click [here](https://github.com/jeofree/sa
 <br/><br/>
 
 ## API Documentation
+
+A more recent set of skills I've learned is writing OpenAPI (formerly called Swagger) documentation, including not just documentation in the traditional sense of descriptions and guidance but gaining a certain level of expertise with writing the Swagger/OpenAPI specs myself. 
 
 For a recent OpenAPI 3.0 (Formerly Swagger 2.0) Spec and Documentation:
 
