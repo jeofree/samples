@@ -6,10 +6,7 @@ This portfolio contains a sampling of documentation, user interfaces, and graphi
 
 This represents the kind of documentation I wrote in my earliest technical writing experiences at Alcatel and IBM. This typically meant working on a team of half a dozen writers, learning how to write using DITA and various XML editors like Epic Editor, Oxygen XML, and IBM's in-house Information Developers Workbench (IDWB) which was actually the precusor to the DITA-OT. 
 
-For a full IBM Infocenter sample click [here](http://jeffreyburr.org/IBM/Elixir_Only/en-US/Content/Visualization/Documentation/Flex/Elixir_Enterprise/_pubskel/).
-
  <img src="https://raw.githubusercontent.com/jeofree/samples/master/ui-and-graphics/elixir-image.png" alt="" width="726">
-
 
 For a VMWare Infocenter (PDF version) click [here](https://github.com/jeofree/samples/blob/master/vfabric-gemfire-ug-6.6.4.pdf).
 
