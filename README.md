@@ -30,8 +30,9 @@ For a recent OpenAPI 3.0 (Formerly Swagger 2.0) Spec and Documentation:
 
 ## Recent Work: New Developer Hire Guide
 
-I created this in Confluence, this is a PDF export of one topic, with a small amount of redacted content.
+I created this in Confluence, this is a PDF export of one part of a topic, with a small amount of redacted content.
 
+<img src="new_hire_developer_guide.png" alt="" width="726">
 
 
 
