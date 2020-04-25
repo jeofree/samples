@@ -27,6 +27,15 @@ For a recent OpenAPI 3.0 (Formerly Swagger 2.0) Spec and Documentation:
 
 <br/><br/>
 
+
+## Recent Work: New Developer Hire Guide
+
+I created this in Confluence, this is a PDF export of one topic, with a small amount of redacted content.
+
+
+
+
+
 ## Installation Guide
 
 <img src="sphinx_slate_sample.png" alt="" width="726">
