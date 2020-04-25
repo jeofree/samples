@@ -28,7 +28,7 @@ For a recent OpenAPI 3.0 (Formerly Swagger 2.0) Spec and Documentation:
 <br/><br/>
 
 
-## Recent Work: New Developer Hire Guide
+## Recent Work: New Hire/Developer Guide
 
 I created this in Confluence, this is a PDF export of one part of a topic, with a small amount of redacted content.
 
