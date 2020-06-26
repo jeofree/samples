@@ -2,4 +2,5 @@ myBranch - first line
 
 new test file content april 25
 
-boo
+jfbTestBranch text here, yessiree
+>>>>>>> jfbTestBranch
