@@ -1,0 +1,1 @@
+define({numchunks:1,prefix:'Glossary_Chunk',terms:[{t:'A record',c:0},{t:'host address resource record',c:0},{t:'Sender Policy Framework',c:0}]});

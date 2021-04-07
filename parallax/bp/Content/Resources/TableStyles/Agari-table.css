@@ -1,0 +1,601 @@
+/* MadCap Table Style: */
+
+/*<meta Version="9" />*/
+
+mcTableStyle
+{
+	name: Agari-table;
+	margin-left: 0in;
+	margin-right: 0in;
+	margin-top: 12pt;
+	margin-bottom: 12pt;
+	border-spacing-x: 0;
+	border-spacing-y: 0;
+	border-collapse: collapse;
+	border-left-color: #000000;
+	border-right-color: #000000;
+	border-top-color: #000000;
+	border-bottom-color: #000000;
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-right-style: none;
+	border-left-style: none;
+	cell-padding-top: 6pt;
+	cell-padding-left: 6pt;
+	cell-padding-right: 6pt;
+	cell-padding-bottom: 4pt;
+	max-id: 4;
+}
+
+mcTableColumnStyle
+{
+	separator-style: none;
+	name: Column1;
+	id: 0;
+}
+
+mcTableHeadStyle
+{
+	name: Header1;
+	id: 3;
+}
+
+mcTableBodyStyle
+{
+	span: 1;
+	separator-style: none;
+	name: Body1;
+	id: 1;
+}
+
+mcTableBodyStyle
+{
+	span: 1;
+	separator-style: none;
+	name: Body2;
+	id: 2;
+}
+
+mcTableFootStyle
+{
+	name: Footer1;
+	id: 4;
+}
+
+
+/* Cell Styles: */
+ 
+.TableStyle-Agari-table
+{
+	border-collapse: collapse;
+	border-left-style: none;
+	border-left-color: #000000;
+	border-right-style: none;
+	border-right-color: #000000;
+	border-top-style: solid;
+	border-top-color: #000000;
+	border-top-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #000000;
+	border-bottom-width: 1px;
+	margin-left: 0in;
+	margin-right: 0in;
+	margin-top: 12pt;
+	margin-bottom: 12pt;
+	border-spacing: 0px 0px;
+}
+
+.TableStyle-Agari-table-Column-Column1
+{
+	
+}
+
+.TableStyle-Agari-table-Head-Header1
+{
+	
+}
+
+.TableStyle-Agari-table-HeadI-Column1-Header1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-HeadI-Column1-Header1 p
+{
+	
+}
+
+.TableStyle-Agari-table-HeadE-Column1-Header1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+	border-right-style: none;
+}
+
+.TableStyle-Agari-table-HeadE-Column1-Header1 p
+{
+	
+}
+
+.TableStyle-Agari-table-HeadF-Column1-Header1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-HeadF-Column1-Header1 p
+{
+	
+}
+
+.TableStyle-Agari-table-HeadH-Column1-Header1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+	border-right-style: none;
+}
+
+.TableStyle-Agari-table-HeadH-Column1-Header1 p
+{
+	
+}
+
+.TableStyle-Agari-table-HeadD-Column1-Header1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-HeadD-Column1-Header1 p
+{
+	
+}
+
+.TableStyle-Agari-table-HeadC-Column1-Header1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-HeadC-Column1-Header1 p
+{
+	
+}
+
+.TableStyle-Agari-table-HeadB-Column1-Header1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+	border-right-style: none;
+}
+
+.TableStyle-Agari-table-HeadB-Column1-Header1 p
+{
+	
+}
+
+.TableStyle-Agari-table-HeadA-Column1-Header1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-HeadA-Column1-Header1 p
+{
+	
+}
+
+.TableStyle-Agari-table-HeadG-Column1-Header1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-HeadG-Column1-Header1 p
+{
+	
+}
+
+.TableStyle-Agari-table-Foot-Footer1
+{
+	
+}
+
+.TableStyle-Agari-table-FootI-Column1-Footer1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-FootI-Column1-Footer1 p
+{
+	
+}
+
+.TableStyle-Agari-table-FootE-Column1-Footer1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+	border-right-style: none;
+}
+
+.TableStyle-Agari-table-FootE-Column1-Footer1 p
+{
+	
+}
+
+.TableStyle-Agari-table-FootF-Column1-Footer1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-FootF-Column1-Footer1 p
+{
+	
+}
+
+.TableStyle-Agari-table-FootH-Column1-Footer1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+	border-right-style: none;
+}
+
+.TableStyle-Agari-table-FootH-Column1-Footer1 p
+{
+	
+}
+
+.TableStyle-Agari-table-FootD-Column1-Footer1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-FootD-Column1-Footer1 p
+{
+	
+}
+
+.TableStyle-Agari-table-FootC-Column1-Footer1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-FootC-Column1-Footer1 p
+{
+	
+}
+
+.TableStyle-Agari-table-FootB-Column1-Footer1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+	border-right-style: none;
+}
+
+.TableStyle-Agari-table-FootB-Column1-Footer1 p
+{
+	
+}
+
+.TableStyle-Agari-table-FootA-Column1-Footer1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-FootA-Column1-Footer1 p
+{
+	
+}
+
+.TableStyle-Agari-table-FootG-Column1-Footer1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-FootG-Column1-Footer1 p
+{
+	
+}
+
+.TableStyle-Agari-table-Body-Body1
+{
+	
+}
+
+.TableStyle-Agari-table-BodyI-Column1-Body1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-BodyI-Column1-Body1 p
+{
+	
+}
+
+.TableStyle-Agari-table-BodyE-Column1-Body1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+	border-bottom-style: none;
+	border-right-style: none;
+}
+
+.TableStyle-Agari-table-BodyE-Column1-Body1 p
+{
+	
+}
+
+.TableStyle-Agari-table-BodyF-Column1-Body1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+	border-bottom-style: none;
+}
+
+.TableStyle-Agari-table-BodyF-Column1-Body1 p
+{
+	
+}
+
+.TableStyle-Agari-table-BodyH-Column1-Body1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+	border-right-style: none;
+}
+
+.TableStyle-Agari-table-BodyH-Column1-Body1 p
+{
+	
+}
+
+.TableStyle-Agari-table-BodyD-Column1-Body1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+	border-bottom-style: none;
+}
+
+.TableStyle-Agari-table-BodyD-Column1-Body1 p
+{
+	
+}
+
+.TableStyle-Agari-table-BodyC-Column1-Body1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-BodyC-Column1-Body1 p
+{
+	
+}
+
+.TableStyle-Agari-table-BodyB-Column1-Body1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+	border-right-style: none;
+}
+
+.TableStyle-Agari-table-BodyB-Column1-Body1 p
+{
+	
+}
+
+.TableStyle-Agari-table-BodyA-Column1-Body1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-BodyA-Column1-Body1 p
+{
+	
+}
+
+.TableStyle-Agari-table-BodyG-Column1-Body1
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-BodyG-Column1-Body1 p
+{
+	
+}
+
+.TableStyle-Agari-table-Body-Body2
+{
+	
+}
+
+.TableStyle-Agari-table-BodyI-Column1-Body2
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-BodyI-Column1-Body2 p
+{
+	
+}
+
+.TableStyle-Agari-table-BodyE-Column1-Body2
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+	border-bottom-style: none;
+	border-right-style: none;
+}
+
+.TableStyle-Agari-table-BodyE-Column1-Body2 p
+{
+	
+}
+
+.TableStyle-Agari-table-BodyF-Column1-Body2
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+	border-bottom-style: none;
+}
+
+.TableStyle-Agari-table-BodyF-Column1-Body2 p
+{
+	
+}
+
+.TableStyle-Agari-table-BodyH-Column1-Body2
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+	border-right-style: none;
+}
+
+.TableStyle-Agari-table-BodyH-Column1-Body2 p
+{
+	
+}
+
+.TableStyle-Agari-table-BodyD-Column1-Body2
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+	border-bottom-style: none;
+}
+
+.TableStyle-Agari-table-BodyD-Column1-Body2 p
+{
+	
+}
+
+.TableStyle-Agari-table-BodyC-Column1-Body2
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-BodyC-Column1-Body2 p
+{
+	
+}
+
+.TableStyle-Agari-table-BodyB-Column1-Body2
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+	border-right-style: none;
+}
+
+.TableStyle-Agari-table-BodyB-Column1-Body2 p
+{
+	
+}
+
+.TableStyle-Agari-table-BodyA-Column1-Body2
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-BodyA-Column1-Body2 p
+{
+	
+}
+
+.TableStyle-Agari-table-BodyG-Column1-Body2
+{
+	padding-left: 6pt;
+	padding-right: 6pt;
+	padding-top: 6pt;
+	padding-bottom: 4pt;
+}
+
+.TableStyle-Agari-table-BodyG-Column1-Body2 p
+{
+	
+}
+
+

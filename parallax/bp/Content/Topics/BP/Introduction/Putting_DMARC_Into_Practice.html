@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" class="concept _Skins_Agari__HTML5___Side_Navigation" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-has-content-body="True" data-mc-toc-path="Introduction" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta name="prodname" content="Brand Protection" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="msapplication-config" content="../../../../Skins/Favicons/browserconfig.xml" />
+        <link rel="shortcut icon" href="../../../../Skins/Favicons/favicon-32x32.png" />
+        <link rel="icon" sizes="42x42" href="../../../../Skins/Favicons/Agari_A_small.png" />
+        <link rel="icon" sizes="32x32" href="../../../../Skins/Favicons/favicon-32x32.png" />
+        <link rel="icon" sizes="16x16" href="../../../../Skins/Favicons/favicon-16x16.png" /><title>Putting DMARC Into Practice</title>
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Fluid/Stylesheets/foundation.6.2.3.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Fluid/Stylesheets/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Fluid/Stylesheets/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Fluid/Stylesheets/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Resources/Stylesheets/agari_bp.css" rel="stylesheet" type="text/css" />
+        <link href="../../../Resources/Stylesheets/agari.css" rel="stylesheet" type="text/css" />
+        <link href="../../../Resources/Fonts/css/solid.css" rel="stylesheet" type="text/css" />
+        <link href="../../../Resources/Stylesheets/web-fonts-with-css/css/fontawesome-agari.css" rel="stylesheet" type="text/css" />
+        <style>/*&lt;meta /&gt;*/
+
+.button.print-button
+{
+	-pie-background: url('../../../../Skins/Default/Stylesheets/Images/printer.png') no-repeat center center, linear-gradient(#ffffff, #ececec);
+}
+
+.button.expand-all-button
+{
+	-pie-background: url('../../../../Skins/Default/Stylesheets/Images/expand.png') no-repeat center center, linear-gradient(#ffffff, #ececec);
+}
+
+.button.collapse-all-button
+{
+	-pie-background: url('../../../../Skins/Default/Stylesheets/Images/collapse.png') no-repeat center center, linear-gradient(#ffffff, #ececec);
+}
+
+.needs-pie
+{
+	behavior: url('../../../../Resources/Scripts/PIE-no-motw.htc');
+}
+
+</style>
+        <link rel="shortcut icon" href="../../../../Skins/Favicons/favicon-32x32.png" />
+        <link rel="icon" sizes="42x42" href="../../../../Skins/Favicons/Agari_A_small.png" />
+        <link rel="icon" sizes="32x32" href="../../../../Skins/Favicons/favicon-32x32.png" />
+        <link rel="icon" sizes="16x16" href="../../../../Skins/Favicons/favicon-16x16.png" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" type="text/javascript" defer="defer">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" type="text/javascript" defer="defer">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.6.2.3_custom.js" type="text/javascript" defer="defer">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" type="text/javascript" defer="defer">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" type="text/javascript" defer="defer">
+        </script>
+    </head>
+    <body>
+        <div class="foundation-wrap off-canvas-wrapper">
+            <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper="">
+                <aside class="off-canvas position-right" role="navigation" id="offCanvas" data-off-canvas="" data-position="right" data-mc-ignore="true">
+                    <ul class="off-canvas-drilldown vertical menu off-canvas-list" data-drilldown="" data-mc-back-link="Back" data-mc-css-tree-node-expanded="is-drilldown-submenu-parent" data-mc-css-tree-node-collapsed="is-drilldown-submenu-parent" data-mc-css-sub-menu="vertical menu slide-in-right is-drilldown-submenu" data-mc-include-indicator="False" data-mc-include-icon="False" data-mc-include-parent-link="True" data-mc-include-back="True" data-mc-defer-expand-event="True" data-mc-expand-event="click.zf.drilldown" data-mc-toc="True">
+                    </ul>
+                </aside>
+                <div class="off-canvas-content inner-wrap" data-off-canvas-content="">
+                    <div data-sticky-container="" class="title-bar-container">
+                        <nav class="title-bar tab-bar sticky" data-sticky="" data-options="marginTop:0" style="width:100%" data-sticky-on="only screen and (max-width: 1279px)" data-mc-ignore="true"><a class="skip-to-content fluid-skip showOnFocus" href="#">Skip To Main Content</a>
+                            <div class="middle title-bar-section outer-row clearfix">
+                                <div class="menu-icon-container relative clearfix">
+                                    <div class="central-dropdown" style="display:none;" id="#centralSmallScreen"><a class="central-account-drop"><span class="central-account-image"></span><span class="central-account-text">Account</span></a>
+                                        <div class="central-dropdown-content"><a class="MCCentralLink central-dropdown-content-settings">Settings</a>
+                                            <hr class="central-separator" /><a class="MCCentralLink central-dropdown-content-logout">Logout</a>
+                                        </div>
+                                    </div>
+                                    <button class="menu-icon" aria-label="Show Navigation Panel" data-toggle="offCanvas"><span></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="title-bar-layout outer-row">
+                                <div class="logo-wrapper"><a class="logo" href="Introduction_to_DMARC.html" alt="Logo"></a>
+                                </div>
+                                <div class="navigation-wrapper nocontent">
+                                    <ul class="navigation clearfix" data-mc-css-tree-node-has-children="has-children" data-mc-css-sub-menu="sub-menu" data-mc-expand-event="mouseenter" data-mc-top-nav-menu="True" data-mc-max-depth="3" data-mc-include-icon="False" data-mc-include-indicator="False" data-mc-include-children="True" data-mc-include-siblings="True" data-mc-include-parent="True" data-mc-toc="True">
+                                        <li class="placeholder" style="visibility:hidden"><a>placeholder</a>
+                                        </li>
+                                    </ul>
+                                    <div class="central-dropdown" style="display:none;" id="#centralTop"><a class="central-account-drop"><span class="central-account-image"></span><span class="central-account-text">Account</span></a>
+                                        <div class="central-dropdown-content"><a class="MCCentralLink central-dropdown-content-settings">Settings</a>
+                                            <hr class="central-separator" /><a class="MCCentralLink central-dropdown-content-logout">Logout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="nav-search-wrapper">
+                                    <div class="nav-search row">
+                                        <form class="search" action="#">
+                                            <div class="search-bar search-bar-container needs-pie">
+                                                <input class="search-field needs-pie" type="search" aria-label="Search Field" placeholder="Search" />
+                                                <div class="search-filter-wrapper"><span class="invisible-label" id="search-filters-label">Filter: </span>
+                                                    <div class="search-filter" aria-haspopup="true" aria-controls="sf-content" aria-expanded="false" aria-label="Search Filter" title="All Files" role="button" tabindex="0">
+                                                    </div>
+                                                    <div class="search-filter-content" id="sf-content">
+                                                        <ul>
+                                                            <li>
+                                                                <button class="mc-dropdown-item" aria-labelledby="search-filters-label filterSelectorLabel-00001"><span id="filterSelectorLabel-00001">All Files</span>
+                                                                </button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="search-submit-wrapper" dir="ltr">
+                                                    <div class="search-submit" title="Search" role="button" tabindex="0"><span class="invisible-label">Submit Search</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="central-dropdown" style="display:none;"><a class="central-account-drop"><span class="central-account-image"></span><span class="central-account-text">Account</span></a>
+                                        <div class="central-dropdown-content"><a class="MCCentralLink central-dropdown-content-settings">Settings</a>
+                                            <hr class="central-separator" /><a class="MCCentralLink central-dropdown-content-logout">Logout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="main-section">
+                        <div class="row outer-row sidenav-layout">
+                            <nav class="sidenav-wrapper">
+                                <div class="sidenav-container">
+                                    <ul class="off-canvas-accordion vertical menu sidenav" data-accordion-menu="" data-mc-css-tree-node-expanded="is-accordion-submenu-parent" data-mc-css-tree-node-collapsed="is-accordion-submenu-parent" data-mc-css-sub-menu="vertical menu accordion-menu is-accordion-submenu nested" data-mc-include-indicator="False" data-mc-include-icon="False" data-mc-include-parent-link="False" data-mc-include-back="False" data-mc-defer-expand-event="True" data-mc-expand-event="click.zf.accordionMenu" data-mc-toc="True" data-mc-side-nav-menu="True">
+                                    </ul>
+                                </div>
+                            </nav>
+                            <div class="body-container">
+                                <div data-mc-content-body="True">
+                                    <div class="nocontent">
+                                        <div class="MCBreadcrumbsBox_0 breadcrumbs" role="navigation" aria-label="Breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+                                        </div>
+                                    </div>
+                                    <div role="main" id="mc-main-content">
+                                        <h1 data-mc-conditions="Agari.DITA Exclude">Putting DMARC Into Practice</h1>
+                                        <p>The detailed process for implementing DMARC using <span class="mc-variable Variables_BP_BFP.Product_Name_(long) variable">Agari Brand Protection</span> is the remainder of this guide; however, the high-level process is as follows: domain owners who wish to become DMARC-compliant need to perform 3 activities, repeating as necessary for each domain they plan to protect:</p>
+                                        <h3>Publish a DMARC record</h3>
+                                        <p>To begin collecting feedback from receivers, publish a DMARC record as a TXT record with a domain name of “_dmarc.&lt;your-domain.com&gt;”:<br /></p>
+                                        <p><span class="code">“v=DMARC1; p=none; rua=mailto:dmarc-feedback@&lt;your-domain.com&gt;;</span>
+                                        </p>
+                                        <p class="Indented">Doing so will cause DMARC-compliant receivers to generate and send aggregate feedback to “dmarc-feedback@&lt;your-domain.com&gt;”. The “p=none” tag lets receivers know that the domain owner is only interested in collecting feedback.</p>
+                                        <h3>Deploy email authentication: SPF and DKIM</h3>
+                                        <p> Deployment of SPF involves creating and publishing an SPF record that describes all of the servers authorized to send on behalf of an email domain. Small organizations usually have simple SPF records, where complex organizations often maintain SPF records that authorize a variety of data-centers, partners, and 3rd-party senders. DMARC-supplied aggregate feedback can help identify legitimate servers while bootstrapping an SPF record.</p>
+                                        <p>Deployment of DKIM requires domain owners to configure email servers to insert DKIM-Signatures into email and to publish public keys in the DNS. 
+		DKIM is widely available and supported by all major email vendors. 
+			DMARC-supplied aggregate feedback can help identify servers that emit email without DKIM signatures.</p>
+                                        <h3>Ensure that Identifier Alignment is met</h3>
+                                        <p> DMARC-supplied aggregate feedback can be used to identify where underlying authentication technologies are generating authenticated domain identifiers that do not align with the Email Domain. 
+		Correction can be rapidly made once misalignment is identified.</p>
+                                        <h2><a name="overview.revised_2550690700_1016628"></a>Why Implementing DMARC is Challenging</h2>
+                                        <h3>Poor Visibility</h3>
+                                        <p>Most companies don’t realize how complex their email ecosystem is until they begin getting aggregate data from DMARC reporting. Standard reporting comes in the form of individual XML files that specify domain names, IP addresses and authentication details. While many tools can parse and visualize this XML data, making sense of the stream and understanding what subsequent actions to take to improve the authentication status of domains is very difficult and error prone, requiring a deep understanding of email flows.</p>
+                                        <h3>Discovering &amp; Authorizing 3rd Party Senders</h3>
+                                        <p>The most challenging step of the DMARC journey is understanding all of your third party senders and ensuring that legitimate senders are authenticating properly. On average, customers have 64% of legitimate emails sent through 3rd parties such as Salesforce.com, Marketo, or MailChimp.</p>
+                                        <figure>
+                                            <img src="../../../Resources/Images/BP/3rd-party-senders.png" />
+                                            <figcaption>Prevalence of 3rd-party Senders</figcaption>
+                                        </figure>
+                                        <h3>The cost of “doing it wrong”</h3>
+                                        <p>Despite the emergence of new messaging platforms, email continues to be the most critical vehicle for communication and digital engagement for organizations. Incorrectly configuring authentication can lead to false positives, deliverability issues, and brand damage. Taking the final step to a Reject policy can be a daunting prospect if the business impact of undeliverable email is unknown or cannot be predicted.</p>
+                                        <h2><a name="overview.revised_2550690700_998531"></a>Specifying “Authentic” Email</h2>
+                                        <p><span class="mc-variable Variables_BP_BFP.Product_Name_(long) variable">Agari Brand Protection</span> and the DMARC specification allow you to identify and authorize legitimate (approved) senders who send mail “from” your domain differently from illegitimate senders who may be abusing your brand.</p>
+                                        <h1><a name="overview.revised_2550690700_1008629"></a>What You’ll Be Doing</h1>
+                                        <p>While DMARC implementation involves a level of technical understanding of the specifications and how to use them, it also involves administration, management, and communication. Over time, you are likely to gain an intimate understanding of email senders, both internal and external to your organization.</p>
+                                        <h2><a name="overview.revised_2550690700_1008631"></a>Moving toward a DMARC policy of “p=reject”</h2>
+                                        <p>DMARC is initially implemented by adding TXT record in the DNS record for your domain. The file contains properties and values that you edit to specify how DMARC applies policies for the domains that you control.</p>
+                                        <p>Your goal in the process of implementing DMARC is to move, ultimately toward a policy (labeled 'p') of 'p=reject'. A reject policy tells email receivers that all non-compliant emails should be discarded. However, the DMARC specification contains a variety of policies to afford a gradual implementation. without impacting your mail flow. Allowing for incremental deployment and strengthening of DMARC policies was a primary design goal for the specification. See <a href="How_DMARC_Works.html" class="MCXref xref">How DMARC Works</a>. </p>
+                                        <p>You start with a simple “monitoring-mode” record for a sub-domain or domain that requests DMARC receivers to send you statistics about messages they see using your (sub-)domain. You can do this even before you’ve implemented SPF or DKIM in your messaging infrastructure (though until they are in place you won’t be able to move beyond this step). </p>
+                                        <p>As you introduce SPF (<a href="../SPF/Build_and_Propose_a_New_SPF_Record.html" class="MCXref xref">Build and Propose a New SPF Record</a>) and DKIM (<a href="../DKIM/DomainKeys_Identified_Mail.html" class="MCXref xref">DomainKeys Identified Mail</a>), the reports will provide the numbers and sources of messages that pass these checks, and those that don’t. You can easily see how much of your legitimate traffic is or is not covered by them, and troubleshoot any problems. You’ll also begin to see how many fraudulent messages are being sent, and where from.</p>
+                                        <p>When you believe that all or most of your legitimate traffic is protected by SPF and DKIM, you can implement a “quarantine” policy — you’re now asking DMARC receivers to put messages using your domain that fail both of these checks into the local equivalent of a spam folder. You can even request that only a percentage of your email traffic have this policy applied – you’ll still get the statistical reports that allow you to see what’s happening to your messages.</p>
+                                        <p>Eventually as any implementation problems are addressed, you can increase that percentage to 100% at whatever pace you’re comfortable with. In the end, all messages that fail the DMARC checks should be going to the spam folder instead of your customers’ inboxes.</p>
+                                        <h2><a name="overview.revised_2550690700_1003071"></a>DMARC prerequisites</h2>
+                                        <p>Before you start with your DMARC implementation using <span class="mc-variable Variables_BP_BFP.Product_Name_(short) variable">Brand Protection</span>, you will need to perform the following tasks: </p>
+                                        <h3>Ensure you have access to <span class="mc-variable Variables_BP_BFP.Product_Name_(short) variable">Brand Protection</span>.<br /></h3>
+                                        <p class="Indented">Your <span class="mc-variable Variables_Global.Company_Name_(Short) variable">Agari</span> representative should have provided access for at least one user account to <span class="mc-variable Variables_BP_BFP.Product_Name_(short) variable">Brand Protection</span>, located at <span class="mc-variable Variables_BP_BFP.Product_URL variable">https://bp.agari.com</span>. </p>
+                                        <p class="Indented">Contact <span class="mc-variable Variables_Global.Company_Name_(Short) variable">Agari</span> support <span class="mc-variable Variables_Global.Company_Support_URL variable">https://www.agari.com/support/</span><MadCap:conditionalText data-mc-conditions="Agari.Agari Only">, or submit a support case to <span class="mc-variable Variables_Global.Company_Support_Email variable">support@agari.com</span>. For urgent matters, please call <span class="mc-variable Variables_Global.Company_Name_(Short) variable">Agari</span> support at <span class="mc-variable Variables_Global.Company_Support_Phone_Number variable">855-682-1708</span></MadCap:conditionalText>.</p>
+                                        <p class="Indented">The one user account is an administrative account; additional user accounts (with varying roles and permissions for delegated administrative or read-only rights) can be created from this original account. For details, see <a href="../Admin/User_Accounts/User_Accounts.html" class="MCXref xref">User Accounts</a>.</p>
+                                        <h3>Gather a list of domains<br /></h3>
+                                        <p class="Indented">You will need a list of domains and sub-domains that you plan to protect for your organization. This list should include the primary domain for your organization, that is, the one most associated with your organization and the one most used for sending email (for example: <span class="Code">coltrane.net</span>), as well as any <span class="Emphasis">defensive</span> or <span class="Emphasis">test</span> domains that your organization owns and maintains (for example: <span class="Code">blue.coltrane.net</span>, <span class="Code">coltrane-soprano.net</span>, <span class="Code">coltrane-tenor.net</span>, <span class="Code">a-love-supreme.net</span>, etc.). <span class="_Override" style="color: #2a2a2a;">Keep in mind any history of mergers and acquisitions, along with specific instances where domains were created and used to distinguish products and processes. </span></p>
+                                        <h3>Obtain the ability to make DNS changes<br /></h3>
+                                        <p class="Indented">You will need the ability to make changes to the Domain Name System (DNS) records for the domains you plan to protect. The DMARC authentication protocol (as well as the SPF and DKIM protocols) relies on DNS services in order to perform authentication. You’ll need to make changes to DNS throughout the process of securing your domains — from getting initial data to flow into <span class="mc-variable Variables_BP_BFP.Product_Name_(short) variable">Brand Protection</span>, to modifying your DMARC policies from monitor to reject. </p>
+                                        <h3>Compile a list of Stakeholders<br /></h3>
+                                        <p class="Indented">The process for authenticating all outbound email for your organization may involve a large number of groups, depending on the size of your organization. For example, you may have:</p>
+                                        <ul>
+                                            <li>A marketing team that sends email blasts to potential customers by using third-party software</li>
+                                            <li>A support team that communicates with existing customers both directly and through support software</li>
+                                            <li>A business continuity team tasked with sending order confirmations or receipts automatically from back-end systems</li>
+                                        </ul>
+                                        <p class="Indented">All teams need to be aware of requirements for authentication of the email they send on behalf of your organization — as well as the deliverability issues if they fail to authenticate properly as DMARC policies you enable become more stringent. Communicate early and often throughout this process!</p>
+                                        <h1>References</h1>
+                                        <p class="Indented" style="font-family: 'Open Sans';color: #2a2a2a;">Here is a video reference <MadCap:conditionalText data-mc-conditions="Agari.Agari Only">from <span class="mc-variable Variables_Global.Company_Name_(Short) variable">Agari</span>’s founder </MadCap:conditionalText>that can help you understand the fundamental concepts in DMARC: <span class="Bold">Patrick Peterson</span>, “DMARC Whiteboard Session” <br /><a href="https://www.brighttalk.com/webcast/10593/104965/dmarc-whiteboard-session-for-engineers" class="link">https://www.brighttalk.com/webcast/10593/104965/dmarc-whiteboard-session-for-engineers</a></p>
+                                    </div>
+                                    <div class="buttons popup-container clearfix topicToolbarProxy _Skins_TopicToolBar mc-component nocontent" style="mc-topic-toolbar-items: ;">
+                                        <div class="button-group-container-left">
+                                            <button class="button needs-pie print-button" title="Print">
+                                                <img alt="Print" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" class="invisible-label" />
+                                            </button>
+                                            <button class="button needs-pie expand-all-button" data-state1-class="expand-all-button" data-state2-class="collapse-all-button" data-state2-title="Collapse all" title="Expand all" data-state1-title="Expand all">
+                                                <img alt="Expand all" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" class="invisible-label" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <MadCap:pageFooter data-mc-conditions="Agari.Online Only">
+                                        <p class="topicfooter">
+                -&#160;&#160;Topic last updated: <span class="mc-variable Variables_Global.LastUpdatedDate variable">Monday, November 02, 2020</span>&#160;&#160;-&#160;&#160;Copyright © <span class="mc-variable Variables_Global.CurrentYear variable">2020</span> <span class="mc-variable Variables_Global.Company_Name_(Long) variable">Agari, Inc.</span>&#160;&#160; -</p>
+                                    </MadCap:pageFooter>
+                                    <script type="text/javascript">/*<![CDATA[*/
+			$(document).ready(function(){
+			$("#skin-heading").appendTo("div.logo-wrapper");
+			var prodname = $("meta[name=prodname]").attr("content");
+			document.title = prodname + " - " + document.title;
+			});
+		/*]]>*/</script>
+                                </div>
+                            </div>
+                        </div>
+                    </div><a data-close="true"></a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
