@@ -2,21 +2,16 @@
 
 This portfolio contains a sampling of documentation, user interfaces, and graphics that I've created for clients and employers.
 
-## Infocenters
 
-This represents the kind of documentation I wrote in my earliest technical writing experiences at Alcatel and IBM. This typically meant working on a team of half a dozen writers, learning how to write using DITA and various XML editors like Epic Editor, Oxygen XML, and IBM's in-house Information Developers Workbench (IDWB) which was actually the precusor to the DITA-OT. 
-
- <img src="https://raw.githubusercontent.com/jeofree/samples/master/ui-and-graphics/elixir-image.png" alt="" width="726">
-
-For a VMWare Infocenter (PDF version) click [here](https://github.com/jeofree/samples/blob/master/vfabric-gemfire-ug-6.6.4.pdf).
-
-<br/><br/>
 
 ## API Documentation
 
-A more recent set of skills I've learned is writing OpenAPI (formerly called Swagger) documentation, including not just documentation in the traditional sense of descriptions and guidance but gaining a certain level of expertise with writing the Swagger/OpenAPI specs myself. 
+Expertise with OpenAPI 3.0, Swagger 2.0 (and the difference between them). A recent documentation sample from my current work:
 
-For a recent OpenAPI 3.0 (Formerly Swagger 2.0) Spec and Documentation:
+ <img src="cisco-api-sample.png" alt="" width="726">
+
+
+For an full OpenAPI 3.0 (Formerly Swagger 2.0) Spec and Documentation:
 
 1. Right-click [here](roostify-core-api.html) and select "Save link as..." to download the html file.
 2. Open the downloaded file with Chrome or another browser.
@@ -34,7 +29,15 @@ I created this in Confluence, this is a PDF export of one part of a topic, with 
 
 <img src="new_hire_developer_guide.png" alt="" width="726">
 
+## Infocenters
 
+This represents the kind of documentation I wrote in my earliest technical writing experiences at Alcatel and IBM. This typically meant working on a team of half a dozen writers, learning how to write using DITA and various XML editors like Epic Editor, Oxygen XML, and IBM's in-house Information Developers Workbench (IDWB) which was actually the precusor to the DITA-OT. 
+
+ <img src="https://raw.githubusercontent.com/jeofree/samples/master/ui-and-graphics/elixir-image.png" alt="" width="726">
+
+For a VMWare Infocenter (PDF version) click [here](https://github.com/jeofree/samples/blob/master/vfabric-gemfire-ug-6.6.4.pdf).
+
+<br/><br/>
 
 
 ## Installation Guide
