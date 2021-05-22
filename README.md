@@ -15,21 +15,10 @@ A recent documentation sample from my current work:
 <img src="cisco-api-dash-sample-shadow.png" alt="" width="726">
 
 
-For an full OpenAPI 3.0 (Formerly Swagger 2.0) Spec and Documentation:
 
-1. Right-click [here](roostify-core-api.html) and select "Save link as..." to download the html file.
-2. Open the downloaded file with Chrome or another browser.
+## Pinterest Developer New Hire Guide
 
- <img src="roostify-core-api-kong-2.png" alt="" width="726">
- 
- _A screenshot of the documentation above as published in a Kong API Gateway_
-
-<br/><br/>
-
-
-## Pinterest New Hire/Developer Guide
-
-I created this in Confluence, this is a PDF export of one part of a topic, with a small amount of redacted content.
+I created this in Confluence. This is a PDF export of one part of a topic, with a few details redacted.
 
 <img src="new_hire_developer_guide.png" alt="" width="726">
 
