@@ -10,7 +10,7 @@ Expertise with OpenAPI 3.0, Swagger 2.0 (and the difference between them).
 
 A recent documentation sample from my current work:
 
- <img src="cisco-api-sample.png" alt="" width="726">
+ <img src="cisco-api-sample-shadow.png" alt="" width="726">
 
 
 For an full OpenAPI 3.0 (Formerly Swagger 2.0) Spec and Documentation:
