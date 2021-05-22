@@ -6,7 +6,9 @@ This portfolio contains a sampling of documentation, user interfaces, and graphi
 
 ## API Documentation
 
-Expertise with OpenAPI 3.0, Swagger 2.0 (and the difference between them). A recent documentation sample from my current work:
+Expertise with OpenAPI 3.0, Swagger 2.0 (and the difference between them).
+
+A recent documentation sample from my current work:
 
  <img src="cisco-api-sample.png" alt="" width="726">
 
