@@ -8,11 +8,18 @@ This portfolio contains a sampling of documentation, user interfaces, and graphi
 
 Expertise with OpenAPI 3.0, Swagger 2.0 (and the difference between them).
 
-A recent documentation sample from my current work:
+A recent documentation sample:
 
 <img src="cisco-api-sample-shadow.png" alt="" width="726">
 
 <img src="cisco-api-dash-sample-shadow.png" alt="" width="726">
+
+I've created multiple API documentation portals using ReadMe.io over the past several years, some of which are showcased on ReadMe's [Customer Showcase page](https://readme.com/customers) (scroll down to "Agari").
+
+[Cisco API Portal](https://apidoc.appc.cisco.com/reference/overview)
+
+My most recent ReadMe.io site, just launched, is [here](https://docs.sezzle.com/sezzle-integration/docs)here.
+
 
 
 
