@@ -18,9 +18,7 @@ I've created multiple API documentation portals using ReadMe.io over the past se
 
 [Cisco API Portal](https://apidoc.appc.cisco.com/reference/overview)
 
-My most recent ReadMe.io site, just launched, is [here](https://docs.sezzle.com/sezzle-integration/docs)here.
-
-
+[My most recent ReadMe.io site](https://docs.sezzle.com/sezzle-integration/docs), just launched.
 
 
 ## Pinterest Developer New Hire Guide
