@@ -11,7 +11,7 @@ Current work:
 [Fintech Developer Documentation](https://docs.branchapp.com/branch-developer/reference/intro/getting-started)
 
 
-<img src="branch-docs-sample.png" alt="" width="726">
+<img src="ui-and-graphics/branch-docs-sample.png" alt="" width="726">
 
 
 A recent documentation sample:
