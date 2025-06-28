@@ -8,7 +8,11 @@ This portfolio contains a sampling of documentation, user interfaces, and graphi
 
 Current work:
 
-https://docs.branchapp.com/branch-developer/reference/intro/getting-started
+[Fintech Developer Documentation](https://docs.branchapp.com/branch-developer/reference/intro/getting-started)
+
+
+<img src="branch-docs-sample.png" alt="" width="726">
+
 
 A recent documentation sample:
 
